@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/ordersheet_left_child_layout"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/ordersheet_40dp">
+
+    <TextView
+        android:id="@id/ordersheet_left_dishes_child_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/ordersheet_20dp"
+        android:layout_toLeftOf="@id/ordersheet_dishes_left_child_num_tv"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/ordersheet_remark_color"
+        android:textSize="@dimen/ordersheet_14sp"
+        tools:text="火爆鱿鱼" />
+
+    <TextView
+        android:id="@id/ordersheet_dishes_left_child_num_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/ordersheet_20dp"
+        android:textColor="@color/ordersheet_remark_color"
+        android:textSize="@dimen/ordersheet_12sp"
+        tools:text="x4" />
+</RelativeLayout>

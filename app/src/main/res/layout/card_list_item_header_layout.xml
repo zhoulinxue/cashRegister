@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D7DDE4"
+    android:orientation="horizontal">
+
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:paddingTop="@dimen/margin_10dp"
+        android:paddingBottom="@dimen/margin_10dp"
+        android:text="序号"
+        android:textSize="@dimen/member_tabl_text_size"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:paddingTop="@dimen/margin_10dp"
+        android:paddingBottom="@dimen/margin_10dp"
+        android:text="卡号"
+        android:textSize="@dimen/member_tabl_text_size"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:paddingTop="@dimen/margin_10dp"
+        android:paddingBottom="@dimen/margin_10dp"
+        android:text="状态"
+        android:textSize="@dimen/member_tabl_text_size"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:paddingTop="@dimen/margin_10dp"
+        android:paddingBottom="@dimen/margin_10dp"
+        android:text="操作"
+        android:textSize="@dimen/member_tabl_text_size"
+        android:textStyle="bold" />
+
+</LinearLayout>

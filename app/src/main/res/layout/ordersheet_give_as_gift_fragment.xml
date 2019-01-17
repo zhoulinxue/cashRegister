@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ordersheet_kx_color"
+    android:orientation="vertical"
+    android:padding="@dimen/ordersheet_10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ordersheet_button_bg"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/ordersheet_10dp"
+        android:paddingBottom="@dimen/ordersheet_10dp">
+
+        <TextView
+            android:id="@id/ordersheet_dishes_already_gived"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/ordersheet_10dp"
+            android:text="本周/月总赠送金额：￥6000 " />
+
+        <TextView
+            android:id="@id/ordersheet_dishes_rest_give"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/ordersheet_10dp"
+            android:text=" 可赠送商品剩余总额：￥3000" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ordersheet_10dp"
+                android:gravity="center"
+                android:text="选择桌台"
+                android:textColor="@color/ordersheet_table_name_color"
+                android:textSize="@dimen/ordersheet_18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/ordersheet_10dp"
+                android:background="@color/ordersheet_white"
+                android:orientation="vertical"
+                android:padding="@dimen/ordersheet_10dp">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@id/ordersheet_table_area_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginRight="@dimen/ordersheet_20dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/ordersheet_10dp"
+                    android:background="#D7DDE4" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@id/ordersheet_table_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="@dimen/ordersheet_10dp"
+                    android:layout_marginRight="@dimen/ordersheet_20dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/ordersheet_10dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ordersheet_10dp"
+                android:gravity="center"
+                android:text="选择赠送商品"
+                android:textColor="@color/ordersheet_table_name_color"
+                android:textSize="@dimen/ordersheet_18sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/ordersheet_10dp"
+                android:background="@color/ordersheet_white"
+                android:orientation="vertical"
+                android:padding="@dimen/ordersheet_10dp">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@id/ordersheet_dishes_type_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginRight="@dimen/ordersheet_20dp" />
+
+                <View
+                    android:id="@id/ordersheet_divid_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/ordersheet_dishes_type_recyclerview"
+                    android:layout_marginTop="@dimen/ordersheet_10dp"
+                    android:background="#D7DDE4" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@id/ordersheet_dishes_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/ordersheet_dishes_bootom_layout"
+                    android:layout_below="@id/ordersheet_divid_line"
+                    android:layout_marginTop="@dimen/ordersheet_10dp"
+                    android:layout_marginRight="@dimen/ordersheet_20dp" />
+
+                <View
+                    android:id="@id/ordersheet_divid_line_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_above="@id/ordersheet_dishes_bootom_layout"
+                    android:layout_marginTop="@dimen/ordersheet_10dp"
+                    android:background="#D7DDE4" />
+
+                <RelativeLayout
+                    android:id="@id/ordersheet_dishes_bootom_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:padding="@dimen/ordersheet_10dp">
+
+                    <TextView
+                        android:id="@id/ordersheet_dishes_bootom_count_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="已选择 1 项，共计￥100"
+                        android:layout_centerVertical="true"/>
+
+                    <TextView
+                        android:id="@id/ordersheet_dishes_bottom_sure"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/ordersheet_white"
+                        android:padding="@dimen/ordersheet_10dp"
+                        android:background="@drawable/ordersheet_login_btn_bg"
+                        android:text="确认赠送" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/margin_40dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@id/cancel_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_weight="1"
+            android:background="@drawable/cash_login_btn_bg"
+            android:gravity="center"
+            android:padding="@dimen/margin_10dp"
+            android:text="取消"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_24sp" />
+
+        <com.zx.mvplibrary.wedgit.ClearableEditTextWithIcon
+            android:id="@id/seller_search_edite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_40dp"
+            android:layout_toLeftOf="@id/cancel_btn"
+            android:hint="请输入员工号或姓名"
+            android:background="@drawable/member_search_edit_bg"
+            android:padding="@dimen/margin_10dp"
+            android:textSize="@dimen/member_tabl_text_size" />
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@id/seller_recycerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/margin_10dp">
+
+    </android.support.v7.widget.RecyclerView>
+</LinearLayout>

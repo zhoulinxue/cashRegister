@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@id/bg_layout">
+
+    <RelativeLayout
+        android:id="@id/trans_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@id/input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+                <LinearLayout
+                    android:id="@id/dialog_content_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:paddingLeft="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_20dp"
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="手机号码："
+                                android:textColor="@color/time_text_color" />
+
+                            <com.zx.mvplibrary.wedgit.ClearableEditTextWithIcon
+                                android:id="@id/member_mobile_tv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/member_search_edit_bg"
+                                android:inputType="number"
+                                android:padding="5dp"
+                                android:textColor="@color/time_text_color" />
+
+                        </LinearLayout>
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:visibility="invisible"></FrameLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginRight="40dp"
+                        android:background="@color/white"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="会员等级："
+                            android:textColor="@color/time_text_color" />
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@id/levels_recyclerView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginRight="40dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:background="@color/white"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="@dimen/margin_100dp"
+                                android:layout_height="wrap_content"
+                                android:text="使用实体卡："
+                                android:textColor="@color/time_text_color" />
+
+                            <TextView
+                                android:id="@id/entity_card_tv_true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/card_level_bg"
+                                android:paddingLeft="@dimen/margin_40dp"
+                                android:paddingTop="5dp"
+                                android:paddingRight="@dimen/margin_40dp"
+                                android:paddingBottom="5dp"
+                                android:text="是"
+                                android:textColor="#1D95FF" />
+
+                            <TextView
+                                android:id="@id/entity_card_tv_false"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:background="@drawable/member_search_edit_bg"
+                                android:paddingLeft="@dimen/margin_40dp"
+                                android:paddingTop="5dp"
+                                android:paddingRight="@dimen/margin_40dp"
+                                android:paddingBottom="5dp"
+                                android:text="否"
+                                android:textColor="@color/time_text_color" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:text="赠送积分 100"
+                            android:textColor="@color/time_text_color"
+                            android:textSize="@dimen/sp_16" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_20dp"
+                        android:layout_marginRight="@dimen/margin_40dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/margin_20dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:id="@id/card_num_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:background="@color/white"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="@dimen/margin_100dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="实体卡号："
+                                    android:textColor="@color/time_text_color" />
+
+                                <TextView
+                                    android:id="@id/entity_card_num_edite"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/member_search_edit_bg"
+                                    android:inputType="number"
+                                    android:padding="10dp"
+                                    android:textColor="@color/time_text_color" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@id/seller_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_marginTop="@dimen/margin_10dp"
+                                android:layout_weight="1"
+                                android:background="@color/white"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="@dimen/margin_100dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="销售(可选)："
+                                    android:textColor="@color/time_text_color" />
+
+                                <TextView
+                                    android:id="@id/seller_tv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/member_search_edit_bg"
+                                    android:inputType="number"
+                                    android:padding="10dp"
+                                    android:textColor="@color/time_text_color" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_marginTop="@dimen/margin_10dp"
+                                android:layout_weight="1"
+                                android:background="@color/white"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="@dimen/margin_100dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="姓名(可选)："
+                                    android:textColor="@color/time_text_color" />
+
+                                <com.zx.mvplibrary.wedgit.ClearableEditTextWithIcon
+                                    android:id="@id/name_edite"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/member_search_edit_bg"
+                                    android:padding="10dp"
+                                    android:textColor="@color/time_text_color" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_marginTop="@dimen/margin_10dp"
+                                android:background="@color/white"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="@dimen/margin_100dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="性別(可选)："
+                                    android:textColor="@color/time_text_color" />
+
+                                <TextView
+                                    android:id="@id/man_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/card_level_bg"
+                                    android:paddingLeft="@dimen/margin_40dp"
+                                    android:paddingTop="5dp"
+                                    android:paddingRight="@dimen/margin_40dp"
+                                    android:paddingBottom="5dp"
+                                    android:text="先生"
+                                    android:textColor="@color/time_text_color" />
+
+                                <TextView
+                                    android:id="@id/lady_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:background="@drawable/member_search_edit_bg"
+                                    android:paddingLeft="@dimen/margin_40dp"
+                                    android:paddingTop="5dp"
+                                    android:paddingRight="@dimen/margin_40dp"
+                                    android:paddingBottom="5dp"
+                                    android:text="女士"
+                                    android:textColor="@color/time_text_color" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_marginTop="@dimen/margin_10dp"
+                                android:layout_weight="1"
+                                android:background="@color/white"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="@dimen/margin_100dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:text="生日(可选)："
+                                    android:textColor="@color/time_text_color" />
+
+                                <TextView
+                                    android:id="@id/birth_day_tv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_gravity="center_vertical"
+                                    android:background="@drawable/member_search_edit_bg"
+                                    android:drawableRight="@mipmap/icon_time"
+                                    android:drawablePadding="@dimen/margin_20dp"
+                                    android:ellipsize="end"
+                                    android:gravity="center_horizontal"
+                                    android:hint="2015-10-12"
+                                    android:maxLines="1"
+                                    android:padding="10dp"
+                                    android:textColor="@color/time_text_color"
+                                    android:textSize="@dimen/menber_edit_text_size" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:background="@color/white"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="@dimen/margin_100dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="邮箱(可选)："
+                                    android:textColor="@color/time_text_color" />
+
+                                <com.zx.mvplibrary.wedgit.ClearableEditTextWithIcon
+                                    android:id="@id/youxiang_edite"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/member_search_edit_bg"
+                                    android:padding="10dp"
+                                    android:textColor="@color/time_text_color" />
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_marginTop="@dimen/margin_10dp"
+                                android:layout_weight="1"
+                                android:background="@color/white"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="@dimen/margin_100dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="身份证(可选)："
+                                    android:textColor="@color/time_text_color" />
+
+                                <com.zx.mvplibrary.wedgit.ClearableEditTextWithIcon
+                                    android:id="@id/id_card_edite"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/member_search_edit_bg"
+                                    android:inputType="number"
+                                    android:padding="10dp"
+                                    android:textColor="@color/time_text_color" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_marginTop="@dimen/margin_10dp"
+                                android:layout_weight="1"
+                                android:background="@color/white"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="@dimen/margin_100dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="职业(可选)："
+                                    android:textColor="@color/time_text_color" />
+
+                                <com.zx.mvplibrary.wedgit.ClearableEditTextWithIcon
+                                    android:id="@id/zhiye_edite"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/member_search_edit_bg"
+                                    android:padding="10dp"
+                                    android:textColor="@color/time_text_color" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_marginTop="@dimen/margin_10dp"
+                                android:layout_weight="1"
+                                android:background="@color/white"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="@dimen/margin_100dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="地址(可选)："
+                                    android:textColor="@color/time_text_color" />
+
+                                <com.zx.mvplibrary.wedgit.ClearableEditTextWithIcon
+                                    android:id="@id/address_edite"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/member_search_edit_bg"
+                                    android:padding="10dp"
+                                    android:textColor="@color/time_text_color" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:id="@id/dialog_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0.6dp"
+                    android:layout_below="@id/dialog_content_layout"
+                    android:layout_marginTop="13dp"
+                    android:background="#859c9b9b" />
+
+                <LinearLayout
+                    android:id="@+id/dialog_linearlayout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/margin_60dp"
+                    android:layout_below="@id/dialog_content"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/dialog_left_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/common_dialog_right_selector"
+                        android:gravity="center"
+                        android:text="取消"
+                        android:textColor="#ff238cf6"
+                        android:textSize="16sp" />
+
+                    <View
+                        android:id="@+id/dialog_common_line"
+                        android:layout_width="0.6dp"
+                        android:layout_height="match_parent"
+                        android:background="#859c9b9b" />
+
+                    <TextView
+                        android:id="@+id/dialog_right_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/common_dialog_left_selector"
+                        android:gravity="center"
+                        android:text="确定"
+                        android:textColor="#ff238cf6"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </RelativeLayout>
+        </ScrollView>
+
+        <include layout="@layout/swip_card_layout" />
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/ordersheet_10dp"
+    android:background="@drawable/member_search_edit_bg"
+    android:padding="@dimen/ordersheet_20dp">
+
+    <TextView
+        android:id="@id/payment_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:textColor="@color/ordersheet_table_des_color"
+        android:textSize="@dimen/ordersheet_14sp"
+        tools:text="现金支付" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@id/payment_money_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="@dimen/ordersheet_20dp"
+            android:textColor="@color/ordersheet_table_des_color"
+            android:textSize="@dimen/ordersheet_16sp"
+            android:textStyle="bold"
+            tools:text="500" />
+
+        <TextView
+            android:id="@id/payment_return_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/ordersheet_20dp"
+            android:text="撤销"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/ordersheet_14sp" />
+    </LinearLayout>
+
+</RelativeLayout>

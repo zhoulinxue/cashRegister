@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D7DDE4"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@id/add_card_back_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/member_main_top">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/margin_10dp"
+            android:layout_marginBottom="@dimen/member_detail_bottom"
+            android:src="@mipmap/btn_back" />
+
+        <TextView
+            android:id="@id/member_ditail_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/margin_20dp"
+            android:layout_marginBottom="@dimen/member_detail_bottom"
+            android:text="@string/add_card_title"
+            android:textColor="@color/member_detail_title_color" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/margin_20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="@dimen/margin_20dp">
+
+            <RadioGroup
+                android:id="@+id/radioGroup_sex_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@id/card_range_radio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/card_range"
+                    android:textColor="@color/radio_btn_text_color" />
+
+                <RadioButton
+                    android:id="@id/card_num_radio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/margin_40dp"
+                    android:text="@string/card_num"
+                    android:textColor="@color/radio_btn_text_color" />
+            </RadioGroup>
+
+            <com.zx.mvplibrary.wedgit.ClearableEditTextWithIcon
+                android:id="@id/card_num_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="@dimen/margin_40dp"
+                android:layout_weight="1"
+                android:background="@drawable/member_search_edit_bg"
+                android:ellipsize="end"
+                android:hint="请刷卡录入卡号"
+                android:imeOptions="actionSearch"
+                android:numeric="integer"
+                android:paddingLeft="@dimen/margin_10dp"
+                android:paddingTop="@dimen/member_edite_padding_top"
+                android:paddingBottom="@dimen/member_edite_padding_top"
+                android:textSize="@dimen/menber_edit_text_size" />
+
+            <LinearLayout
+                android:id="@id/mult_make_cards"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:visibility="invisible">
+
+                <TextView
+                    android:id="@id/make_card_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="制卡数量：" />
+
+                <com.zx.mvplibrary.wedgit.ClearableEditTextWithIcon
+                    android:id="@id/card_num_edite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:background="@drawable/member_search_edit_bg"
+                    android:ellipsize="end"
+                    android:hint="请输入卡的数量"
+                    android:imeOptions="actionSearch"
+                    android:numeric="integer"
+                    android:paddingLeft="@dimen/margin_10dp"
+                    android:paddingTop="@dimen/member_edite_padding_top"
+                    android:paddingBottom="@dimen/member_edite_padding_top"
+                    android:textSize="@dimen/menber_edit_text_size" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/margin_40dp"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@id/make_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/margin_20dp"
+                android:background="@drawable/make_card_btn_bg"
+                android:paddingLeft="@dimen/margin_60dp"
+                android:paddingTop="@dimen/margin_10dp"
+                android:paddingRight="@dimen/margin_60dp"
+                android:paddingBottom="@dimen/margin_10dp"
+                android:text="@string/make_card"
+                android:textColor="@color/white"
+                android:textSize="@dimen/member_tabl_text_size" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@id/card_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/make_card"
+                android:paddingLeft="@dimen/margin_20dp"
+                android:paddingTop="@dimen/margin_20dp"
+                android:paddingRight="@dimen/margin_20dp" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

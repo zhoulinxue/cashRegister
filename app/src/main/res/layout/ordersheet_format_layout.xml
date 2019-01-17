@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@id/ordersheet_format_xd_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/ordersheet_10dp">
+
+            <TextView
+                android:id="@id/ordersheet_dishes_num_btn"
+                android:layout_width="@dimen/ordersheet_80dp"
+                android:layout_height="@dimen/ordersheet_80dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/ordersheet_search_edit_bg"
+                android:gravity="center"
+                android:text="1"
+                android:textSize="@dimen/ordersheet_24sp" />
+
+            <LinearLayout
+                android:layout_width="@dimen/ordersheet_80dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ordersheet_dishes_num_btn"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/ordersheet_5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@id/ordersheet_dishes_format_add_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/ordersheet_search_edit_bg"
+                    android:gravity="center"
+                    android:text="+"
+                    android:textSize="@dimen/ordersheet_24sp" />
+
+                <TextView
+                    android:id="@id/ordersheet_dishes_format_jj_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ordersheet_search_edit_bg"
+                    android:gravity="center"
+                    android:text="-"
+                    android:textSize="@dimen/ordersheet_24sp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@id/ordersheet_dishes_format_tv"
+                android:layout_width="@dimen/ordersheet_80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ordersheet_10dp"
+                android:background="@drawable/ordersheet_search_edit_bg"
+                android:gravity="center"
+                android:paddingLeft="@dimen/ordersheet_10dp"
+                android:paddingTop="@dimen/ordersheet_5dp"
+                android:paddingRight="@dimen/ordersheet_10dp"
+                android:paddingBottom="@dimen/ordersheet_5dp"
+                android:text="规格"
+                android:textSize="@dimen/ordersheet_14sp" />
+
+            <TextView
+                android:id="@id/ordersheet_dishes_d_btn"
+                android:layout_width="@dimen/ordersheet_80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ordersheet_10dp"
+                android:background="@drawable/ordersheet_search_edit_bg"
+                android:gravity="center"
+                android:paddingLeft="@dimen/ordersheet_10dp"
+                android:paddingTop="@dimen/ordersheet_5dp"
+                android:paddingRight="@dimen/ordersheet_10dp"
+                android:paddingBottom="@dimen/ordersheet_5dp"
+                android:text="等叫"
+                android:textSize="@dimen/ordersheet_14sp" />
+
+            <TextView
+                android:id="@id/ordersheet_dishes_w_btn"
+                android:layout_width="@dimen/ordersheet_80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ordersheet_10dp"
+                android:background="@drawable/ordersheet_search_edit_bg"
+                android:gravity="center"
+                android:paddingLeft="@dimen/ordersheet_10dp"
+                android:paddingTop="@dimen/ordersheet_5dp"
+                android:paddingRight="@dimen/ordersheet_10dp"
+                android:paddingBottom="@dimen/ordersheet_5dp"
+                android:text="外带"
+                android:textSize="@dimen/ordersheet_14sp" />
+
+            <TextView
+                android:id="@id/ordersheet_dishes_format_remark_btn"
+                android:layout_width="@dimen/ordersheet_80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ordersheet_10dp"
+                android:background="@drawable/ordersheet_search_edit_bg"
+                android:gravity="center"
+                android:paddingLeft="@dimen/ordersheet_10dp"
+                android:paddingTop="@dimen/ordersheet_5dp"
+                android:paddingRight="@dimen/ordersheet_10dp"
+                android:paddingBottom="@dimen/ordersheet_5dp"
+                android:text="备注"
+                android:textSize="@dimen/ordersheet_14sp" />
+
+            <TextView
+                android:id="@id/ordersheet_copy_tv"
+                android:layout_width="@dimen/ordersheet_80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ordersheet_10dp"
+                android:background="@drawable/ordersheet_search_edit_bg"
+                android:gravity="center"
+                android:paddingLeft="@dimen/ordersheet_10dp"
+                android:paddingTop="@dimen/ordersheet_5dp"
+                android:paddingRight="@dimen/ordersheet_10dp"
+                android:paddingBottom="@dimen/ordersheet_5dp"
+                android:text="复制"
+                android:textSize="@dimen/ordersheet_14sp" />
+
+            <TextView
+                android:id="@id/ordersheet_dishes_delete_btn"
+                android:layout_width="@dimen/ordersheet_80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ordersheet_10dp"
+                android:background="@drawable/ordersheet_search_edit_bg"
+                android:gravity="center"
+                android:paddingLeft="@dimen/ordersheet_10dp"
+                android:paddingTop="@dimen/ordersheet_5dp"
+                android:paddingRight="@dimen/ordersheet_10dp"
+                android:paddingBottom="@dimen/ordersheet_5dp"
+                android:text="删除"
+                android:textSize="@dimen/ordersheet_14sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@id/ordersheet_dishes_cui_cai_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ordersheet_94dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@id/ordersheet_dishes_cui_cai_btn"
+            android:layout_width="@dimen/ordersheet_80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ordersheet_10dp"
+            android:background="@drawable/ordersheet_search_edit_bg"
+            android:gravity="center"
+            android:paddingLeft="@dimen/ordersheet_10dp"
+            android:paddingTop="@dimen/ordersheet_5dp"
+            android:paddingRight="@dimen/ordersheet_10dp"
+            android:paddingBottom="@dimen/ordersheet_5dp"
+            android:text="催菜"
+            android:textSize="@dimen/ordersheet_14sp" />
+
+        <TextView
+            android:id="@id/ordersheet_dishes_tui_cai_btn"
+            android:layout_width="@dimen/ordersheet_80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ordersheet_10dp"
+            android:background="@drawable/ordersheet_search_edit_bg"
+            android:gravity="center"
+            android:paddingLeft="@dimen/ordersheet_10dp"
+            android:paddingTop="@dimen/ordersheet_5dp"
+            android:paddingRight="@dimen/ordersheet_10dp"
+            android:paddingBottom="@dimen/ordersheet_5dp"
+            android:text="退菜"
+            android:textSize="@dimen/ordersheet_14sp" />
+
+        <TextView
+            android:id="@id/ordersheet_dishes_gai_jia_btn"
+            android:layout_width="@dimen/ordersheet_80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ordersheet_10dp"
+            android:background="@drawable/ordersheet_search_edit_bg"
+            android:gravity="center"
+            android:paddingLeft="@dimen/ordersheet_10dp"
+            android:paddingTop="@dimen/ordersheet_5dp"
+            android:paddingRight="@dimen/ordersheet_10dp"
+            android:paddingBottom="@dimen/ordersheet_5dp"
+            android:text="改价"
+            android:textSize="@dimen/ordersheet_14sp" />
+
+        <TextView
+            android:id="@id/ordersheet_dishes_discount_btn"
+            android:layout_width="@dimen/ordersheet_80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ordersheet_10dp"
+            android:background="@drawable/ordersheet_search_edit_bg"
+            android:gravity="center"
+            android:paddingLeft="@dimen/ordersheet_10dp"
+            android:paddingTop="@dimen/ordersheet_5dp"
+            android:paddingRight="@dimen/ordersheet_10dp"
+            android:paddingBottom="@dimen/ordersheet_5dp"
+            android:text="打折"
+            android:textSize="@dimen/ordersheet_14sp" />
+
+        <TextView
+            android:id="@id/ordersheet_dishes_che_dan_btn"
+            android:layout_width="@dimen/ordersheet_80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ordersheet_10dp"
+            android:background="@drawable/ordersheet_search_edit_bg"
+            android:gravity="center"
+            android:paddingLeft="@dimen/ordersheet_10dp"
+            android:paddingTop="@dimen/ordersheet_5dp"
+            android:paddingRight="@dimen/ordersheet_10dp"
+            android:paddingBottom="@dimen/ordersheet_5dp"
+            android:text="撤单"
+            android:textSize="@dimen/ordersheet_14sp" />
+
+        <TextView
+            android:id="@id/ordersheet_dishes_print_btn"
+            android:layout_width="@dimen/ordersheet_80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ordersheet_10dp"
+            android:background="@drawable/ordersheet_search_edit_bg"
+            android:gravity="center"
+            android:paddingTop="@dimen/ordersheet_5dp"
+            android:paddingBottom="@dimen/ordersheet_5dp"
+            android:text="打印预结单"
+            android:textSize="@dimen/ordersheet_14sp" />
+    </LinearLayout>
+</LinearLayout>

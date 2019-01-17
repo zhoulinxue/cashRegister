@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true">
+
+    <RelativeLayout
+        android:id="@id/input_card_layout"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone">
+
+        <EditText
+            android:id="@id/input_edite"
+            android:layout_width="1dp"
+            android:layout_height="1dp">
+
+            <requestFocus />
+        </EditText>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/pic_car" />
+    </RelativeLayout>
+</RelativeLayout>

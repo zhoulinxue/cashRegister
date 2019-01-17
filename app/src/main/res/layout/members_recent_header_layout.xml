@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@id/make_card"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:src="@mipmap/make_card" />
+
+    <ImageView
+        android:id="@id/add_menbers"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:src="@mipmap/add_menbers" />
+
+    <ImageView
+        android:id="@id/recharge"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:src="@mipmap/recharge" />
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/member_main_search_hight_marginLeft"
+        android:layout_marginTop="@dimen/margin_39dp"
+        android:layout_marginRight="@dimen/member_main_search_hight_marginLeft"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@id/member_search_edit_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.zx.mvplibrary.wedgit.ClearableEditTextWithIcon
+                android:id="@id/member_search_edit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="5"
+                android:background="@drawable/member_search_edit_bg"
+                android:ellipsize="end"
+                android:hint="刷卡或输入卡号/11位手机号码搜索"
+                android:imeOptions="actionSearch"
+                android:maxLines="1"
+                android:numeric="integer"
+                android:paddingLeft="@dimen/margin_10dp"
+                android:paddingTop="@dimen/member_edite_padding_top"
+                android:paddingBottom="@dimen/member_edite_padding_top"
+                android:textSize="@dimen/menber_edit_text_size" />
+
+            <ImageView
+                android:id="@id/search_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:src="@mipmap/icon_seach"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@id/menber_num_decript"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/member_search_edit_layout"
+            android:layout_marginTop="@dimen/menber_num_decript_top"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/menber_num_decript_color"
+            android:textSize="@dimen/menber_num_text_size"
+            tools:text="共  2000  个会员" />
+
+        <TextView
+            android:id="@id/new_menber_num_decript"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/menber_num_decript"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/menber_num_decript_color"
+            android:textSize="@dimen/menber_num_text_size"
+            tools:text="今日新增  50  个" />
+
+    </RelativeLayout>
+
+</LinearLayout>

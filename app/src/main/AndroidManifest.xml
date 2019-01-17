@@ -1,0 +1,62 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.shigoo.cashregister">
+
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:icon="${app_icon}"
+        android:label="${app_name}"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:theme,android:label">
+        <activity
+            android:name=".activitys.CashRigisterMainActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+        <activity
+            android:name=".activitys.RouterActivity"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activitys.SellerSearchActivity" />
+        <activity
+            android:name=".activitys.FanJZActivity"
+            android:theme="@style/ordersheet_translucent" />
+        <activity
+            android:name=".activitys.AddAndUpdateMemberActivity"
+            android:theme="@style/translucent"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity android:name=".activitys.MainRouterActivity" />
+        <activity android:name=".activitys.OrderSheetLoginActivity" />
+        <activity
+            android:name=".activitys.AssembleTablesActivity"
+            android:theme="@style/ordersheet_translucent" />
+        <activity android:name=".activitys.PerformanceActivity" />
+        <activity
+            android:name=".activitys.NumberInputActivity"
+            android:theme="@style/ordersheet_translucent" />
+        <activity android:name=".activitys.SaleOutActivity" />
+        <activity android:name=".activitys.GiveAsGiftActivity" />
+        <activity
+            android:name=".activitys.GiveReasonActivity"
+            android:theme="@style/ordersheet_translucent"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name=".activitys.PayMemberLoginActivity"
+            android:theme="@style/ordersheet_translucent" />
+    </application>
+</manifest>

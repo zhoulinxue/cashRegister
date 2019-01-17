@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ordersheet_transparent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="@dimen/ordersheet_700dp"
+        android:layout_height="@dimen/ordersheet_320dp"
+        android:layout_centerInParent="true"
+        android:background="@color/ordersheet_white"
+        android:orientation="vertical"
+        android:padding="@dimen/ordersheet_20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="选择赠送理由"
+                android:textColor="@color/ordersheet_table_name_color"
+                android:textSize="@dimen/ordersheet_16sp" />
+
+            <ImageView
+                android:id="@id/ordersheet_dishes_bootom_cancel_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/ordersheet_close_dialog" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/ordersheet_50dp"
+            android:layout_marginTop="@dimen/ordersheet_20dp"
+            android:layout_marginRight="@dimen/ordersheet_50dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="自定义："
+                android:textColor="@color/ordersheet_table_des_color"
+                android:textSize="@dimen/ordersheet_14sp" />
+
+            <com.zx.mvplibrary.wedgit.ClearableEditTextWithIcon
+                android:id="@id/ordersheet_dishes_reason_edite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/ordersheet_10dp"
+                android:textColor="@color/ordersheet_table_des_color"
+                android:background="@drawable/ordersheet_search_edit_bg"
+                android:hint="输入自定义理由，限定20字以内"
+                android:padding="@dimen/ordersheet_10dp"
+                android:textSize="@dimen/ordersheet_12sp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ordersheet_20dp">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@id/ordersheet_dishes_give_reason_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/ordersheet_divid_line"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="@dimen/ordersheet_80dp"
+                android:layout_marginRight="@dimen/ordersheet_80dp" />
+
+            <View
+                android:id="@id/ordersheet_divid_line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_above="@id/ordersheet_dishes_bootom_layout"
+                android:background="#D7DDE4" />
+
+            <RelativeLayout
+                android:id="@id/ordersheet_dishes_bootom_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@id/ordersheet_dishes_bootom_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/ordersheet_number_btn_bg"
+                    android:paddingLeft="@dimen/ordersheet_20dp"
+                    android:paddingTop="@dimen/ordersheet_10dp"
+                    android:paddingRight="@dimen/ordersheet_20dp"
+                    android:paddingBottom="@dimen/ordersheet_10dp"
+                    android:text="取消"
+                    android:textColor="@color/ordersheet_white" />
+
+                <TextView
+                    android:id="@id/ordersheet_dishes_bottom_sure"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/ordersheet_20dp"
+                    android:layout_toRightOf="@id/ordersheet_dishes_bootom_cancel"
+                    android:background="@drawable/ordersheet_number_btn_bg"
+                    android:paddingLeft="@dimen/ordersheet_20dp"
+                    android:paddingTop="@dimen/ordersheet_10dp"
+                    android:paddingRight="@dimen/ordersheet_20dp"
+                    android:paddingBottom="@dimen/ordersheet_10dp"
+                    android:text="提交"
+                    android:textColor="@color/ordersheet_white" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

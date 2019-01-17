@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_20dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:text="@string/card_num"
+                        android:textSize="@dimen/member_tabl_text_size"
+                        tools:text="卡号" />
+
+                    <TextView
+                        android:id="@id/card_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_20dp"
+                        android:textColor="#464C5B"
+                        android:textSize="@dimen/member_tabl_text_size"
+                        tools:text="18500121245" />
+
+                    <TextView
+                        android:id="@id/card_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_10dp"
+                        android:background="@drawable/member_card_name_bg"
+                        android:paddingLeft="@dimen/margin_10dp"
+                        android:paddingTop="2dp"
+                        android:paddingRight="@dimen/margin_10dp"
+                        android:paddingBottom="2dp"
+                        android:text="实体卡"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/member_tabl_text_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:text="@string/rechare_vlaue"
+                        android:textSize="@dimen/member_tabl_text_size" />
+
+                    <TextView
+                        android:id="@id/rechare_vlaue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_20dp"
+                        android:textColor="#464C5B"
+                        android:textSize="@dimen/member_tabl_text_size"
+                        tools:text="18500121245" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:text="@string/rechare_pre"
+                        android:textSize="@dimen/member_tabl_text_size" />
+
+                    <TextView
+                        android:id="@id/rechare_pre"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_20dp"
+                        android:textColor="#464C5B"
+                        android:textSize="@dimen/member_tabl_text_size"
+                        tools:text="18500121245" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:text="@string/moblie_phone"
+                        android:textSize="@dimen/member_tabl_text_size" />
+
+                    <TextView
+                        android:id="@id/moblie_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_20dp"
+                        android:textColor="#464C5B"
+                        android:textSize="@dimen/member_tabl_text_size"
+                        tools:text="18500121245" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:text="@string/consume_recharge_money"
+                        android:textSize="@dimen/member_tabl_text_size" />
+
+                    <TextView
+                        android:id="@id/consume_recharge_money"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_20dp"
+                        android:textColor="#464C5B"
+                        android:textSize="@dimen/member_tabl_text_size"
+                        tools:text="18500121245" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/dialog_content"
+        android:layout_width="wrap_content"
+        android:layout_height="0.6dp"
+        android:layout_below="@id/dialog_content_tv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="13dp"
+        android:background="#859c9b9b" />
+
+    <LinearLayout
+        android:id="@+id/dialog_linearlayout"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/margin_60dp"
+        android:layout_below="@id/dialog_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/dialog_left_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/common_dialog_right_selector"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="#ff238cf6"
+            android:textSize="16sp" />
+
+        <View
+            android:id="@+id/dialog_common_line"
+            android:layout_width="0.6dp"
+            android:layout_height="match_parent"
+            android:background="#859c9b9b" />
+
+        <TextView
+            android:id="@+id/dialog_right_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/common_dialog_left_selector"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="#ff238cf6"
+            android:textSize="16sp" />
+    </LinearLayout>
+</LinearLayout>

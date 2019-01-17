@@ -1,0 +1,77 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.jakewharton.butterknife'
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    defaultConfig {
+        applicationId "com.shigoo.cashregister"
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        flavorDimensions "default"
+    }
+
+    // 多渠道 的不同配置
+    productFlavors {
+        cashRegister {
+            applicationId "com.shigoo.cashregister"
+            manifestPlaceholders = [
+                    CHANNEL_VALUE: "cashRegister",
+                    app_icon     : "@mipmap/home_pic_logo",
+                    app_name     : "@string/app_name",
+            ]
+        }
+        orderdishes {
+            applicationId "com.shigoo.orderdishes"
+            manifestPlaceholders = [
+                    CHANNEL_VALUE: "orderdishes",
+                    app_icon     : "@mipmap/ordersheet_home_pic_logo",
+                    app_name     : "@string/ordersheet_app_name",
+            ]
+        }
+    }
+    buildTypes {
+        release {
+            // 调式模式
+            debuggable false
+            // 不显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            // 混淆
+            minifyEnabled false
+            // Zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources false
+            buildConfigField "String", "API_HOST", rootProject.ext.apiHost.releaseHost
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            // 调式模式
+            debuggable true
+            // 不显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            // 混淆
+            minifyEnabled false
+            // Zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "API_HOST", rootProject.ext.apiHost.debugHost
+        }
+    }
+    lintOptions {
+        disable 'GoogleAppIndexingWarning'
+        baseline file("lint-baseline.xml")
+    }
+}
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    implementation project(':mvplibrary')
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    annotationProcessor 'io.starteos:dappsdk-compiler:1.0.5.fix.2'
+}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/ordersheet_10dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@id/ordersheet_table_bottom_item_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/ordersheet_table_bottom_item_bg"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/ordersheet_10dp"
+        android:paddingRight="@dimen/ordersheet_10dp">
+
+        <ImageView
+            android:id="@id/ordersheet_table_bottom_item_img"
+            android:layout_width="@dimen/ordersheet_12dp"
+            android:layout_height="@dimen/ordersheet_12dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/ordersheet_kx_color" />
+
+        <TextView
+            android:id="@id/ordersheet_table_bottom_item_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/ordersheet_10dp"
+            android:paddingTop="@dimen/ordersheet_5dp"
+            android:paddingRight="@dimen/ordersheet_10dp"
+            android:paddingBottom="@dimen/ordersheet_5dp"
+            android:text="空闲"
+            android:textColor="@color/ordersheet_area_color"
+            android:textSize="@dimen/ordersheet_14sp" />
+    </LinearLayout>
+</LinearLayout>

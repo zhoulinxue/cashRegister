@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/recharge_top_margin"
+            android:layout_weight="2"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/recharge_left_margin"
+                android:maxLines="1"
+                android:text="@string/recharge_fragment_search_tv"
+                android:textSize="@dimen/member_tabl_text_size" />
+
+            <com.zx.mvplibrary.wedgit.ClearableEditTextWithIcon
+                android:id="@id/member_search_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/member_search_edit_bg"
+                android:ellipsize="end"
+                android:hint="刷卡或输入卡号/手机号码"
+                android:imeOptions="actionSearch"
+                android:maxLines="1"
+                android:numeric="integer"
+                android:paddingLeft="@dimen/margin_10dp"
+                android:paddingTop="@dimen/member_edite_padding_top"
+                android:paddingRight="@dimen/margin_20dp"
+                android:paddingBottom="@dimen/member_edite_padding_top"
+                android:textSize="@dimen/menber_edit_text_size" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/recharge_top_margin"
+            android:layout_weight="2"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/recharge_left_margin"
+                android:maxLines="1"
+                android:text="@string/recharge_time"
+                android:textSize="@dimen/member_tabl_text_size" />
+
+            <TextView
+                android:id="@id/recharge_time_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/member_search_edit_bg"
+                android:drawableRight="@mipmap/icon_time"
+                android:drawablePadding="@dimen/margin_20dp"
+                android:ellipsize="end"
+                android:hint="2015-10-12   ~   2015-10-10"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/margin_10dp"
+                android:paddingTop="@dimen/member_edite_padding_top"
+                android:paddingRight="@dimen/margin_10dp"
+                android:paddingBottom="@dimen/member_edite_padding_top"
+                android:textSize="@dimen/menber_edit_text_size" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/recharge_top_margin"
+            android:layout_weight="1"
+            android:background="@drawable/member_search_edit_bg"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/margin_10dp"
+            android:paddingTop="@dimen/member_edite_padding_top"
+            android:paddingRight="@dimen/margin_10dp"
+            android:paddingBottom="@dimen/member_edite_padding_top">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#D7DDE4"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@id/today_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/margin_10dp"
+                    android:paddingRight="@dimen/margin_10dp"
+                    android:text="@string/today" />
+
+                <TextView
+                    android:id="@id/yesterday_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/margin_10dp"
+                    android:paddingRight="@dimen/margin_10dp"
+                    android:text="@string/yesterday" />
+
+                <TextView
+                    android:id="@id/last_seven_days"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/margin_10dp"
+                    android:paddingRight="@dimen/margin_10dp"
+                    android:text="@string/last_seven_days" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_20dp"
+            android:layout_marginTop="@dimen/recharge_top_margin"
+            android:layout_marginRight="@dimen/margin_20dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@id/search_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@drawable/member_search_btn_bg"
+                android:gravity="center"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/margin_10dp"
+                android:paddingTop="@dimen/member_edite_padding_top"
+                android:paddingRight="@dimen/margin_10dp"
+                android:paddingBottom="@dimen/member_edite_padding_top"
+                android:text="@string/search"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_12sp" />
+
+            <TextView
+                android:id="@id/clean_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/margin_10dp"
+                android:layout_weight="1"
+                android:background="@drawable/member_search_edit_bg"
+                android:gravity="center"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/margin_10dp"
+                android:paddingTop="@dimen/member_edite_padding_top"
+                android:paddingRight="@dimen/margin_10dp"
+                android:paddingBottom="@dimen/member_edite_padding_top"
+                android:text="@string/clean"
+                android:textSize="@dimen/text_size_12sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/margin_20dp"
+        android:layout_marginTop="@dimen/margin_20dp"
+        android:layout_marginRight="@dimen/margin_20dp"
+        android:background="#D7DDE4" />
+</LinearLayout>

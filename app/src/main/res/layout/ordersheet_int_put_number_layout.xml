@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@id/ordersheet_number_finish_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/ordersheet_10dp"
+        android:layout_marginRight="@dimen/ordersheet_10dp"
+        android:src="@mipmap/ordersheet_close_dialog" />
+
+    <LinearLayout
+        android:id="@id/ordersheet_number_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@id/ordersheet_number_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ordersheet_18dp"
+            android:gravity="center|center_horizontal"
+            android:text="设置估清值"
+            android:textColor="@color/ordersheet_table_name_color"
+            android:textSize="@dimen/ordersheet_18sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/ordersheet_40dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="@dimen/ordersheet_40dp"
+            android:background="@drawable/ordersheet_search_edit_bg"
+            android:padding="@dimen/ordersheet_10dp">
+
+            <TextView
+                android:id="@id/ordersheet_number_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:background="@color/ordersheet_white"
+                android:ellipsize="middle"
+                android:gravity="bottom|center_horizontal"
+                android:singleLine="true"
+                android:hint="请刷卡、扫码或输入卡号/手机号码"
+                android:textColorHint="@color/ordersheet_remark_color"
+                android:layout_marginRight="@dimen/ordersheet_50dp"
+                android:textColor="@color/ordersheet_table_name_color"
+                android:textSize="@dimen/ordersheet_36sp" />
+
+            <TextView
+                android:id="@id/ordersheet_number_unit_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/ordersheet_number_tv"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/ordersheet_10dp"
+                android:layout_marginRight="@dimen/ordersheet_10dp"
+                android:background="@color/ordersheet_white"
+                android:text="份"
+                android:textColor="@color/ordersheet_table_des_color"
+                android:textSize="@dimen/ordersheet_18sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@id/ordersheet_number_result_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/ordersheet_number_btn_bg"
+        android:gravity="center"
+        android:padding="@dimen/ordersheet_10dp"
+        android:text="确认"
+        android:textColor="@color/ordersheet_white"
+        android:textSize="@dimen/ordersheet_30sp" />
+
+    <com.zx.mvplibrary.wedgit.FullScreenNumberKeyboardView
+        android:id="@id/ordersheet_number_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/ordersheet_number_result_btn"
+        android:layout_below="@id/ordersheet_number_title_layout" />
+
+
+</RelativeLayout>

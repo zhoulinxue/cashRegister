@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <gradient
+                android:angle="0"
+                android:endColor="#ff1d95ff"
+                android:startColor="#ff4facfe" />
+            <corners
+                android:bottomLeftRadius="@dimen/ordersheet_20dp"
+                android:topLeftRadius="@dimen/ordersheet_20dp" />
+            <stroke android:color="#ff1d95ff" android:width="@dimen/ordersheet_1dp"/>
+        </shape>
+    </item>
+</layer-list>
+
+

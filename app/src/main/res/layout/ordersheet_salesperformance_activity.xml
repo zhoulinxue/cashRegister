@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D7DDE4"
+    android:orientation="vertical">
+
+    <include layout="@layout/ordersheet_logo_title_layout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/ordersheet_20dp"
+        android:background="@color/ordersheet_white"
+        android:orientation="vertical"
+        android:padding="@dimen/ordersheet_10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ordersheet_10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:maxLines="1"
+                    android:text="@string/ordersheet_choose_time"
+                    android:textSize="@dimen/ordersheet_14sp" />
+
+                <TextView
+                    android:id="@id/ordersheet_time_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/ordersheet_20dp"
+                    android:background="@drawable/ordersheet_search_edit_bg"
+                    android:drawableRight="@mipmap/ordersheet_icon_time"
+                    android:drawablePadding="@dimen/ordersheet_20dp"
+                    android:ellipsize="end"
+                    android:hint="2015-10-12   ~   2015-10-10"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/ordersheet_10dp"
+                    android:paddingTop="@dimen/ordersheet_10dp"
+                    android:paddingRight="@dimen/ordersheet_10dp"
+                    android:paddingBottom="@dimen/ordersheet_10dp"
+                    android:textSize="@dimen/ordersheet_12sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/ordersheet_20dp"
+                android:layout_marginTop="@dimen/ordersheet_10dp"
+                android:background="@drawable/ordersheet_search_edit_bg"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/ordersheet_10dp"
+                android:paddingTop="@dimen/ordersheet_10dp"
+                android:paddingRight="@dimen/ordersheet_20dp"
+                android:paddingBottom="@dimen/ordersheet_10dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#D7DDE4"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@id/ordersheet_today_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:background="@color/ordersheet_white"
+                        android:maxLines="1"
+                        android:paddingLeft="@dimen/ordersheet_10dp"
+                        android:paddingRight="@dimen/ordersheet_10dp"
+                        android:text="@string/ordersheet_today" />
+
+                    <TextView
+                        android:id="@id/ordersheet_yesterday_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/ordersheet_white"
+                        android:maxLines="1"
+                        android:paddingLeft="@dimen/ordersheet_10dp"
+                        android:paddingRight="@dimen/ordersheet_10dp"
+                        android:text="@string/ordersheet_yesterday" />
+
+                    <TextView
+                        android:id="@id/ordersheet_last_seven_days"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/ordersheet_white"
+                        android:maxLines="1"
+                        android:paddingLeft="@dimen/ordersheet_10dp"
+                        android:paddingRight="@dimen/ordersheet_10dp"
+                        android:text="@string/ordersheet_last_seven_days" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ordersheet_20dp"
+            android:background="@drawable/ordersheet_sale_total_bg"
+            android:orientation="horizontal"
+            android:padding="@dimen/ordersheet_5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="合计:"
+                android:textColor="@color/ordersheet_table_des_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/ordersheet_20dp"
+                android:text="现结:"
+                android:textColor="@color/ordersheet_table_des_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="xx元" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/ordersheet_20dp"
+                android:text="会员卡刷卡:"
+                android:textColor="@color/ordersheet_table_des_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/ordersheet_table_des_color"
+                tools:text="xx元" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/ordersheet_20dp"
+                android:text="其他:"
+                android:textColor="@color/ordersheet_table_des_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="xx元" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@id/ordersheet_chart_webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/ordersheet_10dp" />
+    </LinearLayout>
+</LinearLayout>

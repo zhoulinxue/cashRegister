@@ -1,0 +1,88 @@
+package com.shigoo.cashregister.fragments;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.FrameLayout;
+
+import com.shigoo.cashregister.R;
+import com.xgsb.datafactory.JSONManager;
+import com.zx.api.api.utils.SPUtil;
+import com.zx.mvplibrary.BaseFragment;
+import com.zx.mvplibrary.web.InitWebView;
+import com.zx.mvplibrary.web.onOperateLisenter;
+import com.zx.mvplibrary.wedgit.WebChartView;
+import com.zx.network.Param;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import io.starteos.dappsdk.Request;
+
+/**
+ * Name: TableFragment
+ * Author: zhouxue
+ * Email: 194093798@qq.com
+ * Comment: //TODO
+ * Date: 2018-12-01 14:27
+ */
+public class OrdersFragment extends BaseFragment implements onOperateLisenter {
+    @BindView(R.id.web_chart_layout)
+    FrameLayout mWebContainer;
+    WebChartView webChartView;
+
+
+    public static OrdersFragment newInstance() {
+        OrdersFragment fragment = new OrdersFragment();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    protected void preOnCreatView() {
+
+    }
+
+    @Override
+    protected int initLayout() {
+        return R.layout.order_fragment_layout;
+    }
+
+    @Override
+    protected void onCreateView(View view, Bundle argment) {
+        ButterKnife.bind(this, view);
+        webChartView = new WebChartView(getContext(), mWebContainer,this,mHandler);
+        webChartView.loadUrl("file:///android_asset/index.html");
+//        webChartView.loadUrl("http://192.168.188.116/webview/index.html#/");
+    }
+
+    @Override
+    protected void onInitData(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    public String getToken() {
+        return SPUtil.getInstance().getString(Param.Keys.TOKEN, "default_token");
+    }
+
+    @Override
+    public void initWebview(Request request) {
+        InitWebView initWebView = new InitWebView(getToken(), "order");
+        webChartView.callback(request, JSONManager.getInstance().toJson(initWebView));
+    }
+
+    @Override
+    public void onGettableInfo(Request request) {
+
+    }
+
+    @Override
+    public void onOperate(Request request) {
+
+    }
+
+    @Override
+    public void onSearch(Request request) {
+
+    }
+}

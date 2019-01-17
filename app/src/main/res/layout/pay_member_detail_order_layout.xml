@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/member_detail_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ordersheet_white"
+    android:orientation="vertical"
+    android:padding="@dimen/ordersheet_20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/demolition_bottom_layout"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/ordersheet_10dp">
+
+            <TextView
+                android:id="@id/back_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/ordersheet_search_edit_bg"
+                android:paddingLeft="@dimen/ordersheet_20dp"
+                android:paddingTop="@dimen/ordersheet_5dp"
+                android:paddingRight="@dimen/ordersheet_20dp"
+                android:paddingBottom="@dimen/ordersheet_5dp"
+                android:text="退出"
+                android:textColor="@color/ordersheet_table_des_color"
+                android:textSize="@dimen/ordersheet_14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/back_btn"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@id/member_detail_mobile_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:textColor="#464C5B"
+                    android:textSize="@dimen/member_detail_mobile_text_size"
+                    android:textStyle="bold"
+                    tools:text="18500121245" />
+
+                <LinearLayout
+                    android:id="@id/card_num_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:orientation="horizontal"
+                    android:padding="2dp">
+
+                    <TextView
+                        android:id="@id/card_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/member_card_name_bg"
+                        android:paddingLeft="@dimen/margin_10dp"
+                        android:paddingTop="2dp"
+                        android:paddingRight="@dimen/margin_10dp"
+                        android:paddingBottom="2dp"
+                        android:text="实体卡"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/member_tabl_text_size" />
+
+                    <TextView
+                        android:id="@id/card_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="#464C5B"
+                        android:textSize="@dimen/member_tabl_text_size"
+                        tools:text="18500121245" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@id/member_level"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/ordersheet_table_des_color"
+                        android:textSize="@dimen/member_tabl_text_size"
+                        tools:text="普通会员" />
+
+                    <TextView
+                        android:id="@id/growth_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_20dp"
+                        android:textColor="@color/ordersheet_table_des_color"
+                        android:textSize="@dimen/member_tabl_text_size"
+                        tools:text="王力宏" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:text="储值"
+                        android:textColor="@color/ordersheet_table_des_color"
+                        android:textSize="@dimen/member_tabl_text_size" />
+
+                    <TextView
+                        android:id="@id/stored_value_balance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_20dp"
+                        android:textColor="#FF5959"
+                        android:textSize="@dimen/member_tabl_text_size"
+                        tools:text="18500121245" />
+
+                    <TextView
+                        android:id="@id/stored_value_balance_else"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_20dp"
+                        android:textColor="@color/ordersheet_remark_color"
+                        android:textSize="@dimen/ordersheet_12sp"
+                        tools:text="18500121245" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:text="积分"
+                        android:textColor="@color/ordersheet_table_des_color"
+                        android:textSize="@dimen/member_tabl_text_size" />
+
+                    <TextView
+                        android:id="@id/integral_balance_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_20dp"
+                        android:textColor="#FF5959"
+                        android:textSize="@dimen/member_tabl_text_size"
+                        tools:text="18500121245" />
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ordersheet_1dp"
+            android:background="@color/ordersheet_remark_divider" />
+
+        <LinearLayout
+            android:id="@id/member_discount_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ordersheet_10dp"
+            android:background="@color/white"
+            android:padding="@dimen/ordersheet_10dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@id/member_discount_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/check_box_drawable"
+                android:gravity="left|center_vertical"
+                android:src="@color/ordersheet_remark_divider" />
+
+            <TextView
+                android:id="@id/member_discount_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/margin_20dp"
+                android:background="@color/white"
+                android:text="使用会员折扣，优惠￥203.80"
+                android:textColor="#464C5B"
+                android:textSize="@dimen/member_tabl_text_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:padding="@dimen/ordersheet_10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ordersheet_10dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@id/member_price_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/check_box_drawable"
+                android:gravity="left|center_vertical"
+                android:src="@color/ordersheet_remark_divider" />
+
+            <TextView
+                android:id="@id/member_jf_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/margin_20dp"
+                android:background="@color/white"
+                android:text="会员有0积分，本次可使用     0   积分，可抵扣￥0"
+                android:textColor="#464C5B"
+                android:textSize="@dimen/member_tabl_text_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:padding="@dimen/ordersheet_10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ordersheet_10dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@mipmap/icon_tips" />
+
+            <TextView
+                android:id="@id/coupon_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/margin_20dp"
+                android:background="@color/white"
+                android:text="使用代金券，减￥20"
+                android:textColor="#464C5B"
+                android:textSize="@dimen/member_tabl_text_size" />
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@id/coupon_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ordersheet_10dp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@id/demolition_bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/ordersheet_remark_divider" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/ordersheet_10dp"
+            android:layout_marginBottom="@dimen/ordersheet_10dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@id/member_cancel_tv"
+                    android:layout_width="@dimen/ordersheet_120dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ordersheet_search_edit_bg"
+                    android:gravity="center"
+                    android:padding="@dimen/ordersheet_10dp"
+                    android:text="取消"
+                    android:textColor="@color/ordersheet_table_des_color"
+                    android:textSize="@dimen/ordersheet_14sp" />
+
+                <TextView
+                    android:id="@id/sure_demolition_tv"
+                    android:layout_width="@dimen/ordersheet_120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="@dimen/ordersheet_20dp"
+                    android:layout_toRightOf="@id/add_all_dishes"
+                    android:background="@drawable/ordersheet_search_edit_bg"
+                    android:gravity="center"
+                    android:padding="@dimen/ordersheet_10dp"
+                    android:text="确认使用"
+                    android:textColor="@color/ordersheet_table_des_color"
+                    android:textSize="@dimen/ordersheet_14sp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

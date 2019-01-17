@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/swip_card_layout" />
+
+    <LinearLayout
+        android:id="@id/member_detail_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#D7DDE4"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@id/member_detail_back_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/member_detail_top">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/margin_10dp"
+                android:layout_marginBottom="@dimen/member_detail_bottom"
+                android:src="@mipmap/btn_back" />
+
+            <TextView
+                android:id="@id/member_ditail_title_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/margin_20dp"
+                android:layout_marginBottom="@dimen/member_detail_bottom"
+                android:text="@string/menber_detail_title"
+                android:textColor="@color/member_detail_title_color" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_20dp"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/margin_20dp"
+                android:paddingTop="@dimen/margin_20dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@id/member_detail_mobile_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:textColor="#464C5B"
+                        android:textSize="@dimen/member_detail_mobile_text_size"
+                        android:textStyle="bold"
+                        tools:text="18500121245" />
+
+                    <LinearLayout
+                        android:id="@id/card_num_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_10dp"
+                        android:orientation="horizontal"
+                        android:padding="2dp">
+
+                        <TextView
+                            android:id="@id/card_type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/member_card_name_bg"
+                            android:paddingLeft="@dimen/margin_10dp"
+                            android:paddingTop="2dp"
+                            android:paddingRight="@dimen/margin_10dp"
+                            android:paddingBottom="2dp"
+                            android:text="实体卡"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/member_tabl_text_size" />
+
+                        <TextView
+                            android:id="@id/card_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:textColor="#464C5B"
+                            android:textSize="@dimen/member_tabl_text_size"
+                            tools:text="18500121245" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@id/member_level"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:textColor="#464C5B"
+                        android:textSize="@dimen/member_tabl_text_size"
+                        tools:text="普通会员" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="@dimen/margin_10dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:text="@string/member_grouth_num"
+                            android:textSize="@dimen/member_tabl_text_size"
+                            tools:text="成长值" />
+
+                        <TextView
+                            android:id="@id/growth_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/margin_20dp"
+                            android:textColor="#464C5B"
+                            android:textSize="@dimen/member_tabl_text_size"
+                            tools:text="18500121245" />
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@id/preferential"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="@dimen/margin_10dp"
+                        android:layout_weight="1"
+                        tools:text="无优惠" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="@dimen/margin_10dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:text="@string/integral_balance"
+                            android:textSize="@dimen/member_tabl_text_size"
+                            tools:text="积分余额" />
+
+                        <TextView
+                            android:id="@id/integral_balance_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/margin_20dp"
+                            android:textColor="#464C5B"
+                            android:textSize="@dimen/member_tabl_text_size"
+                            tools:text="18500121245" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="@dimen/margin_10dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:text="@string/stored_value_balance"
+                            android:textSize="@dimen/member_tabl_text_size"
+                            tools:text="储值余额" />
+
+                        <TextView
+                            android:id="@id/stored_value_balance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/margin_20dp"
+                            android:textColor="#464C5B"
+                            android:textSize="@dimen/member_tabl_text_size"
+                            tools:text="18500121245" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="@dimen/margin_10dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:text="@string/membership_assignment"
+                            android:textSize="@dimen/member_tabl_text_size"
+                            tools:text="会员归属" />
+
+                        <TextView
+                            android:id="@id/membership_assignment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/margin_20dp"
+                            android:textColor="#464C5B"
+                            android:textSize="@dimen/member_tabl_text_size"
+                            tools:text="18500121245" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_10dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:text="@string/member_status"
+                            android:textSize="@dimen/member_tabl_text_size"
+                            tools:text="状态" />
+
+                        <TextView
+                            android:id="@id/membership_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/margin_20dp"
+                            android:textSize="@dimen/member_tabl_text_size"
+                            tools:text="正常" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@id/recharge_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/margin_20dp"
+                        android:background="@drawable/member_detail_recharge_btn_bg"
+                        android:text="@string/recharge"
+                        android:textColor="@color/white" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="@dimen/margin_20dp"
+                android:layout_marginRight="@dimen/margin_20dp"
+                android:background="#D7DDE4" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/margin_20dp"
+                android:paddingTop="@dimen/margin_20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="@dimen/margin_10dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:text="@string/member_name"
+                                android:textSize="@dimen/member_tabl_text_size"
+                                tools:text="姓名" />
+
+                            <TextView
+                                android:id="@id/member_name_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/margin_20dp"
+                                android:textColor="#464C5B"
+                                android:textSize="@dimen/member_tabl_text_size"
+                                tools:text="18500121245" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="@dimen/margin_10dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:text="@string/member_birthday"
+                                android:textSize="@dimen/member_tabl_text_size"
+                                tools:text="生日" />
+
+                            <TextView
+                                android:id="@id/member_birthday"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/margin_20dp"
+                                android:textColor="#464C5B"
+                                android:textSize="@dimen/member_tabl_text_size"
+                                tools:text="18500121245" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="@dimen/margin_10dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:text="@string/creat_card_time"
+                                android:textSize="@dimen/member_tabl_text_size"
+                                tools:text="开卡时间" />
+
+                            <TextView
+                                android:id="@id/card_opening_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/margin_20dp"
+                                android:textColor="#464C5B"
+                                android:textSize="@dimen/member_tabl_text_size"
+                                tools:text="18500121245" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/margin_60dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="@dimen/margin_10dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:text="@string/consume_num"
+                                android:textSize="@dimen/member_tabl_text_size"
+                                tools:text="消费次数" />
+
+                            <TextView
+                                android:id="@id/consume_num"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/margin_20dp"
+                                android:textColor="#464C5B"
+                                android:textSize="@dimen/member_tabl_text_size"
+                                tools:text="18500121245" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="@dimen/margin_10dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:text="@string/consume_amount"
+                                android:textSize="@dimen/member_tabl_text_size"
+                                tools:text="累计消费金额" />
+
+                            <TextView
+                                android:id="@id/consumption_amount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/margin_20dp"
+                                android:textColor="#464C5B"
+                                android:textSize="@dimen/member_tabl_text_size"
+                                tools:text="18500121245" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="@dimen/margin_10dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:text="@string/last_cosume_time"
+                                android:textSize="@dimen/member_tabl_text_size"
+                                tools:text="最近消费时间" />
+
+                            <TextView
+                                android:id="@id/last_consume_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/margin_20dp"
+                                android:textColor="#464C5B"
+                                android:textSize="@dimen/member_tabl_text_size"
+                                tools:text="18500121245" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="@dimen/margin_20dp"
+                android:layout_marginRight="@dimen/margin_20dp"
+                android:background="#D7DDE4" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@id/coupon_available"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_20dp"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:text="@string/coupons_available"
+                    android:textColor="#464C5B"
+                    android:textSize="@dimen/member_tabl_text_size"
+                    android:textStyle="bold" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@id/coupon_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/margin_20dp"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:layout_marginRight="@dimen/margin_20dp"
+                    android:layout_marginBottom="@dimen/margin_10dp" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="@dimen/margin_20dp"
+                android:layout_marginRight="@dimen/margin_20dp"
+                android:background="#D7DDE4" />
+
+            <LinearLayout
+                android:id="@id/member_detail_bottom_layout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@id/update_member_msg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_10dp"
+                    android:background="@drawable/member_search_edit_bg"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/margin_20dp"
+                    android:paddingTop="@dimen/member_edite_padding_top"
+                    android:paddingRight="@dimen/margin_20dp"
+                    android:paddingBottom="@dimen/member_edite_padding_top"
+                    android:text="@string/update_member"
+                    android:textSize="@dimen/text_size_12sp" />
+
+                <TextView
+                    android:id="@id/freeze_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_10dp"
+                    android:background="@drawable/member_search_edit_bg"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/margin_20dp"
+                    android:paddingTop="@dimen/member_edite_padding_top"
+                    android:paddingRight="@dimen/margin_20dp"
+                    android:paddingBottom="@dimen/member_edite_padding_top"
+                    android:text="@string/report"
+                    android:textSize="@dimen/text_size_12sp" />
+
+                <TextView
+                    android:id="@id/refund_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_10dp"
+                    android:background="@drawable/member_search_edit_bg"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/margin_20dp"
+                    android:paddingTop="@dimen/member_edite_padding_top"
+                    android:paddingRight="@dimen/margin_20dp"
+                    android:paddingBottom="@dimen/member_edite_padding_top"
+                    android:text="@string/refund"
+                    android:textSize="@dimen/text_size_12sp" />
+
+                <TextView
+                    android:id="@id/change_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_10dp"
+                    android:background="@drawable/member_search_edit_bg"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/margin_20dp"
+                    android:paddingTop="@dimen/member_edite_padding_top"
+                    android:paddingRight="@dimen/margin_20dp"
+                    android:paddingBottom="@dimen/member_edite_padding_top"
+                    android:text="@string/card_replacement"
+                    android:textSize="@dimen/text_size_12sp" />
+
+                <TextView
+                    android:id="@id/cancellation_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_10dp"
+                    android:background="@drawable/member_search_edit_bg"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/margin_20dp"
+                    android:paddingTop="@dimen/member_edite_padding_top"
+                    android:paddingRight="@dimen/margin_20dp"
+                    android:paddingBottom="@dimen/member_edite_padding_top"
+                    android:text="@string/cancellation"
+                    android:textSize="@dimen/text_size_12sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

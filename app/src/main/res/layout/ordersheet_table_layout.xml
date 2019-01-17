@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@id/ordersheet_swiprefresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/ordersheet_20dp">
+
+                <RelativeLayout
+                    android:id="@id/ordersheet_table_area_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ordersheet_44dp"
+                    android:layout_alignParentTop="true">
+
+                    <ImageView
+                        android:id="@id/ordersheet_table_area_next_page"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/ordersheet_20dp"
+                        android:background="@drawable/ordersheet_table_next_page_bg"
+                        android:paddingLeft="@dimen/ordersheet_12dp"
+                        android:paddingTop="@dimen/ordersheet_8dp"
+                        android:paddingRight="@dimen/ordersheet_12dp"
+                        android:paddingBottom="@dimen/ordersheet_8dp"
+                        android:src="@mipmap/ordersheet_icon_arrow_right" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@id/ordersheet_table_area_recyclerview"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/ordersheet_20dp"
+                        android:layout_toLeftOf="@id/ordersheet_table_area_next_page" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@id/ordersheet_table_bottom_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="@dimen/ordersheet_10dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <com.zx.mvplibrary.wedgit.ClearableEditTextWithIcon
+                            android:id="@id/ordersheet_table_search_edite"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/ordersheet_search_edit_bg"
+                            android:enabled="false"
+                            android:hint="请输入台号快捷查询"
+                            android:paddingLeft="@dimen/ordersheet_10dp"
+                            android:paddingTop="@dimen/ordersheet_8dp"
+                            android:paddingBottom="@dimen/ordersheet_8dp"
+                            android:textSize="@dimen/ordersheet_12sp" />
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/ordersheet_10dp"
+                        android:background="#D7DDE4" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@id/ordersheet_table_status_recyclerview"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="@dimen/ordersheet_10dp"
+                        android:layout_weight="1" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="@dimen/ordersheet_10dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:id="@id/ordersheet_table_kx_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/ordersheet_table_bottom_item_bg"
+                            android:orientation="horizontal"
+                            android:paddingLeft="@dimen/ordersheet_10dp"
+                            android:paddingRight="@dimen/ordersheet_10dp">
+
+                            <ImageView
+                                android:layout_width="@dimen/ordersheet_12dp"
+                                android:layout_height="@dimen/ordersheet_12dp"
+                                android:layout_gravity="center_vertical"
+                                android:background="@color/ordersheet_kx_color" />
+
+                            <TextView
+                                android:id="@id/ordersheet_table_kx_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="@dimen/ordersheet_10dp"
+                                android:paddingTop="@dimen/ordersheet_5dp"
+                                android:paddingRight="@dimen/ordersheet_10dp"
+                                android:paddingBottom="@dimen/ordersheet_5dp"
+                                android:text="空闲"
+                                android:textColor="@color/ordersheet_area_color"
+                                android:textSize="@dimen/ordersheet_14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@id/ordersheet_table_yd_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/ordersheet_10dp"
+                            android:background="@drawable/ordersheet_table_bottom_item_bg"
+                            android:orientation="horizontal"
+                            android:paddingLeft="@dimen/ordersheet_10dp"
+                            android:paddingRight="@dimen/ordersheet_10dp">
+
+                            <ImageView
+                                android:layout_width="@dimen/ordersheet_12dp"
+                                android:layout_height="@dimen/ordersheet_12dp"
+                                android:layout_gravity="center_vertical"
+                                android:background="@color/ordersheet_yd_color" />
+
+                            <TextView
+                                android:id="@id/ordersheet_table_yd_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="@dimen/ordersheet_10dp"
+                                android:paddingTop="@dimen/ordersheet_5dp"
+                                android:paddingRight="@dimen/ordersheet_10dp"
+                                android:paddingBottom="@dimen/ordersheet_5dp"
+                                android:text="预订"
+                                android:textColor="@color/ordersheet_area_color"
+                                android:textSize="@dimen/ordersheet_14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@id/ordersheet_table_kt_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/ordersheet_10dp"
+                            android:background="@drawable/ordersheet_table_bottom_item_bg"
+                            android:orientation="horizontal"
+                            android:paddingLeft="@dimen/ordersheet_10dp"
+                            android:paddingRight="@dimen/ordersheet_10dp">
+
+                            <ImageView
+                                android:layout_width="@dimen/ordersheet_12dp"
+                                android:layout_height="@dimen/ordersheet_12dp"
+                                android:layout_gravity="center_vertical"
+                                android:background="@color/ordersheet_kt_color" />
+
+                            <TextView
+                                android:id="@id/ordersheet_table_kt_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="@dimen/ordersheet_10dp"
+                                android:paddingTop="@dimen/ordersheet_5dp"
+                                android:paddingRight="@dimen/ordersheet_10dp"
+                                android:paddingBottom="@dimen/ordersheet_5dp"
+                                android:text="已开台"
+                                android:textColor="@color/ordersheet_area_color"
+                                android:textSize="@dimen/ordersheet_14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@id/ordersheet_table_xd_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/ordersheet_10dp"
+                            android:background="@drawable/ordersheet_table_bottom_item_bg"
+                            android:orientation="horizontal"
+                            android:paddingLeft="@dimen/ordersheet_10dp"
+                            android:paddingRight="@dimen/ordersheet_10dp">
+
+                            <ImageView
+                                android:layout_width="@dimen/ordersheet_12dp"
+                                android:layout_height="@dimen/ordersheet_12dp"
+                                android:layout_gravity="center_vertical"
+                                android:background="@color/ordersheet_xd_color" />
+
+                            <TextView
+                                android:id="@id/ordersheet_table_xd_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="@dimen/ordersheet_10dp"
+                                android:paddingTop="@dimen/ordersheet_5dp"
+                                android:paddingRight="@dimen/ordersheet_10dp"
+                                android:paddingBottom="@dimen/ordersheet_5dp"
+                                android:text="已下单"
+                                android:textColor="@color/ordersheet_area_color"
+                                android:textSize="@dimen/ordersheet_14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@id/ordersheet_table_jz_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/ordersheet_10dp"
+                            android:background="@drawable/ordersheet_table_bottom_item_bg"
+                            android:orientation="horizontal"
+                            android:paddingLeft="@dimen/ordersheet_10dp"
+                            android:paddingRight="@dimen/ordersheet_10dp">
+
+                            <ImageView
+                                android:layout_width="@dimen/ordersheet_12dp"
+                                android:layout_height="@dimen/ordersheet_12dp"
+                                android:layout_gravity="center_vertical"
+                                android:background="@color/ordersheet_jz_color" />
+
+                            <TextView
+                                android:id="@id/ordersheet_table_jz_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="@dimen/ordersheet_10dp"
+                                android:paddingTop="@dimen/ordersheet_5dp"
+                                android:paddingRight="@dimen/ordersheet_10dp"
+                                android:paddingBottom="@dimen/ordersheet_5dp"
+                                android:text="已结账"
+                                android:textColor="@color/ordersheet_area_color"
+                                android:textSize="@dimen/ordersheet_14sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@id/ordersheet_table_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@id/ordersheet_table_bottom_layout"
+                    android:layout_below="@id/ordersheet_table_area_layout" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <FrameLayout
+        android:id="@id/dialog_root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</RelativeLayout>

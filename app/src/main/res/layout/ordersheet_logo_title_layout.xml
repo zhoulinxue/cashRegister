@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/ordersheet_64dp"
+    android:background="#2E3237"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@id/ordersheet_logo_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/ordersheet_20dp"
+        android:layout_marginTop="@dimen/ordersheet_10dp"
+        android:layout_marginBottom="@dimen/ordersheet_10dp"
+        android:src="@mipmap/ordersheet_home_pic_logo" />
+
+    <TextView
+        android:id="@id/ordersheet_logo_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/ordersheet_logo_img"
+        android:layout_marginLeft="@dimen/ordersheet_20dp"
+        android:layout_toRightOf="@id/ordersheet_logo_img"
+        android:text="业绩查询"
+        android:textColor="@color/ordersheet_white"
+        android:textSize="@dimen/ordersheet_14sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/ordersheet_logo_img"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/ordersheet_40dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@id/ordersheet_logo_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="销售经理：王明阳"
+            android:textColor="#657180"
+            android:textSize="@dimen/ordersheet_12sp" />
+
+        <ImageView
+            android:id="@id/ordersheet_back_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="@dimen/ordersheet_20dp"
+            android:src="@mipmap/ordersheet_icon_quit" />
+    </LinearLayout>
+
+</RelativeLayout>

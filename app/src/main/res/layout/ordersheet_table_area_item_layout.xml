@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/ordersheet_10dp"
+    android:layout_gravity="center|center_vertical"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@id/ordersheet_table_area_item_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ordersheet_table_area_item_bg"
+        android:paddingLeft="@dimen/ordersheet_30dp"
+        android:paddingTop="@dimen/ordersheet_8dp"
+        android:paddingRight="@dimen/ordersheet_30dp"
+        android:paddingBottom="@dimen/ordersheet_8dp"
+        android:textColor="@color/ordersheet_area_color"
+        android:textSize="@dimen/ordersheet_14sp"
+        tools:text="咖啡区" />
+
+</LinearLayout>

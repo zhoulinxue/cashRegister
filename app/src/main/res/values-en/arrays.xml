@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="menber_tab_title">
+        <item>Menbers</item>
+        <item>Recharge details</item>
+        <item>Consumer details</item>
+        <item>Interests Setting</item>
+    </string-array>
+    <string-array name="ordersheet_menber_tab_title">
+        <item>点单</item>
+        <item>赠送</item>
+        <item>估清</item>
+        <item>存酒查询</item>
+        <item>会员查询</item>
+        <item>业绩查询</item>
+    </string-array>
+    <string-array name="ordersheet_table_status">
+        <!--<item>空闲</item>-->
+        <!--<item>已预订</item>-->
+        <item>已开台</item>
+        <item>已下单</item>
+        <item>已结账</item>
+    </string-array>
+
+    <string-array name="ordersheet_format_list">
+        <item>大份</item>
+        <item>中份</item>
+        <item>小份</item>
+    </string-array>
+    <string-array name="ordersheet_number_list">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>.</item>
+        <item>0</item>
+        <item>delete</item>
+    </string-array>
+</resources>

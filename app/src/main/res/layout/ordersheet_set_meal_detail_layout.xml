@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ordersheet_white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@id/ordersheet_set_meal_top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@id/ordersheet_set_meal_content_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal"
+            android:padding="@dimen/ordersheet_20dp">
+
+            <TextView
+                android:id="@id/ordersheet_set_meal_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/ordersheet_table_name_color"
+                android:textSize="@dimen/ordersheet_24sp"
+                tools:text="深水炸弹套餐" />
+
+            <TextView
+                android:id="@id/ordersheet_set_meal_price_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/ordersheet_20dp"
+                tools:text="¥ 2580" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@id/ordersheet_set_meal_dec_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/ordersheet_20dp"
+            tools:text="套餐包含2份商品，已选 " />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/ordersheet_set_meal_content_layout"
+            android:layout_marginTop="@dimen/ordersheet_20dp"
+            android:background="@color/ordersheet_remark_divider" />
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@id/ordersheet_set_meal_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/ordersheet_set_meal_bottom_layout"
+        android:layout_below="@id/ordersheet_set_meal_top_layout" />
+
+    <LinearLayout
+        android:id="@id/ordersheet_set_meal_bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/ordersheet_20dp">
+
+        <TextView
+            android:id="@id/ordersheet_set_meal_cacel_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ordersheet_search_edit_bg"
+            android:paddingLeft="@dimen/ordersheet_40dp"
+            android:paddingTop="@dimen/ordersheet_10dp"
+            android:paddingRight="@dimen/ordersheet_40dp"
+            android:paddingBottom="@dimen/ordersheet_10dp"
+            android:text="取消"
+            android:textColor="@color/ordersheet_table_des_color"
+            android:textSize="@dimen/ordersheet_14sp" />
+
+        <TextView
+            android:id="@id/ordersheet_set_meal_add_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/ordersheet_20dp"
+            android:background="@drawable/ordersheet_search_edit_bg"
+            android:paddingLeft="@dimen/ordersheet_20dp"
+            android:paddingTop="@dimen/ordersheet_10dp"
+            android:paddingRight="@dimen/ordersheet_20dp"
+            android:paddingBottom="@dimen/ordersheet_10dp"
+            android:text="加入点菜列表"
+            android:textColor="@color/ordersheet_table_des_color"
+            android:textSize="@dimen/ordersheet_14sp" />
+    </LinearLayout>
+
+</RelativeLayout>

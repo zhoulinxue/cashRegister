@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/ordersheet_transparent"
+    android:paddingBottom="@dimen/ordersheet_4dp">
+
+    <RelativeLayout
+        android:id="@id/ordersheet_table_item_content_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/ordersheet_5dp">
+
+        <RelativeLayout
+            android:id="@id/ordersheet_table_item_layout"
+            android:layout_width="@dimen/ordersheet_150dp"
+            android:layout_height="@dimen/ordersheet_120dp"
+            android:layout_marginTop="@dimen/ordersheet_14dp"
+            android:background="@drawable/ordersheet_table_item_bg"
+            android:padding="@dimen/ordersheet_10dp">
+
+            <LinearLayout
+                android:id="@id/ordersheet_table_color_bg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="@dimen/ordersheet_8dp">
+
+                <TextView
+                    android:id="@id/ordersheet_table_title_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:maxLines="1"
+                    android:textColor="@color/ordersheet_table_name_color"
+                    android:textSize="@dimen/ordersheet_18sp"
+                    android:textStyle="bold"
+                    tools:text="0001111111111" />
+
+                <TextView
+                    android:id="@id/ordersheet_table_pay_num_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/ordersheet_table_des_color"
+                    android:textSize="@dimen/ordersheet_12sp"
+                    tools:text="5 位" />
+
+                <TextView
+                    android:id="@id/ordersheet_table_table_status_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/ordersheet_table_name_color"
+                    android:textSize="@dimen/ordersheet_12sp"
+                    tools:text="已结账" />
+
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@id/ordersheet_table_item_link_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@mipmap/ordersheet_pic_style_link"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|left"
+            android:layout_marginLeft="@dimen/ordersheet_8dp"
+            android:layout_marginBottom="@dimen/ordersheet_5dp"
+            android:src="@mipmap/ordersheet_icon_link" />
+
+        <TextView
+            android:id="@id/ordersheet_link_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="@dimen/ordersheet_5dp"
+            android:layout_marginBottom="@dimen/ordersheet_2dp"
+            android:textColor="@color/ordersheet_white"
+            tools:text="00b1" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@id/ordersheet_pingtai_num_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/ordersheet_table_item_content_layout"
+        android:layout_marginTop="@dimen/ordersheet_25dp"
+        android:background="@mipmap/ordersheet_pic_style_bingtai"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@id/ordersheet_pingtai_num_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/ordersheet_12dp"
+            android:layout_marginTop="@dimen/ordersheet_2dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/ordersheet_white"
+            android:textSize="@dimen/ordersheet_12sp"
+            tools:text="2" />
+    </RelativeLayout>
+</RelativeLayout>

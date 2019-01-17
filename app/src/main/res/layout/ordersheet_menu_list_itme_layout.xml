@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@id/order_menu_item_layout"
+    android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+        android:id="@id/ordersheet_dishes_item_price_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/ordersheet_20dp"
+        android:padding="@dimen/ordersheet_10dp">
+
+        <TextView
+            android:id="@id/ordersheet_dishes_price_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/ordersheet_table_des_color"
+            android:textSize="@dimen/ordersheet_14sp"
+            tools:text="500" />
+
+        <TextView
+            android:id="@id/ordersheet_dishes_old_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ordersheet_dishes_price_tv"
+            android:textColor="@color/ordersheet_remark_color"
+            android:textSize="@dimen/ordersheet_12sp"
+            tools:text="700" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@id/ordersheet_dishes_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/ordersheet_dishes_item_price_layout"
+        android:padding="@dimen/ordersheet_20dp">
+
+        <TextView
+            android:id="@id/ordersheet_dishes_num_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/ordersheet_remark_color"
+            android:textSize="@dimen/ordersheet_12sp"
+            tools:text="x4" />
+
+        <LinearLayout
+            android:id="@id/ordersheet_dishes_name_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="@dimen/ordersheet_10dp"
+            android:layout_toLeftOf="@id/ordersheet_dishes_num_tv"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@id/ordersheet_dishes_w_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/ordersheet_5dp"
+                android:background="@drawable/ordersheet_dishes_w_bg"
+                android:paddingLeft="@dimen/ordersheet_2dp"
+                android:paddingRight="@dimen/ordersheet_2dp"
+                android:text="外"
+                android:textColor="@color/ordersheet_white"
+                android:visibility="gone"
+                 />
+
+            <TextView
+                android:id="@id/ordersheet_dishes_d_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/ordersheet_5dp"
+                android:background="@drawable/ordersheet_dishes_d_bg"
+                android:paddingLeft="@dimen/ordersheet_2dp"
+                android:paddingRight="@dimen/ordersheet_2dp"
+                android:text="等"
+                android:textColor="@color/ordersheet_white"
+                android:visibility="gone" />
+            <TextView
+                android:id="@id/ordersheet_dishes_tj_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/ordersheet_5dp"
+                android:background="@drawable/ordersheet_dishes_t_bg"
+                android:paddingLeft="@dimen/ordersheet_2dp"
+                android:paddingRight="@dimen/ordersheet_2dp"
+                android:text="特"
+                android:textColor="@color/ordersheet_white"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@id/ordersheet_dishes_s_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/ordersheet_5dp"
+                android:background="@drawable/ordersheet_dishes_s_bg"
+                android:paddingLeft="@dimen/ordersheet_2dp"
+                android:paddingRight="@dimen/ordersheet_2dp"
+                android:text="时"
+                android:textColor="@color/ordersheet_white"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@id/ordersheet_dishes_z_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/ordersheet_5dp"
+                android:background="#F19149"
+                android:paddingLeft="@dimen/ordersheet_2dp"
+                android:paddingRight="@dimen/ordersheet_2dp"
+                android:text="折"
+                android:textColor="@color/ordersheet_white"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@id/ordersheet_dishes_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/ordersheet_5dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/ordersheet_table_des_color"
+                android:textSize="@dimen/ordersheet_14sp"
+                tools:text="火爆鱿鱼" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@id/ordersheet_dishes_child_dishes_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ordersheet_dishes_item_price_layout"
+        android:layout_marginLeft="@dimen/ordersheet_20dp"
+        android:layout_marginTop="@dimen/ordersheet_10dp"
+        android:layout_toLeftOf="@id/ordersheet_dishes_item_price_layout" />
+
+    <TextView
+        android:id="@id/ordersheet_dishes_item_remark_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ordersheet_dishes_child_dishes_listview"
+        android:layout_marginTop="@dimen/ordersheet_5dp"
+        android:layout_marginBottom="@dimen/ordersheet_5dp"
+        android:paddingLeft="@dimen/ordersheet_20dp"
+        android:textColor="@color/ordersheet_remark_color"
+        android:textSize="@dimen/ordersheet_12sp"
+        tools:text="备注" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/ordersheet_10dp"
+        android:background="@color/ordersheet_remark_divider" />
+</RelativeLayout>

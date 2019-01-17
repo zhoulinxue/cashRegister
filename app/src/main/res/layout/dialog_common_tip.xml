@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog_rl"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="13dp"
+        android:gravity="center"
+        android:textColor="#3f3f3f"
+        android:textSize="18sp" />
+    <!--   -->
+    <ImageView
+        android:id="@+id/dialog_content_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dialog_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/dialog_content_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dialog_content_iv"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:lineSpacingExtra="2dp"
+        android:textColor="#3d3739"
+        android:textSize="14sp" />
+
+    <View
+        android:id="@+id/dialog_content"
+        android:layout_width="wrap_content"
+        android:layout_height="0.6dp"
+        android:layout_below="@id/dialog_content_tv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="13dp"
+        android:background="#859c9b9b" />
+
+    <LinearLayout
+        android:id="@+id/dialog_linearlayout"
+        android:layout_width="fill_parent"
+        android:layout_height="44dp"
+        android:layout_below="@id/dialog_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/dialog_left_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/common_dialog_right_selector"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="#ff238cf6"
+            android:textSize="16sp" />
+
+        <View
+            android:id="@+id/dialog_common_line"
+            android:layout_width="0.6dp"
+            android:layout_height="match_parent"
+            android:background="#859c9b9b" />
+
+        <TextView
+            android:id="@+id/dialog_right_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/common_dialog_left_selector"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="#ff238cf6"
+            android:textSize="16sp" />
+    </LinearLayout>
+</RelativeLayout>

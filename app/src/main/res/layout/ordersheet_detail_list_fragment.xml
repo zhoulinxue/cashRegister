@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/ordersheet_20dp"
+        android:background="@color/ordersheet_white"
+        android:orientation="vertical"
+        android:padding="@dimen/ordersheet_10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:maxLines="1"
+                    android:text="@string/ordersheet_choose_time"
+                    android:textSize="@dimen/ordersheet_14sp" />
+
+                <TextView
+                    android:id="@id/ordersheet_time_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/ordersheet_20dp"
+                    android:background="@drawable/ordersheet_search_edit_bg"
+                    android:drawableRight="@mipmap/ordersheet_icon_time"
+                    android:drawablePadding="@dimen/ordersheet_20dp"
+                    android:ellipsize="end"
+                    android:hint="2015-10-12   ~   2015-10-10"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/ordersheet_10dp"
+                    android:paddingTop="@dimen/ordersheet_10dp"
+                    android:paddingRight="@dimen/ordersheet_10dp"
+                    android:paddingBottom="@dimen/ordersheet_10dp"
+                    android:textSize="@dimen/ordersheet_12sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@id/ordersheet_get_give_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/ordersheet_20dp"
+                android:background="@drawable/ordersheet_number_btn_bg"
+                android:paddingLeft="@dimen/ordersheet_20dp"
+                android:paddingTop="@dimen/ordersheet_10dp"
+                android:paddingRight="@dimen/ordersheet_20dp"
+                android:paddingBottom="@dimen/ordersheet_10dp"
+                android:text="查询"
+                android:textColor="@color/ordersheet_white" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ordersheet_10dp"
+            android:background="@drawable/ordersheet_sale_total_bg"
+            android:orientation="horizontal"
+            android:padding="@dimen/ordersheet_5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="合计:"
+                android:textColor="@color/ordersheet_table_des_color" />
+
+            <TextView
+                android:id="@id/ordersheet_item_count_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/ordersheet_20dp"
+                android:text="赠送数量:"
+                android:textColor="@color/ordersheet_table_des_color" />
+
+            <TextView
+                android:id="@id/ordersheet_money_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/ordersheet_20dp"
+                android:text="消费金额:"
+                android:textColor="@color/ordersheet_table_des_color" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@id/ordersheet_chart_webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/ordersheet_10dp" />
+    </LinearLayout>
+
+</LinearLayout>

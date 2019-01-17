@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/ordersheet_white"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@id/ordersheet_item_number_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|center_horizontal"
+        android:gravity="center"
+        android:padding="@dimen/ordersheet_5dp"
+        android:textColor="@color/ordersheet_table_des_color"
+        android:textSize="@dimen/ordersheet_30sp"
+        tools:text="4" />
+
+</LinearLayout>

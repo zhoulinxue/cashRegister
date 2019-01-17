@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/ordersheet_20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:background="@drawable/ordersheet_search_edit_bg"
+            android:orientation="vertical"
+            android:padding="@dimen/ordersheet_20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.8"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/ordersheet_20dp"
+                android:paddingTop="@dimen/ordersheet_20dp"
+                android:paddingRight="@dimen/ordersheet_20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="优惠方式"
+                    android:textColor="@color/ordersheet_table_des_color"
+                    android:textSize="@dimen/ordersheet_16sp" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@id/favourable_type_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/ordersheet_10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/ordersheet_20dp"
+                android:paddingTop="@dimen/ordersheet_20dp"
+                android:paddingRight="@dimen/ordersheet_20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="支付方式"
+                    android:textColor="@color/ordersheet_table_des_color"
+                    android:textSize="@dimen/ordersheet_16sp" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@id/pay_type_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/ordersheet_20dp"
+            android:layout_weight="1"
+            android:background="@drawable/ordersheet_search_edit_bg"
+            android:orientation="vertical"
+            android:padding="@dimen/ordersheet_20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/pay_bottom_sure_tv"
+                android:layout_marginTop="@dimen/ordersheet_40dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="原价"
+                        android:textColor="@color/ordersheet_table_des_color"
+                        android:textSize="@dimen/ordersheet_16sp" />
+
+                    <TextView
+                        android:id="@id/pay_total_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="- ¥590"
+                        android:textColor="@color/ordersheet_table_des_color"
+                        android:textSize="@dimen/ordersheet_16sp" />
+                </RelativeLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@id/favourable_list_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/ordersheet_10dp" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/ordersheet_20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="应收"
+                        android:textColor="@color/ordersheet_table_des_color"
+                        android:textSize="@dimen/ordersheet_16sp" />
+
+                    <TextView
+                        android:id="@id/pay_need_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="¥5900"
+                        android:textColor="@color/ordersheet_table_des_color"
+                        android:textSize="@dimen/ordersheet_16sp" />
+                </RelativeLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@id/pay_money_listview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/ordersheet_10dp" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/ordersheet_10dp">
+
+                    <TextView
+                        android:id="@id/pay_rest_notice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="还差"
+                        android:textColor="@color/ordersheet_table_des_color"
+                        android:textSize="@dimen/ordersheet_16sp" />
+
+                    <TextView
+                        android:id="@id/pay_rest_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="¥59"
+                        android:textColor="@color/ordersheet_table_des_color"
+                        android:textSize="@dimen/ordersheet_16sp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@id/pay_bottom_sure_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="@dimen/ordersheet_20dp"
+                android:layout_marginRight="@dimen/ordersheet_20dp"
+                android:layout_marginBottom="@dimen/ordersheet_10dp"
+                android:background="@drawable/ordersheet_number_btn_bg"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/ordersheet_10dp"
+                android:paddingTop="@dimen/ordersheet_10dp"
+                android:paddingBottom="@dimen/ordersheet_10dp"
+                android:text="确认结账（F10）"
+                android:textColor="@color/ordersheet_white"
+                android:textSize="@dimen/ordersheet_14sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@id/demolition_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black_08"
+        android:padding="@dimen/ordersheet_50dp"
+        android:visibility="gone">
+
+        <include layout="@layout/demolition_order_layout" />
+    </FrameLayout>
+</RelativeLayout>

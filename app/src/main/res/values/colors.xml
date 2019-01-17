@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#1D95FF</color>
+    <color name="cash_login_edite_bg">#19ffffff</color>
+    <color name="cash_login_edit_start_color">#3D4249</color>
+    <color name="cash_login_edit_end_color">#2E3237</color>
+    <color name="quit_color">#ff657180</color>
+    <color name="menber_num_decript_color">#657180</color>
+    <color name="menber_main_tab_title_color">#464C5B</color>
+    <color name="menber_main_tab_title_color_pre">#4FACFE</color>
+    <color name="member_detail_title_color">#1D95FF</color>
+    <color name="menber_main_tab_bg">#f5f7f9</color>
+    <color name="time_text_color">#657180</color>
+    <color name="radio_btn_text_color">#657180</color>
+    <color name="black_08">#33000000</color>
+    <color name="tj_bg">#F19149</color>
+
+    <color name="ordersheet_cash_login_edit_end_color">#2E3237</color>
+    <color name="ordersheet_cash_login_edit_start_color">#3D4249</color>
+    <color name="ordersheet_black_08">#33000000</color>
+    <color name="ordersheet_white_08">#0cffffff</color>
+    <color name="ordersheet_colorAccent">#1D95FF</color>
+    <color name="ordersheet_white">#ffffff</color>
+    <color name="ordersheet_transparent">#00ffffff</color>
+    <color name="ordersheet_table_name_color">#464C5B</color>
+    <color name="ordersheet_table_des_color">#657180</color>
+    <color name="ordersheet_area_color">#464C5B</color>
+    <color name="ordersheet_kx_color">#E3E8EE</color>
+    <color name="ordersheet_yd_color">#B4DDFF</color>
+    <color name="ordersheet_kt_color">#CDDEA4</color>
+    <color name="ordersheet_xd_color">#FDD5B1</color>
+    <color name="ordersheet_jz_color">#FFB8B1</color>
+    <color name="ordersheet_remark_color">#9EA7B4</color>
+    <color name="ordersheet_remark_divider">#E3E8EE</color>
+
+
+</resources>

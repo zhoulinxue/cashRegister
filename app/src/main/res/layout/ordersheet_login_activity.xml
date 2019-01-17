@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ordersheet_login_bg"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <include
+        android:id="@id/ordersheet_cash_login_logo_layout"
+        layout="@layout/ordersheet_logo_main_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ordersheet_login_margin_top" />
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@id/ordersheet_cash_login_num_edit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ordersheet_login_edite_hight"
+        android:layout_marginLeft="@dimen/ordersheet_login_margin_left"
+        android:layout_marginTop="@dimen/ordersheet_login_edite_marginTop"
+        android:layout_marginRight="@dimen/ordersheet_login_margin_left"
+        android:background="@drawable/ordersheet_login_bg"
+        android:hint="@string/ordersheet_empty_name"
+        android:inputType="number"
+        android:paddingLeft="20dp"
+        android:textColor="@color/ordersheet_white"
+        android:textColorHint="@color/ordersheet_white"
+        android:textSize="@dimen/ordersheet_login_edite_size" />
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@id/ordersheet_cash_login_psw_edit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ordersheet_login_edite_hight"
+        android:layout_marginLeft="@dimen/ordersheet_login_margin_left"
+        android:layout_marginTop="@dimen/ordersheet_login_edite_marginTop"
+        android:layout_marginRight="@dimen/ordersheet_login_margin_left"
+        android:background="@drawable/ordersheet_login_bg"
+        android:hint="@string/ordersheet_empty_psw"
+        android:inputType="textPassword"
+        android:paddingLeft="20dp"
+        android:textColor="@color/ordersheet_white"
+        android:textColorHint="@color/ordersheet_white"
+        android:textSize="@dimen/ordersheet_login_edite_size" />
+
+    <TextView
+        android:id="@id/ordersheet_cash_login_tv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ordersheet_login_edite_hight"
+        android:layout_marginLeft="@dimen/ordersheet_login_margin_left"
+        android:layout_marginTop="@dimen/ordersheet_login_edite_marginTop"
+        android:layout_marginRight="@dimen/ordersheet_login_margin_left"
+        android:background="@drawable/ordersheet_login_btn_bg"
+        android:gravity="center"
+        android:text="@string/ordersheet_login"
+        android:textColor="@color/ordersheet_white"
+        android:textSize="@dimen/ordersheet_cash_login_btn_size" />
+
+</LinearLayout>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="@dimen/ordersheet_10dp">
+
+        <TextView
+            android:id="@id/ordersheet_sale_out_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/ordersheet_table_des_color"
+            android:textSize="@dimen/ordersheet_14sp"
+            tools:text="开心果（大份）" />
+
+        <TextView
+            android:id="@id/ordersheet_sale_out_last_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="right"
+            android:textColor="@color/ordersheet_table_des_color"
+            android:textSize="@dimen/ordersheet_14sp"
+            tools:text="剩余39份" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ordersheet_5dp"
+        android:layout_weight="1"
+        android:padding="@dimen/ordersheet_10dp">
+
+        <TextView
+            android:id="@id/ordersheet_cancel_sale_out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/ordersheet_button_bg"
+            android:paddingLeft="@dimen/ordersheet_10dp"
+            android:paddingTop="@dimen/ordersheet_5dp"
+            android:paddingRight="@dimen/ordersheet_10dp"
+            android:paddingBottom="@dimen/ordersheet_5dp"
+            android:text="取消沽清"
+            android:textColor="@color/ordersheet_table_des_color"
+            android:textSize="@dimen/ordersheet_14sp" />
+
+        <TextView
+            android:id="@id/ordersheet_update_sale_out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/ordersheet_10dp"
+            android:layout_toLeftOf="@id/ordersheet_cancel_sale_out"
+            android:background="@drawable/ordersheet_button_bg"
+            android:paddingLeft="@dimen/ordersheet_10dp"
+            android:paddingTop="@dimen/ordersheet_5dp"
+            android:paddingRight="@dimen/ordersheet_10dp"
+            android:paddingBottom="@dimen/ordersheet_5dp"
+            android:text="修改"
+            android:textColor="@color/ordersheet_table_des_color"
+            android:textSize="@dimen/ordersheet_14sp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/pickerview_wheelview_textcolor_divider" />
+</LinearLayout>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@id/recharge_item_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_20dp"
+        android:background="@drawable/card_level_bg"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/margin_40dp"
+        android:paddingTop="10dp"
+        android:paddingRight="@dimen/margin_40dp"
+        android:paddingBottom="@dimen/margin_10dp">
+
+        <TextView
+            android:id="@id/member_recharge_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="600"
+            android:textSize="@dimen/text_24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@id/member_give_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:maxLines="1"
+            android:text="100"
+            android:textSize="@dimen/text_16sp" />
+    </LinearLayout>
+</LinearLayout>

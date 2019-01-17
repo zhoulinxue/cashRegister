@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="4px" />
+            <gradient
+                android:angle="90"
+                android:endColor="@color/cash_login_edit_end_color"
+                android:startColor="@color/cash_login_edit_start_color" />
+        </shape>
+    </item>
+</selector>

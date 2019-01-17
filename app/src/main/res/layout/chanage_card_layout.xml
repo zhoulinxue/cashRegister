@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@id/input_edite"
+        android:layout_width="1dp"
+        android:layout_height="1dp">
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@id/card_codeing_num"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_80dp"
+        android:layout_marginTop="@dimen/dp_40"
+        android:layout_marginRight="@dimen/margin_80dp"
+        android:background="@drawable/member_search_edit_bg"
+        android:gravity="center_horizontal"
+        android:hint="请刷新卡"
+        android:paddingTop="@dimen/margin_20dp"
+        android:paddingBottom="@dimen/margin_20dp"
+        android:textSize="@dimen/member_tabl_text_size" />
+
+    <View
+        android:id="@id/dialog_content"
+        android:layout_width="wrap_content"
+        android:layout_height="0.6dp"
+        android:layout_below="@id/dialog_content_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_20dp"
+        android:background="#859c9b9b" />
+
+    <LinearLayout
+        android:id="@+id/dialog_linearlayout"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/margin_60dp"
+        android:layout_below="@id/dialog_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/dialog_left_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/common_dialog_right_selector"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="#ff238cf6"
+            android:textSize="16sp" />
+
+        <View
+            android:id="@+id/dialog_common_line"
+            android:layout_width="0.6dp"
+            android:layout_height="match_parent"
+            android:background="#859c9b9b" />
+
+        <TextView
+            android:id="@+id/dialog_right_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/common_dialog_left_selector"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="#ff238cf6"
+            android:textSize="16sp" />
+    </LinearLayout>
+</LinearLayout>
