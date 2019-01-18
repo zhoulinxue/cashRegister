@@ -667,4 +667,15 @@ public class ApiManager {
         Observable<NetBean<String>> observable = mApiService.rediscount(genrateMap(params));
         return new OkHttpRequest<String>(observable, discountPriceCallback);
     }
+
+    /**
+     *  获取 会员消费详情
+     * @param params
+     * @param moneyListCallback
+     * @return
+     */
+    public NetRequest getMemberMoneyDetail(String[] params, NetRequestCallBack<String> moneyListCallback) {
+        Observable<NetBean<String>> observable = mApiService.memberMoneyDetail(genrateMap(params));
+        return new OkHttpRequest<String>(observable, moneyListCallback);
+    }
 }

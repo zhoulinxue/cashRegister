@@ -7,8 +7,11 @@ import com.aspsine.fragmentnavigator.FragmentNavigator;
 import com.aspsine.fragmentnavigator.FragmentNavigatorAdapter;
 import com.shigoo.cashregister.R;
 import com.shigoo.cashregister.fragments.ConsumeDetailFragment;
+import com.shigoo.cashregister.fragments.CopyDishesFragment;
 import com.shigoo.cashregister.fragments.MemberDetailFragment;
+import com.shigoo.cashregister.fragments.MemberMoneyDetailListFragment;
 import com.shigoo.cashregister.fragments.TableMainFragment;
+import com.xgsb.datafactory.bean.EventRouter;
 import com.xgsb.datafactory.enu.EventBusAction;
 import com.zx.mvplibrary.BaseActivity;
 import com.zx.network.Param;
@@ -74,10 +77,17 @@ public class MainRouterActivity extends BaseActivity {
     }
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
-    public void onRouterEvent(EventBusAction action) {
-        switch (action) {
+    public void onRouterEvent(final EventRouter router) {
+        switch (router.getAction()) {
             case CONSUM_DETAIL:
-
+                mFragmentNavigator.showFragment(2);
+                mHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Fragment moneyFragment = mFragmentNavigator.getFragment(2);
+                        ((MemberMoneyDetailListFragment) moneyFragment).setMemberId(router.getData() + "");
+                    }
+                }, 500);
                 break;
         }
     }

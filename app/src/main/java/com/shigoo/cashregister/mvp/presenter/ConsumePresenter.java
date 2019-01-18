@@ -40,4 +40,26 @@ public class ConsumePresenter extends BasePresenterImpl<ConsumeContact.view> imp
         NetRequest request = ApiManager.getInstance().getConsumeList(params, reChargeCallback);
         addRequest(request);
     }
+
+    @Override
+    public void getMemberMoneyDiatailList(String... params) {
+        mView.showLoadingDialog();
+        NetRequest request = ApiManager.getInstance().getMemberMoneyDetail(params, mMoneyListCallback);
+        addRequest(request);
+    }
+
+    NetRequestCallBack<String> mMoneyListCallback = new NetRequestCallBack<String>() {
+        @Override
+        public void onSuccess(String reChargebeanListData) {
+            mView.dismissLoadingDiaog();
+            mView.onMemberMoneyList(reChargebeanListData);
+        }
+
+        @Override
+        public void onError(int responseCode, String msg) {
+            mView.dismissLoadingDiaog();
+            mView.onError(msg);
+        }
+    };
+
 }

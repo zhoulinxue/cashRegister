@@ -13,9 +13,13 @@ import com.zx.api.api.mvp.BaseView;
 public class ConsumeContact {
     public interface presenter {
         void getConsumeList(String... params);
+
+        void getMemberMoneyDiatailList(String...params);
     }
 
     public interface view extends BaseView {
         void onGetConsumeListCallback(ConsumeListData list);
+
+        void onMemberMoneyList(String msg);
     }
 }

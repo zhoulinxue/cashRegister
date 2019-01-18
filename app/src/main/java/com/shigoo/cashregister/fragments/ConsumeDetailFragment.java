@@ -134,4 +134,9 @@ public class ConsumeDetailFragment extends MvpFragment<ConsumePresenter> impleme
             }
         }
     }
+
+    @Override
+    public void onMemberMoneyList(String msg) {
+
+    }
 }

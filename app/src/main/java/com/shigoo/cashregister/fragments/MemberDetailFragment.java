@@ -315,7 +315,7 @@ public class MemberDetailFragment extends MvpFragment<MemberDetailPresenter> imp
                 if ("充值".equals(mRechargeBtn.getText().toString())) {
                     mRechargeView.show();
                 } else {
-                    EventBus.getDefault().post(EventBusAction.CONSUM_DETAIL);
+
                 }
                 break;
             case R.id.change_card:
