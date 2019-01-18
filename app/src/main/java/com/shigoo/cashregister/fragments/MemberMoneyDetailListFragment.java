@@ -23,6 +23,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import io.starteos.dappsdk.Request;
 
 public class MemberMoneyDetailListFragment extends MvpFragment<ConsumePresenter> implements ConsumeContact.view, onOperateLisenter {
@@ -109,6 +110,7 @@ public class MemberMoneyDetailListFragment extends MvpFragment<ConsumePresenter>
 
     }
 
+    @OnClick({R.id.member_detail_back_layout})
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.member_detail_back_layout:

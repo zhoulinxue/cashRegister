@@ -22,8 +22,7 @@
         tools:replace="android:theme,android:label">
         <activity
             android:name=".activitys.CashRigisterMainActivity"
-            android:windowSoftInputMode="adjustResize|stateHidden">
-        </activity>
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
         <activity
             android:name=".activitys.RouterActivity"
             android:launchMode="singleTask">
@@ -42,7 +41,9 @@
             android:theme="@style/translucent"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity android:name=".activitys.MainRouterActivity" />
-        <activity android:name=".activitys.OrderSheetLoginActivity" />
+        <activity
+            android:name=".activitys.OrderSheetLoginActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".activitys.AssembleTablesActivity"
             android:theme="@style/ordersheet_translucent" />
