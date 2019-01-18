@@ -15,6 +15,7 @@ import com.xgsb.datafactory.bean.GiveDishesbean;
 import com.xgsb.datafactory.bean.ListData;
 import com.xgsb.datafactory.bean.Member;
 import com.xgsb.datafactory.bean.MemberLevel;
+import com.xgsb.datafactory.bean.MemberMoney;
 import com.xgsb.datafactory.bean.MemberReChargeGive;
 import com.xgsb.datafactory.bean.OrderPayStatusbean;
 import com.xgsb.datafactory.bean.PayTypebean;
@@ -353,5 +354,5 @@ public interface ApiServer {
 
     @FormUrlEncoded
     @POST("/reserve/reserve/MemberMoneyInfoDetails")
-    Observable<NetBean<String>> memberMoneyDetail(@FieldMap Map<String, String> stringStringMap);
+    Observable<NetBean<List<MemberMoney>>> memberMoneyDetail(@FieldMap Map<String, String> stringStringMap);
 }

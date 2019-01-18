@@ -249,4 +249,29 @@ public class WebData<T> {
         data.setTableData(more);
         return JSONManager.getInstance().toJson(data);
     }
+
+    public String getMemberMoney(List<MemberMoney> list, int width, int hight) {
+        List<MemberMoney> more = new ArrayList<>();
+        more.addAll(list);
+        WebData<MemberMoney> data = new WebData();
+        data.setPage("vipManage");
+        data.setWidth(width + "px");
+        data.setHight(hight + "");
+        List<Column> columnList = new ArrayList<>();
+        List<Operate> operateList = new ArrayList<>();
+        columnList.add(new Column("订单编号", "stocktake_date"));
+        columnList.add(new Column("时间", "station_number"));
+        columnList.add(new Column("动作", "dishes_name"));
+        columnList.add(new Column("金额(元)", "giving_price"));
+        columnList.add(new Column("余额(元)", "giving_number"));
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//        Operate operate = new Operate();
+//        operate.setName("查看详情");
+//        operateList.add(operate);
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        data.setTableHead(columnList);
+        data.setOperate(operateList);
+        data.setTableData(more);
+        return JSONManager.getInstance().toJson(data);
+    }
 }

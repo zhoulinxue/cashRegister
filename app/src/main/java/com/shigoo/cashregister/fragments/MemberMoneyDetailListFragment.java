@@ -8,11 +8,16 @@ import com.shigoo.cashregister.R;
 import com.shigoo.cashregister.mvp.contacts.ConsumeContact;
 import com.shigoo.cashregister.mvp.presenter.ConsumePresenter;
 import com.xgsb.datafactory.bean.ConsumeListData;
+import com.xgsb.datafactory.bean.Member;
+import com.xgsb.datafactory.bean.MemberMoney;
 import com.xgsb.datafactory.bean.WebData;
 import com.zx.mvplibrary.MvpFragment;
 import com.zx.mvplibrary.web.onOperateLisenter;
 import com.zx.mvplibrary.wedgit.WebChartView;
 import com.zx.network.Param;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,12 +43,11 @@ public class MemberMoneyDetailListFragment extends MvpFragment<ConsumePresenter>
     }
 
     @Override
-    public void onMemberMoneyList(String msg) {
-
-//        if (request != null) {
-//            String json = WebData.newInstance().getMemberMoney(list, mWebChartView.getWidth(), mWebChartView.getHight());
-//            mWebChartView.callback(request, json);
-//        }
+    public void onMemberMoneyList(List<MemberMoney> list) {
+        if (request != null) {
+            String json = WebData.newInstance().getMemberMoney(list, mWebChartView.getWidth(), mWebChartView.getHight());
+            mWebChartView.callback(request, json);
+        }
     }
 
     @Override

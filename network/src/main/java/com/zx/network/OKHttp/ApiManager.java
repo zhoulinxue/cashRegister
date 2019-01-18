@@ -21,6 +21,7 @@ import com.xgsb.datafactory.bean.GiveDishesbean;
 import com.xgsb.datafactory.bean.ListData;
 import com.xgsb.datafactory.bean.Member;
 import com.xgsb.datafactory.bean.MemberLevel;
+import com.xgsb.datafactory.bean.MemberMoney;
 import com.xgsb.datafactory.bean.MemberReChargeGive;
 import com.xgsb.datafactory.bean.OrderPayStatusbean;
 import com.xgsb.datafactory.bean.PayTypebean;
@@ -674,8 +675,8 @@ public class ApiManager {
      * @param moneyListCallback
      * @return
      */
-    public NetRequest getMemberMoneyDetail(String[] params, NetRequestCallBack<String> moneyListCallback) {
-        Observable<NetBean<String>> observable = mApiService.memberMoneyDetail(genrateMap(params));
-        return new OkHttpRequest<String>(observable, moneyListCallback);
+    public NetRequest getMemberMoneyDetail(String[] params, NetRequestCallBack<List<MemberMoney>> moneyListCallback) {
+        Observable<NetBean<List<MemberMoney>>> observable = mApiService.memberMoneyDetail(genrateMap(params));
+        return new OkHttpRequest<List<MemberMoney>>(observable, moneyListCallback);
     }
 }
