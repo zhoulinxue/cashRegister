@@ -148,7 +148,7 @@ public class RechargeDetailListFragment extends MvpFragment<RecahrgePresenter> i
     }
 
     @Override
-    public void onGettableInfo(Request request) {
+    public void getTableInfo(Request request) {
         mRequest = request;
         if (mList != null) {
             onGetReChargeListCallback(mList);
@@ -156,7 +156,7 @@ public class RechargeDetailListFragment extends MvpFragment<RecahrgePresenter> i
     }
 
     @Override
-    public void onOperate(Request request) {
+    public void operateHandle(Request request) {
         String operate = request.getParams().optString("method");
         switch (operate) {
             case "撤销":
@@ -176,6 +176,12 @@ public class RechargeDetailListFragment extends MvpFragment<RecahrgePresenter> i
         }
     }
 
+    @Override
+    public void searchOperate(Request request) {
+        this.mRequest = request;
+        onInitData(null);
+    }
+
     private void initData(ReChargebean rechargebean) {
         mPhoneNum.setText(rechargebean.getMobile());
         mValueRec.setText(Param.Keys.RMB + rechargebean.getStored_value_money() + "");
@@ -185,13 +191,12 @@ public class RechargeDetailListFragment extends MvpFragment<RecahrgePresenter> i
     }
 
     @Override
-    public void onSearch(Request request) {
-        this.mRequest = request;
-        onInitData(null);
+    public void currentPage(Request request) {
+
     }
 
     @Override
-    public void currentPage(Request request) {
+    public void orderDetailsData(Request request) {
 
     }
 

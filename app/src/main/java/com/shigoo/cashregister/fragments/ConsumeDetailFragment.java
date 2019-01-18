@@ -94,7 +94,7 @@ public class ConsumeDetailFragment extends MvpFragment<ConsumePresenter> impleme
     }
 
     @Override
-    public void onGettableInfo(Request request) {
+    public void getTableInfo(Request request) {
         mRequest = request;
         if (mList != null) {
             onGetConsumeListCallback(mList);
@@ -102,17 +102,22 @@ public class ConsumeDetailFragment extends MvpFragment<ConsumePresenter> impleme
     }
 
     @Override
-    public void onOperate(Request request) {
+    public void operateHandle(Request request) {
 
     }
 
     @Override
-    public void onSearch(Request request) {
+    public void searchOperate(Request request) {
 
     }
 
     @Override
     public void currentPage(Request request) {
+
+    }
+
+    @Override
+    public void orderDetailsData(Request request) {
 
     }
 
