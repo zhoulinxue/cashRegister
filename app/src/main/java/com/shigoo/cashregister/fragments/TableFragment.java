@@ -6,6 +6,8 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -111,7 +113,7 @@ public class TableFragment extends MvpFragment<TablePresenter> implements TableC
     protected void onCreateView(View view, Bundle argment) {
         ButterKnife.bind(this, view);
         refreshLayout.setOnRefreshListener(this);
-        mDialogView=new TableDialogView(getContext(),mDialogRootLayout);
+        mDialogView = new TableDialogView(getContext(), mDialogRootLayout);
         mAreaAdapter = new TableAreaListAdapter(R.layout.ordersheet_table_area_item_layout, mAreaList);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -162,7 +164,22 @@ public class TableFragment extends MvpFragment<TablePresenter> implements TableC
             }
         });
 
+        mEdite.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                mAdapter.getFilter().filter(charSequence);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
     }
 
     @Override

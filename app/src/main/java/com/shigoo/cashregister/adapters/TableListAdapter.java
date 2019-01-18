@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.shigoo.cashregister.adapters.viewHolder.TableHoldView;
+import com.shigoo.cashregister.utils.TablesUtils;
 import com.xgsb.datafactory.bean.Table;
 
 import java.util.ArrayList;
@@ -53,8 +54,8 @@ public class TableListAdapter extends BaseQuickAdapter<Table, TableHoldView> imp
                 list = backData;
             } else {//否则把符合条件的数据对象添加到集合中
                 list = new ArrayList<>();
-                for (Table table : backData) {
-                    if (table.getRegion_name().equals(charSequence)||table.getLocal_status().equals(charSequence)) {
+                for (Table table : TablesUtils.fillList(backData)) {
+                    if (table.getRegion_name().equals(charSequence) || table.getLocal_status().equals(charSequence) || table.getTable_number().equals(charSequence)) {
                         list.add(table);
                     }
                 }
@@ -69,9 +70,9 @@ public class TableListAdapter extends BaseQuickAdapter<Table, TableHoldView> imp
         protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
             if (filterResults.count > 0) {
                 setNewData((List<Table>) filterResults.values);
-            }else {
+            } else {
                 setNewData(new ArrayList<Table>());
-                Toast.makeText(mContext,"没找到桌台",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "没找到桌台", Toast.LENGTH_SHORT).show();
             }
         }
     }

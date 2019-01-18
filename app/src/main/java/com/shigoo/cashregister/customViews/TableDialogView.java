@@ -20,6 +20,7 @@ import com.shigoo.cashregister.adapters.GaijiaAdapter;
 import com.shigoo.cashregister.adapters.TuicaiAdapter;
 import com.shigoo.cashregister.mvp.contacts.TableDialogContact;
 import com.shigoo.cashregister.mvp.presenter.TableDialogPresenter;
+import com.xgsb.datafactory.bean.Billbean;
 import com.xgsb.datafactory.bean.Chedanbean;
 import com.xgsb.datafactory.bean.Dishesbean;
 import com.xgsb.datafactory.bean.EventRouter;
@@ -247,6 +248,7 @@ public class TableDialogView extends MvpCustomView<TableDialogPresenter> impleme
         switch (eventRouter.getAction()) {
             case TUI_CAI:
                 mReasonType = 3;
+                mCurrentDishes = (Dishesbean) eventRouter.getData();
                 mTuiCaiLayout.setVisibility(View.VISIBLE);
                 mDiscountLayout.setVisibility(View.GONE);
                 mGaiJiaLayout.setVisibility(View.GONE);
@@ -255,6 +257,7 @@ public class TableDialogView extends MvpCustomView<TableDialogPresenter> impleme
                 break;
             case DA_ZHE:
                 mReasonType = 5;
+                mCurrentDishes = (Dishesbean) eventRouter.getData();
                 mTuiCaiLayout.setVisibility(View.GONE);
                 mDiscountLayout.setVisibility(View.VISIBLE);
                 mGaiJiaLayout.setVisibility(View.GONE);
@@ -262,8 +265,10 @@ public class TableDialogView extends MvpCustomView<TableDialogPresenter> impleme
                 break;
             case CHE_DAN:
                 mReasonType = 6;
+                mBillCode = ((Billbean) eventRouter.getData()).getBill_code();
                 mTuiCaiLayout.setVisibility(View.GONE);
                 mDiscountLayout.setVisibility(View.GONE);
+
                 mGaiJiaLayout.setVisibility(View.GONE);
                 mCancelOrderLayout.setVisibility(View.VISIBLE);
                 break;

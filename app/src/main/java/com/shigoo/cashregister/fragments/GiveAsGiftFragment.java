@@ -21,6 +21,7 @@ import com.shigoo.cashregister.adapters.TableAreaListAdapter;
 import com.shigoo.cashregister.adapters.TableListAdapter;
 import com.shigoo.cashregister.mvp.contacts.GiveAsGiftContact;
 import com.shigoo.cashregister.mvp.presenter.GiveAsGiftPresenter;
+import com.shigoo.cashregister.utils.TablesUtils;
 import com.xgsb.datafactory.JSONManager;
 import com.xgsb.datafactory.bean.Billbean;
 import com.xgsb.datafactory.bean.EventRouter;
@@ -83,60 +84,8 @@ public class GiveAsGiftFragment extends MvpFragment<GiveAsGiftPresenter> impleme
 
     @Override
     public void onTableResult(List<Table> tables) {
-        fillList(tables);
+       mList=TablesUtils.fillList(tables);
         mAdapter.setNewData(mList);
-    }
-
-    private void fillList(List<Table> tables) {
-        mList.clear();
-        for (Table table : tables) {
-            Billbean billbean = null;
-            if (table.isAssembleTable()) {
-                if ("1".equals(table.getUse_tag())) {
-                    billbean = table.getMainBill();
-                } else {
-                    billbean = table.getOrherBill();
-                }
-            } else if (!table.isKx()) {
-                billbean = table.getMainBill();
-            }
-            if (billbean != null) {
-                table.setLocal_status(billbean.getStatus());
-                table.setCurrentBillbean(billbean);
-                if (!table.isAssembleTable()) {
-                    mList.add(table);
-                } else {
-                    for (Billbean bill : table.getBill()) {
-                        Table newtable = getTableFromBill(table, bill);
-                        if (newtable != null) {
-                            mList.add(newtable);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    private Table getTableFromBill(Table table, Billbean billbean) {
-        if ("0".equals(table.getUse_tag()) && "1".equals(billbean.getBill_tag())) {
-            return null;
-        }
-        if ("2".equals(billbean.getBill_tag())) {
-            billbean.setBill_tag("1");
-        }
-        List<Billbean> billbeans = new ArrayList<>();
-        billbeans.add(billbean);
-        Table newtable = null;
-        try {
-            newtable = (Table) table.clone();
-            newtable.setBill(billbeans);
-            newtable.setCurrentBillbean(billbean);
-            newtable.setLocal_status(billbean.getStatus());
-            newtable.setTable_number(billbean.getTable_number());
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
-        return newtable;
     }
 
     @Override
