@@ -89,6 +89,9 @@ public class MainRouterActivity extends BaseActivity {
                     }
                 }, 500);
                 break;
+            case BACK_TO_MEMBER_DETAIL:
+                mFragmentNavigator.showFragment(1);
+                break;
         }
     }
 

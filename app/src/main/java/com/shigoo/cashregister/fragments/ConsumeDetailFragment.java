@@ -9,12 +9,15 @@ import com.shigoo.cashregister.customViews.ConsumeHeaderView;
 import com.shigoo.cashregister.mvp.contacts.ConsumeContact;
 import com.shigoo.cashregister.mvp.presenter.ConsumePresenter;
 import com.xgsb.datafactory.bean.ConsumeListData;
+import com.xgsb.datafactory.bean.MemberMoney;
 import com.xgsb.datafactory.bean.WebData;
 import com.zx.api.api.utils.AppLog;
 import com.zx.mvplibrary.MvpFragment;
 import com.zx.mvplibrary.web.onOperateLisenter;
 import com.zx.mvplibrary.wedgit.WebChartView;
 import com.zx.network.Param;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -136,7 +139,7 @@ public class ConsumeDetailFragment extends MvpFragment<ConsumePresenter> impleme
     }
 
     @Override
-    public void onMemberMoneyList(String msg) {
+    public void onMemberMoneyList(List<MemberMoney> list) {
 
     }
 }

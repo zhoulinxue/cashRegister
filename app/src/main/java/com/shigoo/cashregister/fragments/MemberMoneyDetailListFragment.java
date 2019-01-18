@@ -8,12 +8,17 @@ import com.shigoo.cashregister.R;
 import com.shigoo.cashregister.mvp.contacts.ConsumeContact;
 import com.shigoo.cashregister.mvp.presenter.ConsumePresenter;
 import com.xgsb.datafactory.bean.ConsumeListData;
+import com.xgsb.datafactory.bean.EventRouter;
 import com.xgsb.datafactory.bean.MemberMoney;
 import com.xgsb.datafactory.bean.WebData;
+import com.xgsb.datafactory.enu.EventBusAction;
 import com.zx.mvplibrary.MvpFragment;
 import com.zx.mvplibrary.web.onOperateLisenter;
 import com.zx.mvplibrary.wedgit.WebChartView;
 import com.zx.network.Param;
+
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.List;
 
 import butterknife.BindView;
@@ -102,5 +107,13 @@ public class MemberMoneyDetailListFragment extends MvpFragment<ConsumePresenter>
     @Override
     public void orderDetailsData(Request request) {
 
+    }
+
+    public void onViewClick(View view) {
+        switch (view.getId()) {
+            case R.id.member_detail_back_layout:
+                EventBus.getDefault().post(new EventRouter(EventBusAction.BACK_TO_MEMBER_DETAIL));
+                break;
+        }
     }
 }
