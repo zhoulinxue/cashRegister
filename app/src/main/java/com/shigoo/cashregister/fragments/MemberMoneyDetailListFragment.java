@@ -8,15 +8,12 @@ import com.shigoo.cashregister.R;
 import com.shigoo.cashregister.mvp.contacts.ConsumeContact;
 import com.shigoo.cashregister.mvp.presenter.ConsumePresenter;
 import com.xgsb.datafactory.bean.ConsumeListData;
-import com.xgsb.datafactory.bean.Member;
 import com.xgsb.datafactory.bean.MemberMoney;
 import com.xgsb.datafactory.bean.WebData;
 import com.zx.mvplibrary.MvpFragment;
 import com.zx.mvplibrary.web.onOperateLisenter;
 import com.zx.mvplibrary.wedgit.WebChartView;
 import com.zx.network.Param;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
