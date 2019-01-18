@@ -5,14 +5,12 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.shigoo.cashregister.App;
 import com.shigoo.cashregister.R;
 import com.shigoo.cashregister.activitys.NumberInputActivity;
 import com.shigoo.cashregister.activitys.PayMemberLoginActivity;

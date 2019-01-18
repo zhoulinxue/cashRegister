@@ -427,4 +427,5 @@
     <item name="print_cosume_order" type="id" />
     <item name="fan_jie_zhang_tv" type="id" />
     <item name="back_to_list" type="id" />
+    <item name="ordersheet_dishes_finnaly_tv" type="id" />
 </resources>

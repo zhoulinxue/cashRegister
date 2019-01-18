@@ -185,11 +185,11 @@ public class DishesUtils {
             salePrice += AppUtil.getFloatFromString(dishesbean.getMaxFavorable().getMoney()).floatValue();
             if ("0".equals(dishesbean.getPay_tag()) || TextUtils.isEmpty(dishesbean.getPay_tag())) {
                 AppLog.print(dishesbean.getDishes_name() + "   未支付");
-                finalyPrice += AppUtil.getFloatFromString(dishesbean.getMinFavorable().getMoney()).floatValue();
                 restPrice+= AppUtil.getFloatFromString(dishesbean.getShowPrice()).floatValue();
             } else {
                 AppLog.print(dishesbean.getDishes_name() + "   已支付");
             }
+            finalyPrice += AppUtil.getFloatFromString(dishesbean.getMinFavorable().getMoney()).floatValue();
         }
         priceList.add(salePrice);
         priceList.add(finalyPrice);

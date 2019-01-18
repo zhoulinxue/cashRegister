@@ -61,11 +61,6 @@ public class OrdersFragment extends BaseFragment implements onOperateLisenter {
     }
 
     @Override
-    public String getToken() {
-        return SPUtil.getInstance().getString(Param.Keys.TOKEN, "default_token");
-    }
-
-    @Override
     public void initWebview(Request request) {
         InitWebView initWebView = new InitWebView(getToken(), "order");
         webChartView.callback(request, JSONManager.getInstance().toJson(initWebView));

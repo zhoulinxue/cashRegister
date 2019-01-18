@@ -130,6 +130,4 @@ public abstract class BaseFragment extends Fragment implements BackHandler {
     public String getToken() {
         return SPUtil.getInstance().getString(Param.Keys.TOKEN, "default_token");
     }
-
-    ;
 }

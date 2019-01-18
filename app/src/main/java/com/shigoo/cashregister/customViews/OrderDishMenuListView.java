@@ -88,7 +88,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
     @BindView(R.id.ordersheet_settle_order_btn)
     TextView mSettleTv;
     @BindView(R.id.ordersheet_dishes_price_tv)
-    TextView mOrderPriceTv;
+    TextView mAlreadOrderPriceTv;
     @BindView(R.id.ordersheet_dishes_old_tv)
     TextView mOrderOldPriceTv;
     @BindView(R.id.ordersheet_settle_accounts_btn)
@@ -101,6 +101,8 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
     int nomalColor;
     @BindColor(R.color.white)
     int selectedColor;
+    @BindView(R.id.ordersheet_dishes_finnaly_tv)
+    TextView OrderPriceTv;
 
     @BindView(R.id.cashregister_layout)
     LinearLayout mCasherLayout;
@@ -555,13 +557,14 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
         List<Float> prices = DishesUtils.calculaPrice(mMenuListAdapter.getData());
         finalyPrice = prices.get(1);
         salePrice = prices.get(0);
-        mOrderPriceTv.setText(Param.Keys.RMB + finalyPrice);
+        mAlreadOrderPriceTv.setText("已收："+Param.Keys.RMB +(finalyPrice-prices.get(2)));
         mOrderOldPriceTv.setText(Param.Keys.RMB + salePrice);
+        OrderPriceTv.setText("应收："+Param.Keys.RMB +finalyPrice);
         if (finalyPrice == salePrice) {
             mOrderOldPriceTv.setVisibility(View.GONE);
         } else {
             mOrderOldPriceTv.setVisibility(View.VISIBLE);
-            mOrderPriceTv.setVisibility(View.VISIBLE);
+            mAlreadOrderPriceTv.setVisibility(View.VISIBLE);
         }
         mTotalNumTv.setText("共 " + (mMenuListAdapter.getData() == null ? 0 : mMenuListAdapter.getData().size()) + " 项");
         if ("拆单支付".equals(mSelltalAccountTv.getText().toString()) || isFjz) {
