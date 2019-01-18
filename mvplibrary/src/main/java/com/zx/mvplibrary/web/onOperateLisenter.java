@@ -12,9 +12,13 @@ import io.starteos.dappsdk.Request;
 public interface onOperateLisenter {
     public void initWebview(Request request);
 
-    public void onGettableInfo(Request request);
+    public void getTableInfo(Request request);
 
-    public void onOperate(Request request);
+    public void operateHandle(Request request);
 
-    public void onSearch(Request request);
+    public void searchOperate(Request request);
+
+    public void currentPage(Request request);
+
+    public void orderDetailsData(Request request);
 }

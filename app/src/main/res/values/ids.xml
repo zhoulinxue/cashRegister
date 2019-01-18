@@ -424,4 +424,7 @@
     <item name="discount_price" type="id" />
     <item name="tuicai_sure_btn" type="id" />
     <item name="tuicai_num_tv" type="id" />
+    <item name="print_cosume_order" type="id" />
+    <item name="fan_jie_zhang_tv" type="id" />
+    <item name="back_to_list" type="id" />
 </resources>

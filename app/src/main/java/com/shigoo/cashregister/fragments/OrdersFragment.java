@@ -15,6 +15,7 @@ import com.zx.network.Param;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import io.starteos.dappsdk.Request;
 
 /**
@@ -50,9 +51,8 @@ public class OrdersFragment extends BaseFragment implements onOperateLisenter {
     @Override
     protected void onCreateView(View view, Bundle argment) {
         ButterKnife.bind(this, view);
-        webChartView = new WebChartView(getContext(), mWebContainer,this,mHandler);
+        webChartView = new WebChartView(getContext(), mWebContainer, this, mHandler);
         webChartView.loadUrl("file:///android_asset/index.html");
-//        webChartView.loadUrl("http://192.168.188.116/webview/index.html#/");
     }
 
     @Override
@@ -84,5 +84,24 @@ public class OrdersFragment extends BaseFragment implements onOperateLisenter {
     @Override
     public void onSearch(Request request) {
 
+    }
+
+    @Override
+    public void currentPage(Request request) {
+
+    }
+
+    @OnClick({R.id.print_cosume_order, R.id.fan_jie_zhang_tv, R.id.back_to_list})
+    public void onViewClick(View view) {
+        switch (view.getId()) {
+            case R.id.print_cosume_order:
+                break;
+            case R.id.fan_jie_zhang_tv:
+                webChartView.getDataFormWeb("", "orderDetailsData");
+                break;
+            case R.id.back_to_list:
+                webChartView.backTolast();
+                break;
+        }
     }
 }

@@ -2,6 +2,7 @@ package com.zx.mvplibrary.wedgit;
 
 import android.content.Context;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -81,8 +82,16 @@ public class WebChartView extends BaseCustomView implements WebOperate {
     }
 
     @Override
+    public void getDataFormWeb(String action, String methodName) {
+        if(!TextUtils.isEmpty(action)) {
+            mWebView.evaluateJavascript("javascript:" + methodName + "(" + JSONManager.getInstance().toJson(action) + ")", null);
+        }else {
+            mWebView.evaluateJavascript("javascript:" + methodName + "()", null);
+        }
+    }
+
     public void refresh(String action) {
-        mWebView.evaluateJavascript("javascript:reData(" + JSONManager.getInstance().toJson(action) + ")", null);
+        getDataFormWeb(action, "reData");
     }
 
     public void loadDefaultUrl() {
@@ -119,4 +128,7 @@ public class WebChartView extends BaseCustomView implements WebOperate {
         return response;
     }
 
+    public void backTolast() {
+        mWebView.goBack();
+    }
 }

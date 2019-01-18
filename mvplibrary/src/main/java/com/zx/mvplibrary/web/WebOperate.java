@@ -13,5 +13,5 @@ public interface WebOperate {
 
     public void loadUrl(String url);
 
-    public void refresh(String action);
+    public void getDataFormWeb(String action,String methodName);
 }

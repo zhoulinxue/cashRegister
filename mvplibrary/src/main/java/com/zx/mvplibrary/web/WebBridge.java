@@ -10,7 +10,7 @@ import io.starteos.dappsdk.Request;
 import io.starteos.dappsdk.annotation.Namespace;
 
 @Namespace(WebNameSpace.SYSTEM)
-public class WebBridge extends DAppApi {
+public class WebBridge extends DAppApi implements onOperateLisenter{
     public WebBridge(DAppBridge bridge) {
         super(bridge);
     }
@@ -33,20 +33,37 @@ public class WebBridge extends DAppApi {
     }
 
     public  void initWebview(final Request request){
+        AppLog.print("WebBridge  " + "initWebview");
         if (bridge instanceof XgDAppBridge) {
             ((XgDAppBridge) bridge).initWebview(request);
         }
     }
 
     public void searchOperate(Request request) {
+        AppLog.print("WebBridge  " + "searchOperate");
         if (bridge instanceof XgDAppBridge) {
             ((XgDAppBridge) bridge).searchOperate(request);
         }
     }
 
+    @Override
+    public void currentPage(Request request) {
+        AppLog.print("WebBridge  " + "currentPage");
+        if (bridge instanceof XgDAppBridge) {
+            ((XgDAppBridge) bridge).currentPage(request);
+        }
+    }
+
     public void operateHandle(Request request) {
+        AppLog.print("WebBridge  " + "operateHandle");
         if (bridge instanceof XgDAppBridge) {
             ((XgDAppBridge) bridge).onOperate(request);
+        }
+    }
+    public void orderDetailsData(Request request){
+        AppLog.print("WebBridge  " + "orderDetailsData");
+        if (bridge instanceof XgDAppBridge) {
+            ((XgDAppBridge) bridge).orderDetailsData(request);
         }
     }
 }

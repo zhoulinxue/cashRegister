@@ -33,7 +33,7 @@ public class XgDAppBridge extends DAppBridge {
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    mLisenter.onGettableInfo(request);
+                    mLisenter.getTableInfo(request);
                 }
             });
         }
@@ -56,7 +56,7 @@ public class XgDAppBridge extends DAppBridge {
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    mLisenter.onOperate(request);
+                    mLisenter.operateHandle(request);
                 }
             });
         }
@@ -67,7 +67,27 @@ public class XgDAppBridge extends DAppBridge {
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    mLisenter.onSearch(request);
+                    mLisenter.searchOperate(request);
+                }
+            });
+        }
+    }
+    public void orderDetailsData(final Request request){
+        if (mLisenter != null) {
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    mLisenter.orderDetailsData(request);
+                }
+            });
+        }
+    }
+    public void currentPage(final Request request) {
+        if (mLisenter != null) {
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    mLisenter.currentPage(request);
                 }
             });
         }

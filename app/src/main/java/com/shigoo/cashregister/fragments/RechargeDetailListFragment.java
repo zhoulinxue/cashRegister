@@ -178,15 +178,6 @@ public class RechargeDetailListFragment extends MvpFragment<RecahrgePresenter> i
 
     private void initData(ReChargebean rechargebean) {
         mPhoneNum.setText(rechargebean.getMobile());
-//        int real = rechargebean.getMoney();
-//        try {
-//            if (!TextUtils.isEmpty(rechargebean.getMoney_give())) {
-//                real = rechargebean.getMoney() - ((int) Double.valueOf(rechargebean.getMoney_give()).doubleValue());
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            AppLog.print("撤销时 数据类型错误");
-//        }
         mValueRec.setText(Param.Keys.RMB + rechargebean.getStored_value_money() + "");
         mPreReCharge.setText(Param.Keys.RMB + rechargebean.getMoney_give() + "");
         mRechargeMoney.setText(Param.Keys.RMB + rechargebean.getMoney());
@@ -197,6 +188,11 @@ public class RechargeDetailListFragment extends MvpFragment<RecahrgePresenter> i
     public void onSearch(Request request) {
         this.mRequest = request;
         onInitData(null);
+    }
+
+    @Override
+    public void currentPage(Request request) {
+
     }
 
     @Override
