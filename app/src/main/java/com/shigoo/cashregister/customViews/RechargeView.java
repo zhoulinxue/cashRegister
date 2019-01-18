@@ -34,6 +34,7 @@ import com.zx.network.Param;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -210,6 +211,7 @@ public class RechargeView extends MvpCustomView<RechargePresenter> implements Re
 
     @Override
     protected void onInitView(Context context, View rootView) {
+        ButterKnife.bind(this,rootView);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mRechargeGives.setLayoutManager(manager);

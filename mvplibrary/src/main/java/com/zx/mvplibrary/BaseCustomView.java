@@ -17,7 +17,7 @@ import butterknife.ButterKnife;
  * Date: 2018-11-26 13:28
  */
 public abstract class BaseCustomView implements ICustomeView {
-    private ViewGroup rootView;
+    private View rootView;
     protected Context mContext;
     private ViewGroup rootGroup;
     protected final int DEFAULT_MINUTES = 1000;
@@ -25,8 +25,7 @@ public abstract class BaseCustomView implements ICustomeView {
     public BaseCustomView(Context context, ViewGroup rootGroup) {
         this.rootGroup = rootGroup;
         this.mContext = context;
-        rootView=rootGroup;
-        LayoutInflater.from(mContext).inflate(initLayout(), rootGroup);
+        rootView= LayoutInflater.from(mContext).inflate(initLayout(), rootGroup);
         ButterKnife.bind(this, rootView);
         initView(context, rootView);
     }

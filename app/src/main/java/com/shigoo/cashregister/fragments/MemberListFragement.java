@@ -245,7 +245,7 @@ public class MemberListFragement extends MvpFragment<MemberManagePresenter> impl
     }
 
     @Override
-    public void onGettableInfo(final Request request) {
+    public void getTableInfo(Request request) {
         this.request = request;
         if (mList != null && mList.size() != 0) {
             onGetMenbersCallback(mList);
@@ -255,7 +255,7 @@ public class MemberListFragement extends MvpFragment<MemberManagePresenter> impl
     }
 
     @Override
-    public void onOperate(Request request) {
+    public void operateHandle(Request request) {
         String operate = request.getParams().optString("method");
         switch (operate) {
             case "充值":
@@ -270,10 +270,21 @@ public class MemberListFragement extends MvpFragment<MemberManagePresenter> impl
     }
 
     @Override
-    public void onSearch(Request request) {
+    public void searchOperate(Request request) {
         this.request = request;
         mPresenter.searchMembers(Param.Keys.TOKEN, getToken(), Param.Keys.DATA, mMemberHeaderView.getKey(), Param.Keys.PAGE, page + "");
     }
+
+    @Override
+    public void currentPage(Request request) {
+
+    }
+
+    @Override
+    public void orderDetailsData(Request request) {
+
+    }
+
 
     @Override
     public void onResult(List<Cardbean> cardbean) {

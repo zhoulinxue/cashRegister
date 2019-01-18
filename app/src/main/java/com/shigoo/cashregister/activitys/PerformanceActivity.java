@@ -151,7 +151,7 @@ public class PerformanceActivity extends MvpActivity<SalesPerformancePresenter> 
     }
 
     @Override
-    public void onGettableInfo(Request request) {
+    public void getTableInfo(Request request) {
         mRequest = request;
         showToast("onGettableInfo");
         if (EventBusAction.SALE.getAction().equals(mAction)) {
@@ -165,18 +165,28 @@ public class PerformanceActivity extends MvpActivity<SalesPerformancePresenter> 
                 mWebCahrtView.callback(mRequest, json);
             }
         }
+    }
+
+    @Override
+    public void operateHandle(Request request) {
 
     }
 
     @Override
-    public void onOperate(Request request) {
+    public void searchOperate(Request request) {
 
     }
 
     @Override
-    public void onSearch(Request request) {
+    public void currentPage(Request request) {
 
     }
+
+    @Override
+    public void orderDetailsData(Request request) {
+
+    }
+
 
     @OnClick({R.id.ordersheet_back_img, R.id.ordersheet_time_text, R.id.ordersheet_yesterday_tv, R.id.ordersheet_today_tv, R.id.ordersheet_last_seven_days})
     public void onViewClicked(View view) {

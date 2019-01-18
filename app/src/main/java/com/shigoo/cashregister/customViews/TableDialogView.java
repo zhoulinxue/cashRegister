@@ -98,6 +98,7 @@ public class TableDialogView extends MvpCustomView<TableDialogPresenter> impleme
 
     @Override
     protected void onInitView(Context context, View rootView) {
+        ButterKnife.bind(this,rootView);
         EventBus.getDefault().register(this);
         mChedanRecyclerView.setLayoutManager(new GridLayoutManager(context, 2));
         mGaijiaRecyclerView.setLayoutManager(new GridLayoutManager(context, 2));

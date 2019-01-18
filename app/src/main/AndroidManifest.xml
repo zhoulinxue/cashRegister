@@ -22,15 +22,17 @@
         tools:replace="android:theme,android:label">
         <activity
             android:name=".activitys.CashRigisterMainActivity"
-            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
-        <activity
-            android:name=".activitys.RouterActivity"
-            android:launchMode="singleTask">
+            android:windowSoftInputMode="adjustResize|stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activitys.RouterActivity"
+            android:launchMode="singleTask">
+
         </activity>
         <activity android:name=".activitys.SellerSearchActivity" />
         <activity
