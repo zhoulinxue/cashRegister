@@ -170,9 +170,9 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
                         return;
                     }
                     EventBus.getDefault().post(new EventRouter(EventBusAction.BACK_TO_MAIN));
-                    mTable = null;
-                    setBillCode(null);
-                    showBottomUi();
+//                    mTable = null;
+//                    setBillCode(null);
+//                    showBottomUi();
                 } else {
                     if (AppUtil.isOrderDishes(getContext())) {
                         SPUtil.getInstance().putString(Param.Keys.TOKEN, "");
@@ -694,5 +694,9 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
     public void fanjiezhang(Table table) {
         setTable(table, true);
         gotopayFragmnet();
+    }
+
+    public void refresh() {
+        setTable(mTable, isFjz);
     }
 }

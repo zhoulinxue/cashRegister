@@ -338,4 +338,16 @@ public interface ApiServer {
 
     @POST("/cashier/invoicing/overCheckOut")
     Observable<NetBean<String>> fanJz(@Body FanJZbean fanJZbean);
+
+    @FormUrlEncoded
+    @POST("/reserve/reserve/BillDishesItemDetails")
+    Observable<NetBean<String>> changePrice(@FieldMap Map<String, String> stringStringMap);
+
+    @FormUrlEncoded
+    @POST("/reserve/reserve/BillDishesItemDetails")
+    Observable<NetBean<String>> returnDishes(@FieldMap Map<String, String> stringStringMap);
+
+    @FormUrlEncoded
+    @POST("/reserve/reserve/BillDishesItemDetails")
+    Observable<NetBean<String>> rediscount(@FieldMap Map<String, String> stringStringMap);
 }

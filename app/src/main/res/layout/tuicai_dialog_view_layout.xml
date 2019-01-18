@@ -3,7 +3,6 @@
     android:id="@id/ordersheet_tuicai_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:visibility="gone"
     android:orientation="horizontal">
 
     <LinearLayout
@@ -70,7 +69,7 @@
                 android:textSize="@dimen/ordersheet_24sp" />
 
             <TextView
-                android:id="@id/ordersheet_dishes_format_add_tv"
+                android:id="@id/tuicai_num_tv"
                 android:layout_width="@dimen/ordersheet_140dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="@dimen/ordersheet_10dp"
@@ -92,7 +91,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@id/ordersheet_number_result_btn"
+            android:id="@id/tuicai_sure_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

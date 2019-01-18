@@ -27,7 +27,7 @@
             android:id="@id/dishes_name_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="退菜-马爹利名仕750ml"
+            android:text="撤单"
             android:textColor="@color/ordersheet_table_des_color"
             android:textSize="@dimen/ordersheet_18sp" />
 

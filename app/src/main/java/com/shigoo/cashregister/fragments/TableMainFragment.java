@@ -171,6 +171,7 @@ public class TableMainFragment extends BaseFragment {
                 break;
             case BACK_TO_MAIN:
                 mFragmentNavigator.showFragment(0);
+                mDishesView.setTable(null,false);
                 break;
             case ADD_SUC:
                 addSuc((Dishesbean) eventRouter.getData());
@@ -229,6 +230,9 @@ public class TableMainFragment extends BaseFragment {
             case PAY_SUC:
                 mFragmentNavigator.showFragment(0);
                 mDishesView.setTable(null,false);
+                break;
+            case BILL_REFRESH:
+                mDishesView.refresh();
                 break;
         }
     }

@@ -28,7 +28,7 @@
             android:id="@id/gaijia_dishes_name_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="退菜-马爹利名仕750ml"
+            android:text="改价-马爹利名仕750ml"
             android:textColor="@color/ordersheet_table_des_color"
             android:textSize="@dimen/ordersheet_18sp" />
 
@@ -66,8 +66,8 @@
                 android:text="改价："
                 android:textSize="@dimen/ordersheet_14sp" />
 
-            <TextView
-                android:id="@id/ordersheet_dishes_zhekou_tv"
+            <EditText
+                android:id="@id/ordersheet_dishes_gaijia_tv"
                 android:layout_width="@dimen/ordersheet_140dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="@dimen/ordersheet_10dp"
@@ -110,7 +110,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@id/ordersheet_number_result_btn"
+            android:id="@id/gaijia_sure_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

@@ -634,4 +634,37 @@ public class ApiManager {
         Observable<NetBean<String>> observable = mApiService.fanJz(fanJZbean);
         return new OkHttpRequest<String>(observable, fanjzResonCallback);
     }
+
+    /**
+     *改价
+     * @param params
+     * @param rePriceCallback
+     * @return
+     */
+    public NetRequest changePrice(String[] params, NetRequestCallBack<String> rePriceCallback) {
+        Observable<NetBean<String>> observable = mApiService.changePrice(genrateMap(params));
+        return new OkHttpRequest<String>(observable, rePriceCallback);
+    }
+
+    /**
+     *  退菜
+     * @param params
+     * @param returnDisheCallback
+     * @return
+     */
+    public NetRequest returnDishes(String[] params, NetRequestCallBack<String> returnDisheCallback) {
+        Observable<NetBean<String>> observable = mApiService.returnDishes(genrateMap(params));
+        return new OkHttpRequest<String>(observable, returnDisheCallback);
+    }
+
+    /**
+     * 打折
+     * @param params
+     * @param discountPriceCallback
+     * @return
+     */
+    public NetRequest reDiscount(String[] params, NetRequestCallBack<String> discountPriceCallback) {
+        Observable<NetBean<String>> observable = mApiService.rediscount(genrateMap(params));
+        return new OkHttpRequest<String>(observable, discountPriceCallback);
+    }
 }

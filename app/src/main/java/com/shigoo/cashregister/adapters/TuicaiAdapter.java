@@ -11,11 +11,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TuicaiAdapter extends BaseQuickAdapter<String, RemarkHoldView> {
+public class TuicaiAdapter extends BaseQuickAdapter<Remarkbean, RemarkHoldView> {
     private Map<Integer, Boolean> isSelected = new HashMap<>();
     private int mCurrentPosition;
 
-    public TuicaiAdapter(int layoutResId, @Nullable List<String> data) {
+    public TuicaiAdapter(int layoutResId, @Nullable List<Remarkbean> data) {
         super(layoutResId, data);
     }
 
@@ -31,18 +31,18 @@ public class TuicaiAdapter extends BaseQuickAdapter<String, RemarkHoldView> {
     }
 
     @Override
-    protected void convert(RemarkHoldView helper, String item) {
+    protected void convert(RemarkHoldView helper, Remarkbean item) {
         Boolean selectedP = isSelected.get(helper.getLayoutPosition());
         if (selectedP != null && selectedP) {
             helper.setSelected(true);
         } else {
             helper.setSelected(false);
         }
-        helper.setDishesFormatName(item);
+        helper.setDishesFormatName(item.getRemarks_name());
     }
 
     @Override
-    public void setNewData(@Nullable List<String> data) {
+    public void setNewData(@Nullable List<Remarkbean> data) {
         super.setNewData(data);
         isSelected.clear();
     }
@@ -50,9 +50,9 @@ public class TuicaiAdapter extends BaseQuickAdapter<String, RemarkHoldView> {
 
     public void setSelected(String remarkbeans) {
         for (int i = 0; i < getData().size(); i++) {
-            String remarkbean = getData().get(i);
+            Remarkbean remarkbean = getData().get(i);
             if (!TextUtils.isEmpty(remarkbeans)) {
-                if (remarkbean.equals(remarkbeans)) {
+                if (remarkbean.getRemarks_name().equals(remarkbeans)) {
                     isSelected.put(i, true);
                 } else {
                     isSelected.put(i, false);
@@ -62,5 +62,15 @@ public class TuicaiAdapter extends BaseQuickAdapter<String, RemarkHoldView> {
             }
         }
         notifyDataSetChanged();
+    }
+    public String getReason() {
+        StringBuffer buffer = new StringBuffer();
+        for (int i = 0; i < getData().size(); i++) {
+            Boolean selectedP = isSelected.get(i);
+            if (selectedP != null && selectedP) {
+                buffer.append(getData().get(i).getRemarks_name());
+            }
+        }
+        return buffer.toString();
     }
 }

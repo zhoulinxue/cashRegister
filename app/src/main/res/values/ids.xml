@@ -418,4 +418,10 @@
     <item name="ordersheet_dishes_pay_sure" type="id" />
     <item name="pay_item_list_layout" type="id" />
     <item name="reason_layout" type="id" />
+    <item name="gaijia_sure_btn" type="id" />
+    <item name="ordersheet_dishes_gaijia_tv" type="id" />
+    <item name="zhekou_sure_btn" type="id" />
+    <item name="discount_price" type="id" />
+    <item name="tuicai_sure_btn" type="id" />
+    <item name="tuicai_num_tv" type="id" />
 </resources>

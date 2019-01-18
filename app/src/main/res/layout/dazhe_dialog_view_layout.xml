@@ -3,7 +3,6 @@
     android:id="@id/ordersheet_discount_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:visibility="gone"
     android:orientation="horizontal">
 
     <LinearLayout
@@ -28,7 +27,7 @@
             android:id="@id/dishes_name_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="退菜-马爹利名仕750ml"
+            android:text="折扣-马爹利名仕750ml"
             android:textColor="@color/ordersheet_table_des_color"
             android:textSize="@dimen/ordersheet_18sp" />
 
@@ -66,7 +65,7 @@
                 android:text="折扣："
                 android:textSize="@dimen/ordersheet_14sp" />
 
-            <TextView
+            <EditText
                 android:id="@id/ordersheet_dishes_zhekou_tv"
                 android:layout_width="@dimen/ordersheet_140dp"
                 android:layout_height="40dp"
@@ -75,6 +74,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/ordersheet_search_edit_bg"
                 android:gravity="center"
+                android:inputType="number"
                 android:text="50"
                 android:textSize="@dimen/ordersheet_24sp" />
 
@@ -100,6 +100,7 @@
                 android:textSize="@dimen/ordersheet_14sp" />
 
             <TextView
+                android:id="@id/discount_price"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginLeft="@dimen/ordersheet_10dp"
@@ -110,7 +111,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@id/ordersheet_number_result_btn"
+            android:id="@id/zhekou_sure_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

@@ -22,10 +22,72 @@ public class TableDialogPresenter extends BasePresenterImpl<TableDialogContact.v
     }
 
     @Override
-    public void getCancelList(String... params) {
-        NetRequest request = ApiManager.getInstance().cancelOrderList(params, mCancelResonCallback);
+    public void getMultReasonList(String... params) {
+
+    }
+
+    @Override
+    public void chargePrice(String... params) {
+        mView.showLoadingDialog();
+        NetRequest request = ApiManager.getInstance().changePrice(params, mRePriceCallback);
         addRequest(request);
     }
+
+    @Override
+    public void discountDishes(String... params) {
+        mView.showLoadingDialog();
+        NetRequest request = ApiManager.getInstance().reDiscount(params, mDiscountPriceCallback);
+        addRequest(request);
+    }
+
+    @Override
+    public void returnDishes(String... params) {
+        mView.showLoadingDialog();
+        NetRequest request = ApiManager.getInstance().returnDishes(params, mReturnDisheCallback);
+        addRequest(request);
+    }
+
+    NetRequestCallBack<String> mDiscountPriceCallback = new NetRequestCallBack<String>() {
+        @Override
+        public void onSuccess(String listData) {
+            mView.dismissLoadingDiaog();
+            mView.onDiscountResult(listData);
+        }
+
+        @Override
+        public void onError(int responseCode, String msg) {
+            mView.dismissLoadingDiaog();
+            mView.onError(msg);
+        }
+    };
+
+    NetRequestCallBack<String> mRePriceCallback = new NetRequestCallBack<String>() {
+        @Override
+        public void onSuccess(String listData) {
+            mView.dismissLoadingDiaog();
+            mView.onChargePriceResult(listData);
+        }
+
+        @Override
+        public void onError(int responseCode, String msg) {
+            mView.dismissLoadingDiaog();
+            mView.onError(msg);
+        }
+    };
+
+    NetRequestCallBack<String> mReturnDisheCallback = new NetRequestCallBack<String>() {
+        @Override
+        public void onSuccess(String listData) {
+            mView.dismissLoadingDiaog();
+            mView.onReturnDishesResult(listData);
+        }
+
+        @Override
+        public void onError(int responseCode, String msg) {
+            mView.dismissLoadingDiaog();
+            mView.onError(msg);
+        }
+    };
 
     NetRequestCallBack<String> mCancelOrderCallback = new NetRequestCallBack<String>() {
         @Override
@@ -41,15 +103,4 @@ public class TableDialogPresenter extends BasePresenterImpl<TableDialogContact.v
         }
     };
 
-    NetRequestCallBack<List<String>> mCancelResonCallback = new NetRequestCallBack<List<String>>() {
-        @Override
-        public void onSuccess(List<String> listData) {
-            mView.onCancelResult(listData);
-        }
-
-        @Override
-        public void onError(int responseCode, String msg) {
-            mView.onError(msg);
-        }
-    };
 }

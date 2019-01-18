@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.xgsb.datafactory.bean.User;
 import com.zx.api.api.app.MvpDialog;
 import com.zx.api.api.mvp.BaseView;
 import com.zx.api.api.utils.AppLog;
@@ -99,6 +100,13 @@ public abstract class MvpCustomView<P extends BasePresenter> extends BaseCustomV
     public MvpDialog onCreatCustomDialog() {
         if (getContext() instanceof BaseActivity) {
             return ((BaseActivity) getContext()).onCreatCustomDialog();
+        }
+        return null;
+    }
+    public User getUser(){
+        if (getContext() instanceof BaseActivity) {
+            AppLog.print(((BaseActivity) getContext()).getToken()+"  token");
+            return ((BaseActivity) getContext()).getUser();
         }
         return null;
     }

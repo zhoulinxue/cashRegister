@@ -34,6 +34,14 @@ public class Param {
         public static final String GIVE = "give";
         public static final String USER = "user";
         public static final String CHE_DAN = "revoke_reason";
+        public static final String REPRICER_ID = "repricer_id";
+        public static final String REPRICE_REASON = "reprice_reason";
+        public static final String FINALLY_PRICE ="finally_price" ;
+        public static final String REDISCOUNT_ID ="re_discount_id" ;
+        public static final String RE_DISCOUNT_REASON ="re_discount_reason" ;
+        public static final String BACK_REASON = "back_reason";
+        public static final String BACK_ID = "backer_id";
+        public static final String DISH_QTY ="dish_qty" ;
         public static String YUAN = "  元";
         public static final String id = "id";
         public static final String value = "value";
@@ -67,6 +75,7 @@ public class Param {
         public static String ADDRESS = "address";
         public static String MEMBER_DATA = "member_data";
         public static String NAME = "name";
+        public static String RE_DISCOUNT="re_discount";
     }
 
     public static class ACTION {

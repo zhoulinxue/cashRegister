@@ -57,7 +57,8 @@ public enum EventBusAction {
     CARD_FRAGMENT("card_fragmnet"),
     MEMBER_DETAIL_BACK("member_detail_back"),
     TABLE_BACK("table_back"),
-    FAN_JIE_ZHANG("fan_jie_zhang_suc");
+    FAN_JIE_ZHANG("fan_jie_zhang_suc"),
+    BILL_REFRESH("bill_refresh");
 
 
     EventBusAction(String member_msg) {
