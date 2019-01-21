@@ -80,7 +80,6 @@ public class MemberListFragement extends MvpFragment<MemberManagePresenter> impl
     private EditText mInputEdite, mobileTv;
     RelativeLayout mInputLayout, mCardInputLayout;
 
-
     public static MemberListFragement newInstance() {
         MemberListFragement fragment = new MemberListFragement();
         Bundle args = new Bundle();
@@ -124,6 +123,7 @@ public class MemberListFragement extends MvpFragment<MemberManagePresenter> impl
         });
         mWebCahrtView.loadDefaultUrl();
     }
+
 
     private void initSearchMemberDialog() {
         final View inputView = LayoutInflater.from(getContext()).inflate(R.layout.input_member_dialog, null);
@@ -175,8 +175,7 @@ public class MemberListFragement extends MvpFragment<MemberManagePresenter> impl
     @Override
     public void onRefresh() {
         super.onRefresh();
-        mWebCahrtView.refresh("refresh");
-        mPresenter.getCountData(Param.Keys.TOKEN, getToken());
+        onInitData(null);
     }
 
     @Override

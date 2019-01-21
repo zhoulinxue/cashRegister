@@ -69,7 +69,15 @@ public class SettalItem implements Parcelable {
     private String dishes_id;
     private List<ComboData> combo_data;
     private String sale_id;
+    private String finally_tag;
 
+    public String getFinally_tag() {
+        return finally_tag;
+    }
+
+    public void setFinally_tag(String finally_tag) {
+        this.finally_tag = finally_tag;
+    }
 
     public String getSale_id() {
         return sale_id;
@@ -580,6 +588,7 @@ public class SettalItem implements Parcelable {
         dishesbean.setDish_number(getDish_number());
         dishesbean.setRemark(getRemark_data());
         dishesbean.setPay_tag(getPay_tag());
+        dishesbean.setFinally_tag(getFinally_tag());
         if (dishesbean.isSelMeal()) {
             dishesbean.setCombo_time_price(getTime_price());
             dishesbean.setCombo_id(getCombo_id());
@@ -704,6 +713,7 @@ public class SettalItem implements Parcelable {
         dest.writeString(this.dishes_id);
         dest.writeTypedList(this.combo_data);
         dest.writeString(this.sale_id);
+        dest.writeString(this.finally_tag);
     }
 
     protected SettalItem(Parcel in) {
@@ -768,6 +778,7 @@ public class SettalItem implements Parcelable {
         this.dishes_id = in.readString();
         this.combo_data = in.createTypedArrayList(ComboData.CREATOR);
         this.sale_id = in.readString();
+        this.finally_tag = in.readString();
     }
 
     public static final Creator<SettalItem> CREATOR = new Creator<SettalItem>() {

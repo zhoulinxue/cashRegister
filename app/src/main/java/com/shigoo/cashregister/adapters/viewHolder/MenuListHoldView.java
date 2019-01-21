@@ -60,6 +60,8 @@ public class MenuListHoldView extends BaseViewHolder {
     TextView mTuiTv;
     @BindView(R.id.order_menu_item_layout)
     RelativeLayout mItemBg;
+    @BindView(R.id.ordersheet_dishes_cd_tv)
+    TextView mCdTv;
     private String mBillCode;
     private Member member;
     @BindColor(R.color.ordersheet_remark_color)
@@ -102,13 +104,17 @@ public class MenuListHoldView extends BaseViewHolder {
         } else {
             mWdTv.setVisibility(View.GONE);
         }
-
+        if ("10".equals(item.getFinally_tag())) {
+            mCdTv.setVisibility(View.VISIBLE);
+        } else {
+            mCdTv.setVisibility(View.GONE);
+        }
         if (item.getWait_tag() == 1) {
             mDJTv.setVisibility(View.VISIBLE);
         } else {
             mDJTv.setVisibility(View.GONE);
         }
-        if (!TextUtils.isEmpty(item.getBack_id())||!TextUtils.isEmpty(item.getBack_reason())) {
+        if ("3".equals(item.getPay_tag())) {
             mTuiTv.setVisibility(View.VISIBLE);
         } else {
             mTuiTv.setVisibility(View.GONE);
@@ -147,12 +153,11 @@ public class MenuListHoldView extends BaseViewHolder {
         if (getLayoutPosition() == position) {
             itemView.setBackgroundColor(Color.parseColor("#d2eaff"));
         } else {
-            if ("0".equals(item.getPay_tag()) || TextUtils.isEmpty(item.getPay_tag())) {
-                itemView.setBackgroundColor(Color.parseColor("#ffffff"));
-            } else {
+            if ("1".equals(item.getPay_tag())) {
                 itemView.setBackgroundColor(payedColor);
+            } else {
+                itemView.setBackgroundColor(Color.parseColor("#ffffff"));
             }
-
         }
     }
 

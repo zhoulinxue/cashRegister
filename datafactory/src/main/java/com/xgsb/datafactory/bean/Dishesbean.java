@@ -49,6 +49,15 @@ public class Dishesbean implements Parcelable, MultiItemEntity, Cloneable, Compa
     private String table_gift_tag;
     private String back_id;
     private String back_reason;
+    private String finally_tag;
+
+    public String getFinally_tag() {
+        return finally_tag;
+    }
+
+    public void setFinally_tag(String finally_tag) {
+        this.finally_tag = finally_tag;
+    }
 
     public String getBack_reason() {
         return back_reason;
@@ -596,6 +605,10 @@ public class Dishesbean implements Parcelable, MultiItemEntity, Cloneable, Compa
         return !TextUtils.isEmpty(getDish_name()) ? getDish_name() : getDishes_name();
     }
 
+    public boolean hasBacked() {
+        return !TextUtils.isEmpty(getBack_id())||!TextUtils.isEmpty(getBack_reason());
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -635,6 +648,7 @@ public class Dishesbean implements Parcelable, MultiItemEntity, Cloneable, Compa
         dest.writeString(this.table_gift_tag);
         dest.writeString(this.back_id);
         dest.writeString(this.back_reason);
+        dest.writeString(this.finally_tag);
         dest.writeString(this.finally_price);
         dest.writeTypedList(this.remarkbeans);
         dest.writeTypedList(this.combo_data);
@@ -687,6 +701,7 @@ public class Dishesbean implements Parcelable, MultiItemEntity, Cloneable, Compa
         this.table_gift_tag = in.readString();
         this.back_id = in.readString();
         this.back_reason = in.readString();
+        this.finally_tag = in.readString();
         this.finally_price = in.readString();
         this.remarkbeans = in.createTypedArrayList(Remarkbean.CREATOR);
         this.combo_data = in.createTypedArrayList(ComboData.CREATOR);
@@ -718,8 +733,4 @@ public class Dishesbean implements Parcelable, MultiItemEntity, Cloneable, Compa
             return new Dishesbean[size];
         }
     };
-
-    public boolean hasBacked() {
-        return !TextUtils.isEmpty(getBack_id())||!TextUtils.isEmpty(getBack_reason());
-    }
 }

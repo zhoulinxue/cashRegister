@@ -435,4 +435,5 @@
     <item name="ordersheet_dishes_tuicai_add_tv" type="id" />
     <item name="ordersheet_dishes_tuicai_jj_tv" type="id" />
     <item name="orginal_price" type="id" />
+    <item name="ordersheet_dishes_cd_tv" type="id" />
 </resources>

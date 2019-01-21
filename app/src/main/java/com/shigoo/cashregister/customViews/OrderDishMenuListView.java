@@ -659,6 +659,9 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
                     mDeleteImg.setVisibility(View.GONE);
                     mSelltalAccountTv.setText("去结账");
                     mSelltalAccountTv.setVisibility(AppUtil.isOrderDishes(getContext()) ? View.GONE : View.VISIBLE);
+                    if (AppUtil.isOrderDishes(getContext())) {
+                        mLeftFormatLayout.setVisibility(View.GONE);
+                    }
                     break;
                 case "已结账":
                     mSettleTv.setText("加菜");
@@ -666,6 +669,9 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
                     settalType = "2";
                     mDeleteImg.setVisibility(View.GONE);
                     mSelltalAccountTv.setVisibility(AppUtil.isOrderDishes(getContext()) ? View.GONE : View.VISIBLE);
+                    if (AppUtil.isOrderDishes(getContext())) {
+                        mLeftFormatLayout.setVisibility(View.GONE);
+                    }
                     break;
                 case "已开台":
                     mSelltalAccountTv.setVisibility(View.GONE);

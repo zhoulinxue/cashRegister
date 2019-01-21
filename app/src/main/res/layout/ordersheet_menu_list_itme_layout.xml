@@ -71,7 +71,17 @@
                 android:textColor="@color/ordersheet_white"
                 android:visibility="gone"
                  />
-
+            <TextView
+                android:id="@id/ordersheet_dishes_cd_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/ordersheet_5dp"
+                android:background="@drawable/ordersheet_dishes_t_bg"
+                android:paddingLeft="@dimen/ordersheet_2dp"
+                android:paddingRight="@dimen/ordersheet_2dp"
+                android:text="撤"
+                android:textColor="@color/ordersheet_white"
+                android:visibility="gone" />
             <TextView
                 android:id="@id/ordersheet_dishes_d_tv"
                 android:layout_width="wrap_content"

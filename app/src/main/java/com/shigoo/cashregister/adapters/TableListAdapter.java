@@ -74,7 +74,9 @@ public class TableListAdapter extends BaseQuickAdapter<Table, TableHoldView> imp
                 setNewData((List<Table>) filterResults.values);
             } else {
                 setNewData(new ArrayList<Table>());
-                Toast.makeText(mContext, "没找到桌台", Toast.LENGTH_SHORT).show();
+                if(mContext!=null) {
+                    Toast.makeText(mContext, "没找到桌台", Toast.LENGTH_SHORT).show();
+                }
             }
         }
     }

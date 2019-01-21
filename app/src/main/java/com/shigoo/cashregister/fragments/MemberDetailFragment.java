@@ -120,6 +120,7 @@ public class MemberDetailFragment extends MvpFragment<MemberDetailPresenter> imp
     private boolean isExcute = false;
     private AddCardPresenter mCardPresenter;
     private int mFroenType = 1;
+    private String mCurrentBtn="消费详情";
 
 
     public static MemberDetailFragment newInstance() {
@@ -253,14 +254,15 @@ public class MemberDetailFragment extends MvpFragment<MemberDetailPresenter> imp
             mCardInputLayout.setVisibility(View.VISIBLE);
         }
         mBottomLayout.setVisibility(View.GONE);
-        mRechargeBtn.setText("消费详情");
+        mRechargeBtn.setText(mCurrentBtn);
     }
 
     public void updateId(String id) {
         this.mId = id;
         onInitData(null);
         mBottomLayout.setVisibility(View.VISIBLE);
-        mRechargeBtn.setText("充值");
+        mCurrentBtn="充值";
+        mRechargeBtn.setText(mCurrentBtn);
     }
 
     @OnClick({R.id.member_detail_back_layout, R.id.freeze_tv, R.id.refund_tv, R.id.cancellation_tv, R.id.recharge_btn, R.id.change_card, R.id.update_member_msg})

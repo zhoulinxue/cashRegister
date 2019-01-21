@@ -262,6 +262,8 @@ public class FormatView extends BaseCustomView {
         this.mBillbean = billbean;
         if ("已结账".equals(billbean.getLocal_status())) {
             mCheDanTv.setVisibility(View.GONE);
+        }else {
+            mCheDanTv.setVisibility(View.VISIBLE);
         }
     }
 
@@ -282,13 +284,6 @@ public class FormatView extends BaseCustomView {
     public void setLocalStatus(String status) {
         switch (status) {
             case "已下单":
-                if (!AppUtil.isOrderDishes(getContext())) {
-                    mOrderFormat.setVisibility(View.VISIBLE);
-                } else {
-                    mOrderFormat.setVisibility(View.GONE);
-                }
-                mXdLayout.setVisibility(View.VISIBLE);
-                break;
             case "已结账":
                 if (!AppUtil.isOrderDishes(getContext())) {
                     mOrderFormat.setVisibility(View.VISIBLE);
@@ -299,18 +294,16 @@ public class FormatView extends BaseCustomView {
                 break;
             case "已开台":
             case "加菜":
-                mXdLayout.setVisibility(View.VISIBLE);
                 if (!AppUtil.isOrderDishes(getContext())) {
                     mOrderFormat.setVisibility(View.VISIBLE);
                 } else {
                     mOrderFormat.setVisibility(View.GONE);
                 }
+                mXdLayout.setVisibility(View.VISIBLE);
                 break;
             case "拆单支付":
 
                 break;
         }
     }
-
-    ;
 }
