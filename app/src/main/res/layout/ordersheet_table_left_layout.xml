@@ -203,6 +203,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/ordersheet_remark_color"
                             android:textSize="@dimen/ordersheet_12sp"
+                            android:layout_gravity="center_horizontal"
                             tools:text="原价  700" />
 
                     </LinearLayout>

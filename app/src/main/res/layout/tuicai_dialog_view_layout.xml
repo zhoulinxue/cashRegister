@@ -25,7 +25,7 @@
             android:src="@mipmap/ordersheet_close_dialog" />
 
         <TextView
-            android:id="@id/dishes_name_tv"
+            android:id="@id/tuicai_dishes_name_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="退菜-马爹利名仕750ml"

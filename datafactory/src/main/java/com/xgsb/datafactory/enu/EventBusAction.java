@@ -59,7 +59,8 @@ public enum EventBusAction {
     TABLE_BACK("table_back"),
     FAN_JIE_ZHANG("fan_jie_zhang_suc"),
     BILL_REFRESH("bill_refresh"),
-    BACK_TO_MEMBER_DETAIL("back_to_member_detail");
+    BACK_TO_MEMBER_DETAIL("back_to_member_detail"),
+    SHOW_TABLE_MAIN("show_table_main");
 
 
     EventBusAction(String member_msg) {

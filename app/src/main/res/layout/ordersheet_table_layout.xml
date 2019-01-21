@@ -20,49 +20,48 @@
                 android:layout_height="match_parent"
                 android:padding="@dimen/ordersheet_20dp">
 
-                <RelativeLayout
+                <LinearLayout
                     android:id="@id/ordersheet_table_area_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/ordersheet_44dp"
-                    android:layout_alignParentTop="true">
-
-                    <ImageView
-                        android:id="@id/ordersheet_table_area_next_page"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="@dimen/ordersheet_20dp"
-                        android:background="@drawable/ordersheet_table_next_page_bg"
-                        android:paddingLeft="@dimen/ordersheet_12dp"
-                        android:paddingTop="@dimen/ordersheet_8dp"
-                        android:paddingRight="@dimen/ordersheet_12dp"
-                        android:paddingBottom="@dimen/ordersheet_8dp"
-                        android:src="@mipmap/ordersheet_icon_arrow_right" />
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@id/ordersheet_table_area_recyclerview"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="@dimen/ordersheet_20dp"
-                        android:layout_toLeftOf="@id/ordersheet_table_area_next_page" />
-
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:id="@id/ordersheet_table_bottom_layout"
-                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginTop="@dimen/ordersheet_10dp"
+                    android:layout_alignParentTop="true"
                     android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp">
+
+                        <ImageView
+                            android:id="@id/ordersheet_table_area_next_page"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/ordersheet_20dp"
+                            android:background="@drawable/ordersheet_table_next_page_bg"
+                            android:paddingLeft="@dimen/ordersheet_12dp"
+                            android:paddingTop="@dimen/ordersheet_8dp"
+                            android:paddingRight="@dimen/ordersheet_12dp"
+                            android:paddingBottom="@dimen/ordersheet_8dp"
+                            android:src="@mipmap/ordersheet_icon_arrow_right" />
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@id/ordersheet_table_area_recyclerview"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/ordersheet_20dp"
+                            android:layout_toLeftOf="@id/ordersheet_table_area_next_page" />
+
+                    </RelativeLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="@dimen/ordersheet_10dp"
+                        android:layout_below="@id/ordersheet_table_area_recyclerview"
+                        android:layout_alignParentBottom="true"
                         android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
                         android:orientation="horizontal">
 
                         <com.zx.mvplibrary.wedgit.ClearableEditTextWithIcon
@@ -71,7 +70,6 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:background="@drawable/ordersheet_search_edit_bg"
-                            android:enabled="false"
                             android:hint="请输入台号快捷查询"
                             android:paddingLeft="@dimen/ordersheet_10dp"
                             android:paddingTop="@dimen/ordersheet_8dp"
@@ -84,11 +82,22 @@
                             android:layout_weight="1" />
                     </LinearLayout>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@id/ordersheet_table_bottom_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="@dimen/ordersheet_10dp"
+                    android:orientation="vertical">
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginTop="@dimen/ordersheet_10dp"
                         android:background="#D7DDE4" />
+
                     <android.support.v7.widget.RecyclerView
                         android:id="@id/ordersheet_table_status_recyclerview"
                         android:layout_width="match_parent"

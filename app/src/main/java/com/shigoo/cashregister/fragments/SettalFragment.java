@@ -353,7 +353,9 @@ public class SettalFragment extends MvpFragment<SettalPresenter> implements Sett
                     spcialMoney += AppUtil.getFloatFromString(dishesbean.getMinFavorable().getMoney()).floatValue();
                     break;
             }
-            idsList.add(dishesbean.getId());
+            if(!dishesbean.isPayed()) {
+                idsList.add(dishesbean.getId());
+            }
         }
         if (mFavorablebean != null) {
             float currentMoney = 0f;

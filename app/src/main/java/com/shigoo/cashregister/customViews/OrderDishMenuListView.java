@@ -421,7 +421,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
         mSelltalAccountTv.setVisibility(View.VISIBLE);
         setBillCode(mTable.getBillbean());
         mDeleteImg.setVisibility(View.GONE);
-        EventBus.getDefault().post(new EventRouter(EventBusAction.BACK_TO_MAIN));
+        EventBus.getDefault().post(new EventRouter(EventBusAction.SHOW_TABLE_MAIN));
         showToast(msg);
     }
 
@@ -464,6 +464,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
             mCasherLayout.setVisibility(View.GONE);
             mDishList.clear();
             mEmptyTv.setText("选中桌台,开始点菜");
+            mCasherLayout.setVisibility(View.GONE);
             mBillNumberLayout.setVisibility(View.GONE);
             mTitleLayout.setVisibility(View.GONE);
             mBillName.setText("");
@@ -558,7 +559,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
         finalyPrice = prices.get(1);
         salePrice = prices.get(0);
         mAlreadOrderPriceTv.setText("已收："+Param.Keys.RMB +(finalyPrice-prices.get(2)));
-        mOrderOldPriceTv.setText(Param.Keys.RMB + salePrice);
+        mOrderOldPriceTv.setText("原价："+Param.Keys.RMB + salePrice);
         OrderPriceTv.setText("应收："+Param.Keys.RMB +finalyPrice);
         if (finalyPrice == salePrice) {
             mOrderOldPriceTv.setVisibility(View.GONE);

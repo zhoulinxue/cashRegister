@@ -80,6 +80,13 @@ public class TableDialogView extends MvpCustomView<TableDialogPresenter> impleme
     //备注类型1表示单品备注，2表示整单备注，3退菜备注，4改价备注，5打折备注，6撤单备注，8反结账原因
     private int mReasonType;
     private Dishesbean mCurrentDishes;
+    @BindView(R.id.gaijia_dishes_name_tv)
+    TextView mGaijiaNameTv;
+    @BindView(R.id.dazhe_dishes_name_tv)
+    TextView mDazheNameTv;
+    @BindView(R.id.tuicai_dishes_name_tv)
+    TextView mTuicaiNameTv;
+
 
 
     public TableDialogView(Context context, ViewGroup rootGroup) {
@@ -244,7 +251,6 @@ public class TableDialogView extends MvpCustomView<TableDialogPresenter> impleme
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onEvent(final EventRouter eventRouter) {
-        getView().setVisibility(View.VISIBLE);
         //备注类型1表示单品备注，2表示整单备注，3退菜备注，4改价备注，5打折备注，6撤单备注，8反结账原因
         switch (eventRouter.getAction()) {
             case TUI_CAI:
@@ -255,6 +261,9 @@ public class TableDialogView extends MvpCustomView<TableDialogPresenter> impleme
                 mGaiJiaLayout.setVisibility(View.GONE);
                 mCancelOrderLayout.setVisibility(View.GONE);
                 mTuicaiNumTv.setText(mCurrentDishes.getLocal_num() + "");
+                getView().setVisibility(View.VISIBLE);
+                mTuicaiNameTv.setText("退菜-"+mCurrentDishes.getNotNullName());
+                mPresenter.getMultReasonList(Param.Keys.TOKEN, getToken(), Param.Keys.TYPE, mReasonType + "");
                 break;
             case DA_ZHE:
                 mReasonType = 5;
@@ -263,6 +272,9 @@ public class TableDialogView extends MvpCustomView<TableDialogPresenter> impleme
                 mDiscountLayout.setVisibility(View.VISIBLE);
                 mGaiJiaLayout.setVisibility(View.GONE);
                 mCancelOrderLayout.setVisibility(View.GONE);
+                getView().setVisibility(View.VISIBLE);
+                mDazheNameTv.setText("打折-"+mCurrentDishes.getNotNullName());
+                mPresenter.getMultReasonList(Param.Keys.TOKEN, getToken(), Param.Keys.TYPE, mReasonType + "");
                 break;
             case CHE_DAN:
                 mReasonType = 6;
@@ -272,6 +284,8 @@ public class TableDialogView extends MvpCustomView<TableDialogPresenter> impleme
 
                 mGaiJiaLayout.setVisibility(View.GONE);
                 mCancelOrderLayout.setVisibility(View.VISIBLE);
+                getView().setVisibility(View.VISIBLE);
+                mPresenter.getMultReasonList(Param.Keys.TOKEN, getToken(), Param.Keys.TYPE, mReasonType + "");
                 break;
             case GAI_JIA:
                 mCurrentDishes = (Dishesbean) eventRouter.getData();
@@ -280,9 +294,11 @@ public class TableDialogView extends MvpCustomView<TableDialogPresenter> impleme
                 mDiscountLayout.setVisibility(View.GONE);
                 mGaiJiaLayout.setVisibility(View.VISIBLE);
                 mCancelOrderLayout.setVisibility(View.GONE);
+                getView().setVisibility(View.VISIBLE);
+                mGaijiaNameTv.setText("改价-"+mCurrentDishes.getNotNullName());
+                mPresenter.getMultReasonList(Param.Keys.TOKEN, getToken(), Param.Keys.TYPE, mReasonType + "");
                 break;
         }
-        mPresenter.getMultReasonList(Param.Keys.TOKEN, getToken(), Param.Keys.TYPE, mReasonType + "");
     }
 
     public void onDestory() {

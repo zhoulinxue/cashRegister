@@ -55,7 +55,9 @@ public class TableListAdapter extends BaseQuickAdapter<Table, TableHoldView> imp
             } else {//否则把符合条件的数据对象添加到集合中
                 list = new ArrayList<>();
                 for (Table table : TablesUtils.fillList(backData)) {
-                    if (table.getRegion_name().equals(charSequence) || table.getLocal_status().equals(charSequence) || table.getTable_number().equals(charSequence)) {
+                    if (table.getRegion_name().equals(charSequence)
+                            || table.getLocal_status().equals(charSequence)
+                            || table.getTable_number().toLowerCase().contains(charSequence.toString().toLowerCase())) {
                         list.add(table);
                     }
                 }

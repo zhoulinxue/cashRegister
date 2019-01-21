@@ -7,6 +7,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
@@ -173,6 +174,9 @@ public class TableFragment extends MvpFragment<TablePresenter> implements TableC
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 mAdapter.getFilter().filter(charSequence);
+                if(TextUtils.isEmpty(charSequence)){
+                    hideInputMethod();
+                }
             }
 
             @Override

@@ -670,11 +670,19 @@ public class Dishesbean implements Parcelable, MultiItemEntity, Cloneable, Compa
         //注意：一定是 o.age>this.age,若 this.age在前，则排序功能无效（亲测）。
         if (Float.valueOf(o.getPay_tag()) > Float.valueOf(this.getPay_tag())) {
             //首次执行，o.age代表List里第一个元素，this.age是List里第二个元素
-            return 1;
+            return -1;
         } else if (Float.valueOf(o.getPay_tag()) == Float.valueOf(this.getPay_tag())) {
             return 0;
         } else {
-            return -1;
+            return 1;
         }
+    }
+
+    public boolean isPayed() {
+        return "1".equals(getPay_tag());
+    }
+
+    public String getNotNullName() {
+        return !TextUtils.isEmpty(getDish_name())?getDish_name():getDishes_name();
     }
 }

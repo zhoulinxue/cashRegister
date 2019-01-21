@@ -173,6 +173,9 @@ public class TableMainFragment extends BaseFragment {
                 mFragmentNavigator.showFragment(0);
                 mDishesView.setTable(null,false);
                 break;
+            case SHOW_TABLE_MAIN:
+                mFragmentNavigator.showFragment(0);
+                break;
             case ADD_SUC:
                 addSuc((Dishesbean) eventRouter.getData());
                 break;

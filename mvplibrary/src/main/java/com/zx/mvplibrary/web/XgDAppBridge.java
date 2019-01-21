@@ -4,6 +4,9 @@ import android.content.Context;
 import android.os.Handler;
 import android.webkit.WebView;
 
+import com.xgsb.datafactory.JSONManager;
+import com.zx.api.api.utils.AppLog;
+
 import io.starteos.dappsdk.DAppBridge;
 import io.starteos.dappsdk.Request;
 
@@ -83,6 +86,7 @@ public class XgDAppBridge extends DAppBridge {
         }
     }
     public void currentPage(final Request request) {
+        AppLog.print(JSONManager.getInstance().toJson(request));
         if (mLisenter != null) {
             mHandler.post(new Runnable() {
                 @Override

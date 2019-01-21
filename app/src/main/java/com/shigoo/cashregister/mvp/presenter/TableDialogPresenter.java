@@ -2,6 +2,7 @@ package com.shigoo.cashregister.mvp.presenter;
 
 import com.shigoo.cashregister.mvp.contacts.TableDialogContact;
 import com.xgsb.datafactory.bean.Chedanbean;
+import com.xgsb.datafactory.bean.Remarkbean;
 import com.zx.api.api.netWork.NetRequest;
 import com.zx.api.api.netWork.NetRequestCallBack;
 import com.zx.mvplibrary.presenter.BasePresenterImpl;
@@ -23,8 +24,21 @@ public class TableDialogPresenter extends BasePresenterImpl<TableDialogContact.v
 
     @Override
     public void getMultReasonList(String... params) {
-
+        NetRequest request = ApiManager.getInstance().getRemarkList(params, mRmarkCallBack);
+        addRequest(request);
     }
+
+    NetRequestCallBack<List<Remarkbean>> mRmarkCallBack = new NetRequestCallBack<List<Remarkbean>>() {
+        @Override
+        public void onSuccess(List<Remarkbean> listData) {
+            mView.onReasonResult(listData);
+        }
+
+        @Override
+        public void onError(int responseCode, String msg) {
+            mView.onError(msg);
+        }
+    };
 
     @Override
     public void chargePrice(String... params) {
