@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -256,6 +257,7 @@ public class MemberListFragement extends MvpFragment<MemberManagePresenter> impl
 
     @Override
     public void operateHandle(Request request) {
+        AppLog.print("request" + JSONManager.getInstance().toJson(request));
         String operate = request.getParams().optString("method");
         switch (operate) {
             case "充值":
@@ -264,7 +266,7 @@ public class MemberListFragement extends MvpFragment<MemberManagePresenter> impl
                 showReChargeDialog();
                 break;
             case "查看":
-                org.greenrobot.eventbus.EventBus.getDefault().post(new EventRouter(EventBusAction.MEMBER_DETAIL, new String[]{request.getParams().optString("row_data")}));
+                org.greenrobot.eventbus.EventBus.getDefault().post(new EventRouter(EventBusAction.MEMBER_DETAIL, request.getParams().optString("row_data")));
                 break;
         }
     }
@@ -272,7 +274,9 @@ public class MemberListFragement extends MvpFragment<MemberManagePresenter> impl
     @Override
     public void searchOperate(Request request) {
         this.request = request;
-        mPresenter.searchMembers(Param.Keys.TOKEN, getToken(), Param.Keys.DATA, mMemberHeaderView.getKey(), Param.Keys.PAGE, page + "");
+        if (!TextUtils.isEmpty(mMemberHeaderView.getKey())) {
+            mPresenter.searchMembers(Param.Keys.TOKEN, getToken(), Param.Keys.DATA, mMemberHeaderView.getKey(), Param.Keys.PAGE, page + "");
+        }
     }
 
     @Override

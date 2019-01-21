@@ -6,6 +6,7 @@ import android.widget.FrameLayout;
 
 import com.shigoo.cashregister.R;
 import com.xgsb.datafactory.JSONManager;
+import com.zx.api.api.utils.AppLog;
 import com.zx.api.api.utils.SPUtil;
 import com.zx.mvplibrary.BaseFragment;
 import com.zx.mvplibrary.web.InitWebView;
@@ -83,7 +84,7 @@ public class OrdersFragment extends BaseFragment implements onOperateLisenter {
 
     @Override
     public void currentPage(Request request) {
-
+        AppLog.print(request.getParams().optString("page"));
     }
 
     @Override
