@@ -94,6 +94,17 @@
                 android:text="特"
                 android:textColor="@color/ordersheet_white"
                 android:visibility="gone" />
+            <TextView
+                android:id="@id/ordersheet_dishes_tui_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/ordersheet_5dp"
+                android:background="#F19149"
+                android:paddingLeft="@dimen/ordersheet_2dp"
+                android:paddingRight="@dimen/ordersheet_2dp"
+                android:text="退"
+                android:textColor="@color/ordersheet_white"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@id/ordersheet_dishes_s_tv"

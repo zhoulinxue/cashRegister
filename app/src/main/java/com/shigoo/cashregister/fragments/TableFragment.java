@@ -124,6 +124,9 @@ public class TableFragment extends MvpFragment<TablePresenter> implements TableC
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                if (mDialogRootLayout.getVisibility() == View.VISIBLE) {
+                    return;
+                }
                 Table table = mAdapter.getData().get(position);
                 if (table.isAssembleTable()) {
                     Intent intent = new Intent(getActivity(), AssembleTablesActivity.class);
@@ -174,7 +177,7 @@ public class TableFragment extends MvpFragment<TablePresenter> implements TableC
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 mAdapter.getFilter().filter(charSequence);
-                if(TextUtils.isEmpty(charSequence)){
+                if (TextUtils.isEmpty(charSequence)) {
                     hideInputMethod();
                 }
             }

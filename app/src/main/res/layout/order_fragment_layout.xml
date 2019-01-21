@@ -20,6 +20,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="@dimen/ordersheet_20dp"
         android:orientation="horizontal"
+        android:background="@color/white"
         android:paddingBottom="@dimen/ordersheet_20dp">
 
         <TextView

@@ -1,5 +1,6 @@
 package com.shigoo.cashregister.adapters.viewHolder;
 
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -55,12 +56,17 @@ public class MenuListHoldView extends BaseViewHolder {
     TextView mDJTv;
     @BindView(R.id.ordersheet_dishes_tj_tv)
     TextView mTjTv;
+    @BindView(R.id.ordersheet_dishes_tui_tv)
+    TextView mTuiTv;
     @BindView(R.id.order_menu_item_layout)
     RelativeLayout mItemBg;
     private String mBillCode;
     private Member member;
-    @BindColor(R.color.ordersheet_remark_divider)
+    @BindColor(R.color.ordersheet_remark_color)
     int payedColor;
+    @BindColor(R.color.ordersheet_table_des_color)
+    int nomalNameColor;
+
 
     public MenuListHoldView(View view) {
         super(view);
@@ -68,7 +74,7 @@ public class MenuListHoldView extends BaseViewHolder {
         mOldDishesPriTv.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
     }
 
-    public void setItem(final Dishesbean item, DiscountType discountType) {
+    public void setItem(final Dishesbean item, DiscountType discountType, int position) {
         mSalePricetv.setText(Param.Keys.RMB + showPriceUi(item));
         if (item.getLocal_num() > 1) {
             mNumTv.setVisibility(View.VISIBLE);
@@ -102,6 +108,11 @@ public class MenuListHoldView extends BaseViewHolder {
         } else {
             mDJTv.setVisibility(View.GONE);
         }
+        if (!TextUtils.isEmpty(item.getBack_id())||!TextUtils.isEmpty(item.getBack_reason())) {
+            mTuiTv.setVisibility(View.VISIBLE);
+        } else {
+            mTuiTv.setVisibility(View.GONE);
+        }
         if ("优惠-特价菜".equals(item.getMinFavorable().getName())) {
             mTjTv.setVisibility(View.VISIBLE);
         } else {
@@ -133,10 +144,15 @@ public class MenuListHoldView extends BaseViewHolder {
         } else {
             mChildRecyclerView.setVisibility(View.GONE);
         }
-        if ("0".equals(item.getPay_tag()) || TextUtils.isEmpty(item.getPay_tag())) {
-            mItemBg.setBackground(null);
+        if (getLayoutPosition() == position) {
+            itemView.setBackgroundColor(Color.parseColor("#d2eaff"));
         } else {
-            mItemBg.setBackgroundColor(payedColor);
+            if ("0".equals(item.getPay_tag()) || TextUtils.isEmpty(item.getPay_tag())) {
+                itemView.setBackgroundColor(Color.parseColor("#ffffff"));
+            } else {
+                itemView.setBackgroundColor(payedColor);
+            }
+
         }
     }
 
@@ -148,6 +164,9 @@ public class MenuListHoldView extends BaseViewHolder {
         }
         String showPrice = min.getMoney();
         String salePrice = max.getMoney();
+        if (!TextUtils.isEmpty(item.getFinally_price())) {
+            showPrice = item.getFinally_price();
+        }
         //是否显示 原价
         if (AppUtil.getFloatFromString(showPrice).floatValue() != AppUtil.getFloatFromString(salePrice).floatValue()) {
             mOldDishesPriTv.setVisibility(View.VISIBLE);

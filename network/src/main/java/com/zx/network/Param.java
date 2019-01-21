@@ -40,7 +40,7 @@ public class Param {
         public static final String REDISCOUNT_ID ="re_discount_id" ;
         public static final String RE_DISCOUNT_REASON ="re_discount_reason" ;
         public static final String BACK_REASON = "back_reason";
-        public static final String BACK_ID = "backer_id";
+        public static final String BACK_ID = "back_id";
         public static final String DISH_QTY ="dish_qty" ;
         public static String YUAN = "  元";
         public static final String id = "id";

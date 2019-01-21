@@ -111,6 +111,7 @@ public class OrderSheetLoginActivity extends MvpActivity<CashLoginPresenter> imp
     public void onBackPressed() {
         if (AppUtil.isOrderDishes(this)) {
             EventBus.getDefault().post(EventBusAction.MAIN);
+            finish();
         } else {
             showToast("不能再退了");
         }

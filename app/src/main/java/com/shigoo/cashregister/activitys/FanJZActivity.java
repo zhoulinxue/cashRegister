@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -23,6 +24,7 @@ import com.xgsb.datafactory.bean.Remarkbean;
 import com.xgsb.datafactory.bean.SettalOrderResultbean;
 import com.xgsb.datafactory.bean.Table;
 import com.xgsb.datafactory.enu.EventBusAction;
+import com.zx.api.api.utils.AppLog;
 import com.zx.mvplibrary.MvpActivity;
 import com.zx.network.Param;
 
@@ -32,6 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class FanJZActivity extends MvpActivity<FanJZPresenter> implements FanJZContact.view {
@@ -41,10 +44,8 @@ public class FanJZActivity extends MvpActivity<FanJZPresenter> implements FanJZC
     RecyclerView mPayRecyclerView;
     @BindView(R.id.ordersheet_dishes_reason_edite)
     EditText mResonEdite;
-    @BindView(R.id.pay_item_list_layout)
-    LinearLayout mPayListlayout;
-    @BindView(R.id.reason_layout)
-    LinearLayout mReasonLayout;
+    @BindView(R.id.ordersheet_dishes_bootom_cancel_img)
+    ImageView mBackImg;
     RemarkListAdapter mRemarkAdapter;
     List<Remarkbean> mList = new ArrayList<>();
     List<Paybean> mPayList = new ArrayList<>();
@@ -67,17 +68,19 @@ public class FanJZActivity extends MvpActivity<FanJZPresenter> implements FanJZC
 
     @Override
     public void onPayResult(OrderPayStatusbean paybeans) {
+
         if (paybeans != null && paybeans.getList() != null && paybeans.getList().size() != 0) {
             mPayList.clear();
             for (Paybean paybean : paybeans.getList()) {
-                if ("1".equals(paybean.getPay_tag())) {
+                AppLog.print(paybean.getPay_tag() + "");
+                if ("1".equals(paybean.getPay_tag() + "")) {
                     mPayList.add(paybean);
                 }
             }
             if (mPayList.size() == 1) {
                 mNum = mPayListAdapter.getData().get(0).getPay_num() + "";
-                mReasonLayout.setVisibility(View.VISIBLE);
-                mPayListlayout.setVisibility(View.GONE);
+                mFanZJRecyclerView.setVisibility(View.GONE);
+                mPayRecyclerView.setVisibility(View.VISIBLE);
                 return;
             }
             mPayListAdapter.setNewData(mPayList);
@@ -86,7 +89,7 @@ public class FanJZActivity extends MvpActivity<FanJZPresenter> implements FanJZC
 
     @Override
     public void onReasonlResult(List<Remarkbean> resonList) {
-
+        mRemarkAdapter.setNewData(resonList);
     }
 
     @Override
@@ -101,7 +104,8 @@ public class FanJZActivity extends MvpActivity<FanJZPresenter> implements FanJZC
 
     @Override
     protected void onCreateView() {
-        mRemarkAdapter = new RemarkListAdapter(R.layout.ordersheet_remark_item_layout, mList);
+        ButterKnife.bind(this);
+        mRemarkAdapter = new RemarkListAdapter(R.layout.fjz_itme_layout, mList);
         mFanZJRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         mFanZJRecyclerView.setAdapter(mRemarkAdapter);
 
@@ -112,6 +116,7 @@ public class FanJZActivity extends MvpActivity<FanJZPresenter> implements FanJZC
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 mNum = mPayListAdapter.getData().get(position).getPay_num() + "";
+                mPayListAdapter.setSelected(position);
             }
         });
     }
@@ -124,7 +129,10 @@ public class FanJZActivity extends MvpActivity<FanJZPresenter> implements FanJZC
         mPresenter.getPayStatus(Param.Keys.TOKEN, getToken(), Param.Keys.BILL_CODE, mTable.getBillbean().getBill_code());
     }
 
-    @OnClick({R.id.ordersheet_dishes_bootom_cancel, R.id.ordersheet_dishes_pay_sure, R.id.ordersheet_dishes_bottom_sure})
+    @OnClick({R.id.ordersheet_dishes_bootom_cancel,
+            R.id.ordersheet_dishes_pay_sure,
+            R.id.ordersheet_dishes_bottom_sure,
+            R.id.ordersheet_dishes_bootom_cancel_img})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ordersheet_dishes_bottom_sure:
@@ -140,11 +148,14 @@ public class FanJZActivity extends MvpActivity<FanJZPresenter> implements FanJZC
                 break;
             case R.id.ordersheet_dishes_pay_sure:
                 if (!TextUtils.isEmpty(mNum)) {
-                    mReasonLayout.setVisibility(View.VISIBLE);
-                    mPayListlayout.setVisibility(View.GONE);
+                    mFanZJRecyclerView.setVisibility(View.VISIBLE);
+                    mPayRecyclerView.setVisibility(View.GONE);
                 } else {
                     showToast("请选择要反结账的条目");
                 }
+                break;
+            case R.id.ordersheet_dishes_bootom_cancel_img:
+                finish();
                 break;
         }
     }

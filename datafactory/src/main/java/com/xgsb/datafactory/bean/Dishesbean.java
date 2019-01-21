@@ -47,6 +47,24 @@ public class Dishesbean implements Parcelable, MultiItemEntity, Cloneable, Compa
     private String pay_tag = "0";
     private List<AddFavorablebean> addFavorablebeans;
     private String table_gift_tag;
+    private String back_id;
+    private String back_reason;
+
+    public String getBack_reason() {
+        return back_reason;
+    }
+
+    public void setBack_reason(String back_reason) {
+        this.back_reason = back_reason;
+    }
+
+    public String getBack_id() {
+        return back_id;
+    }
+
+    public void setBack_id(String back_id) {
+        this.back_id = back_id;
+    }
 
     public String getTable_gift_tag() {
         return table_gift_tag;
@@ -549,6 +567,35 @@ public class Dishesbean implements Parcelable, MultiItemEntity, Cloneable, Compa
         return "1".equals(getDish_tag());
     }
 
+    public AddFavorablebean getMinFavorable() {
+        return getAddFavorablebeans() == null ? null : getAddFavorablebeans().get(getAddFavorablebeans().size() - 1);
+    }
+
+    public AddFavorablebean getMaxFavorable() {
+        return getAddFavorablebeans() == null ? null : getAddFavorablebeans().get(0);
+    }
+
+    @Override
+    public int compareTo(@NonNull Dishesbean o) {
+        //注意：一定是 o.age>this.age,若 this.age在前，则排序功能无效（亲测）。
+        if (Float.valueOf(o.getPay_tag()) > Float.valueOf(this.getPay_tag())) {
+            //首次执行，o.age代表List里第一个元素，this.age是List里第二个元素
+            return -1;
+        } else if (Float.valueOf(o.getPay_tag()) == Float.valueOf(this.getPay_tag())) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+
+    public boolean isPayed() {
+        return "1".equals(getPay_tag());
+    }
+
+    public String getNotNullName() {
+        return !TextUtils.isEmpty(getDish_name()) ? getDish_name() : getDishes_name();
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -585,6 +632,9 @@ public class Dishesbean implements Parcelable, MultiItemEntity, Cloneable, Compa
         dest.writeString(this.showPrice);
         dest.writeString(this.pay_tag);
         dest.writeTypedList(this.addFavorablebeans);
+        dest.writeString(this.table_gift_tag);
+        dest.writeString(this.back_id);
+        dest.writeString(this.back_reason);
         dest.writeString(this.finally_price);
         dest.writeTypedList(this.remarkbeans);
         dest.writeTypedList(this.combo_data);
@@ -634,6 +684,9 @@ public class Dishesbean implements Parcelable, MultiItemEntity, Cloneable, Compa
         this.showPrice = in.readString();
         this.pay_tag = in.readString();
         this.addFavorablebeans = in.createTypedArrayList(AddFavorablebean.CREATOR);
+        this.table_gift_tag = in.readString();
+        this.back_id = in.readString();
+        this.back_reason = in.readString();
         this.finally_price = in.readString();
         this.remarkbeans = in.createTypedArrayList(Remarkbean.CREATOR);
         this.combo_data = in.createTypedArrayList(ComboData.CREATOR);
@@ -666,32 +719,7 @@ public class Dishesbean implements Parcelable, MultiItemEntity, Cloneable, Compa
         }
     };
 
-    public AddFavorablebean getMinFavorable() {
-        return getAddFavorablebeans() == null ? null : getAddFavorablebeans().get(getAddFavorablebeans().size() - 1);
-    }
-
-    public AddFavorablebean getMaxFavorable() {
-        return getAddFavorablebeans() == null ? null : getAddFavorablebeans().get(0);
-    }
-
-    @Override
-    public int compareTo(@NonNull Dishesbean o) {
-        //注意：一定是 o.age>this.age,若 this.age在前，则排序功能无效（亲测）。
-        if (Float.valueOf(o.getPay_tag()) > Float.valueOf(this.getPay_tag())) {
-            //首次执行，o.age代表List里第一个元素，this.age是List里第二个元素
-            return -1;
-        } else if (Float.valueOf(o.getPay_tag()) == Float.valueOf(this.getPay_tag())) {
-            return 0;
-        } else {
-            return 1;
-        }
-    }
-
-    public boolean isPayed() {
-        return "1".equals(getPay_tag());
-    }
-
-    public String getNotNullName() {
-        return !TextUtils.isEmpty(getDish_name())?getDish_name():getDishes_name();
+    public boolean hasBacked() {
+        return !TextUtils.isEmpty(getBack_id())||!TextUtils.isEmpty(getBack_reason());
     }
 }

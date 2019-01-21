@@ -31,12 +31,7 @@ public class MenuDishesListAdapter extends BaseQuickAdapter<Dishesbean, MenuList
     protected void convert(MenuListHoldView helper, Dishesbean item) {
         helper.setBillCode(mBillCode);
         helper.setMember(member);
-        if (helper.getLayoutPosition() == mCurrentPositon) {
-            helper.itemView.setBackgroundColor(Color.parseColor("#d2eaff"));
-        } else {
-            helper.itemView.setBackgroundColor(Color.parseColor("#ffffff"));
-        }
-        helper.setItem(item, mDiscountType);
+        helper.setItem(item, mDiscountType,mCurrentPositon);
         if (onItemSelected != null) {
             onItemSelected.onNotifyItem();
         }

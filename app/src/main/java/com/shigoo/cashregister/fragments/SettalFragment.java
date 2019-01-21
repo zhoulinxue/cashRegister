@@ -282,7 +282,11 @@ public class SettalFragment extends MvpFragment<SettalPresenter> implements Sett
                 mAddPayment.setSale(mPayFavorableAdapter.getData());
                 mAddPayment.setPayments(mPayMoneyAdapter.getData());
                 mAddPayment.setToken(getToken());
-                mPresenter.payOrder(mAddPayment);
+                if ((mOrderbean.getRestPrice() - mPayMoneyAdapter.getRestPrice()) == 0) {
+                    mPresenter.payOrder(mAddPayment);
+                } else {
+                    showToast("还未支付完账单，不能结账");
+                }
             }
         });
         singleClickOnMinutes(mAllDishesTv, new View.OnClickListener() {
@@ -353,7 +357,7 @@ public class SettalFragment extends MvpFragment<SettalPresenter> implements Sett
                     spcialMoney += AppUtil.getFloatFromString(dishesbean.getMinFavorable().getMoney()).floatValue();
                     break;
             }
-            if(!dishesbean.isPayed()) {
+            if (!dishesbean.isPayed()) {
                 idsList.add(dishesbean.getId());
             }
         }

@@ -1,5 +1,6 @@
 package com.shigoo.cashregister.adapters.viewHolder;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -27,7 +28,7 @@ public class OrderpayHoldView extends BaseViewHolder {
     public void setItem(Paybean item) {
         mTimeTv.setText(item.getCreate_date());
         mMoneyTv.setText(Param.Keys.RMB + item.getPay_amount());
-        switch (item.getPay_tag()) {
+        switch (Integer.valueOf(item.getPay_tag())) {
             case 0:
                 mNameTv.setText("第" + item.getPay_num() + "次未支付");
                 break;

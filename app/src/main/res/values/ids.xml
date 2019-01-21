@@ -431,4 +431,8 @@
     <item name="dazhe_dishes_name_tv" type="id" />
     <item name="tuicai_dishes_name_tv" type="id" />
     <item name="order_bottom_layout" type="id" />
+    <item name="ordersheet_dishes_tui_tv" type="id" />
+    <item name="ordersheet_dishes_tuicai_add_tv" type="id" />
+    <item name="ordersheet_dishes_tuicai_jj_tv" type="id" />
+    <item name="orginal_price" type="id" />
 </resources>

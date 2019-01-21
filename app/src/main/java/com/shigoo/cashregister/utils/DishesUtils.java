@@ -74,6 +74,7 @@ public class DishesUtils {
         String specialPrice = "";
         String discountPrice = "";
         String dicountName = "";
+        String finnalyPrice = dishesbean.getFinally_price();
         float discount = 0f;
         if ("1".equals(dishesbean.getDish_tag())) {
             //套餐
@@ -171,25 +172,26 @@ public class DishesUtils {
         }
         dishesbean.setAddFavorablebeans(addFavorablebeans);
         Collections.sort(addFavorablebeans);
-        for (AddFavorablebean dad : addFavorablebeans) {
-            AppLog.print(JSONManager.getInstance().toJson(dad));
-        }
     }
 
     public static List<Float> calculaPrice(List<Dishesbean> dishesbeans) {
         float salePrice = 0f;
         float finalyPrice = 0f;
-        float restPrice=0f;
-        List<Float> priceList=new ArrayList<>();
+        float restPrice = 0f;
+        List<Float> priceList = new ArrayList<>();
         for (Dishesbean dishesbean : dishesbeans) {
             salePrice += AppUtil.getFloatFromString(dishesbean.getMaxFavorable().getMoney()).floatValue();
             if ("0".equals(dishesbean.getPay_tag()) || TextUtils.isEmpty(dishesbean.getPay_tag())) {
                 AppLog.print(dishesbean.getDishes_name() + "   未支付");
-                restPrice+= AppUtil.getFloatFromString(dishesbean.getShowPrice()).floatValue();
+                restPrice += AppUtil.getFloatFromString(dishesbean.getShowPrice()).floatValue();
             } else {
                 AppLog.print(dishesbean.getDishes_name() + "   已支付");
             }
-            finalyPrice += AppUtil.getFloatFromString(dishesbean.getMinFavorable().getMoney()).floatValue();
+            if (TextUtils.isEmpty(dishesbean.getFinally_price())) {
+                finalyPrice += AppUtil.getFloatFromString(dishesbean.getMinFavorable().getMoney()).floatValue();
+            } else {
+                finalyPrice += AppUtil.getFloatFromString(dishesbean.getFinally_price()).floatValue();
+            }
         }
         priceList.add(salePrice);
         priceList.add(finalyPrice);

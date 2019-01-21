@@ -4,12 +4,15 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@id/pay_list_item_name_tv"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/ordersheet_40dp"
+        android:paddingLeft="@dimen/ordersheet_120dp"
         android:paddingTop="@dimen/ordersheet_5dp"
-        android:paddingRight="@dimen/ordersheet_40dp"
+        android:paddingRight="@dimen/ordersheet_120dp"
         android:paddingBottom="@dimen/ordersheet_5dp"
+        android:layout_centerInParent="true"
+        android:gravity="center"
         android:background="@drawable/member_search_edit_bg"
         android:text="第一次结账"/>
 

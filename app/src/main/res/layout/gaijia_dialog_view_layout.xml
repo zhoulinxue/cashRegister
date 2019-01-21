@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@id/ordersheet_gaijia_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -75,8 +76,9 @@
                 android:layout_weight="1"
                 android:background="@drawable/ordersheet_search_edit_bg"
                 android:gravity="center"
-                android:text="50"
-                android:textSize="@dimen/ordersheet_24sp" />
+                android:inputType="number"
+                android:textSize="@dimen/ordersheet_24sp"
+                tools:text="50" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -100,11 +102,12 @@
                 android:textSize="@dimen/ordersheet_14sp" />
 
             <TextView
+                android:id="@id/orginal_price"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginLeft="@dimen/ordersheet_10dp"
                 android:gravity="center"
-                android:text=" ¥5636元"
+                tools:text=" ¥5636元"
                 android:textSize="@dimen/ordersheet_14sp" />
 
         </LinearLayout>

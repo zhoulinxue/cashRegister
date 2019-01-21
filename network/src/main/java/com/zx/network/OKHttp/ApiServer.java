@@ -345,7 +345,7 @@ public interface ApiServer {
     Observable<NetBean<String>> changePrice(@FieldMap Map<String, String> stringStringMap);
 
     @FormUrlEncoded
-    @POST("/reserve/reserve/BillDishesItemDetails")
+    @POST("/reserve/reserve/refundBilldishes")
     Observable<NetBean<String>> returnDishes(@FieldMap Map<String, String> stringStringMap);
 
     @FormUrlEncoded

@@ -16,7 +16,7 @@ public class User implements Parcelable {
     private String psw;
     private String token;
     private String staff_id;
-    private String cashier_id;
+    private String cashier_id="11";
     private String timestamp;
     private String number;
     private String signature;

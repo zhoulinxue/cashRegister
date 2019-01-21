@@ -22,7 +22,7 @@ public abstract class BaseCustomView implements ICustomeView {
     private ViewGroup rootGroup;
     protected final int DEFAULT_MINUTES = 1000;
 
-    public BaseCustomView(Context context, ViewGroup rootGroup) {
+    public BaseCustomView(Context context, final ViewGroup rootGroup) {
         this.rootGroup = rootGroup;
         this.mContext = context;
         rootView= LayoutInflater.from(mContext).inflate(initLayout(), rootGroup);

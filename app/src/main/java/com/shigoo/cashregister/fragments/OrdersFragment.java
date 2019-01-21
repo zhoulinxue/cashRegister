@@ -1,5 +1,6 @@
 package com.shigoo.cashregister.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -7,7 +8,10 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.shigoo.cashregister.R;
+import com.shigoo.cashregister.activitys.FanJZActivity;
 import com.xgsb.datafactory.JSONManager;
+import com.xgsb.datafactory.bean.Billbean;
+import com.xgsb.datafactory.bean.Table;
 import com.zx.api.api.utils.AppLog;
 import com.zx.api.api.utils.SPUtil;
 import com.zx.mvplibrary.BaseFragment;
@@ -99,8 +103,15 @@ public class OrdersFragment extends BaseFragment implements onOperateLisenter {
 
     @Override
     public void orderDetailsData(Request request) {
-      String data=  request.getParams().optString("orderDetailsData");
-      AppLog.print(data+"!!!!!!!!!");
+        String billdata = request.getParams().optString("bill_info");
+        Billbean billbean = (Billbean) JSONManager.getInstance().parseObject(billdata, Billbean.class);
+        Table table = new Table();
+        table.setCurrentBillbean(billbean);
+        table.setRegion_name(billbean.getRegion_name());
+        table.setTable_number(billbean.getTable_number());
+        Intent intent = new Intent(getContext(), FanJZActivity.class);
+        intent.putExtra(Param.Keys.TABLE, table);
+        startActivity(intent);
     }
 
     @OnClick({R.id.print_cosume_order, R.id.fan_jie_zhang_tv, R.id.back_to_list})
@@ -109,12 +120,11 @@ public class OrdersFragment extends BaseFragment implements onOperateLisenter {
             case R.id.print_cosume_order:
                 break;
             case R.id.fan_jie_zhang_tv:
-                Toast.makeText(getContext(),"!!!",Toast.LENGTH_LONG).show();
                 webChartView.getDataFormWeb("", "orderDetailsData");
                 break;
             case R.id.back_to_list:
                 webChartView.backTolast();
-                mCurrentPage="";
+                mCurrentPage = "";
                 mBottomLayout.setVisibility(View.GONE);
                 break;
         }

@@ -13,6 +13,7 @@ import com.xgsb.datafactory.bean.Dishesbean;
 import com.xgsb.datafactory.bean.EventRouter;
 import com.xgsb.datafactory.enu.EventBusAction;
 import com.zx.api.api.utils.AppLog;
+import com.zx.api.api.utils.AppUtil;
 import com.zx.mvplibrary.BaseCustomView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -37,6 +38,8 @@ public class FormatView extends BaseCustomView {
     LinearLayout mXdLayout;
     @BindView(R.id.ordersheet_dishes_cui_cai_btn)
     TextView mCuicTv;
+    @BindView(R.id.ordersheet_dishes_che_dan_btn)
+    TextView mCheDanTv;
     onButtonClick mClickLisenter;
     private Dishesbean mCurrent;
     private Billbean mBillbean;
@@ -94,13 +97,14 @@ public class FormatView extends BaseCustomView {
             }
             return;
         }
-        if (mCurrent == null) {
-            Toast.makeText(getContext(), "未选中菜品", Toast.LENGTH_SHORT).show();
-            return;
-        }
+
         switch (view.getId()) {
             case R.id.ordersheet_dishes_tui_cai_btn:
                 if (mCurrent != null) {
+                    if (mCurrent.hasBacked()) {
+                        Toast.makeText(getContext(), "菜品已退", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     //退菜
                     EventBus.getDefault().post(new EventRouter(EventBusAction.TUI_CAI, mCurrent));
                 } else {
@@ -110,6 +114,10 @@ public class FormatView extends BaseCustomView {
             case R.id.ordersheet_dishes_gai_jia_btn:
                 //改价
                 if (mCurrent != null) {
+                    if (mCurrent.hasBacked()) {
+                        Toast.makeText(getContext(), "菜品已退", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     EventBus.getDefault().post(new EventRouter(EventBusAction.GAI_JIA, mCurrent));
                 } else {
                     Toast.makeText(getContext(), "未选中菜品", Toast.LENGTH_SHORT).show();
@@ -118,6 +126,10 @@ public class FormatView extends BaseCustomView {
             case R.id.ordersheet_dishes_discount_btn:
                 //打折
                 if (mCurrent != null) {
+                    if (mCurrent.hasBacked()) {
+                        Toast.makeText(getContext(), "菜品已退", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     EventBus.getDefault().post(new EventRouter(EventBusAction.DA_ZHE, mCurrent));
                 } else {
                     Toast.makeText(getContext(), "未选中菜品", Toast.LENGTH_SHORT).show();
@@ -137,6 +149,10 @@ public class FormatView extends BaseCustomView {
                         Toast.makeText(getContext(), "未选中菜品", Toast.LENGTH_SHORT).show();
                         return;
                     }
+                    if (mCurrent.hasBacked()) {
+                        Toast.makeText(getContext(), "菜品已退", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     if (mCurrent.isMultDishes()) {
                         mClickLisenter.onFormatClick(mCurrent);
                     } else {
@@ -146,12 +162,20 @@ public class FormatView extends BaseCustomView {
                 break;
             case R.id.ordersheet_dishes_delete_btn:
                 if (mClickLisenter != null) {
+                    if (mCurrent.hasBacked()) {
+                        Toast.makeText(getContext(), "菜品已退", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     if (mClickLisenter.delete(mCurrent)) {
                         mCurrent = null;
                     }
                 }
                 break;
             case R.id.ordersheet_dishes_d_btn:
+                if (mCurrent.hasBacked()) {
+                    Toast.makeText(getContext(), "菜品已退", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if (mCurrent.getWait_tag() == 0) {
                     mCurrent.setWait_tag(1);
                     mDtv.setText("取消等叫");
@@ -164,6 +188,10 @@ public class FormatView extends BaseCustomView {
                 }
                 break;
             case R.id.ordersheet_dishes_w_btn:
+                if (mCurrent.hasBacked()) {
+                    Toast.makeText(getContext(), "菜品已退", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if (mCurrent.getOut_tag() == 0) {
                     mCurrent.setOut_tag(1);
                     mWdTv.setText("取消外带");
@@ -180,6 +208,10 @@ public class FormatView extends BaseCustomView {
                     Toast.makeText(getContext(), "未选中菜品", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if (mCurrent.hasBacked()) {
+                    Toast.makeText(getContext(), "菜品已退", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 int numadd = Integer.valueOf(mNumTv.getText().toString());
                 numadd = numadd + 1;
                 if (mClickLisenter != null) {
@@ -190,6 +222,10 @@ public class FormatView extends BaseCustomView {
             case R.id.ordersheet_dishes_format_jj_tv:
                 if (mCurrent == null) {
                     Toast.makeText(getContext(), "未选中菜品", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (mCurrent.hasBacked()) {
+                    Toast.makeText(getContext(), "菜品已退", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 int num = Integer.valueOf(mNumTv.getText().toString());
@@ -223,7 +259,10 @@ public class FormatView extends BaseCustomView {
     }
 
     public void setCurrentBill(Billbean billbean) {
-        this.mBillbean=billbean;
+        this.mBillbean = billbean;
+        if ("已结账".equals(billbean.getLocal_status())) {
+            mCheDanTv.setVisibility(View.GONE);
+        }
     }
 
     public interface onButtonClick {
@@ -244,13 +283,21 @@ public class FormatView extends BaseCustomView {
         switch (status) {
             case "已下单":
             case "已结账":
-                mOrderFormat.setVisibility(View.VISIBLE);
+                if (!AppUtil.isOrderDishes(getContext())) {
+                    mOrderFormat.setVisibility(View.VISIBLE);
+                }else {
+                    mOrderFormat.setVisibility(View.GONE);
+                }
                 mXdLayout.setVisibility(View.GONE);
                 break;
             case "已开台":
             case "加菜":
                 mXdLayout.setVisibility(View.VISIBLE);
-                mOrderFormat.setVisibility(View.VISIBLE);
+                if (!AppUtil.isOrderDishes(getContext())) {
+                    mOrderFormat.setVisibility(View.VISIBLE);
+                }else {
+                    mOrderFormat.setVisibility(View.GONE);
+                }
                 break;
             case "拆单支付":
 

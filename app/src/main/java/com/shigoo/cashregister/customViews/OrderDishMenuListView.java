@@ -103,7 +103,6 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
     int selectedColor;
     @BindView(R.id.ordersheet_dishes_finnaly_tv)
     TextView OrderPriceTv;
-
     @BindView(R.id.cashregister_layout)
     LinearLayout mCasherLayout;
     MenuDishesListAdapter mMenuListAdapter;
@@ -152,6 +151,9 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
                 mMenuList.setAdapter(mMenuListAdapter);
                 break;
             case R.id.cashregister_list_tv:
+                if (mBillbean != null) {
+                    mPresenter.getPayList(Param.Keys.TOKEN, getToken(), Param.Keys.BILL_CODE, mBillbean.getBill_code());
+                }
                 mGoodsTv.setBackgroundResource(R.drawable.ordersheet_goods_btn_bg);
                 mListTv.setBackgroundResource(R.drawable.ordersheet_list_btn_selected_bg);
                 mListTv.setTextColor(selectedColor);
@@ -457,7 +459,6 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
             mEmptyTv.setVisibility(View.GONE);
             mMenuList.setVisibility(View.VISIBLE);
             mPresenter.getOrderDishes(Param.Keys.TOKEN, getToken(), Param.Keys.BILL_CODE, mTable.getBillbean().getBill_code());
-            mPresenter.getPayList(Param.Keys.TOKEN, getToken(), Param.Keys.BILL_CODE, billbean.getBill_code());
             if (AppUtil.isOrderDishes(getContext())) {
                 mCasherLayout.setVisibility(View.GONE);
             } else {

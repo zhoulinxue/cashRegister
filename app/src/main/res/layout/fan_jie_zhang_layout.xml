@@ -71,16 +71,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/ordersheet_20dp">
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@id/ordersheet_dishes_give_reason_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@id/ordersheet_divid_line"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginLeft="@dimen/ordersheet_80dp"
-                    android:layout_marginRight="@dimen/ordersheet_80dp" />
-
                 <View
                     android:id="@id/ordersheet_divid_line"
                     android:layout_width="match_parent"
@@ -135,7 +125,13 @@
                 android:id="@id/order_pay_orderlist"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-
+            <android.support.v7.widget.RecyclerView
+                android:id="@id/ordersheet_dishes_give_reason_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/ordersheet_divid_line"
+                android:layout_marginLeft="@dimen/ordersheet_80dp"
+                android:layout_marginRight="@dimen/ordersheet_80dp" />
             <TextView
                 android:id="@id/ordersheet_dishes_pay_sure"
                 android:layout_width="wrap_content"

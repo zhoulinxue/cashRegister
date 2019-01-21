@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.shigoo.cashregister.R;
 import com.shigoo.cashregister.adapters.ChedanAdapter;
 import com.shigoo.cashregister.adapters.DazheAdapter;
@@ -85,7 +86,8 @@ public class TableDialogView extends MvpCustomView<TableDialogPresenter> impleme
     TextView mDazheNameTv;
     @BindView(R.id.tuicai_dishes_name_tv)
     TextView mTuicaiNameTv;
-
+    @BindView(R.id.orginal_price)
+    TextView mOriginalTv;
 
 
     public TableDialogView(Context context, ViewGroup rootGroup) {
@@ -104,7 +106,7 @@ public class TableDialogView extends MvpCustomView<TableDialogPresenter> impleme
 
     @Override
     protected void onInitView(Context context, View rootView) {
-        ButterKnife.bind(this,rootView);
+        ButterKnife.bind(this, rootView);
         EventBus.getDefault().register(this);
         mChedanRecyclerView.setLayoutManager(new GridLayoutManager(context, 2));
         mGaijiaRecyclerView.setLayoutManager(new GridLayoutManager(context, 2));
@@ -112,12 +114,36 @@ public class TableDialogView extends MvpCustomView<TableDialogPresenter> impleme
         mTuicaiRecyclerView.setLayoutManager(new GridLayoutManager(context, 2));
         mChedanAdapter = new ChedanAdapter(R.layout.ordersheet_remark_item_layout, chedanList);
         mChedanRecyclerView.setAdapter(mChedanAdapter);
+        mChedanAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                mChedanAdapter.setSelected(position);
+            }
+        });
         mGaijiaAdapter = new GaijiaAdapter(R.layout.ordersheet_remark_item_layout, gaijiaList);
         mGaijiaRecyclerView.setAdapter(mGaijiaAdapter);
+        mGaijiaAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                mGaijiaAdapter.setSelected(position);
+            }
+        });
         mDazheAdapter = new DazheAdapter(R.layout.ordersheet_remark_item_layout, dazheList);
         mDazheRecyclerView.setAdapter(mDazheAdapter);
+        mDazheAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                mDazheAdapter.setSelected(position);
+            }
+        });
         mTuicaiAdapter = new TuicaiAdapter(R.layout.ordersheet_remark_item_layout, tuicaiList);
         mTuicaiRecyclerView.setAdapter(mTuicaiAdapter);
+        mTuicaiAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                mTuicaiAdapter.setSelected(position);
+            }
+        });
         mZheKouEdite.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -127,13 +153,16 @@ public class TableDialogView extends MvpCustomView<TableDialogPresenter> impleme
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (!TextUtils.isEmpty(charSequence)) {
-                    int discount = Integer.valueOf(charSequence.toString()) / 100;
-                    if (!mCurrentDishes.isSelMeal()) {
-                        mDiscountPriceTv.setText(Param.Keys.RMB + (AppUtil.getFloatFromString(mCurrentDishes.getCurrentSp().getSale_price()).floatValue() * discount));
-                    } else {
-                        mDiscountPriceTv.setText(Param.Keys.RMB + (AppUtil.getFloatFromString(mCurrentDishes.getCombo_price()).floatValue() * discount));
+                    float discount = Float.valueOf(charSequence.toString()) / 100;
+                    if (discount > 1) {
+                        showToast("折扣不能大于100");
+                        mZheKouEdite.setText(100 + "");
                     }
+                    mDiscountPriceTv.setText(Param.Keys.RMB + (AppUtil.getFloatFromString(mCurrentDishes.getShowPrice()).floatValue() * discount));
+                } else {
+                    mDiscountPriceTv.setText(Param.Keys.RMB + (AppUtil.getFloatFromString(mCurrentDishes.getShowPrice()).floatValue()));
                 }
+
             }
 
             @Override
@@ -151,6 +180,7 @@ public class TableDialogView extends MvpCustomView<TableDialogPresenter> impleme
     @Override
     public void onCancelOrderResult(String listData) {
         showToast(listData);
+        getView().setVisibility(View.GONE);
         EventBus.getDefault().post(new EventRouter(EventBusAction.TABLE_BACK));
     }
 
@@ -175,18 +205,21 @@ public class TableDialogView extends MvpCustomView<TableDialogPresenter> impleme
     @Override
     public void onChargePriceResult(String msg) {
         showToast(msg);
+        getView().setVisibility(View.GONE);
         EventBus.getDefault().post(new EventRouter(EventBusAction.BILL_REFRESH));
     }
 
     @Override
     public void onDiscountResult(String msg) {
         showToast(msg);
+        getView().setVisibility(View.GONE);
         EventBus.getDefault().post(new EventRouter(EventBusAction.BILL_REFRESH));
     }
 
     @Override
     public void onReturnDishesResult(String msg) {
         showToast(msg);
+        getView().setVisibility(View.GONE);
         EventBus.getDefault().post(new EventRouter(EventBusAction.BILL_REFRESH));
     }
 
@@ -194,7 +227,12 @@ public class TableDialogView extends MvpCustomView<TableDialogPresenter> impleme
             R.id.tuicai_ordersheet_close_img,
             R.id.dazhe_ordersheet_close_img,
             R.id.chedan_ordersheet_close_img,
-            R.id.chedan_ordersheet_number_result_btn})
+            R.id.chedan_ordersheet_number_result_btn,
+            R.id.zhekou_sure_btn,
+            R.id.tuicai_sure_btn,
+            R.id.gaijia_sure_btn,
+            R.id.ordersheet_dishes_tuicai_jj_tv,
+            R.id.ordersheet_dishes_tuicai_add_tv})
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.gaijia_ordersheet_close_img:
@@ -224,26 +262,33 @@ public class TableDialogView extends MvpCustomView<TableDialogPresenter> impleme
                             Param.Keys.REDISCOUNT_ID, getUser().getCashier_id(),
                             Param.Keys.RE_DISCOUNT, mZheKouEdite.getText().toString(),
                             Param.Keys.RE_DISCOUNT_REASON, mDazheAdapter.getReason(),
-                            Param.Keys.FINALLY_PRICE, mDiscountPriceTv.getText().toString());
+                            Param.Keys.FINALLY_PRICE, mDiscountPriceTv.getText().toString().replace(Param.Keys.RMB, ""));
                 } else {
                     showToast("请输入折扣");
                 }
                 break;
             case R.id.tuicai_sure_btn:
-                int restNum = mCurrentDishes.getLocal_num() - Integer.valueOf(mTuicaiNumTv.getText().toString());
-                float finnalyPrice = 0;
-                if (mCurrentDishes.isSelMeal()) {
-                    finnalyPrice = AppUtil.getFloatFromString(mCurrentDishes.getFinally_price()).floatValue();
-                } else {
-                    finnalyPrice = AppUtil.getFloatFromString(mCurrentDishes.getCurrentSp().getFinally_price()).floatValue();
-                }
                 mPresenter.returnDishes(Param.Keys.TOKEN, getToken(),
                         Param.Keys.id, mCurrentDishes.getId() + "",
                         Param.Keys.BACK_ID, getUser().getCashier_id(),
-                        Param.Keys.DISH_QTY, "" + restNum,
-                        Param.Keys.FINALLY_PRICE, (finnalyPrice / mCurrentDishes.getLocal_num() * restNum) + "", Param.Keys.BACK_REASON, mTuicaiAdapter.getReason());
+                        Param.Keys.NUMBER, mTuicaiNumTv.getText().toString(), Param.Keys.BACK_REASON, mTuicaiAdapter.getReason());
                 break;
-
+            case R.id.ordersheet_dishes_tuicai_jj_tv:
+                int num = Integer.valueOf(mTuicaiNumTv.getText().toString());
+                if (num > 1) {
+                    mTuicaiNumTv.setText((num - 1) + "");
+                } else {
+                    showToast("退菜数量不能小于1");
+                }
+                break;
+            case R.id.ordersheet_dishes_tuicai_add_tv:
+                int addnum = Integer.valueOf(mTuicaiNumTv.getText().toString());
+                if (addnum < mCurrentDishes.getLocal_num()) {
+                    mTuicaiNumTv.setText((addnum + 1) + "");
+                } else {
+                    showToast("已经是最大数量了");
+                }
+                break;
         }
 
     }
@@ -261,7 +306,7 @@ public class TableDialogView extends MvpCustomView<TableDialogPresenter> impleme
                 mCancelOrderLayout.setVisibility(View.GONE);
                 mTuicaiNumTv.setText(mCurrentDishes.getLocal_num() + "");
                 getView().setVisibility(View.VISIBLE);
-                mTuicaiNameTv.setText("退菜-"+mCurrentDishes.getNotNullName());
+                mTuicaiNameTv.setText("退菜-" + mCurrentDishes.getNotNullName());
                 mPresenter.getMultReasonList(Param.Keys.TOKEN, getToken(), Param.Keys.TYPE, mReasonType + "");
                 break;
             case DA_ZHE:
@@ -272,7 +317,8 @@ public class TableDialogView extends MvpCustomView<TableDialogPresenter> impleme
                 mGaiJiaLayout.setVisibility(View.GONE);
                 mCancelOrderLayout.setVisibility(View.GONE);
                 getView().setVisibility(View.VISIBLE);
-                mDazheNameTv.setText("打折-"+mCurrentDishes.getNotNullName());
+                mDazheNameTv.setText("打折-" + mCurrentDishes.getNotNullName());
+                mDiscountPriceTv.setText(Param.Keys.RMB + mCurrentDishes.getShowPrice());
                 mPresenter.getMultReasonList(Param.Keys.TOKEN, getToken(), Param.Keys.TYPE, mReasonType + "");
                 break;
             case CHE_DAN:
@@ -287,14 +333,24 @@ public class TableDialogView extends MvpCustomView<TableDialogPresenter> impleme
                 break;
             case GAI_JIA:
                 mCurrentDishes = (Dishesbean) eventRouter.getData();
+                mGaijiaEdite.setText(mCurrentDishes.getShowPrice());
                 mReasonType = 4;
                 mTuiCaiLayout.setVisibility(View.GONE);
                 mDiscountLayout.setVisibility(View.GONE);
                 mGaiJiaLayout.setVisibility(View.VISIBLE);
                 mCancelOrderLayout.setVisibility(View.GONE);
                 getView().setVisibility(View.VISIBLE);
-                mGaijiaNameTv.setText("改价-"+mCurrentDishes.getNotNullName());
+                mGaijiaNameTv.setText("改价-" + mCurrentDishes.getNotNullName());
                 mPresenter.getMultReasonList(Param.Keys.TOKEN, getToken(), Param.Keys.TYPE, mReasonType + "");
+                if (mCurrentDishes.isSelMeal()) {
+                    mOriginalTv.setText(Param.Keys.RMB + mCurrentDishes.getCombo_price());
+                } else {
+                    mOriginalTv.setText(Param.Keys.RMB + mCurrentDishes.getCurrentSp().getSale_price());
+                }
+                break;
+            case CHILD_DETAIL:
+            case DISHES_DETAIL:
+                getView().setVisibility(View.GONE);
                 break;
         }
     }

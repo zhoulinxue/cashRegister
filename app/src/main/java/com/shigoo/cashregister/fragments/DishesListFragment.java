@@ -175,6 +175,9 @@ public class DishesListFragment extends MvpFragment<DishesListPresenter> impleme
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                if (mSetMealDetailLayout.getVisibility() == View.VISIBLE || mFormatLayout.getVisibility() == View.VISIBLE) {
+                    return;
+                }
                 mCdishesbean = mAdapter.getData().get(position);
                 mCurrentPosition = position;
                 if (mCdishesbean.isMultDishes()) {
@@ -305,6 +308,7 @@ public class DishesListFragment extends MvpFragment<DishesListPresenter> impleme
         mFormatLayout.setVisibility(View.GONE);
         mRemarkLayout.setVisibility(View.GONE);
         mSetMealDetailLayout.setVisibility(View.VISIBLE);
+        mDishesListView.setVisibility(View.GONE);
     }
 
     @Override
@@ -449,6 +453,7 @@ public class DishesListFragment extends MvpFragment<DishesListPresenter> impleme
         if (hidden) {
             mFormatLayout.setVisibility(View.GONE);
             mSetMealDetailLayout.setVisibility(View.GONE);
+            mDishesListView.setVisibility(View.VISIBLE);
         }
     }
 

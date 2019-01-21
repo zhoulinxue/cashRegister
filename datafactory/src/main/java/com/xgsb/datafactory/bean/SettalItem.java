@@ -70,6 +70,7 @@ public class SettalItem implements Parcelable {
     private List<ComboData> combo_data;
     private String sale_id;
 
+
     public String getSale_id() {
         return sale_id;
     }
@@ -557,6 +558,7 @@ public class SettalItem implements Parcelable {
     public Dishesbean toDishesbean() {
         Dishesbean dishesbean = new Dishesbean();
         dishesbean.setId(getId());
+        dishesbean.setBack_id(getBack_id());
         dishesbean.setLocal_num(TextUtils.isEmpty(getDish_qty()) ? 1 : Integer.valueOf(getDish_qty()));
         dishesbean.setDish_tag(getDish_tag());
         dishesbean.setWait_tag(TextUtils.isEmpty(getWait_tag()) ? 0 : Integer.valueOf(getWait_tag()));
@@ -567,6 +569,7 @@ public class SettalItem implements Parcelable {
         dishesbean.setWhole_discount(getWhole_discount());
         dishesbean.setWhole_discount_id(getWhole_discount_id());
         dishesbean.setVip_price(getVip_price());
+        dishesbean.setBack_reason(getBack_reason());
         dishesbean.setSpecification_name(getSpecification_name());
         dishesbean.setSale_price(getSale_price());
         dishesbean.setIntegral_exchange(getIntegral_exchange());
