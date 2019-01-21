@@ -713,4 +713,10 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
     public void refresh() {
         setTable(mTable, isFjz);
     }
+
+    public void sureDemolition() {
+        mSettleTv.setVisibility(View.GONE);
+        mSelltalAccountTv.setText("拆单支付");
+        mMenuListAdapter.notifyDataSetChanged();
+    }
 }

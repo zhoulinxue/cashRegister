@@ -178,6 +178,7 @@ public class DishesUtils {
     }
 
     public static List<Float> calculaPrice(List<Dishesbean> dishesbeans) {
+        AppLog.print(dishesbeans.size() + "   未支付");
         float salePrice = 0f;
         float finalyPrice = 0f;
         float restPrice = 0f;
@@ -191,10 +192,10 @@ public class DishesUtils {
             } else if ("1".equals(dishesbean.getPay_tag())) {
                 alreadyPrice += AppUtil.getFloatFromString(dishesbean.getFinally_price()).floatValue();
             }
-            if (TextUtils.isEmpty(dishesbean.getFinally_price())) {
-                finalyPrice += AppUtil.getFloatFromString(dishesbean.getMinFavorable().getMoney()).floatValue();
-            } else {
+            if ("4".equals(dishesbean.getFinally_tag()) || "3".equals(dishesbean.getFinally_tag()) || "1".equals(dishesbean.getPay_tag())) {
                 finalyPrice += AppUtil.getFloatFromString(dishesbean.getFinally_price()).floatValue();
+            } else {
+                finalyPrice += AppUtil.getFloatFromString(dishesbean.getMinFavorable().getMoney()).floatValue();
             }
         }
         priceList.add(salePrice);

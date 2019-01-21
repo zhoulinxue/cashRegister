@@ -60,7 +60,8 @@ public enum EventBusAction {
     FAN_JIE_ZHANG("fan_jie_zhang_suc"),
     BILL_REFRESH("bill_refresh"),
     BACK_TO_MEMBER_DETAIL("back_to_member_detail"),
-    SHOW_TABLE_MAIN("show_table_main");
+    SHOW_TABLE_MAIN("show_table_main"),
+    SURE_DEMOLITION("sure_demolition");
 
 
     EventBusAction(String member_msg) {

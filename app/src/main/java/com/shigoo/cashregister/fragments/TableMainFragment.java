@@ -236,6 +236,9 @@ public class TableMainFragment extends BaseFragment {
             case BILL_REFRESH:
                 mDishesView.refresh();
                 break;
+            case SURE_DEMOLITION:
+                mDishesView.sureDemolition();
+                break;
         }
     }
 

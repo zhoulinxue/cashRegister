@@ -273,7 +273,7 @@ public class SettalFragment extends MvpFragment<SettalPresenter> implements Sett
                 if (selectedList != null && selectedList.size() > 0) {
                     mDemolitionLayout.setVisibility(View.GONE);
                     newPayPrice(selectedList);
-                    // show pay msg
+                    EventBus.getDefault().post(new EventRouter(EventBusAction.SURE_DEMOLITION));
                 } else {
                     showToast("请选择菜品");
                 }
