@@ -167,7 +167,7 @@ public class Consumebean {
     }
 
     private String getName(String payment_method) {
-        String name = "";
+        String name = payment_method;
         switch (payment_method) {
             case "1":
                 name = "微信支付";

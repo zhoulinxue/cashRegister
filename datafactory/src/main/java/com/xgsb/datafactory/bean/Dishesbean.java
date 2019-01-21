@@ -46,6 +46,15 @@ public class Dishesbean implements Parcelable, MultiItemEntity, Cloneable, Compa
     private String showPrice;
     private String pay_tag = "0";
     private List<AddFavorablebean> addFavorablebeans;
+    private String table_gift_tag;
+
+    public String getTable_gift_tag() {
+        return table_gift_tag;
+    }
+
+    public void setTable_gift_tag(String table_gift_tag) {
+        this.table_gift_tag = table_gift_tag;
+    }
 
     public List<AddFavorablebean> getAddFavorablebeans() {
         return addFavorablebeans;

@@ -430,4 +430,5 @@
     <item name="ordersheet_dishes_finnaly_tv" type="id" />
     <item name="dazhe_dishes_name_tv" type="id" />
     <item name="tuicai_dishes_name_tv" type="id" />
+    <item name="order_bottom_layout" type="id" />
 </resources>

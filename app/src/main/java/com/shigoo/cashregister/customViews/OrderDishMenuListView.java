@@ -273,6 +273,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
             item.setWhole_discount_id(dishesbean.getWhole_discount_id());
             item.setSale_id(mBillbean.getSale_id());
             item.setFinally_price(dishesbean.getMinFavorable().getMoney());
+            item.setTable_gift_tag(dishesbean.getTable_gift_tag());
             if (dishesbean.getRemarkbeans() != null) {
                 item.setRemark_data(setOrderRemark(dishesbean.getRemarkbeans()));
             }
@@ -300,7 +301,9 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
                 }
                 item.setCombo_data(idList);
             }
-            itemCommit.add(item);
+            if (!"1".equals(item.getTable_gift_tag())) {
+                itemCommit.add(item);
+            }
         }
         return itemCommit;
     }
@@ -558,9 +561,9 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
         List<Float> prices = DishesUtils.calculaPrice(mMenuListAdapter.getData());
         finalyPrice = prices.get(1);
         salePrice = prices.get(0);
-        mAlreadOrderPriceTv.setText("已收："+Param.Keys.RMB +(finalyPrice-prices.get(2)));
-        mOrderOldPriceTv.setText("原价："+Param.Keys.RMB + salePrice);
-        OrderPriceTv.setText("应收："+Param.Keys.RMB +finalyPrice);
+        mAlreadOrderPriceTv.setText("已收：" + Param.Keys.RMB + (finalyPrice - prices.get(2)));
+        mOrderOldPriceTv.setText("原价：" + Param.Keys.RMB + salePrice);
+        OrderPriceTv.setText("应收：" + Param.Keys.RMB + finalyPrice);
         if (finalyPrice == salePrice) {
             mOrderOldPriceTv.setVisibility(View.GONE);
         } else {

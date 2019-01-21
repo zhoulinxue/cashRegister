@@ -9,6 +9,7 @@ import android.view.ViewTreeObserver;
 import android.webkit.WebView;
 
 import com.xgsb.datafactory.JSONManager;
+import com.zx.api.api.utils.AppLog;
 import com.zx.mvplibrary.BaseCustomView;
 import com.zx.mvplibrary.R;
 import com.zx.mvplibrary.R2;
