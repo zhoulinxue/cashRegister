@@ -282,10 +282,17 @@ public class FormatView extends BaseCustomView {
     public void setLocalStatus(String status) {
         switch (status) {
             case "已下单":
+                if (!AppUtil.isOrderDishes(getContext())) {
+                    mOrderFormat.setVisibility(View.VISIBLE);
+                } else {
+                    mOrderFormat.setVisibility(View.GONE);
+                }
+                mXdLayout.setVisibility(View.VISIBLE);
+                break;
             case "已结账":
                 if (!AppUtil.isOrderDishes(getContext())) {
                     mOrderFormat.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     mOrderFormat.setVisibility(View.GONE);
                 }
                 mXdLayout.setVisibility(View.GONE);
@@ -295,7 +302,7 @@ public class FormatView extends BaseCustomView {
                 mXdLayout.setVisibility(View.VISIBLE);
                 if (!AppUtil.isOrderDishes(getContext())) {
                     mOrderFormat.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     mOrderFormat.setVisibility(View.GONE);
                 }
                 break;
