@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.shigoo.cashregister.R;
 import com.shigoo.cashregister.adapters.ChedanAdapter;
@@ -281,7 +280,6 @@ public class TableDialogView extends MvpCustomView<TableDialogPresenter> impleme
                 mBillCode = ((Billbean) eventRouter.getData()).getBill_code();
                 mTuiCaiLayout.setVisibility(View.GONE);
                 mDiscountLayout.setVisibility(View.GONE);
-
                 mGaiJiaLayout.setVisibility(View.GONE);
                 mCancelOrderLayout.setVisibility(View.VISIBLE);
                 getView().setVisibility(View.VISIBLE);
