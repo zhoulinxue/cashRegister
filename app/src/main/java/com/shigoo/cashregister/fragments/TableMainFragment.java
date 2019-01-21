@@ -103,7 +103,7 @@ public class TableMainFragment extends BaseFragment {
                 mHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        mDishesView.setTable(table,false);
+                        mDishesView.setTable(table, false);
                     }
                 }, 500);
                 break;
@@ -171,7 +171,7 @@ public class TableMainFragment extends BaseFragment {
                 break;
             case BACK_TO_MAIN:
                 mFragmentNavigator.showFragment(0);
-                mDishesView.setTable(null,false);
+                mDishesView.setTable(null, false);
                 break;
             case SHOW_TABLE_MAIN:
                 mFragmentNavigator.showFragment(0);
@@ -232,7 +232,7 @@ public class TableMainFragment extends BaseFragment {
                 break;
             case PAY_SUC:
                 mFragmentNavigator.showFragment(0);
-                mDishesView.setTable(null,false);
+                mDishesView.setTable(null, false);
                 break;
             case BILL_REFRESH:
                 mDishesView.refresh();
@@ -254,6 +254,6 @@ public class TableMainFragment extends BaseFragment {
     }
 
     public void fanjiezhang(Table table) {
-       mDishesView.fanjiezhang(table);
+        mDishesView.fanjiezhang(table);
     }
 }

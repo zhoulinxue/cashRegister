@@ -227,6 +227,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
                     gotopayFragmnet();
                 } else if ("已结账".equals(mSelltalAccountTv.getText().toString())) {
                     showToast("已结账");
+                    gotopayFragmnet();
                 } else if ("拆单支付".equals(mSelltalAccountTv.getText().toString())) {
                     List<Dishesbean> dishesbeans = new ArrayList<>();
                     mMenuListAdapter.setNewData(dishesbeans);
@@ -424,7 +425,8 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
         mSettleTv.setText("加菜");
         mSelltalAccountTv.setText("去结账");
         mSelltalAccountTv.setVisibility(View.VISIBLE);
-        setBillCode(mTable.getBillbean());
+        mTable.setLocal_status("已下单");
+        setTable(mTable, false);
         mDeleteImg.setVisibility(View.GONE);
         EventBus.getDefault().post(new EventRouter(EventBusAction.SHOW_TABLE_MAIN));
         showToast(msg);
@@ -562,7 +564,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
         List<Float> prices = DishesUtils.calculaPrice(mMenuListAdapter.getData());
         finalyPrice = prices.get(1);
         salePrice = prices.get(0);
-        mAlreadOrderPriceTv.setText("已收：" + Param.Keys.RMB + (finalyPrice - prices.get(2)));
+        mAlreadOrderPriceTv.setText("已收：" + Param.Keys.RMB + prices.get(3));
         mOrderOldPriceTv.setText("原价：" + Param.Keys.RMB + salePrice);
         OrderPriceTv.setText("应收：" + Param.Keys.RMB + finalyPrice);
         if (finalyPrice == salePrice) {
@@ -665,6 +667,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
                     break;
                 case "已结账":
                     mSettleTv.setText("加菜");
+                    mSettleTv.setVisibility(View.VISIBLE);
                     mSelltalAccountTv.setText(mTable.getLocal_status());
                     settalType = "2";
                     mDeleteImg.setVisibility(View.GONE);

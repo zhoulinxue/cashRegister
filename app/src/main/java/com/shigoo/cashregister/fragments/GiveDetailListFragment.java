@@ -43,6 +43,7 @@ public class GiveDetailListFragment extends MvpFragment<GiveDetailListPresenter>
     @BindView(R.id.ordersheet_money_count)
     TextView mMoneyCount;
     private Request mRequest;
+    List<GiveDetailListbean> mGiveDetailListbeans;
 
     String DEFAULT_END_TIME = DateUtil.format(DateUtil.getnowEndTime(), DateUtil.YEAR_MONTH_DAY_PATTERN);
     String DEFAULT_START_TIME = DateUtil.format(DateUtil.getStartTime(), DateUtil.YEAR_MONTH_DAY_PATTERN);
@@ -158,6 +159,10 @@ public class GiveDetailListFragment extends MvpFragment<GiveDetailListPresenter>
     @Override
     public void getTableInfo(Request request) {
         mRequest = request;
+        if (mGiveDetailListbeans != null && mGiveDetailListbeans.size() != 0&&mRequest!=null) {
+            String json = WebData.newInstance().getGiveDetail(mGiveDetailListbeans, mWebCahrtView.getWidth(), mWebCahrtView.getHight());
+            mWebCahrtView.callback(mRequest, json);
+        }
     }
 
     @Override
@@ -184,6 +189,7 @@ public class GiveDetailListFragment extends MvpFragment<GiveDetailListPresenter>
 
     @Override
     public void onGiveDetailListResult(List<GiveDetailListbean> giveDetailListbeans) {
+        mGiveDetailListbeans=giveDetailListbeans;
         if(giveDetailListbeans==null||giveDetailListbeans.size()==0){
             showToast("暂无数据");
             return;
@@ -196,7 +202,7 @@ public class GiveDetailListFragment extends MvpFragment<GiveDetailListPresenter>
         }
         mItemCount.setText("赠送数量:" + giveDetailListbeans.size() + "项");
         mMoneyCount.setText("消费金额:" + total + "元");
-        if (giveDetailListbeans != null && giveDetailListbeans.size() != 0) {
+        if (giveDetailListbeans != null && giveDetailListbeans.size() != 0&&mRequest!=null) {
             String json = WebData.newInstance().getGiveDetail(giveDetailListbeans, mWebCahrtView.getWidth(), mWebCahrtView.getHight());
             mWebCahrtView.callback(mRequest, json);
         }

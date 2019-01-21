@@ -260,10 +260,12 @@ public class FormatView extends BaseCustomView {
 
     public void setCurrentBill(Billbean billbean) {
         this.mBillbean = billbean;
-        if ("已结账".equals(billbean.getLocal_status())) {
-            mCheDanTv.setVisibility(View.GONE);
-        }else {
-            mCheDanTv.setVisibility(View.VISIBLE);
+        if(billbean!=null) {
+            if ("已结账".equals(billbean.getLocal_status())) {
+                mCheDanTv.setVisibility(View.GONE);
+            } else {
+                mCheDanTv.setVisibility(View.VISIBLE);
+            }
         }
     }
 

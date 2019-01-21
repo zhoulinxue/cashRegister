@@ -149,7 +149,6 @@ public abstract class BaseActivity extends InternationalizationActivity implemen
     }
 
     protected void onLoginSuc(User user) {
-        user.setStaff_id("31");
         SPUtil.getInstance().put(Param.Keys.USER, JSONManager.getInstance().toJson(user));
     }
 

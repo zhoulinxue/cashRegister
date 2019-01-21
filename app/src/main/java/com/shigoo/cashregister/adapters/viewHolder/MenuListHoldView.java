@@ -68,6 +68,8 @@ public class MenuListHoldView extends BaseViewHolder {
     int payedColor;
     @BindColor(R.color.ordersheet_table_des_color)
     int nomalNameColor;
+    @BindView(R.id.ordersheet_dishes_z_tv)
+    TextView mZheKouTv;
 
 
     public MenuListHoldView(View view) {
@@ -103,6 +105,12 @@ public class MenuListHoldView extends BaseViewHolder {
             mWdTv.setVisibility(View.VISIBLE);
         } else {
             mWdTv.setVisibility(View.GONE);
+        }
+
+        if ("4".equals(item.getFinally_tag())) {
+            mZheKouTv.setVisibility(View.VISIBLE);
+        } else {
+            mZheKouTv.setVisibility(View.GONE);
         }
         if ("10".equals(item.getFinally_tag())) {
             mCdTv.setVisibility(View.VISIBLE);
@@ -169,7 +177,8 @@ public class MenuListHoldView extends BaseViewHolder {
         }
         String showPrice = min.getMoney();
         String salePrice = max.getMoney();
-        if (!TextUtils.isEmpty(item.getFinally_price())) {
+        if (("4".equals(item.getFinally_tag()) || "3".equals(item.getFinally_tag()))
+                && !TextUtils.isEmpty(item.getFinally_price()) || "1".equals(item.getPay_tag())) {
             showPrice = item.getFinally_price();
         }
         //是否显示 原价

@@ -79,6 +79,7 @@ public class SettalFragment extends MvpFragment<SettalPresenter> implements Sett
     TextView mPayNoticetv;
     @BindView(R.id.add_all_dishes)
     TextView mAllDishesTv;
+    private List<Float> floats;
 
 
     private Favorablebean mFavorablebean;
@@ -327,7 +328,7 @@ public class SettalFragment extends MvpFragment<SettalPresenter> implements Sett
     }
 
     private void newPayPrice(List<Dishesbean> dishesbeans) {
-        List<Float> floats = DishesUtils.calculaPrice(dishesbeans);
+        floats = DishesUtils.calculaPrice(dishesbeans);
         mOrderbean.setSalePrice(floats.get(0));
         mOrderbean.setFinalyPrice(floats.get(1));
         mOrderbean.setRestPrice(floats.get(2));
@@ -365,7 +366,7 @@ public class SettalFragment extends MvpFragment<SettalPresenter> implements Sett
             float currentMoney = 0f;
             for (Dishesbean dishesbean : dishesbeans) {
                 if (mFavorablebean.getFavorable_name().contains(dishesbean.getMinFavorable().getName())) {
-                    currentMoney += AppUtil.getFloatFromString(dishesbean.getMinFavorable().getMoney()).floatValue();
+                    currentMoney += AppUtil.getFloatFromString(dishesbean.getMaxFavorable().getMoney()).floatValue() - AppUtil.getFloatFromString(dishesbean.getMinFavorable().getMoney()).floatValue();
                 }
             }
             AppLog.print(mFavorablebean.getFavorable_name() + " " + currentMoney);

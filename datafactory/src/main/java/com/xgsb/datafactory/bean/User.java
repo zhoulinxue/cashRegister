@@ -15,12 +15,21 @@ public class User implements Parcelable {
     private String phoneNum;
     private String psw;
     private String token;
+    private int id;
     private String staff_id;
     private String cashier_id="11";
     private String timestamp;
     private String number;
     private String signature;
     private String person_in_charge_id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getPerson_in_charge_id() {
         return person_in_charge_id;
@@ -39,7 +48,7 @@ public class User implements Parcelable {
     }
 
     public String getStaff_id() {
-        return staff_id;
+        return getId()+"";
     }
 
     public void setStaff_id(String staff_id) {

@@ -109,15 +109,18 @@ public class DishesUtils {
                 break;
             case ALL_TAG:
                 dicountName = "全单";
-                if ("2".equals(dishesbean.getDish_tag())) {
+                if (!"1".equals(dishesbean.getPay_tag()) &&
+                        "2".equals(dishesbean.getDish_tag()) &&
+                        !("4".equals(dishesbean.getFinally_tag())
+                                || "3".equals(dishesbean.getFinally_tag()))) {
                     discount = AppUtil.getFloatFromString(dishesbean.getCurrentSp().getAll_discount()).floatValue() / 10;
                     //整单折扣
                     discountPrice = "" + dishesbean.getCurrentSp().getDiscountPrice();
+                    AppLog.print(dishesbean.getCurrentSp().getSale_price() + "!!!!!!!!!!!!" + discountPrice);
                 }
                 break;
             case WHOLE_TAG:
                 dicountName = "整单";
-                AppLog.print(discount + "!!!!!!!!!!!" + dishesbean.getWhole_flag());
                 if (1 == dishesbean.getWhole_flag()) {
                     discount = AppUtil.getFloatFromString(dishesbean.getWhole_discount()).floatValue() / 10;
                     if ("1".equals(dishesbean.getDish_tag())) {
@@ -178,14 +181,15 @@ public class DishesUtils {
         float salePrice = 0f;
         float finalyPrice = 0f;
         float restPrice = 0f;
+        float alreadyPrice = 0f;
         List<Float> priceList = new ArrayList<>();
         for (Dishesbean dishesbean : dishesbeans) {
             salePrice += AppUtil.getFloatFromString(dishesbean.getMaxFavorable().getMoney()).floatValue();
             if ("0".equals(dishesbean.getPay_tag()) || TextUtils.isEmpty(dishesbean.getPay_tag())) {
                 AppLog.print(dishesbean.getDishes_name() + "   未支付");
                 restPrice += AppUtil.getFloatFromString(dishesbean.getShowPrice()).floatValue();
-            } else {
-                AppLog.print(dishesbean.getDishes_name() + "   已支付");
+            } else if ("1".equals(dishesbean.getPay_tag())) {
+                alreadyPrice += AppUtil.getFloatFromString(dishesbean.getFinally_price()).floatValue();
             }
             if (TextUtils.isEmpty(dishesbean.getFinally_price())) {
                 finalyPrice += AppUtil.getFloatFromString(dishesbean.getMinFavorable().getMoney()).floatValue();
@@ -196,6 +200,7 @@ public class DishesUtils {
         priceList.add(salePrice);
         priceList.add(finalyPrice);
         priceList.add(restPrice);
+        priceList.add(alreadyPrice);
         return priceList;
     }
 }
