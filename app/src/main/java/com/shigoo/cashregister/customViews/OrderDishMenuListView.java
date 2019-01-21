@@ -162,8 +162,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
                 break;
             case R.id.ordersheet_table_left_back_img:
                 if (mTable != null) {
-                    if ("拆单支付".equals(mSelltalAccountTv.getText().toString())
-                            || "取消拆单支付".equals(mSelltalAccountTv.getText().toString())) {
+                    if ("拆单支付".equals(mSelltalAccountTv.getText().toString()) || "取消拆单支付".equals(mSelltalAccountTv.getText().toString())) {
                         setTable(mTable, isFjz);
                         EventBus.getDefault().post(new EventRouter(EventBusAction.BACK_TO_MAIN));
                         return;
@@ -174,9 +173,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
                         return;
                     }
                     EventBus.getDefault().post(new EventRouter(EventBusAction.BACK_TO_MAIN));
-//                    mTable = null;
-//                    setBillCode(null);
-//                    showBottomUi();
+                    setTable(mTable, isFjz);
                 } else {
                     if (AppUtil.isOrderDishes(getContext())) {
                         SPUtil.getInstance().putString(Param.Keys.TOKEN, "");

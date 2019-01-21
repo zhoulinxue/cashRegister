@@ -80,6 +80,8 @@ public class SettalFragment extends MvpFragment<SettalPresenter> implements Sett
     @BindView(R.id.add_all_dishes)
     TextView mAllDishesTv;
     private List<Float> floats;
+    @BindView(R.id.goods_num_tv)
+    TextView mGoodsNumTv;
 
 
     private Favorablebean mFavorablebean;
@@ -227,6 +229,7 @@ public class SettalFragment extends MvpFragment<SettalPresenter> implements Sett
                             } else {
                                 selectedList.remove(dishesbean);
                             }
+                            mGoodsNumTv.setText("商品数量："+selectedList.size());
                             EventBus.getDefault().post(new EventRouter(EventBusAction.DEMOLITION_ADD_DISHES, selectedList));
                         }
                         break;
@@ -296,6 +299,7 @@ public class SettalFragment extends MvpFragment<SettalPresenter> implements Sett
                 EventBus.getDefault().post(new EventRouter(EventBusAction.CANCEL_DEMOLITION));
             }
         });
+        mGoodsNumTv.setText("商品数量："+selectedList.size());
     }
 
     private void removemember() {

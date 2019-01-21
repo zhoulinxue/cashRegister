@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/ordersheet_white"
     android:orientation="vertical"
     android:padding="@dimen/ordersheet_20dp">
@@ -40,10 +41,11 @@
             </LinearLayout>
 
             <TextView
+                android:id="@id/goods_num_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="商品数量：3"
+                tools:text="商品数量：3"
                 android:textColor="@color/ordersheet_table_des_color"
                 android:textSize="@dimen/ordersheet_14sp" />
         </RelativeLayout>

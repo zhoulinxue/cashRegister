@@ -171,7 +171,6 @@ public class TableMainFragment extends BaseFragment {
                 break;
             case BACK_TO_MAIN:
                 mFragmentNavigator.showFragment(0);
-                mDishesView.setTable(null, false);
                 break;
             case SHOW_TABLE_MAIN:
                 mFragmentNavigator.showFragment(0);
