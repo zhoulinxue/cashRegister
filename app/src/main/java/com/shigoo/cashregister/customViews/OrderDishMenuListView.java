@@ -111,7 +111,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
     private int mCurrentPosition;
     private boolean isUpdate = false;
     private Table mTable;
-    //1： 下单 2：加菜 3：点菜 4：拆单支付 5:支付页面
+    //1： 下单 2：加菜 3：点菜 4：拆单支付 5:支付页面 6:已结账
     private String settalType = "1";
     private int mPNum;
     private DiscountType mDiscountType = DiscountType.NULL;
@@ -172,6 +172,9 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
                         case "5":
                             setTable(mTable, isFjz);
                             mClickLister.gotoTable();
+                            break;
+                        case "6":
+                            mClickLister.onBackToTable();
                             break;
                     }
                 }
@@ -643,7 +646,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
                     mSettleTv.setText("加菜");
                     mSettleTv.setVisibility(View.VISIBLE);
                     mSelltalAccountTv.setText(mTable.getLocal_status());
-                    settalType = "2";
+                    settalType = "6";
                     mDeleteImg.setVisibility(View.GONE);
                     mSelltalAccountTv.setVisibility(AppUtil.isOrderDishes(getContext()) ? View.GONE : View.VISIBLE);
                     if (AppUtil.isOrderDishes(getContext())) {
