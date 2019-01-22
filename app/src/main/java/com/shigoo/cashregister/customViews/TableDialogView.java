@@ -107,7 +107,6 @@ public class TableDialogView extends MvpCustomView<TableDialogPresenter> impleme
     @Override
     protected void onInitView(Context context, View rootView) {
         ButterKnife.bind(this, rootView);
-        EventBus.getDefault().register(this);
         mChedanRecyclerView.setLayoutManager(new GridLayoutManager(context, 2));
         mGaijiaRecyclerView.setLayoutManager(new GridLayoutManager(context, 2));
         mDazheRecyclerView.setLayoutManager(new GridLayoutManager(context, 2));
@@ -250,7 +249,7 @@ public class TableDialogView extends MvpCustomView<TableDialogPresenter> impleme
                             , Param.Keys.id, mCurrentDishes.getId() + ""
                             , Param.Keys.REPRICER_ID, getUser().getCashier_id(),
                             Param.Keys.REPRICE_REASON, mGaijiaAdapter.getReason(),
-                            Param.Keys.FINALLY_PRICE, mGaijiaEdite.getText().toString(),Param.Keys.FINALLY_TAG,"3");
+                            Param.Keys.FINALLY_PRICE, mGaijiaEdite.getText().toString(), Param.Keys.FINALLY_TAG, "3");
                 } else {
                     showToast("请输入价格");
                 }
@@ -261,7 +260,7 @@ public class TableDialogView extends MvpCustomView<TableDialogPresenter> impleme
                             Param.Keys.id, mCurrentDishes.getId() + "",
                             Param.Keys.REDISCOUNT_ID, getUser().getCashier_id(),
                             Param.Keys.RE_DISCOUNT, mZheKouEdite.getText().toString(),
-                            Param.Keys.RE_DISCOUNT_REASON, mDazheAdapter.getReason(),Param.Keys.FINALLY_TAG,"4",
+                            Param.Keys.RE_DISCOUNT_REASON, mDazheAdapter.getReason(), Param.Keys.FINALLY_TAG, "4",
                             Param.Keys.FINALLY_PRICE, mDiscountPriceTv.getText().toString().replace(Param.Keys.RMB, ""));
                 } else {
                     showToast("请输入折扣");
@@ -293,7 +292,6 @@ public class TableDialogView extends MvpCustomView<TableDialogPresenter> impleme
 
     }
 
-    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onEvent(final EventRouter eventRouter) {
         //备注类型1表示单品备注，2表示整单备注，3退菜备注，4改价备注，5打折备注，6撤单备注，8反结账原因
         switch (eventRouter.getAction()) {
@@ -353,9 +351,5 @@ public class TableDialogView extends MvpCustomView<TableDialogPresenter> impleme
                 getView().setVisibility(View.GONE);
                 break;
         }
-    }
-
-    public void onDestory() {
-        EventBus.getDefault().unregister(this);
     }
 }

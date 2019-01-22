@@ -71,12 +71,9 @@ public class TableFragment extends MvpFragment<TablePresenter> implements TableC
     TableBottomListAdapter mBottomAdapter;
     @BindView(R.id.ordersheet_swiprefresh_layout)
     SwipeRefreshLayout refreshLayout;
-    @BindView(R.id.dialog_root_layout)
-    FrameLayout mDialogRootLayout;
 
     TableListAdapter mAdapter;
     TableAreaListAdapter mAreaAdapter;
-    TableDialogView mDialogView;
     private List<TableArea> mAreaList = new ArrayList<>();
     private List<Table> mList = new ArrayList<>();
     private List<Table> mKxList = new ArrayList<>();
@@ -114,7 +111,6 @@ public class TableFragment extends MvpFragment<TablePresenter> implements TableC
     protected void onCreateView(View view, Bundle argment) {
         ButterKnife.bind(this, view);
         refreshLayout.setOnRefreshListener(this);
-        mDialogView = new TableDialogView(getContext(), mDialogRootLayout);
         mAreaAdapter = new TableAreaListAdapter(R.layout.ordersheet_table_area_item_layout, mAreaList);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -124,9 +120,6 @@ public class TableFragment extends MvpFragment<TablePresenter> implements TableC
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                if (mDialogRootLayout.getVisibility() == View.VISIBLE) {
-                    return;
-                }
                 Table table = mAdapter.getData().get(position);
                 if (table.isAssembleTable()) {
                     Intent intent = new Intent(getActivity(), AssembleTablesActivity.class);
@@ -359,11 +352,5 @@ public class TableFragment extends MvpFragment<TablePresenter> implements TableC
     public void onRefresh() {
         super.onRefresh();
         mPresenter.getTableList(Param.Keys.TOKEN, getToken());
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        mDialogView.onDestory();
     }
 }

@@ -14,6 +14,7 @@ import com.aspsine.fragmentnavigator.FragmentNavigatorAdapter;
 import com.shigoo.cashregister.R;
 import com.shigoo.cashregister.activitys.RouterActivity;
 import com.shigoo.cashregister.customViews.OrderDishMenuListView;
+import com.shigoo.cashregister.customViews.TableDialogView;
 import com.shigoo.cashregister.customViews.viewChildClick.OrderListViewBriage;
 import com.xgsb.datafactory.bean.Billbean;
 import com.xgsb.datafactory.bean.Dishesbean;
@@ -48,6 +49,9 @@ public class TableMainFragment extends BaseFragment implements OrderListViewBria
     FrameLayout mRightLayout;
     OrderDishMenuListView mDishesView;
     private FragmentNavigator mFragmentNavigator;
+    @BindView(R.id.dialog_root_layout)
+    FrameLayout mDialogRootLayout;
+    TableDialogView mDialogView;
 
     public static TableMainFragment newInstance() {
         TableMainFragment fragment = new TableMainFragment();
@@ -72,6 +76,13 @@ public class TableMainFragment extends BaseFragment implements OrderListViewBria
     protected void onCreateView(View view, Bundle argment) {
         ButterKnife.bind(this, view);
         EventBus.getDefault().register(this);
+        mDialogView = new TableDialogView(getContext(), mDialogRootLayout);
+        mDialogRootLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
         mDishesView = new OrderDishMenuListView(getContext(), mLeftLayout);
         mDishesView.setClickLister(this);
         mDishesView.setFormatClick(this);
@@ -309,11 +320,6 @@ public class TableMainFragment extends BaseFragment implements OrderListViewBria
     }
 
     @Override
-    public void onOrderListResult(Dishesbean dishesbean) {
-
-    }
-
-    @Override
     public void onCopyDishes(final String billCode) {
         mFragmentNavigator.showFragment(2);
         mHandler.postDelayed(new Runnable() {
@@ -403,22 +409,22 @@ public class TableMainFragment extends BaseFragment implements OrderListViewBria
 
     @Override
     public void onReturnDishes(Dishesbean dishesbean) {
-
+        mDialogView.onEvent(new EventRouter(EventBusAction.TUI_CAI, dishesbean));
     }
 
     @Override
     public void onChanagePrice(Dishesbean dishesbean) {
-
+        mDialogView.onEvent(new EventRouter(EventBusAction.GAI_JIA, dishesbean));
     }
 
     @Override
     public void onDiscount(Dishesbean dishesbean) {
-
+        mDialogView.onEvent(new EventRouter(EventBusAction.DA_ZHE, dishesbean));
     }
 
     @Override
     public void onChedan(String billCode) {
-
+        mDialogView.onEvent(new EventRouter(EventBusAction.CHE_DAN, billCode));
     }
 
     @Override

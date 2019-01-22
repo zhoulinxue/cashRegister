@@ -11,10 +11,22 @@
         android:layout_weight="2.5"
         android:background="@drawable/ordersheet_table_left_bg" />
 
-    <FrameLayout
-        android:id="@id/ordersheet_table_right_container"
+    <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="5"
-        android:background="@drawable/ordersheet_table_left_bg" />
+        android:background="@drawable/ordersheet_table_left_bg">
+
+        <FrameLayout
+            android:id="@id/ordersheet_table_right_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <FrameLayout
+            android:id="@id/dialog_root_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+    </RelativeLayout>
+
 </LinearLayout>

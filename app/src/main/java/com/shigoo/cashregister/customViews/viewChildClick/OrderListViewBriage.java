@@ -15,8 +15,6 @@ public class OrderListViewBriage {
 
         public void onDishesDetail(Dishesbean dishesbean);
 
-        public void onOrderListResult(Dishesbean dishesbean);
-
         public void onCopyDishes(String billCode);
 
         void onBacktoMain();
