@@ -2,6 +2,7 @@ package com.shigoo.cashregister.adapters;
 
 import android.graphics.Color;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.shigoo.cashregister.App;
@@ -14,6 +15,7 @@ import com.zx.api.api.utils.AppLog;
 import com.zx.api.api.utils.AppUtil;
 import com.zx.api.api.utils.SPUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MenuDishesListAdapter extends BaseQuickAdapter<Dishesbean, MenuListHoldView> {
@@ -89,6 +91,16 @@ public class MenuDishesListAdapter extends BaseQuickAdapter<Dishesbean, MenuList
             }
         }
         return restPrice;
+    }
+
+    public List<Dishesbean> gotoPayedList() {
+        List<Dishesbean> list=new ArrayList<>();
+        for(Dishesbean dishesbean:getData()){
+            if("0".equals(dishesbean.getPay_tag())||TextUtils.isEmpty(dishesbean.getPay_tag())){
+                list.add(dishesbean);
+            }
+        }
+        return list;
     }
 
     public interface onItemSelected {

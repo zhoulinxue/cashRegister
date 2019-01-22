@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.shigoo.cashregister.R;
@@ -352,7 +353,6 @@ public class SettalFragment extends MvpFragment<SettalPresenter> implements Sett
         for (Dishesbean dishesbean : dishesbeans) {
             switch (dishesbean.getMinFavorable().getName()) {
                 case "优惠-时段价":
-                    AppLog.print("原价 " + AppUtil.getFloatFromString(dishesbean.getMaxFavorable().getMoney()).floatValue() + "  优惠价  " + AppUtil.getFloatFromString(dishesbean.getMinFavorable().getMoney()).floatValue());
                     timeMoney += AppUtil.getFloatFromString(dishesbean.getMaxFavorable().getMoney()).floatValue() - AppUtil.getFloatFromString(dishesbean.getMinFavorable().getMoney()).floatValue();
                     break;
                 case "会员价优惠":
@@ -373,7 +373,6 @@ public class SettalFragment extends MvpFragment<SettalPresenter> implements Sett
                     currentMoney += AppUtil.getFloatFromString(dishesbean.getMaxFavorable().getMoney()).floatValue() - AppUtil.getFloatFromString(dishesbean.getMinFavorable().getMoney()).floatValue();
                 }
             }
-            AppLog.print(mFavorablebean.getFavorable_name() + " " + currentMoney);
             if (currentMoney != 0) {
                 AddFavorablebean addFavorablebean = new AddFavorablebean();
                 addFavorablebean.setName(mFavorablebean.getFavorable_name());
@@ -388,7 +387,6 @@ public class SettalFragment extends MvpFragment<SettalPresenter> implements Sett
             }
         }
         if (timeMoney != 0) {
-            AppLog.print("时段价优惠  " + timeMoney);
             AddFavorablebean addFavorablebean = new AddFavorablebean();
             addFavorablebean.setName("优惠-时段价");
             addFavorablebean.setMoney(timeMoney + "");

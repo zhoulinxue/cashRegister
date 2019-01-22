@@ -175,6 +175,7 @@ public class MemberListFragement extends MvpFragment<MemberManagePresenter> impl
     @Override
     public void onRefresh() {
         super.onRefresh();
+        mWebCahrtView.refresh("refresh");
         onInitData(null);
     }
 
@@ -256,7 +257,6 @@ public class MemberListFragement extends MvpFragment<MemberManagePresenter> impl
 
     @Override
     public void operateHandle(Request request) {
-        AppLog.print("request" + JSONManager.getInstance().toJson(request));
         String operate = request.getParams().optString("method");
         switch (operate) {
             case "充值":
@@ -275,6 +275,8 @@ public class MemberListFragement extends MvpFragment<MemberManagePresenter> impl
         this.request = request;
         if (!TextUtils.isEmpty(mMemberHeaderView.getKey())) {
             mPresenter.searchMembers(Param.Keys.TOKEN, getToken(), Param.Keys.DATA, mMemberHeaderView.getKey(), Param.Keys.PAGE, page + "");
+        }else {
+            onInitData(null);
         }
     }
 
@@ -349,7 +351,6 @@ public class MemberListFragement extends MvpFragment<MemberManagePresenter> impl
 
     @Override
     public boolean onBackPress() {
-        AppLog.print("mSearchDialog");
         if (mSearchDialog != null && mSearchDialog.isShowing()) {
             mSearchDialog.dismiss();
             return true;

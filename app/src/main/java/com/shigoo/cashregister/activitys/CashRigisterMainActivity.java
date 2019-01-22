@@ -258,7 +258,6 @@ public class CashRigisterMainActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        AppLog.print("onBackPressed" + (mFragmentNavigator.getCurrentFragment() instanceof BaseFragment));
         if (mFragmentNavigator.getCurrentFragment() instanceof BaseFragment) {
             if (((BaseFragment) mFragmentNavigator.getCurrentFragment()).onBackPress()) {
                 return;

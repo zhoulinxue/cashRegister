@@ -320,9 +320,11 @@ public class TableFragment extends MvpFragment<TablePresenter> implements TableC
     }
 
     private Billbean getMainBill(Table table) {
-        for (Billbean billbean : table.getBill()) {
-            if ("1".equals(billbean.getBill_tag())) {
-                return billbean;
+        if(table.getBill()!=null) {
+            for (Billbean billbean : table.getBill()) {
+                if ("1".equals(billbean.getBill_tag())) {
+                    return billbean;
+                }
             }
         }
         return null;

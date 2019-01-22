@@ -176,7 +176,6 @@ public class PayMemberLoginActivity extends MvpActivity<MemberDetailPresenter> i
         if (!"0".equals(mAdapter.getVoucher_money()) && !"null".equals(mAdapter.getVoucher_money()) && !TextUtils.isEmpty(mAdapter.getVoucher_money())) {
             finalMoney += AppUtil.getFloatFromString(mAdapter.getVoucher_money()).floatValue();
         }
-        AppLog.print(finalMoney + "!!!!");
         return finalMoney + "";
     }
 

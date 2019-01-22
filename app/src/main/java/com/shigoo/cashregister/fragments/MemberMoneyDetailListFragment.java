@@ -32,6 +32,7 @@ public class MemberMoneyDetailListFragment extends MvpFragment<ConsumePresenter>
     FrameLayout mWebContainer;
     WebChartView mWebChartView;
     private Request request;
+    private List<MemberMoney> mList;
 
     public static MemberMoneyDetailListFragment newInstance() {
         MemberMoneyDetailListFragment fragment = new MemberMoneyDetailListFragment();
@@ -47,6 +48,7 @@ public class MemberMoneyDetailListFragment extends MvpFragment<ConsumePresenter>
 
     @Override
     public void onMemberMoneyList(List<MemberMoney> list) {
+        mList = list;
         if (request != null) {
             String json = WebData.newInstance().getMemberMoney(list, mWebChartView.getWidth(), mWebChartView.getHight());
             mWebChartView.callback(request, json);
@@ -88,6 +90,10 @@ public class MemberMoneyDetailListFragment extends MvpFragment<ConsumePresenter>
     @Override
     public void getTableInfo(Request request) {
         this.request = request;
+        if (mList != null) {
+            String json = WebData.newInstance().getMemberMoney(mList, mWebChartView.getWidth(), mWebChartView.getHight());
+            mWebChartView.callback(request, json);
+        }
     }
 
     @Override

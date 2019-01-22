@@ -274,6 +274,7 @@ public class ApiManager {
         Observable<NetBean<Member>> observable = mApiService.getMember(genrateMap(params));
         return new OkHttpRequest<Member>(observable, memberCallback);
     }
+
     /**
      * 根据卡号、手机号 查询用户信息  精确查询
      *
@@ -593,6 +594,7 @@ public class ApiManager {
 
     /**
      * 结账
+     *
      * @param addPayment
      * @param payOrderCallback
      * @return
@@ -604,6 +606,7 @@ public class ApiManager {
 
     /**
      * 撤单
+     *
      * @param chedanbean
      * @param cancelOrderCallback
      * @return
@@ -615,7 +618,6 @@ public class ApiManager {
     }
 
     /**
-     *
      * @param params
      * @param cancelResonCallback
      * @return
@@ -626,7 +628,6 @@ public class ApiManager {
     }
 
     /**
-     *
      * @param fanJZbean
      * @param fanjzResonCallback
      * @return
@@ -637,7 +638,8 @@ public class ApiManager {
     }
 
     /**
-     *改价
+     * 改价
+     *
      * @param params
      * @param rePriceCallback
      * @return
@@ -648,7 +650,8 @@ public class ApiManager {
     }
 
     /**
-     *  退菜
+     * 退菜
+     *
      * @param params
      * @param returnDisheCallback
      * @return
@@ -660,6 +663,7 @@ public class ApiManager {
 
     /**
      * 打折
+     *
      * @param params
      * @param discountPriceCallback
      * @return
@@ -670,13 +674,14 @@ public class ApiManager {
     }
 
     /**
-     *  获取 会员消费详情
+     * 获取 会员消费详情
+     *
      * @param params
      * @param moneyListCallback
      * @return
      */
-    public NetRequest getMemberMoneyDetail(String[] params, NetRequestCallBack<List<MemberMoney>> moneyListCallback) {
-        Observable<NetBean<List<MemberMoney>>> observable = mApiService.memberMoneyDetail(genrateMap(params));
-        return new OkHttpRequest<List<MemberMoney>>(observable, moneyListCallback);
+    public NetRequest getMemberMoneyDetail(String[] params, NetRequestCallBack<ListData<MemberMoney>> moneyListCallback) {
+        Observable<NetBean<ListData<MemberMoney>>> observable = mApiService.memberMoneyDetail(genrateMap(params));
+        return new OkHttpRequest<ListData<MemberMoney>>(observable, moneyListCallback);
     }
 }

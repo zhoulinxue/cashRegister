@@ -1,14 +1,19 @@
 package com.shigoo.cashregister.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.aspsine.fragmentnavigator.FragmentNavigator;
 import com.aspsine.fragmentnavigator.FragmentNavigatorAdapter;
 import com.shigoo.cashregister.R;
+import com.shigoo.cashregister.activitys.RouterActivity;
 import com.shigoo.cashregister.customViews.OrderDishMenuListView;
+import com.shigoo.cashregister.customViews.viewChildClick.OrderListViewBriage;
 import com.xgsb.datafactory.bean.Billbean;
 import com.xgsb.datafactory.bean.Dishesbean;
 import com.xgsb.datafactory.bean.EventRouter;
@@ -19,7 +24,11 @@ import com.xgsb.datafactory.bean.SettalOrderResultbean;
 import com.xgsb.datafactory.bean.SettalOrderbean;
 import com.xgsb.datafactory.bean.Table;
 import com.xgsb.datafactory.enu.DiscountType;
+import com.xgsb.datafactory.enu.EventBusAction;
+import com.zx.api.api.utils.AppUtil;
+import com.zx.api.api.utils.SPUtil;
 import com.zx.mvplibrary.BaseFragment;
+import com.zx.network.Param;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -31,7 +40,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TableMainFragment extends BaseFragment {
+public class TableMainFragment extends BaseFragment implements OrderListViewBriage.onOrderViewClick {
     @BindView(R.id.ordersheet_table_left_container)
     FrameLayout mLeftLayout;
     @BindView(R.id.ordersheet_table_right_container)
@@ -63,6 +72,7 @@ public class TableMainFragment extends BaseFragment {
         ButterKnife.bind(this, view);
         EventBus.getDefault().register(this);
         mDishesView = new OrderDishMenuListView(getContext(), mLeftLayout);
+        mDishesView.setClickLister(this);
         fragments.add(TableFragment.newInstance());
         fragments.add(DishesListFragment.newInstance());
         fragments.add(CopyDishesFragment.newInstance());
@@ -83,13 +93,20 @@ public class TableMainFragment extends BaseFragment {
                 return fragments.size();
             }
         }, R.id.ordersheet_table_right_container);
+
+    }
+
+    @Override
+    protected void onInitData(Bundle savedInstanceState) {
+        mFragmentNavigator.onCreate(savedInstanceState);
         mFragmentNavigator.setDefaultPosition(0);
         mFragmentNavigator.showFragment(0);
     }
 
     @Override
-    protected void onInitData(Bundle savedInstanceState) {
-
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mFragmentNavigator.onSaveInstanceState(outState);
     }
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
@@ -171,6 +188,7 @@ public class TableMainFragment extends BaseFragment {
                 break;
             case BACK_TO_MAIN:
                 mFragmentNavigator.showFragment(0);
+                mDishesView.setTable(null, false);
                 break;
             case SHOW_TABLE_MAIN:
                 mFragmentNavigator.showFragment(0);
@@ -187,7 +205,6 @@ public class TableMainFragment extends BaseFragment {
                         ((CopyDishesFragment) copyFragment).setBillCode(eventRouter.getData() + "");
                     }
                 }, 500);
-
                 break;
             case COPY_SUC:
                 mDishesView.onOrderDishesListResult((SettalOrderResultbean) eventRouter.getData());
@@ -257,5 +274,128 @@ public class TableMainFragment extends BaseFragment {
 
     public void fanjiezhang(Table table) {
         mDishesView.fanjiezhang(table);
+    }
+
+    @Override
+    public void onBackToTable() {
+        gotoTable();
+        mDishesView.setTable(null, false);
+    }
+
+    @Override
+    public void gotoTable() {
+        //切换到tablFragment
+        mFragmentNavigator.showFragment(0);
+    }
+
+    @Override
+    public void onPayBtn(final SettalOrderbean orderbean) {
+        mFragmentNavigator.showFragment(3);
+        onPayDataChanage(orderbean);
+    }
+
+    @Override
+    public void onDishesDetail(Dishesbean dishesbean) {
+        Fragment cdetailfragment = mFragmentNavigator.getCurrentFragment();
+        if (cdetailfragment instanceof DishesListFragment) {
+            if (dishesbean.isSelMeal()) {
+                ((DishesListFragment) cdetailfragment).childDishbeanDetail(dishesbean.getMealGroupbean());
+            } else {
+                ((DishesListFragment) cdetailfragment).dishbeanDetail(dishesbean);
+            }
+        }
+    }
+
+    @Override
+    public void onOrderListResult(Dishesbean dishesbean) {
+
+    }
+
+    @Override
+    public void onCopyDishes(final String billCode) {
+        mFragmentNavigator.showFragment(2);
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Fragment copyFragment = mFragmentNavigator.getFragment(2);
+                ((CopyDishesFragment) copyFragment).setBillCode(billCode);
+            }
+        }, 500);
+    }
+
+    @Override
+    public void onBacktoMain() {
+        if (AppUtil.isOrderDishes(getContext())) {
+            //点单机 退到登录 点单首页
+            SPUtil.getInstance().putString(Param.Keys.TOKEN, "");
+            Intent intent = new Intent(getContext(), RouterActivity.class);
+            intent.setAction(EventBusAction.MAIN.getAction());
+            startActivity(intent);
+        } else {
+            //收银机 打开或者关闭 侧边按钮
+            EventBus.getDefault().post(new EventRouter(EventBusAction.TABLE_BACK));
+        }
+    }
+
+    @Override
+    public void gotoDishesList() {
+        mFragmentNavigator.showFragment(1);
+    }
+
+    @Override
+    public void onPayDataChanage(final SettalOrderbean payOrder) {
+        mHandler.removeCallbacks(null);
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Fragment fragment = mFragmentNavigator.getCurrentFragment();
+                if (fragment instanceof SettalFragment) {
+                    ((SettalFragment) fragment).onSettale(payOrder);
+                }
+            }
+        }, 300);
+    }
+
+    @Override
+    public void updateDishesNum(Dishesbean number) {
+        Fragment updatefragment = mFragmentNavigator.getFragment(1);
+        if (updatefragment != null) {
+            ((DishesListFragment) updatefragment).updateTotalNum(number);
+        }
+    }
+
+    @Override
+    public void onClickRemarkBtn(Dishesbean current) {
+        Fragment remarkfragment = mFragmentNavigator.getCurrentFragment();
+        if (remarkfragment instanceof DishesListFragment) {
+            ((DishesListFragment) remarkfragment).onRemarkClick(current);
+        }
+    }
+
+    @Override
+    public void deleteItem(Dishesbean totalNum) {
+        Fragment deletefragment = mFragmentNavigator.getCurrentFragment();
+        if (deletefragment instanceof DishesListFragment) {
+            ((DishesListFragment) deletefragment).delete(totalNum);
+        }
+    }
+
+    @Override
+    public void onCleanDemolition() {
+        SettalFragment cfragment = (SettalFragment) mFragmentNavigator.getFragment(3);
+        cfragment.onDemolition(1);
+    }
+
+    @Override
+    public void demolition() {
+        SettalFragment fragment = (SettalFragment) mFragmentNavigator.getFragment(3);
+        fragment.onDemolition(0);
+    }
+
+    @Override
+    public void cancelDemolition() {
+        SettalFragment dfragment = (SettalFragment) mFragmentNavigator.getFragment(3);
+        dfragment.onDemolition(2);
+        mDishesView.cancelDemolition();
     }
 }

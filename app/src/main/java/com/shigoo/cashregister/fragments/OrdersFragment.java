@@ -93,7 +93,6 @@ public class OrdersFragment extends BaseFragment implements onOperateLisenter {
     @Override
     public void currentPage(Request request) {
         mCurrentPage = request.getParams().optString("page");
-        AppLog.print(mCurrentPage);
         if ("order".equals(mCurrentPage)) {
             mBottomLayout.setVisibility(View.GONE);
         } else if ("orderDetails".equals(mCurrentPage)) {

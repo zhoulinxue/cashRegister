@@ -354,5 +354,5 @@ public interface ApiServer {
 
     @FormUrlEncoded
     @POST("/reserve/reserve/MemberMoneyInfoDetails")
-    Observable<NetBean<List<MemberMoney>>> memberMoneyDetail(@FieldMap Map<String, String> stringStringMap);
+    Observable<NetBean<ListData<MemberMoney>>> memberMoneyDetail(@FieldMap Map<String, String> stringStringMap);
 }

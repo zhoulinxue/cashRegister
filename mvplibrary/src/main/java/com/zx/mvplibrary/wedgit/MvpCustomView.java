@@ -105,7 +105,6 @@ public abstract class MvpCustomView<P extends BasePresenter> extends BaseCustomV
     }
     public User getUser(){
         if (getContext() instanceof BaseActivity) {
-            AppLog.print(((BaseActivity) getContext()).getToken()+"  token");
             return ((BaseActivity) getContext()).getUser();
         }
         return null;
@@ -114,7 +113,6 @@ public abstract class MvpCustomView<P extends BasePresenter> extends BaseCustomV
     @Override
     public String getToken() {
         if (getContext() instanceof BaseActivity) {
-            AppLog.print(((BaseActivity) getContext()).getToken()+"  token");
             return ((BaseActivity) getContext()).getToken();
         }
         return "";

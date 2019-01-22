@@ -132,7 +132,6 @@ public class ConsumeDetailFragment extends MvpFragment<ConsumePresenter> impleme
                 mHeader.setQueryNum(consumeListData.getData().size());
                 mHeader.setNum(consumeListData);
                 String json = WebData.newInstance().getConsumeListData(consumeListData.getData(), mWebCahrtView.getWidth(), mWebCahrtView.getHight());
-                AppLog.print("onGetConsumeListCallback" + json);
                 mWebCahrtView.callback(mRequest, json);
             }
         }

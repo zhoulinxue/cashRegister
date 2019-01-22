@@ -308,7 +308,6 @@ public class DishesListFragment extends MvpFragment<DishesListPresenter> impleme
         mFormatLayout.setVisibility(View.GONE);
         mRemarkLayout.setVisibility(View.GONE);
         mSetMealDetailLayout.setVisibility(View.VISIBLE);
-        mDishesListView.setVisibility(View.GONE);
     }
 
     @Override
@@ -439,11 +438,16 @@ public class DishesListFragment extends MvpFragment<DishesListPresenter> impleme
     public void updateTotalNum(Dishesbean data) {
         for (int a = 0; a < mAdapter.getData().size(); a++) {
             Dishesbean dishesbean = mAdapter.getData().get(a);
-            if (("2".equals(dishesbean.getDish_tag()) && dishesbean.getId() == data.getId())
-                    || ("1".equals(dishesbean.getDish_tag()) && dishesbean.getCombo_id().equals(data.getCombo_id()))) {
+            if (dishesbean.isSelMeal() && data.isSelMeal() && dishesbean.getCombo_id().equals(data.getCombo_id()) ||
+                    !dishesbean.isSelMeal() && !data.isSelMeal() && dishesbean.getId() == data.getId()) {
                 dishesbean.setTotal_local_num(data.getTotal_local_num());
                 mAdapter.notifyItemChanged(a);
             }
+//            if (("2".equals(dishesbean.getDish_tag()) && dishesbean.getId() == data.getId())
+//                    || ("1".equals(dishesbean.getDish_tag()) && dishesbean.getCombo_id().equals(data.getCombo_id()))) {
+//                dishesbean.setTotal_local_num(data.getTotal_local_num());
+//                mAdapter.notifyItemChanged(a);
+//            }
         }
     }
 

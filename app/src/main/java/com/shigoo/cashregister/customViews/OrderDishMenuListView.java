@@ -19,13 +19,13 @@ import com.shigoo.cashregister.R;
 import com.shigoo.cashregister.activitys.NumberInputActivity;
 import com.shigoo.cashregister.adapters.MenuDishesListAdapter;
 import com.shigoo.cashregister.adapters.OrderPayListAdapter;
+import com.shigoo.cashregister.customViews.viewChildClick.OrderListViewBriage;
 import com.shigoo.cashregister.mvp.contacts.MenuDishesListContact;
 import com.shigoo.cashregister.mvp.presenter.OrderDishesPresenter;
 import com.shigoo.cashregister.utils.DishesUtils;
 import com.xgsb.datafactory.bean.Billbean;
 import com.xgsb.datafactory.bean.ComboData;
 import com.xgsb.datafactory.bean.Dishesbean;
-import com.xgsb.datafactory.bean.EventRouter;
 import com.xgsb.datafactory.bean.Numberbean;
 import com.xgsb.datafactory.bean.OrderPayStatusbean;
 import com.xgsb.datafactory.bean.Paybean;
@@ -36,14 +36,9 @@ import com.xgsb.datafactory.bean.SettalOrderResultbean;
 import com.xgsb.datafactory.bean.SettalOrderbean;
 import com.xgsb.datafactory.bean.Table;
 import com.xgsb.datafactory.enu.DiscountType;
-import com.xgsb.datafactory.enu.EventBusAction;
-import com.zx.api.api.utils.AppLog;
 import com.zx.api.api.utils.AppUtil;
-import com.zx.api.api.utils.SPUtil;
 import com.zx.mvplibrary.wedgit.MvpCustomView;
 import com.zx.network.Param;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -115,12 +110,14 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
     private int mCurrentPosition;
     private boolean isUpdate = false;
     private Table mTable;
+    //1： 下单 2：加菜 3：点菜 4：拆单支付 5:支付页面
     private String settalType = "1";
     private int mPNum;
     private DiscountType mDiscountType = DiscountType.NULL;
     float finalyPrice = 0f;
     float salePrice = 0f;
     private boolean isFjz = false;
+    private OrderListViewBriage.onOrderViewClick mClickLister;
 
 
     public OrderDishMenuListView(Context context, ViewGroup rootGroup) {
@@ -161,25 +158,20 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
                 mMenuList.setAdapter(mPayListAdapter);
                 break;
             case R.id.ordersheet_table_left_back_img:
-                if (mTable != null) {
-                    if ("拆单支付".equals(mSelltalAccountTv.getText().toString()) || "取消拆单支付".equals(mSelltalAccountTv.getText().toString())) {
-                        setTable(mTable, isFjz);
-                        EventBus.getDefault().post(new EventRouter(EventBusAction.BACK_TO_MAIN));
-                        return;
-                    }
-                    if ("2".equals(settalType)) {
-                        setTable(mTable, isFjz);
-                        EventBus.getDefault().post(new EventRouter(EventBusAction.BACK_TO_MAIN));
-                        return;
-                    }
-                    EventBus.getDefault().post(new EventRouter(EventBusAction.BACK_TO_MAIN));
-                    setTable(mTable, isFjz);
+                if (mTable == null) {
+                    mClickLister.onBacktoMain();
                 } else {
-                    if (AppUtil.isOrderDishes(getContext())) {
-                        SPUtil.getInstance().putString(Param.Keys.TOKEN, "");
-                        EventBus.getDefault().post(EventBusAction.MAIN);
-                    } else {
-                        EventBus.getDefault().post(new EventRouter(EventBusAction.TABLE_BACK));
+                    switch (settalType) {
+                        case "1":
+                        case "3":
+                            mClickLister.onBackToTable();
+                            break;
+                        case "2":
+                        case "4":
+                        case "5":
+                            setTable(mTable, isFjz);
+                            mClickLister.gotoTable();
+                            break;
                     }
                 }
                 break;
@@ -193,7 +185,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
                     mMenuListAdapter.setNewData(mDishList);
                     mSelltalAccountTv.setVisibility(View.GONE);
                     setDiscountType(DiscountType.NULL);
-                    EventBus.getDefault().post(new EventRouter(EventBusAction.DISHES_LIST));
+                    gotoDishesList();
                 } else if ("下单".equals(mSettleTv.getText().toString())) {
                     SettalOrderbean settalOrderbean = new SettalOrderbean();
                     settalOrderbean.setBill_code(mBillbean.getBill_code());
@@ -206,7 +198,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
                 } else {
                     List<Dishesbean> dishesbeans = new ArrayList<>();
                     mMenuListAdapter.setNewData(dishesbeans);
-                    EventBus.getDefault().post(new EventRouter(EventBusAction.CLEAN_DEMOLITION));
+                    mClickLister.onCleanDemolition();
                 }
                 break;
             case R.id.ordersheet_table_left_delete_img:
@@ -226,28 +218,45 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
                     showToast("已结账");
                     gotopayFragmnet();
                 } else if ("拆单支付".equals(mSelltalAccountTv.getText().toString())) {
+                    settalType = "4";
                     List<Dishesbean> dishesbeans = new ArrayList<>();
                     mMenuListAdapter.setNewData(dishesbeans);
                     mLeftFormatLayout.setVisibility(View.GONE);
                     mSelltalAccountTv.setText("取消拆单支付");
                     mSettleTv.setVisibility(View.VISIBLE);
                     mSettleTv.setText("清空拆单支付");
-                    EventBus.getDefault().post(new EventRouter(EventBusAction.DEMOLITION));
+                    mClickLister.demolition();
                 } else {
-                    EventBus.getDefault().post(new EventRouter(EventBusAction.CANCEL_DEMOLITION));
+                    mClickLister.cancelDemolition();
                 }
                 break;
         }
 
     }
 
-    private void gotopayFragmnet() {
-        mSelltalAccountTv.setText("拆单支付");
-        mSettleTv.setVisibility(View.GONE);
-        payFragment();
+    /**
+     * 显示 菜单列表界面
+     */
+    private void gotoDishesList() {
+        mClickLister.gotoDishesList();
+        for(Dishesbean dishesbean:mMenuListAdapter.getData()){
+            mClickLister.updateDishesNum(dishesbean);
+        }
     }
 
-    private void payFragment() {
+    /**
+     * 显示支付页面
+     */
+    private void gotopayFragmnet() {
+        settalType = "5";
+        List<Dishesbean> noPayeds = mMenuListAdapter.gotoPayedList();
+        mMenuListAdapter.setNewData(noPayeds);
+        mSelltalAccountTv.setText("拆单支付");
+        mSettleTv.setVisibility(View.GONE);
+        mClickLister.onPayBtn(getPayOrder());
+    }
+
+    private SettalOrderbean getPayOrder() {
         mDishList = mMenuListAdapter.getData();
         SettalOrderbean orderbean = new SettalOrderbean();
         orderbean.setDishes(mDishList);
@@ -256,13 +265,12 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
         orderbean.setFinalyPrice(finalyPrice);
         orderbean.setDiscountType(mDiscountType);
         orderbean.setRestPrice(mMenuListAdapter.getRestPrice());
-        EventBus.getDefault().post(new EventRouter(EventBusAction.SETTAL_ORDER, orderbean));
+        return orderbean;
     }
 
     private List<SettalItem> getSettalItem(List<Dishesbean> data) {
         List<SettalItem> itemCommit = new ArrayList<>();
         for (Dishesbean dishesbean : data) {
-            AppLog.print(dishesbean.getMinFavorable().getName());
             SettalItem item = new SettalItem();
             item.setDish_qty(dishesbean.getLocal_num() + "");
             item.setDish_tag(dishesbean.getDish_tag());
@@ -334,20 +342,11 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
                 mMenuListAdapter.setCurrentPositon(position);
                 mCurrentPosition = position;
                 mCurrent = mMenuListAdapter.getData().get(position);
-                if ("2".equals(mCurrent.getDish_tag())) {
-                    onSelected(mCurrent);
-                } else {
-                    SetMealGroupbean groupbean = mCurrent.getMealGroupbean();
-                    EventBus.getDefault().post(new EventRouter(EventBusAction.CHILD_DETAIL, groupbean));
-                }
+                mClickLister.onDishesDetail(mCurrent);
             }
         });
         mOrderOldPriceTv.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         showBottomUi();
-    }
-
-    private void onSelected(Dishesbean current) {
-        EventBus.getDefault().post(new EventRouter(EventBusAction.DISHES_DETAIL, current));
     }
 
     private void showBottomUi() {
@@ -372,7 +371,8 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
     public void onOrderDishesListResult(SettalOrderResultbean dishesbeans) {
         if (dishesbeans == null || dishesbeans.getData() == null || dishesbeans.getData().size() == 0) {
             if ("已开台".equals(mTable.getLocal_status())) {
-                EventBus.getDefault().post(new EventRouter(EventBusAction.DISHES_LIST));
+                settalType = "3";
+                gotoDishesList();
                 mEmptyTv.setVisibility(View.VISIBLE);
             }
             mDishList.clear();
@@ -393,8 +393,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
             mMenuListAdapter.setNewData(mDishList);
             for (SettalItem item : dishesbeans.getData()) {
                 Dishesbean dishesbean = item.toDishesbean();
-                Dishesbean number = add(dishesbean);
-                EventBus.getDefault().post(new EventRouter(EventBusAction.DISHES_UPDATE_TOTAL_NUM, number));
+                add(dishesbean);
             }
             Collections.sort(mDishList);
             mMenuListAdapter.notifyDataSetChanged();
@@ -425,7 +424,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
         mTable.setLocal_status("已下单");
         setTable(mTable, false);
         mDeleteImg.setVisibility(View.GONE);
-        EventBus.getDefault().post(new EventRouter(EventBusAction.SHOW_TABLE_MAIN));
+        mClickLister.gotoTable();
         showToast(msg);
     }
 
@@ -485,12 +484,12 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
 
     @Override
     public void onFormatClick(Dishesbean current) {
-        onSelected(current);
+        mClickLister.onDishesDetail(current);
     }
 
     @Override
     public void onRemarkClick(Dishesbean current) {
-        EventBus.getDefault().post(new EventRouter(EventBusAction.DISHES_REMARK, current));
+        mClickLister.onClickRemarkBtn(current);
     }
 
     @Override
@@ -504,7 +503,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
         }
         mCurrent.setLocal_num(i);
         mMenuListAdapter.notifyItemChanged(mCurrentPosition);
-        EventBus.getDefault().post(new EventRouter(EventBusAction.DISHES_UPDATE_TOTAL_NUM, mMenuListAdapter.getTotalNum(mCurrentPosition)));
+        mClickLister.updateDishesNum(mMenuListAdapter.getTotalNum(mCurrentPosition));
     }
 
     @Override
@@ -525,7 +524,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
                 isEmpty = true;
                 clearnLeft();
             }
-            EventBus.getDefault().post(new EventRouter(EventBusAction.DISHES_DELETE, mMenuListAdapter.getTotalNum(current)));
+            mClickLister.deleteItem(mMenuListAdapter.getTotalNum(current));
         } else {
             showToast("未选中要删除的项目");
         }
@@ -535,7 +534,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
     @Override
     public void onCopy() {
         if (mBillbean != null && !TextUtils.isEmpty(mBillbean.getBill_code())) {
-            EventBus.getDefault().post(new EventRouter(EventBusAction.COPY, mBillbean.getBill_code()));
+            mClickLister.onCopyDishes( mBillbean.getBill_code());
         } else {
             showToast("没有订单号");
         }
@@ -571,9 +570,6 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
             mAlreadOrderPriceTv.setVisibility(View.VISIBLE);
         }
         mTotalNumTv.setText("共 " + (mMenuListAdapter.getData() == null ? 0 : mMenuListAdapter.getData().size()) + " 项");
-        if ("拆单支付".equals(mSelltalAccountTv.getText().toString()) || isFjz) {
-            payFragment();
-        }
     }
 
     public String setOrderRemark(List<Remarkbean> orderRemark) {
@@ -683,6 +679,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
         } else {
             setBillCode(null);
             mMenuListAdapter.notifyDataSetChanged();
+            mCasherLayout.setVisibility(View.GONE);
         }
     }
 
@@ -696,6 +693,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
             DishesUtils.fullFavorableList(dishesbean, mDiscountType, mBillbean.getBill_code());
         }
         mMenuListAdapter.notifyDataSetChanged();
+        mClickLister.onPayDataChanage(getPayOrder());
     }
 
     public void cancelDemolition() {
@@ -718,5 +716,9 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
         mSettleTv.setVisibility(View.GONE);
         mSelltalAccountTv.setText("拆单支付");
         mMenuListAdapter.notifyDataSetChanged();
+    }
+
+    public void setClickLister(OrderListViewBriage.onOrderViewClick clickLister) {
+        this.mClickLister = clickLister;
     }
 }

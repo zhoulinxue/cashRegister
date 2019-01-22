@@ -72,7 +72,6 @@ public class FanJZActivity extends MvpActivity<FanJZPresenter> implements FanJZC
         if (paybeans != null && paybeans.getList() != null && paybeans.getList().size() != 0) {
             mPayList.clear();
             for (Paybean paybean : paybeans.getList()) {
-                AppLog.print(paybean.getPay_tag() + "");
                 if ("1".equals(paybean.getPay_tag() + "")) {
                     mPayList.add(paybean);
                 }

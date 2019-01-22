@@ -2,6 +2,7 @@ package com.shigoo.cashregister.mvp.presenter;
 
 import com.shigoo.cashregister.mvp.contacts.ConsumeContact;
 import com.xgsb.datafactory.bean.ConsumeListData;
+import com.xgsb.datafactory.bean.ListData;
 import com.xgsb.datafactory.bean.MemberMoney;
 import com.zx.api.api.netWork.NetRequest;
 import com.zx.api.api.netWork.NetRequestCallBack;
@@ -51,11 +52,11 @@ public class ConsumePresenter extends BasePresenterImpl<ConsumeContact.view> imp
         addRequest(request);
     }
 
-    NetRequestCallBack<List<MemberMoney>> mMoneyListCallback = new NetRequestCallBack<List<MemberMoney>>() {
+    NetRequestCallBack<ListData<MemberMoney>> mMoneyListCallback = new NetRequestCallBack<ListData<MemberMoney>>() {
         @Override
-        public void onSuccess(List<MemberMoney> reChargebeanListData) {
+        public void onSuccess(ListData<MemberMoney> reChargebeanListData) {
             mView.dismissLoadingDiaog();
-            mView.onMemberMoneyList(reChargebeanListData);
+            mView.onMemberMoneyList(reChargebeanListData.getData());
         }
 
         @Override

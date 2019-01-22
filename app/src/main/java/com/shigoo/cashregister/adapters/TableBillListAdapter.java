@@ -20,7 +20,6 @@ public class TableBillListAdapter extends BaseQuickAdapter<Billbean, BillHoldVie
 
     @Override
     protected void convert(BillHoldView helper, Billbean item) {
-        AppLog.print(JSONManager.getInstance().toJson(item));
         if (mTable != null) {
             helper.setLower(mTable);
         }

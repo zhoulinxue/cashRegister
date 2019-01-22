@@ -151,7 +151,6 @@ public class SaleOutMainFragment extends MvpFragment<SaleOutMainListPresenter> i
         List<Dishesbean> list = new ArrayList<>();
         for (Dishesbean dishesbean : dishesbeans) {
             if ("2".equals(dishesbean.getDish_tag())) {
-                AppLog.print(JSONManager.getInstance().toJson(dishesbean));
                 for (Specifications specifications : dishesbean.getDishes()) {
                     try {
                         Dishesbean newdishes = (Dishesbean) dishesbean.clone();

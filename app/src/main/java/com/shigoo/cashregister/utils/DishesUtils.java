@@ -116,7 +116,6 @@ public class DishesUtils {
                     discount = AppUtil.getFloatFromString(dishesbean.getCurrentSp().getAll_discount()).floatValue() / 10;
                     //整单折扣
                     discountPrice = "" + dishesbean.getCurrentSp().getDiscountPrice();
-                    AppLog.print(dishesbean.getCurrentSp().getSale_price() + "!!!!!!!!!!!!" + discountPrice);
                 }
                 break;
             case WHOLE_TAG:
@@ -178,7 +177,6 @@ public class DishesUtils {
     }
 
     public static List<Float> calculaPrice(List<Dishesbean> dishesbeans) {
-        AppLog.print(dishesbeans.size() + "   未支付");
         float salePrice = 0f;
         float finalyPrice = 0f;
         float restPrice = 0f;
@@ -187,7 +185,7 @@ public class DishesUtils {
         for (Dishesbean dishesbean : dishesbeans) {
             salePrice += AppUtil.getFloatFromString(dishesbean.getMaxFavorable().getMoney()).floatValue();
             if ("0".equals(dishesbean.getPay_tag()) || TextUtils.isEmpty(dishesbean.getPay_tag())) {
-                AppLog.print(dishesbean.getDishes_name() + "   未支付");
+
                 restPrice += AppUtil.getFloatFromString(dishesbean.getShowPrice()).floatValue();
             } else if ("1".equals(dishesbean.getPay_tag())) {
                 alreadyPrice += AppUtil.getFloatFromString(dishesbean.getFinally_price()).floatValue();

@@ -252,7 +252,6 @@ public class Specifications implements Parcelable {
     public String getDiscountPrice() {
         if(1==getAll_flag()) {
             float pri=(AppUtil.getFloatFromString(getSale_price()).floatValue() * AppUtil.getFloatFromString(getAll_discount()).floatValue() / 100);
-            AppLog.print(getSale_price()+"整单优惠价格"+pri);
             return pri + "";
         }else {
             return  getSale_price();

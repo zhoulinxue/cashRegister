@@ -259,11 +259,11 @@ public class WebData<T> {
         data.setHight(hight + "");
         List<Column> columnList = new ArrayList<>();
         List<Operate> operateList = new ArrayList<>();
-        columnList.add(new Column("订单编号", "stocktake_date"));
-        columnList.add(new Column("时间", "station_number"));
-        columnList.add(new Column("动作", "dishes_name"));
-        columnList.add(new Column("金额(元)", "giving_price"));
-        columnList.add(new Column("余额(元)", "giving_number"));
+        columnList.add(new Column("订单编号", "order_id"));
+        columnList.add(new Column("时间", "create_time"));
+        columnList.add(new Column("动作", "action"));
+        columnList.add(new Column("金额(元)", "money"));
+        columnList.add(new Column("余额(元)", "money_count"));
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //        Operate operate = new Operate();
 //        operate.setName("查看详情");

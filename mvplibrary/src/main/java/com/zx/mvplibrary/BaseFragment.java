@@ -107,7 +107,6 @@ public abstract class BaseFragment extends Fragment implements BackHandler {
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        AppLog.print("onHiddenChanged   " + this.getClass().getSimpleName() + "   " + hidden + "__" + isInit);
         if (!hidden && isInit) {
             onRefresh();
         }
@@ -119,7 +118,6 @@ public abstract class BaseFragment extends Fragment implements BackHandler {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        AppLog.print("setUserVisibleHint" + isVisibleToUser);
     }
 
     @Override
