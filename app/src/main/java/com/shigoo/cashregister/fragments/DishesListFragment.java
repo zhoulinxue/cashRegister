@@ -310,12 +310,10 @@ public class DishesListFragment extends MvpFragment<DishesListPresenter> impleme
         mSetMealDetailLayout.setVisibility(View.VISIBLE);
     }
 
-    @Override
     public void onFormatClick(Dishesbean current) {
         select(current);
     }
 
-    @Override
     public void onRemarkClick(Dishesbean current) {
         mRemarkLayout.setVisibility(View.VISIBLE);
         mFormatLayout.setVisibility(View.GONE);
@@ -368,10 +366,6 @@ public class DishesListFragment extends MvpFragment<DishesListPresenter> impleme
         return isEmpty;
     }
 
-    @Override
-    public void onCopy() {
-
-    }
 
     @OnClick({R.id.ordersheet_sigle_layout, R.id.ordersheet_order_layout})
     public void onViewClick(View view) {
@@ -443,11 +437,6 @@ public class DishesListFragment extends MvpFragment<DishesListPresenter> impleme
                 dishesbean.setTotal_local_num(data.getTotal_local_num());
                 mAdapter.notifyItemChanged(a);
             }
-//            if (("2".equals(dishesbean.getDish_tag()) && dishesbean.getId() == data.getId())
-//                    || ("1".equals(dishesbean.getDish_tag()) && dishesbean.getCombo_id().equals(data.getCombo_id()))) {
-//                dishesbean.setTotal_local_num(data.getTotal_local_num());
-//                mAdapter.notifyItemChanged(a);
-//            }
         }
     }
 

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
@@ -40,7 +41,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TableMainFragment extends BaseFragment implements OrderListViewBriage.onOrderViewClick {
+public class TableMainFragment extends BaseFragment implements OrderListViewBriage.onOrderViewClick, OrderListViewBriage.onFormatChildClick {
     @BindView(R.id.ordersheet_table_left_container)
     FrameLayout mLeftLayout;
     @BindView(R.id.ordersheet_table_right_container)
@@ -73,6 +74,7 @@ public class TableMainFragment extends BaseFragment implements OrderListViewBria
         EventBus.getDefault().register(this);
         mDishesView = new OrderDishMenuListView(getContext(), mLeftLayout);
         mDishesView.setClickLister(this);
+        mDishesView.setFormatClick(this);
         fragments.add(TableFragment.newInstance());
         fragments.add(DishesListFragment.newInstance());
         fragments.add(CopyDishesFragment.newInstance());
@@ -397,5 +399,44 @@ public class TableMainFragment extends BaseFragment implements OrderListViewBria
         SettalFragment dfragment = (SettalFragment) mFragmentNavigator.getFragment(3);
         dfragment.onDemolition(2);
         mDishesView.cancelDemolition();
+    }
+
+    @Override
+    public void onReturnDishes(Dishesbean dishesbean) {
+
+    }
+
+    @Override
+    public void onChanagePrice(Dishesbean dishesbean) {
+
+    }
+
+    @Override
+    public void onDiscount(Dishesbean dishesbean) {
+
+    }
+
+    @Override
+    public void onChedan(String billCode) {
+
+    }
+
+    @Override
+    public void onFormatClick(Dishesbean dishesbean) {
+        onDishesDetail(dishesbean);
+    }
+
+    @Override
+    public void onCopy(Billbean mBillbean) {
+        if (mBillbean != null && !TextUtils.isEmpty(mBillbean.getBill_code())) {
+            onCopyDishes(mBillbean.getBill_code());
+        } else {
+            Toast.makeText(getContext(), "没有订单号", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onRemarkClick(Dishesbean mCurrent) {
+        onClickRemarkBtn(mCurrent);
     }
 }

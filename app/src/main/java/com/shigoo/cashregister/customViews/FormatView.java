@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.shigoo.cashregister.R;
+import com.shigoo.cashregister.customViews.viewChildClick.OrderListViewBriage;
 import com.xgsb.datafactory.bean.Billbean;
 import com.xgsb.datafactory.bean.Dishesbean;
 import com.xgsb.datafactory.bean.EventRouter;
@@ -40,9 +41,10 @@ public class FormatView extends BaseCustomView {
     TextView mCuicTv;
     @BindView(R.id.ordersheet_dishes_che_dan_btn)
     TextView mCheDanTv;
-    onButtonClick mClickLisenter;
     private Dishesbean mCurrent;
     private Billbean mBillbean;
+    onButtonClick mButtonLisenter;
+    private OrderListViewBriage.onFormatChildClick mFormatClick;
 
 
     public FormatView(Context context, ViewGroup rootGroup) {
@@ -92,8 +94,8 @@ public class FormatView extends BaseCustomView {
             R.id.ordersheet_dishes_gai_jia_btn})
     public void onViewClick(View view) {
         if (view.getId() == R.id.ordersheet_copy_tv) {
-            if (mClickLisenter != null) {
-                mClickLisenter.onCopy();
+            if (mFormatClick != null) {
+                mFormatClick.onCopy(mBillbean);
             }
             return;
         }
@@ -106,7 +108,7 @@ public class FormatView extends BaseCustomView {
                         return;
                     }
                     //退菜
-                    EventBus.getDefault().post(new EventRouter(EventBusAction.TUI_CAI, mCurrent));
+                    mFormatClick.onReturnDishes(mCurrent);
                 } else {
                     Toast.makeText(getContext(), "未选中菜品", Toast.LENGTH_SHORT).show();
                 }
@@ -118,7 +120,7 @@ public class FormatView extends BaseCustomView {
                         Toast.makeText(getContext(), "菜品已退", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    EventBus.getDefault().post(new EventRouter(EventBusAction.GAI_JIA, mCurrent));
+                    mFormatClick.onChanagePrice(mCurrent);
                 } else {
                     Toast.makeText(getContext(), "未选中菜品", Toast.LENGTH_SHORT).show();
                 }
@@ -130,7 +132,7 @@ public class FormatView extends BaseCustomView {
                         Toast.makeText(getContext(), "菜品已退", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    EventBus.getDefault().post(new EventRouter(EventBusAction.DA_ZHE, mCurrent));
+                    mFormatClick.onDiscount(mCurrent);
                 } else {
                     Toast.makeText(getContext(), "未选中菜品", Toast.LENGTH_SHORT).show();
                 }
@@ -138,13 +140,13 @@ public class FormatView extends BaseCustomView {
             case R.id.ordersheet_dishes_che_dan_btn:
                 //撤单
                 if (mBillbean != null) {
-                    EventBus.getDefault().post(new EventRouter(EventBusAction.CHE_DAN, mBillbean));
+                    mFormatClick.onChedan(mBillbean.getBill_code());
                 } else {
                     Toast.makeText(getContext(), "账单信息错误", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.ordersheet_dishes_format_tv:
-                if (mClickLisenter != null) {
+                if (mFormatClick != null) {
                     if (mCurrent == null) {
                         Toast.makeText(getContext(), "未选中菜品", Toast.LENGTH_SHORT).show();
                         return;
@@ -154,19 +156,19 @@ public class FormatView extends BaseCustomView {
                         return;
                     }
                     if (mCurrent.isMultDishes()) {
-                        mClickLisenter.onFormatClick(mCurrent);
+                        mFormatClick.onFormatClick(mCurrent);
                     } else {
                         Toast.makeText(getContext(), "该菜品只有一个规格", Toast.LENGTH_SHORT).show();
                     }
                 }
                 break;
             case R.id.ordersheet_dishes_delete_btn:
-                if (mClickLisenter != null) {
+                if (mFormatClick != null) {
                     if (mCurrent.hasBacked()) {
                         Toast.makeText(getContext(), "菜品已退", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    if (mClickLisenter.delete(mCurrent)) {
+                    if (mButtonLisenter.delete(mCurrent)) {
                         mCurrent = null;
                     }
                 }
@@ -183,8 +185,8 @@ public class FormatView extends BaseCustomView {
                     mCurrent.setWait_tag(0);
                     mDtv.setText("等叫");
                 }
-                if (mClickLisenter != null) {
-                    mClickLisenter.onStatusClick(mCurrent);
+                if (mButtonLisenter != null) {
+                    mButtonLisenter.onStatusClick(mCurrent);
                 }
                 break;
             case R.id.ordersheet_dishes_w_btn:
@@ -199,8 +201,8 @@ public class FormatView extends BaseCustomView {
                     mCurrent.setOut_tag(0);
                     mWdTv.setText("外带");
                 }
-                if (mClickLisenter != null) {
-                    mClickLisenter.onStatusClick(mCurrent);
+                if (mButtonLisenter != null) {
+                    mButtonLisenter.onStatusClick(mCurrent);
                 }
                 break;
             case R.id.ordersheet_dishes_format_add_tv:
@@ -214,8 +216,8 @@ public class FormatView extends BaseCustomView {
                 }
                 int numadd = Integer.valueOf(mNumTv.getText().toString());
                 numadd = numadd + 1;
-                if (mClickLisenter != null) {
-                    mClickLisenter.onNumChanage(numadd);
+                if (mButtonLisenter != null) {
+                    mButtonLisenter.onNumChanage(numadd);
                 }
                 mNumTv.setText(numadd + "");
                 break;
@@ -232,8 +234,8 @@ public class FormatView extends BaseCustomView {
                 num = num - 1;
                 if (num > 0) {
                     mNumTv.setText((num) + "");
-                    if (mClickLisenter != null) {
-                        mClickLisenter.onNumChanage(num);
+                    if (mButtonLisenter != null) {
+                        mButtonLisenter.onNumChanage(num);
                     }
                 }
                 break;
@@ -246,21 +248,17 @@ public class FormatView extends BaseCustomView {
                 Toast.makeText(getContext(), mCuicTv.getText().toString(), Toast.LENGTH_SHORT).show();
                 break;
             case R.id.ordersheet_dishes_format_remark_btn:
-                if (mClickLisenter != null) {
-                    mClickLisenter.onRemarkClick(mCurrent);
+                if (mFormatClick != null) {
+                    mFormatClick.onRemarkClick(mCurrent);
                 }
                 break;
 
         }
     }
 
-    public void setClickLisenter(onButtonClick clickLisenter) {
-        this.mClickLisenter = clickLisenter;
-    }
-
     public void setCurrentBill(Billbean billbean) {
         this.mBillbean = billbean;
-        if(billbean!=null) {
+        if (billbean != null) {
             if ("已结账".equals(billbean.getLocal_status())) {
                 mCheDanTv.setVisibility(View.GONE);
             } else {
@@ -269,10 +267,15 @@ public class FormatView extends BaseCustomView {
         }
     }
 
-    public interface onButtonClick {
-        public void onFormatClick(Dishesbean current);
+    public void setFormatClick(OrderListViewBriage.onFormatChildClick formatClick) {
+        this.mFormatClick = formatClick;
+    }
 
-        public void onRemarkClick(Dishesbean current);
+    public void setClickLisenter(onButtonClick orderDishMenuListView) {
+        this.mButtonLisenter = orderDishMenuListView;
+    }
+
+    public interface onButtonClick {
 
         public void onNumChanage(int i);
 
@@ -280,7 +283,6 @@ public class FormatView extends BaseCustomView {
 
         public boolean delete(Dishesbean mCurrent);
 
-        void onCopy();
     }
 
     public void setLocalStatus(String status) {

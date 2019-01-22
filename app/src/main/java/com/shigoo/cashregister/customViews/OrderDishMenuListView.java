@@ -20,6 +20,7 @@ import com.shigoo.cashregister.activitys.NumberInputActivity;
 import com.shigoo.cashregister.adapters.MenuDishesListAdapter;
 import com.shigoo.cashregister.adapters.OrderPayListAdapter;
 import com.shigoo.cashregister.customViews.viewChildClick.OrderListViewBriage;
+import com.shigoo.cashregister.fragments.TableMainFragment;
 import com.shigoo.cashregister.mvp.contacts.MenuDishesListContact;
 import com.shigoo.cashregister.mvp.presenter.OrderDishesPresenter;
 import com.shigoo.cashregister.utils.DishesUtils;
@@ -239,7 +240,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
      */
     private void gotoDishesList() {
         mClickLister.gotoDishesList();
-        for(Dishesbean dishesbean:mMenuListAdapter.getData()){
+        for (Dishesbean dishesbean : mMenuListAdapter.getData()) {
             mClickLister.updateDishesNum(dishesbean);
         }
     }
@@ -481,17 +482,6 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
         mFormateView.setCurrentBill(mBillbean);
     }
 
-
-    @Override
-    public void onFormatClick(Dishesbean current) {
-        mClickLister.onDishesDetail(current);
-    }
-
-    @Override
-    public void onRemarkClick(Dishesbean current) {
-        mClickLister.onClickRemarkBtn(current);
-    }
-
     @Override
     public void onNumChanage(int i) {
         if (mCurrentPosition == -1) {
@@ -529,15 +519,6 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
             showToast("未选中要删除的项目");
         }
         return isEmpty;
-    }
-
-    @Override
-    public void onCopy() {
-        if (mBillbean != null && !TextUtils.isEmpty(mBillbean.getBill_code())) {
-            mClickLister.onCopyDishes( mBillbean.getBill_code());
-        } else {
-            showToast("没有订单号");
-        }
     }
 
     private void clearnLeft() {
@@ -720,5 +701,9 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
 
     public void setClickLister(OrderListViewBriage.onOrderViewClick clickLister) {
         this.mClickLister = clickLister;
+    }
+
+    public void setFormatClick(OrderListViewBriage.onFormatChildClick formatClick) {
+        mFormateView.setFormatClick(formatClick);
     }
 }

@@ -1,5 +1,6 @@
 package com.shigoo.cashregister.customViews.viewChildClick;
 
+import com.xgsb.datafactory.bean.Billbean;
 import com.xgsb.datafactory.bean.Dishesbean;
 import com.xgsb.datafactory.bean.SettalOrderbean;
 import com.xgsb.datafactory.bean.Table;
@@ -37,14 +38,19 @@ public class OrderListViewBriage {
         void cancelDemolition();
     }
 
-    public interface onFragmentAction {
-        public void onAddDisehes(Dishesbean dishesbean);
+    public interface onFormatChildClick {
+        public void onReturnDishes(Dishesbean dishesbean);
 
-        public void onTableDetail(Table table);
+        public void onChanagePrice(Dishesbean dishesbean);
 
-        public void onUpdateDishes(Dishesbean dishesbean);
+        public void onDiscount(Dishesbean dishesbean);
 
-        public void onCopyResult();
+        public void  onChedan(String billCode);
 
+        public void onFormatClick(Dishesbean dishesbean);
+
+        public void onCopy(Billbean mBillbean);
+
+        public void onRemarkClick(Dishesbean mCurrent);
     }
 }
