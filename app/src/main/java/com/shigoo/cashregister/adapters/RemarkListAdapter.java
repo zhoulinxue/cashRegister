@@ -22,8 +22,8 @@ public class RemarkListAdapter extends BaseQuickAdapter<Remarkbean, RemarkHoldVi
     public void setSelected(int position) {
         mCurrentPosition = position;
         Boolean isSe = isSelected.get(position);
-        if (isSe != null && isSe) {
-            isSelected.put(position, false);
+        if (isSe != null) {
+            isSelected.put(position, !isSe);
         } else {
             isSelected.put(position, true);
         }

@@ -7,7 +7,7 @@ public class Paybean implements Parcelable {
     private int pay_num;
     private int pay_tag;
     private String create_date;
-    private int pay_amount;
+    private float pay_amount;
 
     public String getCreate_date() {
         return create_date;
@@ -33,11 +33,11 @@ public class Paybean implements Parcelable {
         this.pay_tag = pay_tag;
     }
 
-    public int getPay_amount() {
+    public float getPay_amount() {
         return pay_amount;
     }
 
-    public void setPay_amount(int pay_amount) {
+    public void setPay_amount(float pay_amount) {
         this.pay_amount = pay_amount;
     }
 
@@ -54,14 +54,14 @@ public class Paybean implements Parcelable {
         dest.writeInt(this.pay_num);
         dest.writeInt(this.pay_tag);
         dest.writeString(this.create_date);
-        dest.writeInt(this.pay_amount);
+        dest.writeFloat(this.pay_amount);
     }
 
     protected Paybean(Parcel in) {
         this.pay_num = in.readInt();
         this.pay_tag = in.readInt();
         this.create_date = in.readString();
-        this.pay_amount = in.readInt();
+        this.pay_amount = in.readFloat();
     }
 
     public static final Creator<Paybean> CREATOR = new Creator<Paybean>() {

@@ -24,6 +24,7 @@ import com.shigoo.cashregister.customViews.FormatView;
 import com.shigoo.cashregister.customViews.SetMealView;
 import com.shigoo.cashregister.mvp.contacts.DishesListContact;
 import com.shigoo.cashregister.mvp.presenter.DishesListPresenter;
+import com.shigoo.cashregister.print.inter.PrintProviderInterface;
 import com.xgsb.datafactory.JSONManager;
 import com.xgsb.datafactory.bean.DishesTypebean;
 import com.xgsb.datafactory.bean.Dishesbean;
@@ -364,6 +365,11 @@ public class DishesListFragment extends MvpFragment<DishesListPresenter> impleme
             mFormatLayout.setVisibility(View.GONE);
         }
         return isEmpty;
+    }
+
+    @Override
+    public void printPaper(PrintProviderInterface providerInterface) {
+
     }
 
 

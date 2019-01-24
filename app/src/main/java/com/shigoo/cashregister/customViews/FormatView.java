@@ -9,6 +9,9 @@ import android.widget.Toast;
 
 import com.shigoo.cashregister.R;
 import com.shigoo.cashregister.customViews.viewChildClick.OrderListViewBriage;
+import com.shigoo.cashregister.print.PrintManager;
+import com.shigoo.cashregister.print.attr.Address;
+import com.shigoo.cashregister.print.inter.PrintProviderInterface;
 import com.xgsb.datafactory.bean.Billbean;
 import com.xgsb.datafactory.bean.Dishesbean;
 import com.xgsb.datafactory.bean.EventRouter;
@@ -242,6 +245,9 @@ public class FormatView extends BaseCustomView {
             case R.id.ordersheet_dishes_print_btn:
                 // 打印预结单
                 Toast.makeText(getContext(), "打印预结单", Toast.LENGTH_SHORT).show();
+                Address address = new Address("192.168.188.250", 9100);
+                PrintProviderInterface providerInterface = PrintManager.getInstance().creatWifiPrint(address);
+                mButtonLisenter.printPaper(providerInterface);
                 break;
             case R.id.ordersheet_dishes_cui_cai_btn:
                 // 打催菜 单
@@ -283,6 +289,7 @@ public class FormatView extends BaseCustomView {
 
         public boolean delete(Dishesbean mCurrent);
 
+        void printPaper(PrintProviderInterface providerInterface);
     }
 
     public void setLocalStatus(String status) {

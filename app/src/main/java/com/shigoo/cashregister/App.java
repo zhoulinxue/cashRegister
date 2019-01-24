@@ -2,6 +2,7 @@ package com.shigoo.cashregister;
 
 import com.luojilab.component.componentlib.router.Router;
 import com.luojilab.component.componentlib.router.ui.UIRouter;
+import com.shigoo.cashregister.print.PrintManager;
 import com.zx.api.api.utils.AppLog;
 import com.zx.mvplibrary.MvpApplication;
 
@@ -13,6 +14,11 @@ import com.zx.mvplibrary.MvpApplication;
  * Date: 2018-11-12 13:27
  */
 public class App extends MvpApplication {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        PrintManager.getInstance().initPrint(this);
+    }
 
     @Override
     public String getApiHost() {

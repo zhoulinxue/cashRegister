@@ -43,6 +43,7 @@ public class Param {
         public static final String BACK_ID = "back_id";
         public static final String DISH_QTY = "dish_qty";
         public static final String FINALLY_TAG = "finally_tag";
+        public static final String PRINT = "print_msg";
         public static String YUAN = "  元";
         public static final String id = "id";
         public static final String value = "value";

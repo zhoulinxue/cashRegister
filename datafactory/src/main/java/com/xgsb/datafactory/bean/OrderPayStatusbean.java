@@ -6,16 +6,16 @@ import android.os.Parcelable;
 import java.util.List;
 
 public class OrderPayStatusbean implements Parcelable {
-    private int amount;
+    private float amount;
     private int hour;
     private int min;
     private List<Paybean> list;
 
-    public int getAmount() {
+    public float getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(float amount) {
         this.amount = amount;
     }
 
@@ -43,6 +43,9 @@ public class OrderPayStatusbean implements Parcelable {
         this.list = list;
     }
 
+    public OrderPayStatusbean() {
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -50,23 +53,20 @@ public class OrderPayStatusbean implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.amount);
+        dest.writeFloat(this.amount);
         dest.writeInt(this.hour);
         dest.writeInt(this.min);
         dest.writeTypedList(this.list);
     }
 
-    public OrderPayStatusbean() {
-    }
-
     protected OrderPayStatusbean(Parcel in) {
-        this.amount = in.readInt();
+        this.amount = in.readFloat();
         this.hour = in.readInt();
         this.min = in.readInt();
         this.list = in.createTypedArrayList(Paybean.CREATOR);
     }
 
-    public static final Parcelable.Creator<OrderPayStatusbean> CREATOR = new Parcelable.Creator<OrderPayStatusbean>() {
+    public static final Creator<OrderPayStatusbean> CREATOR = new Creator<OrderPayStatusbean>() {
         @Override
         public OrderPayStatusbean createFromParcel(Parcel source) {
             return new OrderPayStatusbean(source);

@@ -20,9 +20,13 @@ import com.shigoo.cashregister.activitys.NumberInputActivity;
 import com.shigoo.cashregister.adapters.MenuDishesListAdapter;
 import com.shigoo.cashregister.adapters.OrderPayListAdapter;
 import com.shigoo.cashregister.customViews.viewChildClick.OrderListViewBriage;
-import com.shigoo.cashregister.fragments.TableMainFragment;
 import com.shigoo.cashregister.mvp.contacts.MenuDishesListContact;
 import com.shigoo.cashregister.mvp.presenter.OrderDishesPresenter;
+import com.shigoo.cashregister.print.PrintManager;
+import com.shigoo.cashregister.print.attr.DishesPrint;
+import com.shigoo.cashregister.print.attr.FormatFactory;
+import com.shigoo.cashregister.print.content.Content;
+import com.shigoo.cashregister.print.inter.PrintProviderInterface;
 import com.shigoo.cashregister.utils.DishesUtils;
 import com.xgsb.datafactory.bean.Billbean;
 import com.xgsb.datafactory.bean.ComboData;
@@ -172,6 +176,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
                         case "5":
                             setTable(mTable, isFjz);
                             mClickLister.gotoTable();
+                            settalType="6";
                             break;
                         case "6":
                             mClickLister.onBackToTable();
@@ -522,6 +527,26 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
             showToast("未选中要删除的项目");
         }
         return isEmpty;
+    }
+
+    @Override
+    public void printPaper(PrintProviderInterface providerInterface) {
+        List<Dishesbean> dishesbeans = mMenuListAdapter.getData();
+        Content content = FormatFactory.getDefaultTitleContent("预结单");
+        providerInterface.printText(content.getContent(), content.getFormat());
+        providerInterface.printEnter();
+        Content fromContent = FormatFactory.getDefaultStorContent("收银");
+        providerInterface.printText(fromContent.getContent(), fromContent.getFormat());
+        providerInterface.printEnter();
+        for (Dishesbean dishes : dishesbeans) {
+            DishesPrint print = new DishesPrint(dishes.getNotNullName(), dishes.getLocal_num() + "", dishes.getShowPrice(), "");
+            Content dishesContent = FormatFactory.getDishesContent(print);
+            providerInterface.printText(dishesContent.getContent(), dishesContent.getFormat());
+            providerInterface.printEnter();
+        }
+        providerInterface.printEnter();
+        providerInterface.printEnter();
+        PrintManager.getInstance().startPrint(providerInterface, true);
     }
 
     private void clearnLeft() {

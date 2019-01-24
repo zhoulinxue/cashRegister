@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.shigoo.cashregister.R;
@@ -39,13 +40,17 @@ import butterknife.OnClick;
 
 public class FanJZActivity extends MvpActivity<FanJZPresenter> implements FanJZContact.view {
     @BindView(R.id.ordersheet_dishes_give_reason_list)
-    RecyclerView mFanZJRecyclerView;
+    RecyclerView mResonRecyclerView;
     @BindView(R.id.order_pay_orderlist)
     RecyclerView mPayRecyclerView;
     @BindView(R.id.ordersheet_dishes_reason_edite)
     EditText mResonEdite;
     @BindView(R.id.ordersheet_dishes_bootom_cancel_img)
     ImageView mBackImg;
+    @BindView(R.id.reason_layout)
+    LinearLayout mReasonLayout;
+    @BindView(R.id.bottom_layout)
+    RelativeLayout mBottomLayout;
     RemarkListAdapter mRemarkAdapter;
     List<Remarkbean> mList = new ArrayList<>();
     List<Paybean> mPayList = new ArrayList<>();
@@ -68,7 +73,6 @@ public class FanJZActivity extends MvpActivity<FanJZPresenter> implements FanJZC
 
     @Override
     public void onPayResult(OrderPayStatusbean paybeans) {
-
         if (paybeans != null && paybeans.getList() != null && paybeans.getList().size() != 0) {
             mPayList.clear();
             for (Paybean paybean : paybeans.getList()) {
@@ -78,9 +82,13 @@ public class FanJZActivity extends MvpActivity<FanJZPresenter> implements FanJZC
             }
             if (mPayList.size() == 1) {
                 mNum = mPayListAdapter.getData().get(0).getPay_num() + "";
-                mFanZJRecyclerView.setVisibility(View.GONE);
+                mResonRecyclerView.setVisibility(View.GONE);
                 mPayRecyclerView.setVisibility(View.VISIBLE);
+
                 return;
+            } else {
+                mResonRecyclerView.setVisibility(View.VISIBLE);
+                mPayRecyclerView.setVisibility(View.GONE);
             }
             mPayListAdapter.setNewData(mPayList);
         }
@@ -105,8 +113,8 @@ public class FanJZActivity extends MvpActivity<FanJZPresenter> implements FanJZC
     protected void onCreateView() {
         ButterKnife.bind(this);
         mRemarkAdapter = new RemarkListAdapter(R.layout.fjz_itme_layout, mList);
-        mFanZJRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        mFanZJRecyclerView.setAdapter(mRemarkAdapter);
+        mResonRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        mResonRecyclerView.setAdapter(mRemarkAdapter);
 
         mPayRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mPayListAdapter = new PayListAdapter(R.layout.paylist_item_layout, mPayList);
@@ -118,14 +126,21 @@ public class FanJZActivity extends MvpActivity<FanJZPresenter> implements FanJZC
                 mPayListAdapter.setSelected(position);
             }
         });
+        mRemarkAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                mRemarkAdapter.setSelected(position);
+            }
+        });
     }
 
     @Override
     protected void onInitData(Bundle savedInstanceState) {
         mTable = getIntent().getParcelableExtra(Param.Keys.TABLE);
+        mPresenter.getPayStatus(Param.Keys.TOKEN, getToken(), Param.Keys.BILL_CODE, mTable.getBillbean().getBill_code());
         //备注类型1表示单品备注，2表示整单备注，3退菜备注，4改价备注，5打折备注，6撤单备注，8反结账原因
         mPresenter.getFJZReasonList(Param.Keys.TOKEN, getToken(), Param.Keys.TYPE, "8");
-        mPresenter.getPayStatus(Param.Keys.TOKEN, getToken(), Param.Keys.BILL_CODE, mTable.getBillbean().getBill_code());
+
     }
 
     @OnClick({R.id.ordersheet_dishes_bootom_cancel,
@@ -147,8 +162,11 @@ public class FanJZActivity extends MvpActivity<FanJZPresenter> implements FanJZC
                 break;
             case R.id.ordersheet_dishes_pay_sure:
                 if (!TextUtils.isEmpty(mNum)) {
-                    mFanZJRecyclerView.setVisibility(View.VISIBLE);
+                    mResonRecyclerView.setVisibility(View.VISIBLE);
                     mPayRecyclerView.setVisibility(View.GONE);
+                    mReasonLayout.setVisibility(View.VISIBLE);
+                    mBottomLayout.setVisibility(View.VISIBLE);
+                    view.setVisibility(View.GONE);
                 } else {
                     showToast("请选择要反结账的条目");
                 }

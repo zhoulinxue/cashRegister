@@ -33,19 +33,19 @@
         </RelativeLayout>
 
         <LinearLayout
-            android:id="@id/reason_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:visibility="gone">
+            android:orientation="vertical">
 
             <LinearLayout
+                android:id="@id/reason_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/ordersheet_50dp"
-                android:layout_marginTop="@dimen/ordersheet_20dp"
+                android:layout_marginTop="@dimen/ordersheet_10dp"
                 android:layout_marginRight="@dimen/ordersheet_50dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -68,9 +68,47 @@
             </LinearLayout>
 
             <RelativeLayout
+                android:id="@id/pay_item_list_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ordersheet_10dp"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@id/order_pay_orderlist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@id/ordersheet_dishes_give_reason_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@id/ordersheet_dishes_pay_sure"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="@dimen/ordersheet_20dp"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginBottom="@dimen/ordersheet_10dp"
+                    android:background="@drawable/ordersheet_number_btn_bg"
+                    android:paddingLeft="@dimen/ordersheet_20dp"
+                    android:paddingTop="@dimen/ordersheet_10dp"
+                    android:paddingRight="@dimen/ordersheet_20dp"
+                    android:paddingBottom="@dimen/ordersheet_10dp"
+                    android:text="确定"
+                    android:textColor="@color/ordersheet_white" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@id/bottom_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/ordersheet_20dp">
+
                 <View
                     android:id="@id/ordersheet_divid_line"
                     android:layout_width="match_parent"
@@ -113,40 +151,6 @@
                         android:textColor="@color/ordersheet_white" />
                 </RelativeLayout>
             </RelativeLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@id/pay_item_list_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@id/order_pay_orderlist"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <android.support.v7.widget.RecyclerView
-                android:id="@id/ordersheet_dishes_give_reason_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_above="@id/ordersheet_divid_line"
-                android:layout_marginLeft="@dimen/ordersheet_80dp"
-                android:layout_marginRight="@dimen/ordersheet_80dp" />
-            <TextView
-                android:id="@id/ordersheet_dishes_pay_sure"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/ordersheet_20dp"
-                android:layout_marginTop="@dimen/dp_10"
-                android:layout_toRightOf="@id/ordersheet_dishes_bootom_cancel"
-                android:background="@drawable/ordersheet_number_btn_bg"
-                android:paddingLeft="@dimen/ordersheet_20dp"
-                android:paddingTop="@dimen/ordersheet_10dp"
-                android:paddingRight="@dimen/ordersheet_20dp"
-                android:paddingBottom="@dimen/ordersheet_10dp"
-                android:text="确定"
-                android:textColor="@color/ordersheet_white" />
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
