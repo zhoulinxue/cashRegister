@@ -38,6 +38,7 @@ import com.zx.mvplibrary.web.onOperateLisenter;
 import com.zx.mvplibrary.wedgit.WebChartView;
 import com.zx.network.Param;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -265,7 +266,7 @@ public class MemberListFragement extends MvpFragment<MemberManagePresenter> impl
                 showReChargeDialog();
                 break;
             case "查看":
-                org.greenrobot.eventbus.EventBus.getDefault().post(new EventRouter(EventBusAction.MEMBER_DETAIL, request.getParams().optString("row_data")));
+               EventBus.getDefault().post(new EventRouter(EventBusAction.MEMBER_DETAIL, request.getParams().optString("row_data")));
                 break;
         }
     }

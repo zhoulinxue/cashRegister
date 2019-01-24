@@ -12,4 +12,19 @@ public class PrintFragmentPresenter extends BasePresenterImpl<PrintFragmentConta
     public void getSaleList(String... params) {
 
     }
+
+    @Override
+    public void getKindRecive(String... params) {
+
+    }
+
+    @Override
+    public void getSaleCountList(String... params) {
+
+    }
+
+    @Override
+    public void getTableCosumList(String... params) {
+
+    }
 }

@@ -191,6 +191,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
                     mSettleTv.setText("下单");
                     mDishList.clear();
                     mFormateView.setLocalStatus("加菜");
+                    mLeftFormatLayout.setVisibility(View.VISIBLE);
                     mMenuListAdapter.setNewData(mDishList);
                     mSelltalAccountTv.setVisibility(View.GONE);
                     setDiscountType(DiscountType.NULL);
@@ -367,7 +368,6 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
             mBottomlayout.setVisibility(View.GONE);
             mDeleteImg.setVisibility(View.GONE);
         } else {
-            mLeftFormatLayout.setVisibility(View.VISIBLE);
             mMenuList.setVisibility(View.VISIBLE);
             mEmptyTv.setVisibility(View.GONE);
             mBottomlayout.setVisibility(View.VISIBLE);
@@ -408,7 +408,6 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
             mMenuListAdapter.notifyDataSetChanged();
         }
         showBottomUi();
-        mLeftFormatLayout.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -665,6 +664,8 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
                     mSelltalAccountTv.setVisibility(AppUtil.isOrderDishes(getContext()) ? View.GONE : View.VISIBLE);
                     if (AppUtil.isOrderDishes(getContext())) {
                         mLeftFormatLayout.setVisibility(View.GONE);
+                    }else {
+                        mLeftFormatLayout.setVisibility(View.VISIBLE);
                     }
                     break;
                 case "已结账":
@@ -676,6 +677,8 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
                     mSelltalAccountTv.setVisibility(AppUtil.isOrderDishes(getContext()) ? View.GONE : View.VISIBLE);
                     if (AppUtil.isOrderDishes(getContext())) {
                         mLeftFormatLayout.setVisibility(View.GONE);
+                    }else {
+                        mLeftFormatLayout.setVisibility(View.VISIBLE);
                     }
                     break;
                 case "已开台":
@@ -683,6 +686,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
                     mSettleTv.setVisibility(View.VISIBLE);
                     mSettleTv.setText("下单");
                     mDeleteImg.setVisibility(View.VISIBLE);
+                    mLeftFormatLayout.setVisibility(View.VISIBLE);
                     break;
             }
         } else {
