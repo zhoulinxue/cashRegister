@@ -75,7 +75,8 @@ public class XgDAppBridge extends DAppBridge {
             });
         }
     }
-    public void orderDetailsData(final Request request){
+
+    public void orderDetailsData(final Request request) {
         if (mLisenter != null) {
             mHandler.post(new Runnable() {
                 @Override
@@ -85,6 +86,7 @@ public class XgDAppBridge extends DAppBridge {
             });
         }
     }
+
     public void currentPage(final Request request) {
         AppLog.print(JSONManager.getInstance().toJson(request));
         if (mLisenter != null) {
@@ -99,5 +101,27 @@ public class XgDAppBridge extends DAppBridge {
 
     public void setLisenter(onOperateLisenter lisenter) {
         this.mLisenter = lisenter;
+    }
+
+    public void handoverPrint(final Request request) {
+        if (mLisenter != null) {
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    mLisenter.handoverPrint(request);
+                }
+            });
+        }
+    }
+
+    public void handDutyHistroyListPrint(final Request request) {
+        if (mLisenter != null) {
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    mLisenter.handDutyHistroyListPrint(request);
+                }
+            });
+        }
     }
 }

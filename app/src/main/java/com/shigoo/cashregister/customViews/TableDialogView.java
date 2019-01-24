@@ -151,17 +151,18 @@ public class TableDialogView extends MvpCustomView<TableDialogPresenter> impleme
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (!TextUtils.isEmpty(charSequence)) {
-                    float discount = Float.valueOf(charSequence.toString()) / 100;
-                    if (discount > 1) {
-                        showToast("折扣不能大于100");
-                        mZheKouEdite.setText(100 + "");
+                if (mCurrentDishes != null) {
+                    if (!TextUtils.isEmpty(charSequence)) {
+                        float discount = Float.valueOf(charSequence.toString()) / 100;
+                        if (discount > 1) {
+                            showToast("折扣不能大于100");
+                            mZheKouEdite.setText(100 + "");
+                        }
+                        mDiscountPriceTv.setText(Param.Keys.RMB + (AppUtil.getFloatFromString(mCurrentDishes.getShowPrice()).floatValue() * discount));
+                    } else {
+                        mDiscountPriceTv.setText(Param.Keys.RMB + (AppUtil.getFloatFromString(mCurrentDishes.getShowPrice()).floatValue()));
                     }
-                    mDiscountPriceTv.setText(Param.Keys.RMB + (AppUtil.getFloatFromString(mCurrentDishes.getShowPrice()).floatValue() * discount));
-                } else {
-                    mDiscountPriceTv.setText(Param.Keys.RMB + (AppUtil.getFloatFromString(mCurrentDishes.getShowPrice()).floatValue()));
                 }
-
             }
 
             @Override

@@ -21,4 +21,8 @@ public interface onOperateLisenter {
     public void currentPage(Request request);
 
     public void orderDetailsData(Request request);
+
+    public void handoverPrint(Request request);
+
+    public void handDutyHistroyListPrint(Request request);
 }

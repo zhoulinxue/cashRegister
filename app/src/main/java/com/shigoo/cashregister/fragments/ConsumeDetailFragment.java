@@ -125,6 +125,16 @@ public class ConsumeDetailFragment extends MvpFragment<ConsumePresenter> impleme
     }
 
     @Override
+    public void handoverPrint(Request request) {
+
+    }
+
+    @Override
+    public void handDutyHistroyListPrint(Request request) {
+
+    }
+
+    @Override
     public void onGetConsumeListCallback(ConsumeListData consumeListData) {
         this.mList = consumeListData;
         if (mRequest != null) {

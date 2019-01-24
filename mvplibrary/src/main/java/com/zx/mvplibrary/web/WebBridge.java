@@ -10,7 +10,7 @@ import io.starteos.dappsdk.Request;
 import io.starteos.dappsdk.annotation.Namespace;
 
 @Namespace(WebNameSpace.SYSTEM)
-public class WebBridge extends DAppApi implements onOperateLisenter{
+public class WebBridge extends DAppApi implements onOperateLisenter {
     public WebBridge(DAppBridge bridge) {
         super(bridge);
     }
@@ -32,7 +32,7 @@ public class WebBridge extends DAppApi implements onOperateLisenter{
         }
     }
 
-    public  void initWebview(final Request request){
+    public void initWebview(final Request request) {
         AppLog.print("WebBridge  " + "initWebview");
         if (bridge instanceof XgDAppBridge) {
             ((XgDAppBridge) bridge).initWebview(request);
@@ -60,10 +60,27 @@ public class WebBridge extends DAppApi implements onOperateLisenter{
             ((XgDAppBridge) bridge).onOperate(request);
         }
     }
-    public void orderDetailsData(Request request){
+
+    public void orderDetailsData(Request request) {
         AppLog.print("WebBridge  " + "orderDetailsData");
         if (bridge instanceof XgDAppBridge) {
             ((XgDAppBridge) bridge).orderDetailsData(request);
+        }
+    }
+
+    @Override
+    public void handoverPrint(Request request) {
+        AppLog.print("WebBridge  " + "handoverPrint");
+        if (bridge instanceof XgDAppBridge) {
+            ((XgDAppBridge) bridge).handoverPrint(request);
+        }
+    }
+
+    @Override
+    public void handDutyHistroyListPrint(Request request) {
+        AppLog.print("WebBridge  " + "handDutyHistroyListPrint");
+        if (bridge instanceof XgDAppBridge) {
+            ((XgDAppBridge) bridge).handDutyHistroyListPrint(request);
         }
     }
 }

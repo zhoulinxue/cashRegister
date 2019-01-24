@@ -186,6 +186,16 @@ public class GiveDetailListFragment extends MvpFragment<GiveDetailListPresenter>
 
     }
 
+    @Override
+    public void handoverPrint(Request request) {
+
+    }
+
+    @Override
+    public void handDutyHistroyListPrint(Request request) {
+
+    }
+
 
     @Override
     public void onGiveDetailListResult(List<GiveDetailListbean> giveDetailListbeans) {

@@ -201,6 +201,16 @@ public class RechargeDetailListFragment extends MvpFragment<RecahrgePresenter> i
     }
 
     @Override
+    public void handoverPrint(Request request) {
+
+    }
+
+    @Override
+    public void handDutyHistroyListPrint(Request request) {
+
+    }
+
+    @Override
     public boolean onBackPress() {
         if (mCancelationDialog != null && mCancelationDialog.isShowing()) {
             mCancelationDialog.dismiss();

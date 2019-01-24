@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.shigoo.cashregister.R;
 import com.xgsb.datafactory.JSONManager;
+import com.zx.api.api.utils.AppLog;
 import com.zx.mvplibrary.BaseFragment;
 import com.zx.mvplibrary.web.InitWebView;
 import com.zx.mvplibrary.web.onOperateLisenter;
@@ -89,5 +90,15 @@ public class BooksOffFragment extends BaseFragment implements onOperateLisenter 
     @Override
     public void orderDetailsData(Request request) {
 
+    }
+
+    @Override
+    public void handoverPrint(Request request) {
+        AppLog.print(request.getParams()+"交班");
+    }
+
+    @Override
+    public void handDutyHistroyListPrint(Request request) {
+        AppLog.print(request.getParams()+"交班历史");
     }
 }

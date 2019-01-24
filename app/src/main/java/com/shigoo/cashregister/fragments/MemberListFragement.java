@@ -290,6 +290,16 @@ public class MemberListFragement extends MvpFragment<MemberManagePresenter> impl
 
     }
 
+    @Override
+    public void handoverPrint(Request request) {
+
+    }
+
+    @Override
+    public void handDutyHistroyListPrint(Request request) {
+
+    }
+
 
     @Override
     public void onResult(List<Cardbean> cardbean) {

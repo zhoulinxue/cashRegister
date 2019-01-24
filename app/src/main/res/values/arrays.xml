@@ -42,4 +42,10 @@
         <item>0</item>
         <item>delete</item>
     </string-array>
+    <string-array name="print_title">
+        <item>当班销售统计</item>
+        <item>分类收入表</item>
+        <item>销售明细表</item>
+        <item>当日餐桌消费表</item>
+    </string-array>
 </resources>

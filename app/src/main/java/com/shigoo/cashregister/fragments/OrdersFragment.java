@@ -113,6 +113,16 @@ public class OrdersFragment extends BaseFragment implements onOperateLisenter {
         startActivity(intent);
     }
 
+    @Override
+    public void handoverPrint(Request request) {
+
+    }
+
+    @Override
+    public void handDutyHistroyListPrint(Request request) {
+
+    }
+
     @OnClick({R.id.print_cosume_order, R.id.fan_jie_zhang_tv, R.id.back_to_list})
     public void onViewClick(View view) {
         switch (view.getId()) {
