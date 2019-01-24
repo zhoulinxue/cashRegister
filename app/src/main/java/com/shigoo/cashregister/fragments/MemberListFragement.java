@@ -266,7 +266,7 @@ public class MemberListFragement extends MvpFragment<MemberManagePresenter> impl
                 showReChargeDialog();
                 break;
             case "查看":
-               EventBus.getDefault().post(new EventRouter(EventBusAction.MEMBER_DETAIL, request.getParams().optString("row_data")));
+                EventBus.getDefault().post(new EventRouter(EventBusAction.MEMBER_DETAIL, request.getParams().optString("row_data")));
                 break;
         }
     }
@@ -276,7 +276,7 @@ public class MemberListFragement extends MvpFragment<MemberManagePresenter> impl
         this.request = request;
         if (!TextUtils.isEmpty(mMemberHeaderView.getKey())) {
             mPresenter.searchMembers(Param.Keys.TOKEN, getToken(), Param.Keys.DATA, mMemberHeaderView.getKey(), Param.Keys.PAGE, page + "");
-        }else {
+        } else {
             onInitData(null);
         }
     }
