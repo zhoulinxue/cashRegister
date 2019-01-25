@@ -207,4 +207,7 @@ public abstract class BaseActivity extends InternationalizationActivity implemen
         String userjson=SPUtil.getInstance().getString(Param.Keys.USER);
         return (User) JSONManager.getInstance().parseObject(userjson, User.class);
     }
+    public void quitUser() {
+        SPUtil.getInstance().putString(Param.Keys.TOKEN, "");
+    }
 }

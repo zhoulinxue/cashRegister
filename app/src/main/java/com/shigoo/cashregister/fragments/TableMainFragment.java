@@ -335,7 +335,7 @@ public class TableMainFragment extends BaseFragment implements OrderListViewBria
     public void onBacktoMain() {
         if (AppUtil.isOrderDishes(getContext())) {
             //点单机 退到登录 点单首页
-            SPUtil.getInstance().putString(Param.Keys.TOKEN, "");
+            quitUser();
             Intent intent = new Intent(getContext(), RouterActivity.class);
             intent.setAction(EventBusAction.MAIN.getAction());
             startActivity(intent);

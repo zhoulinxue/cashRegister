@@ -44,6 +44,8 @@ public class Param {
         public static final String DISH_QTY = "dish_qty";
         public static final String FINALLY_TAG = "finally_tag";
         public static final String PRINT = "print_msg";
+        public static final String WAITER_ID ="waiter_id" ;
+        public static final String TIME_TYPE = "time_type";
         public static String YUAN = "  元";
         public static final String id = "id";
         public static final String value = "value";

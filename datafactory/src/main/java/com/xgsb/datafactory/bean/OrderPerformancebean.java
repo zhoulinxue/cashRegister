@@ -4,68 +4,104 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class OrderPerformancebean implements Parcelable {
-    private int id;
-    private String typeName;
-    private String dishes_number;
-    private String name;
-    private String unit;
-    private String number;
-    private String disher_money;
+    private String dishes_category_name;
+    private String dish_number;
+    private String dish_name;
+    private String specification_id;
+    private String specification_name;
+    private String sale_price;
+    private String sum_dish_qty;
+    private String sum_finally_price;
+    private String dishes_id;
+    private String combo_id;
+    private String dish_tag;
 
-    public int getId() {
-        return id;
+    public String getDishes_category_name() {
+        return dishes_category_name;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setDishes_category_name(String dishes_category_name) {
+        this.dishes_category_name = dishes_category_name;
     }
 
-    public String getTypeName() {
-        return typeName;
+    public String getDish_number() {
+        return dish_number;
     }
 
-    public void setTypeName(String typeName) {
-        this.typeName = typeName;
+    public void setDish_number(String dish_number) {
+        this.dish_number = dish_number;
     }
 
-    public String getDishes_number() {
-        return dishes_number;
+    public String getDish_name() {
+        return dish_name;
     }
 
-    public void setDishes_number(String dishes_number) {
-        this.dishes_number = dishes_number;
+    public void setDish_name(String dish_name) {
+        this.dish_name = dish_name;
     }
 
-    public String getName() {
-        return name;
+    public String getSpecification_id() {
+        return specification_id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSpecification_id(String specification_id) {
+        this.specification_id = specification_id;
     }
 
-    public String getUnit() {
-        return unit;
+    public String getSpecification_name() {
+        return specification_name;
     }
 
-    public void setUnit(String unit) {
-        this.unit = unit;
+    public void setSpecification_name(String specification_name) {
+        this.specification_name = specification_name;
     }
 
-    public String getNumber() {
-        return number;
+    public String getSale_price() {
+        return sale_price;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setSale_price(String sale_price) {
+        this.sale_price = sale_price;
     }
 
-    public String getDisher_money() {
-        return disher_money;
+    public String getSum_dish_qty() {
+        return sum_dish_qty;
     }
 
-    public void setDisher_money(String disher_money) {
-        this.disher_money = disher_money;
+    public void setSum_dish_qty(String sum_dish_qty) {
+        this.sum_dish_qty = sum_dish_qty;
+    }
+
+    public String getSum_finally_price() {
+        return sum_finally_price;
+    }
+
+    public void setSum_finally_price(String sum_finally_price) {
+        this.sum_finally_price = sum_finally_price;
+    }
+
+    public String getDishes_id() {
+        return dishes_id;
+    }
+
+    public void setDishes_id(String dishes_id) {
+        this.dishes_id = dishes_id;
+    }
+
+    public String getCombo_id() {
+        return combo_id;
+    }
+
+    public void setCombo_id(String combo_id) {
+        this.combo_id = combo_id;
+    }
+
+    public String getDish_tag() {
+        return dish_tag;
+    }
+
+    public void setDish_tag(String dish_tag) {
+        this.dish_tag = dish_tag;
     }
 
     @Override
@@ -75,38 +111,37 @@ public class OrderPerformancebean implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.id);
-        dest.writeString(this.typeName);
-        dest.writeString(this.dishes_number);
-        dest.writeString(this.name);
-        dest.writeString(this.unit);
-        dest.writeString(this.number);
-        dest.writeString(this.disher_money);
-    }
-
-    public OrderPerformancebean(String typeName, String dishes_number, String name, String unit, String number, String disher_money) {
-        this.typeName = typeName;
-        this.dishes_number = dishes_number;
-        this.name = name;
-        this.unit = unit;
-        this.number = number;
-        this.disher_money = disher_money;
+        dest.writeString(this.dishes_category_name);
+        dest.writeString(this.dish_number);
+        dest.writeString(this.dish_name);
+        dest.writeString(this.specification_id);
+        dest.writeString(this.specification_name);
+        dest.writeString(this.sale_price);
+        dest.writeString(this.sum_dish_qty);
+        dest.writeString(this.sum_finally_price);
+        dest.writeString(this.dishes_id);
+        dest.writeString(this.combo_id);
+        dest.writeString(this.dish_tag);
     }
 
     public OrderPerformancebean() {
     }
 
     protected OrderPerformancebean(Parcel in) {
-        this.id = in.readInt();
-        this.typeName = in.readString();
-        this.dishes_number = in.readString();
-        this.name = in.readString();
-        this.unit = in.readString();
-        this.number = in.readString();
-        this.disher_money = in.readString();
+        this.dishes_category_name = in.readString();
+        this.dish_number = in.readString();
+        this.dish_name = in.readString();
+        this.specification_id = in.readString();
+        this.specification_name = in.readString();
+        this.sale_price = in.readString();
+        this.sum_dish_qty = in.readString();
+        this.sum_finally_price = in.readString();
+        this.dishes_id = in.readString();
+        this.combo_id = in.readString();
+        this.dish_tag = in.readString();
     }
 
-    public static final Parcelable.Creator<OrderPerformancebean> CREATOR = new Parcelable.Creator<OrderPerformancebean>() {
+    public static final Creator<OrderPerformancebean> CREATOR = new Creator<OrderPerformancebean>() {
         @Override
         public OrderPerformancebean createFromParcel(Parcel source) {
             return new OrderPerformancebean(source);

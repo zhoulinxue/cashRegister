@@ -22,6 +22,28 @@ public class User implements Parcelable {
     private String number;
     private String signature;
     private String person_in_charge_id;
+    private String waiter_id;
+    private String seller_id;
+
+    public String getSeller_id() {
+        return seller_id;
+    }
+
+    public void setSeller_id(String seller_id) {
+        this.seller_id = seller_id;
+    }
+
+    public String getWaiter_id() {
+        return waiter_id;
+    }
+
+    public void setWaiter_id(String waiter_id) {
+        this.waiter_id = waiter_id;
+    }
+
+    public User(String waiter_id) {
+        this.waiter_id = waiter_id;
+    }
 
     public int getId() {
         return id;
@@ -130,12 +152,15 @@ public class User implements Parcelable {
         dest.writeString(this.phoneNum);
         dest.writeString(this.psw);
         dest.writeString(this.token);
+        dest.writeInt(this.id);
         dest.writeString(this.staff_id);
         dest.writeString(this.cashier_id);
         dest.writeString(this.timestamp);
         dest.writeString(this.number);
         dest.writeString(this.signature);
-        dest.writeString(this.cashier_id);
+        dest.writeString(this.person_in_charge_id);
+        dest.writeString(this.waiter_id);
+        dest.writeString(this.seller_id);
     }
 
     protected User(Parcel in) {
@@ -143,12 +168,15 @@ public class User implements Parcelable {
         this.phoneNum = in.readString();
         this.psw = in.readString();
         this.token = in.readString();
+        this.id = in.readInt();
         this.staff_id = in.readString();
         this.cashier_id = in.readString();
         this.timestamp = in.readString();
         this.number = in.readString();
         this.signature = in.readString();
-        this.cashier_id = in.readString();
+        this.person_in_charge_id = in.readString();
+        this.waiter_id = in.readString();
+        this.seller_id = in.readString();
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
