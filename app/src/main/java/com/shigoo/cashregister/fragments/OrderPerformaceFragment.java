@@ -116,7 +116,7 @@ public class OrderPerformaceFragment extends MvpFragment<OrderPerformancePresent
                 Param.Keys.PAGE_NUM,30+"",
                 Param.Keys.PAGE,page+"",
                 Param.Keys.START_DATE, mStartTime,
-                Param.Keys.TIME_TYPE,mTimeType,
+//                Param.Keys.TIME_TYPE,mTimeType,
                 Param.Keys.END_DATE, mEndTime);
     }
 
