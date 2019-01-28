@@ -1,8 +1,12 @@
 package com.shigoo.cashregister;
 
+import android.content.Intent;
+import android.printservice.PrintService;
+
 import com.luojilab.component.componentlib.router.Router;
 import com.luojilab.component.componentlib.router.ui.UIRouter;
 import com.shigoo.cashregister.print.PrintManager;
+import com.shigoo.cashregister.services.PrintServices;
 import com.zx.api.api.utils.AppLog;
 import com.zx.mvplibrary.MvpApplication;
 
@@ -18,6 +22,11 @@ public class App extends MvpApplication {
     public void onCreate() {
         super.onCreate();
         PrintManager.getInstance().initPrint(this);
+        startPrintService();
+    }
+
+    private void startPrintService() {
+        startService(new Intent(this, PrintServices.class));
     }
 
     @Override

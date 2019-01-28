@@ -2,6 +2,7 @@ package com.shigoo.cashregister.print.inter;
 
 import android.graphics.Bitmap;
 
+import com.shigoo.cashregister.print.attr.Colum;
 import com.shigoo.cashregister.print.attr.PrintFormat;
 
 public interface PrintProviderInterface {
@@ -14,6 +15,8 @@ public interface PrintProviderInterface {
     void releasePrint();//释放打印资源
 
     void printText(String content, PrintFormat format);//打印文本内容
+
+    void printText(Colum content, PrintFormat format);//打印文本内容
 
     void printBitmap(Bitmap bitmap, PrintFormat format, int widthPix, int heightPix);//打印图片
 

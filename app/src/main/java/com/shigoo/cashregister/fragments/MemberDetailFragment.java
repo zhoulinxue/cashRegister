@@ -120,12 +120,16 @@ public class MemberDetailFragment extends MvpFragment<MemberDetailPresenter> imp
     private boolean isExcute = false;
     private AddCardPresenter mCardPresenter;
     private int mFroenType = 1;
-    private String mCurrentBtn="消费详情";
+    private String mCurrentBtn;
 
 
     public static MemberDetailFragment newInstance() {
+        return newInstance("充值");
+    }
+    public static MemberDetailFragment newInstance(String action) {
         MemberDetailFragment fragment = new MemberDetailFragment();
         Bundle args = new Bundle();
+        args.putString(Param.Keys.ACTION,action);
         fragment.setArguments(args);
         return fragment;
     }
@@ -245,24 +249,26 @@ public class MemberDetailFragment extends MvpFragment<MemberDetailPresenter> imp
 
     @Override
     protected void onInitData(Bundle savedInstanceState) {
-        if (!TextUtils.isEmpty(mId)) {
+        mBottomLayout.setVisibility(View.GONE);
+        mCurrentBtn=getArguments().getString(Param.Keys.ACTION);
+        mRechargeBtn.setText(mCurrentBtn);
+        if (!"消费详情".equals(mCurrentBtn)) {
             mMainLayout.setVisibility(View.VISIBLE);
             mCardInputLayout.setVisibility(View.GONE);
-            mPresenter.getMemberDetail(Param.Keys.TOKEN, getToken(), Param.Keys.id, mId);
         } else {
             mMainLayout.setVisibility(View.GONE);
             mCardInputLayout.setVisibility(View.VISIBLE);
         }
-        mBottomLayout.setVisibility(View.GONE);
-        mRechargeBtn.setText(mCurrentBtn);
     }
 
     public void updateId(String id) {
         this.mId = id;
-        onInitData(null);
         mBottomLayout.setVisibility(View.VISIBLE);
         mCurrentBtn="充值";
         mRechargeBtn.setText(mCurrentBtn);
+        mMainLayout.setVisibility(View.VISIBLE);
+        mCardInputLayout.setVisibility(View.GONE);
+        mPresenter.getMemberDetail(Param.Keys.TOKEN, getToken(), Param.Keys.id, mId);
     }
 
     @OnClick({R.id.member_detail_back_layout, R.id.freeze_tv, R.id.refund_tv, R.id.cancellation_tv, R.id.recharge_btn, R.id.change_card, R.id.update_member_msg})
@@ -272,8 +278,8 @@ public class MemberDetailFragment extends MvpFragment<MemberDetailPresenter> imp
                 if (!AppUtil.isOrderDishes(getContext())) {
                     org.greenrobot.eventbus.EventBus.getDefault().post(new EventRouter(EventBusAction.MEMBER_DETAIL_BACK));
                 } else {
-                    SPUtil.getInstance().clear();
-                    org.greenrobot.eventbus.EventBus.getDefault().post(EventBusAction.MAIN);
+                    quitUser();
+                    org.greenrobot.eventbus.EventBus.getDefault().post(new EventRouter(EventBusAction.MAIN));
                 }
                 break;
             case R.id.freeze_tv:
@@ -317,7 +323,7 @@ public class MemberDetailFragment extends MvpFragment<MemberDetailPresenter> imp
                 if ("充值".equals(mRechargeBtn.getText().toString())) {
                     mRechargeView.show();
                 } else {
-
+                    EventBus.getDefault().post(new EventRouter(EventBusAction.CONSUM_DETAIL,mMber.getId()));
                 }
                 break;
             case R.id.change_card:
@@ -389,7 +395,9 @@ public class MemberDetailFragment extends MvpFragment<MemberDetailPresenter> imp
     @Override
     public void onRefresh() {
         super.onRefresh();
-        onInitData(null);
+        if(!TextUtils.isEmpty(mId)){
+            mPresenter.getMemberDetail(Param.Keys.TOKEN, getToken(), Param.Keys.id, mId);
+        }
     }
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)

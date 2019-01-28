@@ -6,10 +6,14 @@ import android.graphics.BitmapFactory;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
+import com.shigoo.cashregister.App;
+import com.shigoo.cashregister.print.attr.Colum;
 import com.shigoo.cashregister.print.attr.ESC_SYTLE;
+import com.shigoo.cashregister.print.attr.FormatFactory;
 import com.shigoo.cashregister.print.utils.FileUtils;
 import com.shigoo.cashregister.print.utils.ImageUtils;
 import com.shigoo.cashregister.print.utils.QRCodeUtils;
+import com.zx.api.api.utils.AppLog;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
@@ -66,6 +70,33 @@ class ESC_CMD {
         byteList.add(Command.ESC_CN_MODE);
         try {
             byteList.add(text.getBytes(encoding));
+        } catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            throw new RuntimeException("port " + text + " is invalid, ", e);
+        }
+        byteList.add(Command.ESC_CN_MODE_OFF);
+    }
+
+    /**
+     * 中文模式 打印GBK模式的文本
+     *
+     * @param text
+     */
+    public void esc_text_print(Colum text, String encoding) {
+        StringBuffer buffer=new StringBuffer(text.getContent().getContent());
+        byteList.add(Command.ESC_CN_MODE);
+        try {
+            int singleLength = 56 * text.getWidth() / 10;
+            while (buffer.toString().getBytes(encoding).length<singleLength){
+                buffer.append(" ");
+            }
+            byte[] bytes = new byte[singleLength];
+            byte[] contentbyte = buffer.toString().getBytes(encoding);
+            for (int i = 0; i < bytes.length; i++) {
+                bytes[i] = contentbyte[i];
+            }
+            AppLog.print(buffer.toString().length()+buffer.toString()+"!");
+            byteList.add(bytes);
         } catch (UnsupportedEncodingException e) {
             // TODO Auto-generated catch block
             throw new RuntimeException("port " + text + " is invalid, ", e);

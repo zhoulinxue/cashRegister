@@ -28,6 +28,7 @@ import com.xgsb.datafactory.bean.OrderPerformancebean;
 import com.xgsb.datafactory.bean.PayTypebean;
 import com.xgsb.datafactory.bean.Paybean;
 import com.xgsb.datafactory.bean.Paymentbean;
+import com.xgsb.datafactory.bean.Printbean;
 import com.xgsb.datafactory.bean.ReChargeListData;
 import com.xgsb.datafactory.bean.Remarkbean;
 import com.xgsb.datafactory.bean.SaleOutbean;
@@ -695,5 +696,16 @@ public class ApiManager {
     public NetRequest getOrderPerformace(String[] params, NetRequestCallBack<ListData<OrderPerformancebean>> orderPerformaceCallback) {
         Observable<NetBean<ListData<OrderPerformancebean>>> observable = mApiService.getOrderPermance(genrateMap(params));
         return new OkHttpRequest<ListData<OrderPerformancebean>>(observable, orderPerformaceCallback);
+    }
+
+    /**
+     *
+     * @param params
+     * @param printCallback
+     * @return
+     */
+    public NetRequest getPrintList(String[] params, NetRequestCallBack<ListData<Printbean>> printCallback) {
+        Observable<NetBean<ListData<Printbean>>> observable = mApiService.getPrintList(genrateMap(params));
+        return new OkHttpRequest<ListData<Printbean>>(observable, printCallback);
     }
 }

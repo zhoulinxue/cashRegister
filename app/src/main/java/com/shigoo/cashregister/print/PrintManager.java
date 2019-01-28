@@ -3,13 +3,17 @@ package com.shigoo.cashregister.print;
 import android.content.Context;
 
 import com.shigoo.cashregister.print.attr.Address;
+import com.shigoo.cashregister.print.attr.Colum;
 import com.shigoo.cashregister.print.attr.ESC_SYTLE;
+import com.shigoo.cashregister.print.attr.FormatFactory;
+import com.shigoo.cashregister.print.attr.Line;
 import com.shigoo.cashregister.print.attr.PrintFormat;
 import com.shigoo.cashregister.print.inter.PrintProviderInterface;
 import com.shigoo.cashregister.print.printer.PrinterProvider;
 import com.zx.api.api.utils.AppUtil;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class PrintManager {
@@ -69,5 +73,22 @@ public class PrintManager {
 
             }.start();
         }
+    }
+
+    public void printLineText(PrintProviderInterface providerInterface, Line line) {
+        for (Colum colum : line.getColum()) {
+            printColumText(providerInterface, colum);
+        }
+        providerInterface.printEnter();
+    }
+
+    /**
+     * 打印一列
+     *
+     * @param providerInterface
+     * @param colum
+     */
+    private void printColumText(PrintProviderInterface providerInterface, Colum colum) {
+        providerInterface.printText(colum, colum.getContent().getFormat());
     }
 }

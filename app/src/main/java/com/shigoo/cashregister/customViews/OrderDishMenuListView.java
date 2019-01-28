@@ -23,7 +23,7 @@ import com.shigoo.cashregister.customViews.viewChildClick.OrderListViewBriage;
 import com.shigoo.cashregister.mvp.contacts.MenuDishesListContact;
 import com.shigoo.cashregister.mvp.presenter.OrderDishesPresenter;
 import com.shigoo.cashregister.print.PrintManager;
-import com.shigoo.cashregister.print.attr.DishesPrint;
+import com.shigoo.cashregister.print.attr.Colum;
 import com.shigoo.cashregister.print.attr.FormatFactory;
 import com.shigoo.cashregister.print.content.Content;
 import com.shigoo.cashregister.print.inter.PrintProviderInterface;
@@ -41,6 +41,7 @@ import com.xgsb.datafactory.bean.SettalOrderResultbean;
 import com.xgsb.datafactory.bean.SettalOrderbean;
 import com.xgsb.datafactory.bean.Table;
 import com.xgsb.datafactory.enu.DiscountType;
+import com.zx.api.api.utils.AppLog;
 import com.zx.api.api.utils.AppUtil;
 import com.zx.mvplibrary.wedgit.MvpCustomView;
 import com.zx.network.Param;
@@ -176,7 +177,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
                         case "5":
                             setTable(mTable, isFjz);
                             mClickLister.gotoTable();
-                            settalType="6";
+                            settalType = "6";
                             break;
                         case "6":
                             mClickLister.onBackToTable();
@@ -226,7 +227,6 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
                     gotopayFragmnet();
                 } else if ("已结账".equals(mSelltalAccountTv.getText().toString())) {
                     showToast("已结账");
-                    gotopayFragmnet();
                 } else if ("拆单支付".equals(mSelltalAccountTv.getText().toString())) {
                     settalType = "4";
                     List<Dishesbean> dishesbeans = new ArrayList<>();
@@ -534,15 +534,18 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
         Content content = FormatFactory.getDefaultTitleContent("预结单");
         providerInterface.printText(content.getContent(), content.getFormat());
         providerInterface.printEnter();
-        Content fromContent = FormatFactory.getDefaultStorContent("收银");
+        Content fromContent = FormatFactory.getDefaultStorContent("SPACE__XXX店");
         providerInterface.printText(fromContent.getContent(), fromContent.getFormat());
+        Content dividerContent = FormatFactory.getDefaultDividerContent("-------------------------------------------------------");
+        providerInterface.printEnter();
+        providerInterface.printText(dividerContent.getContent(), dividerContent.getFormat());
+        providerInterface.printEnter();
+        providerInterface.printText(dividerContent.getContent(), dividerContent.getFormat());
         providerInterface.printEnter();
         for (Dishesbean dishes : dishesbeans) {
-            DishesPrint print = new DishesPrint(dishes.getNotNullName(), dishes.getLocal_num() + "", dishes.getShowPrice(), "");
-            Content dishesContent = FormatFactory.getDishesContent(print);
-            providerInterface.printText(dishesContent.getContent(), dishesContent.getFormat());
-            providerInterface.printEnter();
+            PrintManager.getInstance().printLineText(providerInterface, FormatFactory.getDishesLine(dishes));
         }
+        providerInterface.printText(dividerContent.getContent(), dividerContent.getFormat());
         providerInterface.printEnter();
         providerInterface.printEnter();
         PrintManager.getInstance().startPrint(providerInterface, true);
@@ -664,7 +667,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
                     mSelltalAccountTv.setVisibility(AppUtil.isOrderDishes(getContext()) ? View.GONE : View.VISIBLE);
                     if (AppUtil.isOrderDishes(getContext())) {
                         mLeftFormatLayout.setVisibility(View.GONE);
-                    }else {
+                    } else {
                         mLeftFormatLayout.setVisibility(View.VISIBLE);
                     }
                     break;
@@ -677,7 +680,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
                     mSelltalAccountTv.setVisibility(AppUtil.isOrderDishes(getContext()) ? View.GONE : View.VISIBLE);
                     if (AppUtil.isOrderDishes(getContext())) {
                         mLeftFormatLayout.setVisibility(View.GONE);
-                    }else {
+                    } else {
                         mLeftFormatLayout.setVisibility(View.VISIBLE);
                     }
                     break;

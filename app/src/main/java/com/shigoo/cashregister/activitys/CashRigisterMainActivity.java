@@ -2,6 +2,7 @@ package com.shigoo.cashregister.activitys;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.view.Gravity;
@@ -90,16 +91,16 @@ public class CashRigisterMainActivity extends BaseActivity {
                 return fragments.size();
             }
         }, R.id.fragment_container);
-        mFragmentNavigator.setDefaultPosition(0);
-        mLeftTabLayout.setTabSelected(mFragmentNavigator.getCurrentPosition());
-        mLeftTabLayout.getTabAt(mFragmentNavigator.getCurrentPosition()).getTitleView().setBackgroundResource(R.drawable.cash_main_left_tab_press_bg);
-        mFragmentNavigator.showFragment(mFragmentNavigator.getCurrentPosition());
         EventBus.getDefault().register(this);
     }
 
     @Override
     protected void onInitData(Bundle savedInstanceState) {
         mFragmentNavigator.onCreate(savedInstanceState);
+        mFragmentNavigator.setDefaultPosition(0);
+        mLeftTabLayout.setTabSelected(mFragmentNavigator.getCurrentPosition());
+        mLeftTabLayout.getTabAt(mFragmentNavigator.getCurrentPosition()).getTitleView().setBackgroundResource(R.drawable.cash_main_left_tab_press_bg);
+        mFragmentNavigator.showFragment(mFragmentNavigator.getCurrentPosition());
     }
 
     /**
@@ -254,6 +255,12 @@ public class CashRigisterMainActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+        mFragmentNavigator.onSaveInstanceState(outState);
     }
 
     @Override

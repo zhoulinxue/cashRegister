@@ -18,7 +18,7 @@ import com.zx.network.Param;
 
 import java.util.List;
 
-public class PrinServices extends Service implements PrintContacts.view {
+public class PrintServices extends Service implements PrintContacts.view {
     private PrintPresenter mPresenter;
     protected final String DEFAULT_TOKEN = "default_token";
 
@@ -33,6 +33,11 @@ public class PrinServices extends Service implements PrintContacts.view {
         super.onCreate();
         mPresenter = new PrintPresenter(this);
         mPresenter.getPrintList(Param.Keys.TOKEN, getToken());
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        return START_STICKY;
     }
 
     @Override

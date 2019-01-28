@@ -130,6 +130,6 @@ public abstract class BaseFragment extends Fragment implements BackHandler {
     }
 
     public void quitUser() {
-        SPUtil.getInstance().putString(Param.Keys.TOKEN, "");
+        SPUtil.getInstance().putString(Param.Keys.USER, "");
     }
 }

@@ -45,7 +45,8 @@ public class MainRouterActivity extends BaseActivity {
         EventBus.getDefault().register(this);
         mAction = getIntent().getAction();
         fragments.add(TableMainFragment.newInstance());
-        fragments.add(MemberDetailFragment.newInstance());
+        fragments.add(MemberDetailFragment.newInstance("消费详情"));
+        fragments.add(MemberMoneyDetailListFragment.newInstance());
         mFragmentNavigator = new FragmentNavigator(getSupportFragmentManager(), new FragmentNavigatorAdapter() {
             @Override
             public Fragment onCreateFragment(int i) {
@@ -91,6 +92,9 @@ public class MainRouterActivity extends BaseActivity {
                 break;
             case BACK_TO_MEMBER_DETAIL:
                 mFragmentNavigator.showFragment(1);
+                break;
+            case MAIN:
+                finish();
                 break;
         }
     }

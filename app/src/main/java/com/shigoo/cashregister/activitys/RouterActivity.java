@@ -8,10 +8,12 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.shigoo.cashregister.App;
 import com.shigoo.cashregister.R;
 import com.shigoo.cashregister.adapters.OrderSheetMainMenuListAdapter;
 import com.xgsb.datafactory.bean.OrderSheetMainMenu;
 import com.xgsb.datafactory.enu.EventBusAction;
+import com.zx.api.api.utils.AppLog;
 import com.zx.api.api.utils.AppUtil;
 import com.zx.mvplibrary.BaseActivity;
 import com.zx.network.Param;
