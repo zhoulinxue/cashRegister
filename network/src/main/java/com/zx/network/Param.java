@@ -31,6 +31,7 @@ public class Param {
         public static final String STAFF_ID = "staff_id";
         public static final String GIVING_ID = "giving_id";
         public static final String PAGE_NUM = "per_page";
+        public static final String PAY_NUM = "pay_num";
         public static final String GIVE = "give";
         public static final String USER = "user";
         public static final String CHE_DAN = "revoke_reason";
@@ -44,9 +45,11 @@ public class Param {
         public static final String DISH_QTY = "dish_qty";
         public static final String FINALLY_TAG = "finally_tag";
         public static final String PRINT = "print_msg";
-        public static final String WAITER_ID ="waiter_id" ;
+        public static final String WAITER_ID = "waiter_id";
         public static final String TIME_TYPE = "time_type";
         public static final String ACTION = "action";
+        public static final String PAY_TAG = "pay_tag";
+        public static final String PAY_INFO = "payinfo";
         public static String YUAN = "  元";
         public static final String id = "id";
         public static final String value = "value";

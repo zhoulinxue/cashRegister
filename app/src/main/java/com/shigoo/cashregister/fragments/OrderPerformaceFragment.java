@@ -192,6 +192,11 @@ public class OrderPerformaceFragment extends MvpFragment<OrderPerformancePresent
 
     }
 
+    @Override
+    public void getPayNumOrderDetailsData(Request request) {
+
+    }
+
     @OnClick({R.id.ordersheet_time_text, R.id.ordersheet_yesterday_tv, R.id.ordersheet_today_tv, R.id.ordersheet_last_seven_days})
     public void onViewClicked(View view) {
         switch (view.getId()) {

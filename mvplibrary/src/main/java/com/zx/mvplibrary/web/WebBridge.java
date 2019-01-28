@@ -83,4 +83,13 @@ public class WebBridge extends DAppApi implements onOperateLisenter {
             ((XgDAppBridge) bridge).handDutyHistroyListPrint(request);
         }
     }
+
+    @Override
+    public void getPayNumOrderDetailsData(Request request) {
+        AppLog.print("WebBridge  " + "getPayNumOrderDetailsData");
+        if (bridge instanceof XgDAppBridge) {
+            ((XgDAppBridge) bridge).getPayNumOrderDetailsData(request);
+        }
+    }
+
 }

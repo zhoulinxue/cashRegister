@@ -25,4 +25,6 @@ public interface onOperateLisenter {
     public void handoverPrint(Request request);
 
     public void handDutyHistroyListPrint(Request request);
+
+    public void getPayNumOrderDetailsData(Request request);
 }

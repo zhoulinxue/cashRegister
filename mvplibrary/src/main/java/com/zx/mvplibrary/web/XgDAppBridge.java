@@ -124,4 +124,15 @@ public class XgDAppBridge extends DAppBridge {
             });
         }
     }
+
+    public void getPayNumOrderDetailsData(final Request request) {
+        if (mLisenter != null) {
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    mLisenter.getPayNumOrderDetailsData(request);
+                }
+            });
+        }
+    }
 }

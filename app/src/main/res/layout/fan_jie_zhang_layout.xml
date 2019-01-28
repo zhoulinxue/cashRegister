@@ -116,18 +116,19 @@
                     android:layout_above="@id/ordersheet_dishes_bootom_layout"
                     android:background="#D7DDE4" />
 
-                <RelativeLayout
+                <LinearLayout
                     android:id="@id/ordersheet_dishes_bootom_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@id/ordersheet_dishes_bootom_cancel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
                         android:background="@drawable/ordersheet_number_btn_bg"
                         android:paddingLeft="@dimen/ordersheet_20dp"
                         android:paddingTop="@dimen/ordersheet_10dp"
@@ -149,7 +150,7 @@
                         android:paddingBottom="@dimen/ordersheet_10dp"
                         android:text="提交"
                         android:textColor="@color/ordersheet_white" />
-                </RelativeLayout>
+                </LinearLayout>
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>

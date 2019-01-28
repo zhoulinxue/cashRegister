@@ -146,6 +146,11 @@ public class ConsumeDetailFragment extends MvpFragment<ConsumePresenter> impleme
     }
 
     @Override
+    public void getPayNumOrderDetailsData(Request request) {
+
+    }
+
+    @Override
     public void onGetConsumeListCallback(ConsumeListData consumeListData) {
         this.mList = consumeListData;
         if (mRequest != null) {

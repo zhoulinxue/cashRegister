@@ -20,6 +20,7 @@ import com.xgsb.datafactory.bean.Billbean;
 import com.xgsb.datafactory.bean.Dishesbean;
 import com.xgsb.datafactory.bean.EventRouter;
 import com.xgsb.datafactory.bean.Numberbean;
+import com.xgsb.datafactory.bean.Paybean;
 import com.xgsb.datafactory.bean.Remarkbean;
 import com.xgsb.datafactory.bean.SetMealGroupbean;
 import com.xgsb.datafactory.bean.SettalOrderResultbean;
@@ -90,6 +91,7 @@ public class TableMainFragment extends BaseFragment implements OrderListViewBria
         fragments.add(DishesListFragment.newInstance());
         fragments.add(CopyDishesFragment.newInstance());
         fragments.add(SettalFragment.newInstance());
+        fragments.add(OrderPayDetailFragment.newInstance());
         mFragmentNavigator = new FragmentNavigator(getChildFragmentManager(), new FragmentNavigatorAdapter() {
             @Override
             public Fragment onCreateFragment(int i) {
@@ -405,6 +407,18 @@ public class TableMainFragment extends BaseFragment implements OrderListViewBria
         SettalFragment dfragment = (SettalFragment) mFragmentNavigator.getFragment(3);
         dfragment.onDemolition(2);
         mDishesView.cancelDemolition();
+    }
+
+    @Override
+    public void onOrderpayList(final Table table, final Paybean paybean) {
+        mFragmentNavigator.showFragment(4);
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                OrderPayDetailFragment dfragment = (OrderPayDetailFragment) mFragmentNavigator.getFragment(4);
+                dfragment.setPaybean(table, paybean);
+            }
+        }, 500);
     }
 
     @Override

@@ -137,6 +137,11 @@ public class MemberMoneyDetailListFragment extends MvpFragment<ConsumePresenter>
 
     }
 
+    @Override
+    public void getPayNumOrderDetailsData(Request request) {
+
+    }
+
     @OnClick({R.id.member_detail_back_layout})
     public void onViewClick(View view) {
         switch (view.getId()) {

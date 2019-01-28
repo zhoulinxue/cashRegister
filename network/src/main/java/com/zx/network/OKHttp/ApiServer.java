@@ -17,6 +17,7 @@ import com.xgsb.datafactory.bean.Member;
 import com.xgsb.datafactory.bean.MemberLevel;
 import com.xgsb.datafactory.bean.MemberMoney;
 import com.xgsb.datafactory.bean.MemberReChargeGive;
+import com.xgsb.datafactory.bean.OrderPayDetailbean;
 import com.xgsb.datafactory.bean.OrderPayStatusbean;
 import com.xgsb.datafactory.bean.OrderPerformancebean;
 import com.xgsb.datafactory.bean.PayTypebean;
@@ -365,4 +366,8 @@ public interface ApiServer {
     @FormUrlEncoded
     @POST("/reserve/reserve/PrintingIndexData")
     Observable<NetBean<ListData<Printbean>>> getPrintList(@FieldMap Map<String, String> stringStringMap);
+
+    @FormUrlEncoded
+    @POST("/cashier/invoicing/tableListDetail")
+    Observable<NetBean<OrderPayDetailbean>> getOrderPayDetail(@FieldMap Map<String, String> stringStringMap);
 }

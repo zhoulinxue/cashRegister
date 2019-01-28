@@ -312,6 +312,11 @@ public class MemberListFragement extends MvpFragment<MemberManagePresenter> impl
 
     }
 
+    @Override
+    public void getPayNumOrderDetailsData(Request request) {
+
+    }
+
 
     @Override
     public void onResult(List<Cardbean> cardbean) {

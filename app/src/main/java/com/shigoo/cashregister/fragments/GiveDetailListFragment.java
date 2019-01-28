@@ -207,6 +207,11 @@ public class GiveDetailListFragment extends MvpFragment<GiveDetailListPresenter>
 
     }
 
+    @Override
+    public void getPayNumOrderDetailsData(Request request) {
+
+    }
+
 
     @Override
     public void onGiveDetailListResult(List<GiveDetailListbean> giveDetailListbeans) {

@@ -2,6 +2,7 @@ package com.shigoo.cashregister.customViews.viewChildClick;
 
 import com.xgsb.datafactory.bean.Billbean;
 import com.xgsb.datafactory.bean.Dishesbean;
+import com.xgsb.datafactory.bean.Paybean;
 import com.xgsb.datafactory.bean.SettalOrderbean;
 import com.xgsb.datafactory.bean.Table;
 
@@ -34,6 +35,8 @@ public class OrderListViewBriage {
         void demolition();
 
         void cancelDemolition();
+
+        void onOrderpayList(Table table,Paybean paybean);
     }
 
     public interface onFormatChildClick {
@@ -43,7 +46,7 @@ public class OrderListViewBriage {
 
         public void onDiscount(Dishesbean dishesbean);
 
-        public void  onChedan(String billCode);
+        public void onChedan(String billCode);
 
         public void onFormatClick(Dishesbean dishesbean);
 

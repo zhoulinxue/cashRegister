@@ -100,7 +100,7 @@ public class RechargeDetailListFragment extends MvpFragment<RecahrgePresenter> i
         showLoadingDialog();
         mHeader = new ReChargeHeaderView(getContext(), mHeaderViewLayout);
         mWebCahrtView = new WebChartView(view.getContext(), mWebChartContainer, this, mHandler);
-        mWebCahrtView.loadDefaultUrl( new WebChromeClient() {
+        mWebCahrtView.loadDefaultUrl(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 super.onProgressChanged(view, newProgress);
@@ -218,6 +218,11 @@ public class RechargeDetailListFragment extends MvpFragment<RecahrgePresenter> i
 
     @Override
     public void handDutyHistroyListPrint(Request request) {
+
+    }
+
+    @Override
+    public void getPayNumOrderDetailsData(Request request) {
 
     }
 

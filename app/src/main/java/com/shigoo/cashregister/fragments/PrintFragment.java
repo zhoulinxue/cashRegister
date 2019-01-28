@@ -186,4 +186,9 @@ public class PrintFragment extends MvpFragment<PrintFragmentPresenter> implement
     public void handDutyHistroyListPrint(Request request) {
 
     }
+
+    @Override
+    public void getPayNumOrderDetailsData(Request request) {
+
+    }
 }

@@ -23,6 +23,10 @@ public class Paymentbean implements Parcelable {
     private List<AddFavorablebean> sale;
     private List<AddPayment> payments;
     private List<String> voucher_id;
+    private String pay_name;
+    private String pay_amount;
+    private String create_date;
+    private String cashier_name;
 
     public String getToken() {
         return token;
@@ -178,6 +182,10 @@ public class Paymentbean implements Parcelable {
         dest.writeTypedList(this.sale);
         dest.writeTypedList(this.payments);
         dest.writeStringList(this.voucher_id);
+        dest.writeString(this.pay_name);
+        dest.writeString(this.pay_amount);
+        dest.writeString(this.create_date);
+        dest.writeString(this.cashier_name);
     }
 
     protected Paymentbean(Parcel in) {
@@ -198,6 +206,10 @@ public class Paymentbean implements Parcelable {
         this.sale = in.createTypedArrayList(AddFavorablebean.CREATOR);
         this.payments = in.createTypedArrayList(AddPayment.CREATOR);
         this.voucher_id = in.createStringArrayList();
+        this.pay_name = in.readString();
+        this.pay_amount = in.readString();
+        this.create_date = in.readString();
+        this.cashier_name = in.readString();
     }
 
     public static final Creator<Paymentbean> CREATOR = new Creator<Paymentbean>() {

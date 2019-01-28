@@ -156,6 +156,9 @@ public class RechargeView extends MvpCustomView<RechargePresenter> implements Re
             if (mRestMoney != null) {
                 mRestMoney.setText("");
             }
+            if (mRechargeEdite != null) {
+                mRechargeEdite.setText("");
+            }
         }
 
     }
@@ -211,7 +214,7 @@ public class RechargeView extends MvpCustomView<RechargePresenter> implements Re
 
     @Override
     protected void onInitView(Context context, View rootView) {
-        ButterKnife.bind(this,rootView);
+        ButterKnife.bind(this, rootView);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mRechargeGives.setLayoutManager(manager);
@@ -321,7 +324,7 @@ public class RechargeView extends MvpCustomView<RechargePresenter> implements Re
     }
 
     public boolean isShowing() {
-        return mReChargeDialog!=null&&mReChargeDialog.isShowing();
+        return mReChargeDialog != null && mReChargeDialog.isShowing();
     }
 
     public void dismiss() {

@@ -116,7 +116,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
     private int mCurrentPosition;
     private boolean isUpdate = false;
     private Table mTable;
-    //1： 下单 2：加菜 3：点菜 4：拆单支付 5:支付页面 6:已结账
+    //1： 下单 2：加菜 3：点菜 4：拆单支付 5:支付页面 6:已结账 7:单次支付详情
     private String settalType = "1";
     private int mPNum;
     private DiscountType mDiscountType = DiscountType.NULL;
@@ -175,6 +175,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
                         case "2":
                         case "4":
                         case "5":
+                        case "7":
                             setTable(mTable, isFjz);
                             mClickLister.gotoTable();
                             settalType = "6";
@@ -357,6 +358,15 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
         });
         mOrderOldPriceTv.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         showBottomUi();
+        mPayListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                settalType = "7";
+                Paybean paybean = mPayListAdapter.getItem(position);
+                paybean.setBillCode(mBillbean.getBill_code());
+                mClickLister.onOrderpayList(mTable, mPayListAdapter.getItem(position));
+            }
+        });
     }
 
     private void showBottomUi() {
@@ -364,9 +374,9 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
             mMenuList.setVisibility(View.GONE);
             mEmptyTv.setVisibility(View.VISIBLE);
             mBottomlayout.setVisibility(View.GONE);
-            mLeftFormatLayout.setVisibility(View.GONE);
             mBottomlayout.setVisibility(View.GONE);
             mDeleteImg.setVisibility(View.GONE);
+            mLeftFormatLayout.setVisibility(View.GONE);
         } else {
             mMenuList.setVisibility(View.VISIBLE);
             mEmptyTv.setVisibility(View.GONE);
@@ -619,6 +629,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
         }
         mMenuListAdapter.setCurrentPositon(0);
         mDishList = mMenuListAdapter.getData();
+        showLeftLayout();
         showBottomUi();
         return mMenuListAdapter.getTotalNum(data);
     }
@@ -658,44 +669,48 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
         if (mTable != null) {
             setBillCode(table.getBillbean());
             mFormateView.setLocalStatus(table.getLocal_status());
-            switch (mTable.getLocal_status()) {
-                case "已下单":
-                    mSettleTv.setVisibility(View.VISIBLE);
-                    mSettleTv.setText("加菜");
-                    mDeleteImg.setVisibility(View.GONE);
-                    mSelltalAccountTv.setText("去结账");
-                    mSelltalAccountTv.setVisibility(AppUtil.isOrderDishes(getContext()) ? View.GONE : View.VISIBLE);
-                    if (AppUtil.isOrderDishes(getContext())) {
-                        mLeftFormatLayout.setVisibility(View.GONE);
-                    } else {
-                        mLeftFormatLayout.setVisibility(View.VISIBLE);
-                    }
-                    break;
-                case "已结账":
-                    mSettleTv.setText("加菜");
-                    mSettleTv.setVisibility(View.VISIBLE);
-                    mSelltalAccountTv.setText(mTable.getLocal_status());
-                    settalType = "6";
-                    mDeleteImg.setVisibility(View.GONE);
-                    mSelltalAccountTv.setVisibility(AppUtil.isOrderDishes(getContext()) ? View.GONE : View.VISIBLE);
-                    if (AppUtil.isOrderDishes(getContext())) {
-                        mLeftFormatLayout.setVisibility(View.GONE);
-                    } else {
-                        mLeftFormatLayout.setVisibility(View.VISIBLE);
-                    }
-                    break;
-                case "已开台":
-                    mSelltalAccountTv.setVisibility(View.GONE);
-                    mSettleTv.setVisibility(View.VISIBLE);
-                    mSettleTv.setText("下单");
-                    mDeleteImg.setVisibility(View.VISIBLE);
-                    mLeftFormatLayout.setVisibility(View.VISIBLE);
-                    break;
-            }
+            showLeftLayout();
         } else {
             setBillCode(null);
             mMenuListAdapter.notifyDataSetChanged();
             mCasherLayout.setVisibility(View.GONE);
+        }
+    }
+
+    private void showLeftLayout() {
+        switch (mTable.getLocal_status()) {
+            case "已下单":
+                mSettleTv.setVisibility(View.VISIBLE);
+                mSettleTv.setText("加菜");
+                mDeleteImg.setVisibility(View.GONE);
+                mSelltalAccountTv.setText("去结账");
+                mSelltalAccountTv.setVisibility(AppUtil.isOrderDishes(getContext()) ? View.GONE : View.VISIBLE);
+                if (AppUtil.isOrderDishes(getContext())) {
+                    mLeftFormatLayout.setVisibility(View.GONE);
+                } else {
+                    mLeftFormatLayout.setVisibility(View.VISIBLE);
+                }
+                break;
+            case "已结账":
+                mSettleTv.setText("加菜");
+                mSettleTv.setVisibility(View.VISIBLE);
+                mSelltalAccountTv.setText(mTable.getLocal_status());
+                settalType = "6";
+                mDeleteImg.setVisibility(View.GONE);
+                mSelltalAccountTv.setVisibility(AppUtil.isOrderDishes(getContext()) ? View.GONE : View.VISIBLE);
+                if (AppUtil.isOrderDishes(getContext())) {
+                    mLeftFormatLayout.setVisibility(View.GONE);
+                } else {
+                    mLeftFormatLayout.setVisibility(View.VISIBLE);
+                }
+                break;
+            case "已开台":
+                mSelltalAccountTv.setVisibility(View.GONE);
+                mSettleTv.setVisibility(View.VISIBLE);
+                mSettleTv.setText("下单");
+                mDeleteImg.setVisibility(View.VISIBLE);
+                mLeftFormatLayout.setVisibility(View.VISIBLE);
+                break;
         }
     }
 

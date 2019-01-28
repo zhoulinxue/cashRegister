@@ -141,6 +141,11 @@ public class OrdersFragment extends MvpFragment<OrderPerformancePresenter> imple
 
     }
 
+    @Override
+    public void getPayNumOrderDetailsData(Request request) {
+
+    }
+
     @OnClick({R.id.print_cosume_order, R.id.fan_jie_zhang_tv, R.id.back_to_list})
     public void onViewClick(View view) {
         switch (view.getId()) {

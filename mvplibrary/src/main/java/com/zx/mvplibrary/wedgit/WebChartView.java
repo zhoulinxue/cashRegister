@@ -99,11 +99,15 @@ public class WebChartView extends BaseCustomView implements WebOperate {
         mWebView.loadUrl(url);
     }
 
+    public void loadLocalDefaultUrl(WebChromeClient client) {
+        loadUrl("file:///android_asset/index.html", client);
+    }
+
     @Override
     public void getDataFormWeb(String action, String methodName) {
         if (!TextUtils.isEmpty(action)) {
             mWebView.evaluateJavascript("javascript:" + methodName + "(" + JSONManager.getInstance().toJson(action) + ")", null);
-        } else {
+        } else if (TextUtils.isEmpty(action) && !TextUtils.isEmpty(methodName)) {
             mWebView.evaluateJavascript("javascript:" + methodName + "()", null);
         }
     }

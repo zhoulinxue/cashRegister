@@ -8,6 +8,21 @@ public class Paybean implements Parcelable {
     private int pay_tag;
     private String create_date;
     private float pay_amount;
+    private String bill_amount;
+    private String should_receive_amount;
+    private String had_receive_amount;
+    private String vip_sale;
+    private String dish_sale;
+    private String order_sale;
+    private String billCode;
+
+    public String getBillCode() {
+        return billCode;
+    }
+
+    public void setBillCode(String billCode) {
+        this.billCode = billCode;
+    }
 
     public String getCreate_date() {
         return create_date;
@@ -55,6 +70,13 @@ public class Paybean implements Parcelable {
         dest.writeInt(this.pay_tag);
         dest.writeString(this.create_date);
         dest.writeFloat(this.pay_amount);
+        dest.writeString(this.bill_amount);
+        dest.writeString(this.should_receive_amount);
+        dest.writeString(this.had_receive_amount);
+        dest.writeString(this.vip_sale);
+        dest.writeString(this.dish_sale);
+        dest.writeString(this.order_sale);
+        dest.writeString(this.billCode);
     }
 
     protected Paybean(Parcel in) {
@@ -62,6 +84,13 @@ public class Paybean implements Parcelable {
         this.pay_tag = in.readInt();
         this.create_date = in.readString();
         this.pay_amount = in.readFloat();
+        this.bill_amount = in.readString();
+        this.should_receive_amount = in.readString();
+        this.had_receive_amount = in.readString();
+        this.vip_sale = in.readString();
+        this.dish_sale = in.readString();
+        this.order_sale = in.readString();
+        this.billCode = in.readString();
     }
 
     public static final Creator<Paybean> CREATOR = new Creator<Paybean>() {

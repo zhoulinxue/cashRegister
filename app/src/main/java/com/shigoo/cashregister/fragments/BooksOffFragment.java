@@ -119,4 +119,9 @@ public class BooksOffFragment extends MvpFragment<OrderDishesPresenter> implemen
     public void handDutyHistroyListPrint(Request request) {
         AppLog.print(request.getParams()+"交班历史");
     }
+
+    @Override
+    public void getPayNumOrderDetailsData(Request request) {
+
+    }
 }
