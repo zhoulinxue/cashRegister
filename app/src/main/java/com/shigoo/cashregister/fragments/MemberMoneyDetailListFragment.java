@@ -72,7 +72,7 @@ public class MemberMoneyDetailListFragment extends MvpFragment<ConsumePresenter>
         ButterKnife.bind(this, view);
         showLoadingDialog();
         mWebChartView = new WebChartView(view.getContext(), mWebContainer, this, mHandler);
-        mWebChartView.loadDefaultUrl( new WebChromeClient() {
+        mWebChartView.loadDefaultUrl(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 super.onProgressChanged(view, newProgress);
@@ -114,7 +114,11 @@ public class MemberMoneyDetailListFragment extends MvpFragment<ConsumePresenter>
 
     @Override
     public void searchOperate(Request request) {
-
+        this.request = request;
+        if (mList != null) {
+            String json = WebData.newInstance().getMemberMoney(mList, mWebChartView.getWidth(), mWebChartView.getHight());
+            mWebChartView.callback(request, json);
+        }
     }
 
     @Override
