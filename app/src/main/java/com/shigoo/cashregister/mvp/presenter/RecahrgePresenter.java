@@ -23,13 +23,11 @@ public class RecahrgePresenter extends BasePresenterImpl<MemberRechargeContact.v
     NetRequestCallBack<ReChargeListData> reChargeCallback = new NetRequestCallBack<ReChargeListData>() {
         @Override
         public void onSuccess(ReChargeListData reChargebeanListData) {
-            mView.dismissLoadingDiaog();
             mView.onGetReChargeListCallback(reChargebeanListData);
         }
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.dismissLoadingDiaog();
             mView.onError(msg);
         }
     };
@@ -49,7 +47,6 @@ public class RecahrgePresenter extends BasePresenterImpl<MemberRechargeContact.v
 
     @Override
     public void getReChargeList(String... params) {
-        mView.showLoadingDialog();
         NetRequest request = ApiManager.getInstance().getReChargeList(params, reChargeCallback);
         addRequest(request);
     }

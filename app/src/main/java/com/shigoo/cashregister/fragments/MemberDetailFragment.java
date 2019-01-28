@@ -121,15 +121,17 @@ public class MemberDetailFragment extends MvpFragment<MemberDetailPresenter> imp
     private AddCardPresenter mCardPresenter;
     private int mFroenType = 1;
     private String mCurrentBtn;
+    boolean isQueryMember = false;
 
 
     public static MemberDetailFragment newInstance() {
         return newInstance("充值");
     }
+
     public static MemberDetailFragment newInstance(String action) {
         MemberDetailFragment fragment = new MemberDetailFragment();
         Bundle args = new Bundle();
-        args.putString(Param.Keys.ACTION,action);
+        args.putString(Param.Keys.ACTION, action);
         fragment.setArguments(args);
         return fragment;
     }
@@ -168,7 +170,8 @@ public class MemberDetailFragment extends MvpFragment<MemberDetailPresenter> imp
         mMemberLevelName.setText(member.getGrade_name());
         mYHType.setText(member.getGrade_discount_than_name());
         mAdapter.setNewData(member.getVoucher());
-
+        mCardInputLayout.setVisibility(View.GONE);
+        mMainLayout.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -239,7 +242,8 @@ public class MemberDetailFragment extends MvpFragment<MemberDetailPresenter> imp
             @Override
             public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
                 if (actionId == EditorInfo.IME_ACTION_UNSPECIFIED) {
-                    mPresenter.getMemberList(Param.Keys.TOKEN, getToken(), Param.Keys.DATA, mInputEdite.getText().toString(), Param.Keys.PAGE, "1");
+                    isQueryMember = true;
+                    mCardPresenter.getCardMsg(Param.Keys.INFO, textView.getText().toString());
                     return true;
                 }
                 return false;
@@ -250,21 +254,22 @@ public class MemberDetailFragment extends MvpFragment<MemberDetailPresenter> imp
     @Override
     protected void onInitData(Bundle savedInstanceState) {
         mBottomLayout.setVisibility(View.GONE);
-        mCurrentBtn=getArguments().getString(Param.Keys.ACTION);
+        mCurrentBtn = getArguments().getString(Param.Keys.ACTION);
         mRechargeBtn.setText(mCurrentBtn);
         if (!"消费详情".equals(mCurrentBtn)) {
             mMainLayout.setVisibility(View.VISIBLE);
             mCardInputLayout.setVisibility(View.GONE);
+            mBottomLayout.setVisibility(View.VISIBLE);
         } else {
             mMainLayout.setVisibility(View.GONE);
             mCardInputLayout.setVisibility(View.VISIBLE);
+            mBottomLayout.setVisibility(View.GONE);
         }
     }
 
     public void updateId(String id) {
         this.mId = id;
-        mBottomLayout.setVisibility(View.VISIBLE);
-        mCurrentBtn="充值";
+        mCurrentBtn = "充值";
         mRechargeBtn.setText(mCurrentBtn);
         mMainLayout.setVisibility(View.VISIBLE);
         mCardInputLayout.setVisibility(View.GONE);
@@ -323,7 +328,7 @@ public class MemberDetailFragment extends MvpFragment<MemberDetailPresenter> imp
                 if ("充值".equals(mRechargeBtn.getText().toString())) {
                     mRechargeView.show();
                 } else {
-                    EventBus.getDefault().post(new EventRouter(EventBusAction.CONSUM_DETAIL,mMber.getId()));
+                    EventBus.getDefault().post(new EventRouter(EventBusAction.CONSUM_DETAIL, mMber.getId()));
                 }
                 break;
             case R.id.change_card:
@@ -381,10 +386,16 @@ public class MemberDetailFragment extends MvpFragment<MemberDetailPresenter> imp
 
     @Override
     public void onCardMsg(Cardbean cardbean) {
-        mNumTextview.setText(cardbean.getCoding_card());
-        mCardNumEditText.setText("");
-        isExcute = false;
-        hideInputMethod();
+        if (isQueryMember) {
+            isQueryMember = false;
+            mPresenter.searchMember(Param.Keys.TOKEN, getToken(), Param.Keys.DATA, cardbean.getCoding_card() + "");
+        } else {
+            mNumTextview.setText(cardbean.getCoding_card());
+            mCardNumEditText.setText("");
+            isExcute = false;
+            hideInputMethod();
+        }
+
     }
 
     @Override
@@ -395,7 +406,7 @@ public class MemberDetailFragment extends MvpFragment<MemberDetailPresenter> imp
     @Override
     public void onRefresh() {
         super.onRefresh();
-        if(!TextUtils.isEmpty(mId)){
+        if (!TextUtils.isEmpty(mId)) {
             mPresenter.getMemberDetail(Param.Keys.TOKEN, getToken(), Param.Keys.id, mId);
         }
     }

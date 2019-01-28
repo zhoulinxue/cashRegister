@@ -1,15 +1,20 @@
 package com.shigoo.cashregister.customViews;
 
 import android.content.Context;
+import android.text.InputType;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.shigoo.cashregister.R;
 import com.zx.mvplibrary.BaseCustomView;
 import com.zx.mvplibrary.wedgit.FullScreenNumberKeyboardView;
+import com.zx.network.Param;
 
 import butterknife.BindView;
 
@@ -26,10 +31,13 @@ public class InputNumberView extends BaseCustomView implements FullScreenNumberK
     TextView mTitleTv;
     @BindView(R.id.ordersheet_number_finish_btn)
     ImageView mBackImg;
+    @BindView(R.id.int_card_number_edite)
+    EditText editText;
     private NumberViewResult mResult;
     private StringBuffer buffer;
     private String[] numberItem;
     private boolean isInteger = true;
+    private  boolean isShuaka=false;
 
     public InputNumberView(Context context, ViewGroup rootGroup) {
         super(context, rootGroup);
@@ -46,7 +54,7 @@ public class InputNumberView extends BaseCustomView implements FullScreenNumberK
                     if (TextUtils.isEmpty(result) || Integer.valueOf(result) == 0) {
                         result = "0";
                     }
-                    mResult.onSure(result);
+                    mResult.onSure(result,isShuaka);
                 }
             }
         });
@@ -59,6 +67,21 @@ public class InputNumberView extends BaseCustomView implements FullScreenNumberK
             }
         });
         mNumberView.setOnNumberClickListener(this);
+        editText.setInputType(InputType.TYPE_NULL);
+        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                if (actionId == EditorInfo.IME_ACTION_UNSPECIFIED) {
+                    buffer=new StringBuffer();
+                    onNumberReturn(textView.getText().toString());
+                    if (mResult != null) {
+                        mResult.onSure(mNumberTv.getText().toString(),true);
+                    }
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     @Override
@@ -97,9 +120,10 @@ public class InputNumberView extends BaseCustomView implements FullScreenNumberK
     }
 
     public interface NumberViewResult {
-        void onSure(String number);
+        void onSure(String number,boolean isInteger);
 
         void onBack();
+
     }
 
     public void hideUnitTv(boolean ishide) {

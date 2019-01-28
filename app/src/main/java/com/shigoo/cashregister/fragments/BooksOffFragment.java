@@ -2,13 +2,17 @@ package com.shigoo.cashregister.fragments;
 
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.shigoo.cashregister.R;
+import com.shigoo.cashregister.mvp.presenter.OrderDishesPresenter;
 import com.xgsb.datafactory.JSONManager;
 import com.zx.api.api.utils.AppLog;
 import com.zx.mvplibrary.BaseFragment;
+import com.zx.mvplibrary.MvpFragment;
 import com.zx.mvplibrary.web.InitWebView;
 import com.zx.mvplibrary.web.onOperateLisenter;
 import com.zx.mvplibrary.wedgit.WebChartView;
@@ -26,7 +30,7 @@ import static com.shigoo.cashregister.activitys.CashRigisterMainActivity.TEST;
  * Comment: //TODO
  * Date: 2018-12-01 14:27
  */
-public class BooksOffFragment extends BaseFragment implements onOperateLisenter {
+public class BooksOffFragment extends MvpFragment<OrderDishesPresenter> implements onOperateLisenter {
     @BindView(R.id.web_chart_layout)
     FrameLayout mWebContainer;
     WebChartView webChartView;
@@ -45,6 +49,11 @@ public class BooksOffFragment extends BaseFragment implements onOperateLisenter 
     }
 
     @Override
+    protected OrderDishesPresenter onCtreatPresenter() {
+        return null;
+    }
+
+    @Override
     protected int initLayout() {
         return R.layout.bookoff_fragment_layout;
     }
@@ -52,8 +61,17 @@ public class BooksOffFragment extends BaseFragment implements onOperateLisenter 
     @Override
     protected void onCreateView(View view, Bundle argment) {
         ButterKnife.bind(this, view);
+        showLoadingDialog();
         webChartView = new WebChartView(getContext(), mWebContainer, this, mHandler);
-        webChartView.loadUrl("file:///android_asset/index.html");
+        webChartView.loadUrl("file:///android_asset/index.html", new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                super.onProgressChanged(view, newProgress);
+                if (newProgress == 100) {
+                    dismissLoadingDiaog();
+                }
+            }
+        });
     }
 
     @Override

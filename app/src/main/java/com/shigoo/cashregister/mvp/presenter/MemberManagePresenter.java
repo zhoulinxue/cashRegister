@@ -25,13 +25,11 @@ public class MemberManagePresenter extends BasePresenterImpl<MemberManageContact
     NetRequestCallBack<ListData<Member>> mCashMemberCallback = new NetRequestCallBack<ListData<Member>>() {
         @Override
         public void onSuccess(ListData<Member> memberListData) {
-            mView.dismissLoadingDiaog();
             mView.onGetMenbersCallback(memberListData.getData());
         }
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.dismissLoadingDiaog();
             mView.onError(msg);
         }
     };
@@ -87,7 +85,6 @@ public class MemberManagePresenter extends BasePresenterImpl<MemberManageContact
 
     @Override
     public void getMemberList(String... params) {
-        mView.showLoadingDialog();
         NetRequest request = ApiManager.getInstance().getMemberList(params, mCashMemberCallback);
         addRequest(request);
     }

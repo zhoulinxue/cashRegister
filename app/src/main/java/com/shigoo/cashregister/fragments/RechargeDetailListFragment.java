@@ -4,6 +4,8 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -95,9 +97,18 @@ public class RechargeDetailListFragment extends MvpFragment<RecahrgePresenter> i
     @Override
     protected void onCreateView(View view, Bundle argment) {
         ButterKnife.bind(this, view);
+        showLoadingDialog();
         mHeader = new ReChargeHeaderView(getContext(), mHeaderViewLayout);
         mWebCahrtView = new WebChartView(view.getContext(), mWebChartContainer, this, mHandler);
-        mWebCahrtView.loadDefaultUrl();
+        mWebCahrtView.loadDefaultUrl( new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                super.onProgressChanged(view, newProgress);
+                if (newProgress == 100) {
+                    dismissLoadingDiaog();
+                }
+            }
+        });
         mHeader.getSearchBtn().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

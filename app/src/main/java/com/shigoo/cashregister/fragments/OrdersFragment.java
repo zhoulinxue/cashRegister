@@ -3,18 +3,22 @@ package com.shigoo.cashregister.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.shigoo.cashregister.R;
 import com.shigoo.cashregister.activitys.FanJZActivity;
+import com.shigoo.cashregister.mvp.presenter.OrderPerformancePresenter;
 import com.xgsb.datafactory.JSONManager;
 import com.xgsb.datafactory.bean.Billbean;
 import com.xgsb.datafactory.bean.Table;
 import com.zx.api.api.utils.AppLog;
 import com.zx.api.api.utils.SPUtil;
 import com.zx.mvplibrary.BaseFragment;
+import com.zx.mvplibrary.MvpFragment;
 import com.zx.mvplibrary.web.InitWebView;
 import com.zx.mvplibrary.web.onOperateLisenter;
 import com.zx.mvplibrary.wedgit.WebChartView;
@@ -32,7 +36,7 @@ import io.starteos.dappsdk.Request;
  * Comment: //TODO
  * Date: 2018-12-01 14:27
  */
-public class OrdersFragment extends BaseFragment implements onOperateLisenter {
+public class OrdersFragment extends MvpFragment<OrderPerformancePresenter> implements onOperateLisenter {
     @BindView(R.id.web_chart_layout)
     FrameLayout mWebContainer;
     WebChartView webChartView;
@@ -53,6 +57,11 @@ public class OrdersFragment extends BaseFragment implements onOperateLisenter {
     }
 
     @Override
+    protected OrderPerformancePresenter onCtreatPresenter() {
+        return null;
+    }
+
+    @Override
     protected int initLayout() {
         return R.layout.order_fragment_layout;
     }
@@ -60,8 +69,17 @@ public class OrdersFragment extends BaseFragment implements onOperateLisenter {
     @Override
     protected void onCreateView(View view, Bundle argment) {
         ButterKnife.bind(this, view);
+        showLoadingDialog();
         webChartView = new WebChartView(getContext(), mWebContainer, this, mHandler);
-        webChartView.loadUrl("file:///android_asset/index.html");
+        webChartView.loadUrl("file:///android_asset/index.html", new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                super.onProgressChanged(view, newProgress);
+                if (newProgress == 100) {
+                    dismissLoadingDiaog();
+                }
+            }
+        });
     }
 
     @Override

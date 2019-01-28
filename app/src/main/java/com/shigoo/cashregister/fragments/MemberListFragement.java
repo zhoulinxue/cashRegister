@@ -9,6 +9,8 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
@@ -101,6 +103,7 @@ public class MemberListFragement extends MvpFragment<MemberManagePresenter> impl
     @Override
     protected void onCreateView(View view, Bundle argment) {
         org.greenrobot.eventbus.EventBus.getDefault().register(this);
+        showLoadingDialog();
         ButterKnife.bind(this, view);
         mCardPresenter = new AddCardPresenter(this);
         mRechargeView = new RechargeView(getContext(), this);
@@ -122,7 +125,15 @@ public class MemberListFragement extends MvpFragment<MemberManagePresenter> impl
                 startActivity(new Intent(getActivity(), AddAndUpdateMemberActivity.class));
             }
         });
-        mWebCahrtView.loadDefaultUrl();
+        mWebCahrtView.loadDefaultUrl(new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                super.onProgressChanged(view, newProgress);
+                if (newProgress == 100) {
+                    dismissLoadingDiaog();
+                }
+            }
+        });
     }
 
 

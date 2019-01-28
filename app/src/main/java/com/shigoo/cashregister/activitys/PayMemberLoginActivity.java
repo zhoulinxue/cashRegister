@@ -19,10 +19,13 @@ import com.shigoo.cashregister.R;
 import com.shigoo.cashregister.adapters.CouponAdapter;
 import com.shigoo.cashregister.adapters.MenuDishesListAdapter;
 import com.shigoo.cashregister.customViews.InputNumberView;
+import com.shigoo.cashregister.mvp.contacts.AddCardContact;
 import com.shigoo.cashregister.mvp.contacts.MemberDetailContact;
+import com.shigoo.cashregister.mvp.presenter.AddCardPresenter;
 import com.shigoo.cashregister.mvp.presenter.MemberDetailPresenter;
 import com.shigoo.cashregister.utils.DishesUtils;
 import com.xgsb.datafactory.JSONManager;
+import com.xgsb.datafactory.bean.Cardbean;
 import com.xgsb.datafactory.bean.Couponbean;
 import com.xgsb.datafactory.bean.Dishesbean;
 import com.xgsb.datafactory.bean.EventRouter;
@@ -45,7 +48,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class PayMemberLoginActivity extends MvpActivity<MemberDetailPresenter> implements MemberDetailContact.view, InputNumberView.NumberViewResult, MenuDishesListAdapter.onItemSelected {
+public class PayMemberLoginActivity extends MvpActivity<MemberDetailPresenter> implements MemberDetailContact.view, AddCardContact.view, InputNumberView.NumberViewResult, MenuDishesListAdapter.onItemSelected {
     @BindView(R.id.ordersheet_nuber_view_container)
     FrameLayout mContainer;
     @BindView(R.id.back_btn)
@@ -60,7 +63,6 @@ public class PayMemberLoginActivity extends MvpActivity<MemberDetailPresenter> i
     TextView mStoredValue;
     @BindView(R.id.stored_value_balance_else)
     TextView mElseStoredValue;
-
     @BindView(R.id.integral_balance_value)
     TextView mIntegralBalance;
     @BindView(R.id.coupon_recyclerview)
@@ -83,12 +85,12 @@ public class PayMemberLoginActivity extends MvpActivity<MemberDetailPresenter> i
     CheckBox mPriceCheckBox;
     @BindView(R.id.member_discount_checkbox)
     CheckBox mDiscountCheckBox;
-
     CouponAdapter mAdapter;
     InputNumberView mInputNumberView;
     private List<Couponbean> mList;
     private SettalOrderbean mOrderbean;
     private Member mMember;
+    private AddCardPresenter mCardPresenter;
 
     @Override
     protected int initLayout() {
@@ -153,7 +155,7 @@ public class PayMemberLoginActivity extends MvpActivity<MemberDetailPresenter> i
                 finish();
             }
         });
-
+        mCardPresenter = new AddCardPresenter(this);
     }
 
     private String getFinalDiscountMoney() {
@@ -192,8 +194,12 @@ public class PayMemberLoginActivity extends MvpActivity<MemberDetailPresenter> i
     }
 
     @Override
-    public void onSure(String number) {
-        mPresenter.searchMember(Param.Keys.TOKEN, getToken(), Param.Keys.DATA, number + "");
+    public void onSure(String number, boolean isShuaka) {
+        if (!isShuaka) {
+            mPresenter.searchMember(Param.Keys.TOKEN, getToken(), Param.Keys.DATA, number + "");
+        } else {
+            mCardPresenter.getCardMsg(Param.Keys.INFO, number);
+        }
     }
 
     @Override
@@ -270,8 +276,28 @@ public class PayMemberLoginActivity extends MvpActivity<MemberDetailPresenter> i
     }
 
     @Override
+    public void onResult(List<Cardbean> cardbean) {
+
+    }
+
+    @Override
+    public void onAddresult(String msg) {
+
+    }
+
+    @Override
     public void onDeleteResult(String msg) {
 
+    }
+
+    @Override
+    public void onCodeCardError(String msg) {
+
+    }
+
+    @Override
+    public void onCardMsg(Cardbean cardbean) {
+        mPresenter.searchMember(Param.Keys.TOKEN, getToken(), Param.Keys.DATA, cardbean.getCoding_card() + "");
     }
 
     @Override

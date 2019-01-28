@@ -55,7 +55,7 @@ public class NumberInputActivity extends BaseActivity implements InputNumberView
     }
 
     @Override
-    public void onSure(String number) {
+    public void onSure(String number, boolean isInteger) {
         mNumberbean.setCurrentNum(number + "");
         EventBus.getDefault().post(new EventRouter(EventBusAction.SET_NUMBER, mNumberbean));
         finish();

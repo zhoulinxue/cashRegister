@@ -2,6 +2,8 @@ package com.shigoo.cashregister.fragments;
 
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
 import android.widget.FrameLayout;
 
 import com.shigoo.cashregister.R;
@@ -69,8 +71,17 @@ public class ConsumeDetailFragment extends MvpFragment<ConsumePresenter> impleme
     protected void onCreateView(View view, Bundle argment) {
         ButterKnife.bind(this, view);
         mHeader = new ConsumeHeaderView(getContext(), mHeaderViewLayout);
+        showLoadingDialog();
         mWebCahrtView = new WebChartView(view.getContext(), mWebChartContainer, this, mHandler);
-        mWebCahrtView.loadDefaultUrl();
+        mWebCahrtView.loadDefaultUrl( new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                super.onProgressChanged(view, newProgress);
+                if (newProgress == 100) {
+                    dismissLoadingDiaog();
+                }
+            }
+        });
         mHeader.getSearchbtn().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -27,20 +27,17 @@ public class ConsumePresenter extends BasePresenterImpl<ConsumeContact.view> imp
     NetRequestCallBack<ConsumeListData> reChargeCallback = new NetRequestCallBack<ConsumeListData>() {
         @Override
         public void onSuccess(ConsumeListData reChargebeanListData) {
-            mView.dismissLoadingDiaog();
             mView.onGetConsumeListCallback(reChargebeanListData);
         }
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.dismissLoadingDiaog();
             mView.onError(msg);
         }
     };
 
     @Override
     public void getConsumeList(String... params) {
-        mView.showLoadingDialog();
         NetRequest request = ApiManager.getInstance().getConsumeList(params, reChargeCallback);
         addRequest(request);
     }

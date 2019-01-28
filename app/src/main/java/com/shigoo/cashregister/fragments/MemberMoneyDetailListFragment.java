@@ -2,6 +2,8 @@ package com.shigoo.cashregister.fragments;
 
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
 import android.widget.FrameLayout;
 
 import com.shigoo.cashregister.R;
@@ -68,8 +70,17 @@ public class MemberMoneyDetailListFragment extends MvpFragment<ConsumePresenter>
     @Override
     protected void onCreateView(View view, Bundle argment) {
         ButterKnife.bind(this, view);
+        showLoadingDialog();
         mWebChartView = new WebChartView(view.getContext(), mWebContainer, this, mHandler);
-        mWebChartView.loadDefaultUrl();
+        mWebChartView.loadDefaultUrl( new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                super.onProgressChanged(view, newProgress);
+                if (newProgress == 100) {
+                    dismissLoadingDiaog();
+                }
+            }
+        });
     }
 
     @Override

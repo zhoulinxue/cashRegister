@@ -6,7 +6,10 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 
 import com.xgsb.datafactory.JSONManager;
 import com.zx.api.api.utils.AppLog;
@@ -39,6 +42,7 @@ public class WebChartView extends BaseCustomView implements WebOperate {
     private DAppBridge dAppBridge;
     private int width = 0;
     private int hight = 0;
+
 
     public WebChartView(Context context, ViewGroup rootGroup) {
         super(context, rootGroup);
@@ -79,14 +83,27 @@ public class WebChartView extends BaseCustomView implements WebOperate {
 
     @Override
     public void loadUrl(String url) {
+        loadUrl(url, new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                super.onProgressChanged(view, newProgress);
+                if (newProgress == 100) {
+                    AppLog.print("加载完毕");
+                }
+            }
+        });
+    }
+
+    public void loadUrl(String url, WebChromeClient client) {
+        mWebView.setWebChromeClient(client);
         mWebView.loadUrl(url);
     }
 
     @Override
     public void getDataFormWeb(String action, String methodName) {
-        if(!TextUtils.isEmpty(action)) {
+        if (!TextUtils.isEmpty(action)) {
             mWebView.evaluateJavascript("javascript:" + methodName + "(" + JSONManager.getInstance().toJson(action) + ")", null);
-        }else {
+        } else {
             mWebView.evaluateJavascript("javascript:" + methodName + "()", null);
         }
     }
@@ -95,8 +112,8 @@ public class WebChartView extends BaseCustomView implements WebOperate {
         getDataFormWeb(action, "reData");
     }
 
-    public void loadDefaultUrl() {
-        loadUrl("http://www.kx910.com/webView/index.html#/");
+    public void loadDefaultUrl(WebChromeClient client) {
+        loadUrl("http://www.kx910.com/webView/index.html#/", client);
     }
 
     public int getWidth() {

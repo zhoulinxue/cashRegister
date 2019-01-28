@@ -38,7 +38,12 @@
             android:layout_marginRight="@dimen/ordersheet_40dp"
             android:background="@drawable/ordersheet_search_edit_bg"
             android:padding="@dimen/ordersheet_10dp">
-
+            <EditText
+                android:id="@id/int_card_number_edite"
+                android:layout_width="@dimen/ordersheet_1dp"
+                android:layout_height="@dimen/ordersheet_1dp">
+                <requestFocus/>
+            </EditText>
             <TextView
                 android:id="@id/ordersheet_number_tv"
                 android:layout_width="wrap_content"

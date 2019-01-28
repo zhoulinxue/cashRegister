@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -91,8 +93,17 @@ public class OrderPerformaceFragment extends MvpFragment<OrderPerformancePresent
     @Override
     protected void onCreateView(View view, Bundle argment) {
         ButterKnife.bind(this, view);
+        showLoadingDialog();
         mWebCahrtView = new WebChartView(getContext(), mWebChartContainer, this, mHandler);
-        mWebCahrtView.loadDefaultUrl();
+        mWebCahrtView.loadDefaultUrl(new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                super.onProgressChanged(view, newProgress);
+                if (newProgress == 100) {
+                    dismissLoadingDiaog();
+                }
+            }
+        });
         initTime();
     }
 
