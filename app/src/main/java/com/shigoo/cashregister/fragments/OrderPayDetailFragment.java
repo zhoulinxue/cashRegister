@@ -133,6 +133,7 @@ public class OrderPayDetailFragment extends MvpFragment<OrderPayDetailPresenter>
     public void getPayNumOrderDetailsData(Request request) {
         if (mOrderPayDetailbean != null) {
             String json = JSONManager.getInstance().toJson(mOrderPayDetailbean);
+            AppLog.print("!!"+json);
             webChartView.callback(request, json);
         }
     }

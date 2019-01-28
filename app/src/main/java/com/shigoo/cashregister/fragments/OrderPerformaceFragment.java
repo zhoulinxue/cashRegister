@@ -67,6 +67,8 @@ public class OrderPerformaceFragment extends MvpFragment<OrderPerformancePresent
     private TimePickerView mTimePicker;
     private boolean hasStartTime;
     private boolean hasEndTime;
+    private int page=1;
+    private String mTimeType="1";
 
     public static OrderPerformaceFragment newInstance() {
         OrderPerformaceFragment fragment = new OrderPerformaceFragment();
@@ -109,7 +111,13 @@ public class OrderPerformaceFragment extends MvpFragment<OrderPerformancePresent
 
     @Override
     protected void onInitData(Bundle savedInstanceState) {
-        mPresenter.getOrderPerformanceList(Param.Keys.TOKEN, getToken(), Param.Keys.WAITER_ID, getUser().getWaiter_id(), Param.Keys.START_DATE, mStartTime, Param.Keys.END_DATE, mEndTime);
+        mPresenter.getOrderPerformanceList(Param.Keys.TOKEN, getToken(),
+                Param.Keys.WAITER_ID, getUser().getId()+"",
+                Param.Keys.PAGE_NUM,30+"",
+                Param.Keys.PAGE,page+"",
+                Param.Keys.START_DATE, mStartTime,
+                Param.Keys.TIME_TYPE,mTimeType,
+                Param.Keys.END_DATE, mEndTime);
     }
 
     private void initTime() {
@@ -144,6 +152,7 @@ public class OrderPerformaceFragment extends MvpFragment<OrderPerformancePresent
             mEndTime = DateUtil.format(DateUtil.getnowEndTime(), DateUtil.YEAR_MONTH_DAY_PATTERN);
             mStartTime = DateUtil.format(DateUtil.getStartTime(), DateUtil.YEAR_MONTH_DAY_PATTERN);
             mTodayTv.setTextColor(mTimePressColor);
+            mTimeType="1";
         }
         mTimeTv.setText(String.format("%s   ~   %s", mStartTime, mEndTime));
     }
@@ -229,6 +238,7 @@ public class OrderPerformaceFragment extends MvpFragment<OrderPerformancePresent
                 mTodayTv.setTextColor(mTimeNomalc);
                 mYesTerdayTv.setTextColor(mTimePressColor);
                 mLast7DaysTv.setTextColor(mTimeNomalc);
+                mTimeType="2";
                 updateTime();
                 break;
             case R.id.ordersheet_today_tv:
@@ -238,6 +248,7 @@ public class OrderPerformaceFragment extends MvpFragment<OrderPerformancePresent
                 mYesTerdayTv.setTextColor(mTimeNomalc);
                 mLast7DaysTv.setTextColor(mTimeNomalc);
                 updateTime();
+                mTimeType="1";
                 break;
             case R.id.ordersheet_last_seven_days:
                 mStartTime = DateUtil.format(DateUtil.getTime(7), DateUtil.YEAR_MONTH_DAY_PATTERN);
@@ -245,6 +256,7 @@ public class OrderPerformaceFragment extends MvpFragment<OrderPerformancePresent
                 mTodayTv.setTextColor(mTimeNomalc);
                 mYesTerdayTv.setTextColor(mTimeNomalc);
                 mLast7DaysTv.setTextColor(mTimePressColor);
+                mTimeType="3";
                 updateTime();
                 break;
         }

@@ -147,11 +147,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.cashregister_goods_tv:
-                mGoodsTv.setBackgroundResource(R.drawable.ordersheet_goods_btn_selected_bg);
-                mListTv.setBackgroundResource(R.drawable.ordersheet_list_btn_bg);
-                mGoodsTv.setTextColor(selectedColor);
-                mListTv.setTextColor(nomalColor);
-                mMenuList.setAdapter(mMenuListAdapter);
+                clickGoods();
                 break;
             case R.id.cashregister_list_tv:
                 if (mBillbean != null) {
@@ -670,11 +666,20 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
             setBillCode(table.getBillbean());
             mFormateView.setLocalStatus(table.getLocal_status());
             showLeftLayout();
+            clickGoods();
         } else {
             setBillCode(null);
             mMenuListAdapter.notifyDataSetChanged();
             mCasherLayout.setVisibility(View.GONE);
         }
+    }
+
+    private void clickGoods() {
+        mGoodsTv.setBackgroundResource(R.drawable.ordersheet_goods_btn_selected_bg);
+        mListTv.setBackgroundResource(R.drawable.ordersheet_list_btn_bg);
+        mGoodsTv.setTextColor(selectedColor);
+        mListTv.setTextColor(nomalColor);
+        mMenuList.setAdapter(mMenuListAdapter);
     }
 
     private void showLeftLayout() {
