@@ -69,6 +69,10 @@ public class OrderPerformaceFragment extends MvpFragment<OrderPerformancePresent
     TextView mTotalNumber;
     @BindView(R.id.total_money)
     TextView mTotalMoney;
+    @BindView(R.id.dishes_btn)
+    TextView mDishesTv;
+    @BindView(R.id.setMeal_btn)
+    TextView mSetMealTv;
     private String mAction;
     private Request mRequest;
 
@@ -143,6 +147,7 @@ public class OrderPerformaceFragment extends MvpFragment<OrderPerformancePresent
                 mWebCahrtView.refresh("refresh");
             }
         });
+        mDishesTv.setTextColor(mTimePressColor);
     }
 
     @Override
@@ -206,7 +211,7 @@ public class OrderPerformaceFragment extends MvpFragment<OrderPerformancePresent
 //        OrderPerformancebean orderPerformancebean = new OrderPerformancebean("威士忌", "000004", "翰格蓝爵", "25", "瓶", "1180", "2", "3600", "54", null, "2");
 //        mOrderList.add(orderPerformancebean);
         if (mOrderList != null) {
-            AppLog.print(mOrderList.size() + "!#");
+//            AppLog.print(mOrderList.size() + "!#");
             String json = WebData.newInstance().getOrderList(mOrderList, mWebCahrtView.getWidth(), mWebCahrtView.getHight());
             mWebCahrtView.callback(mRequest, json);
         }
@@ -239,7 +244,12 @@ public class OrderPerformaceFragment extends MvpFragment<OrderPerformancePresent
         mRequest = request;
         if (mBackTv.getVisibility() != View.VISIBLE) {
             if (mOrderList != null) {
-                String json = WebData.newInstance().getOrderList(mOrderList, mWebCahrtView.getWidth(), mWebCahrtView.getHight());
+                String json = "";
+                if ("2".equals(mDishesTag)) {
+                    json = WebData.newInstance().getOrderList(mOrderList, mWebCahrtView.getWidth(), mWebCahrtView.getHight());
+                } else {
+                    json = WebData.newInstance().getOrderSetMealList(mOrderList, mWebCahrtView.getWidth(), mWebCahrtView.getHight());
+                }
                 mWebCahrtView.callback(mRequest, json);
             }
         } else {
@@ -275,7 +285,12 @@ public class OrderPerformaceFragment extends MvpFragment<OrderPerformancePresent
 
     }
 
-    @OnClick({R.id.ordersheet_time_text, R.id.ordersheet_yesterday_tv, R.id.ordersheet_today_tv, R.id.ordersheet_last_seven_days})
+    @OnClick({R.id.ordersheet_time_text,
+            R.id.ordersheet_yesterday_tv,
+            R.id.dishes_btn,
+            R.id.setMeal_btn,
+            R.id.ordersheet_today_tv,
+            R.id.ordersheet_last_seven_days})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ordersheet_time_text:
@@ -326,6 +341,18 @@ public class OrderPerformaceFragment extends MvpFragment<OrderPerformancePresent
                 mYesTerdayTv.setTextColor(mTimeNomalc);
                 mLast7DaysTv.setTextColor(mTimePressColor);
                 mTimeType = "3";
+                getNewData();
+                break;
+            case R.id.dishes_btn:
+                mDishesTag = "2";
+                mDishesTv.setTextColor(mTimePressColor);
+                mSetMealTv.setTextColor(mTimeNomalc);
+                getNewData();
+                break;
+            case R.id.setMeal_btn:
+                mDishesTag = "1";
+                mDishesTv.setTextColor(mTimeNomalc);
+                mSetMealTv.setTextColor(mTimePressColor);
                 getNewData();
                 break;
         }

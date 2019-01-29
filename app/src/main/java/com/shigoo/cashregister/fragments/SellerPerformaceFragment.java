@@ -3,15 +3,15 @@ package com.shigoo.cashregister.fragments;
 import android.os.Bundle;
 import android.view.View;
 
-import com.shigoo.cashregister.mvp.contacts.OrderPerformaceContact;
-import com.shigoo.cashregister.mvp.presenter.OrderPerformancePresenter;
-import com.xgsb.datafactory.bean.OrderPerformanceDetailbean;
-import com.xgsb.datafactory.bean.OrderPerformancebean;
+import com.shigoo.cashregister.mvp.contacts.SellerPerformaceContact;
+import com.shigoo.cashregister.mvp.presenter.SellerPerformancePresenter;
+import com.xgsb.datafactory.bean.SalePerformanceDetailbean;
+import com.xgsb.datafactory.bean.SalePerformancebean;
 import com.zx.mvplibrary.MvpFragment;
 
 import java.util.List;
 
-public class SellerPerformaceFragment extends MvpFragment<OrderPerformancePresenter> implements OrderPerformaceContact.view {
+public class SellerPerformaceFragment extends MvpFragment<SellerPerformancePresenter> implements SellerPerformaceContact.view {
 
     public static SellerPerformaceFragment newInstance() {
         SellerPerformaceFragment fragment = new SellerPerformaceFragment();
@@ -20,20 +20,6 @@ public class SellerPerformaceFragment extends MvpFragment<OrderPerformancePresen
         return fragment;
     }
 
-    @Override
-    public void onOrderPerformanceListResult(List<OrderPerformancebean> dishesbeans) {
-
-    }
-
-    @Override
-    public void onOrderPerformanceDetail(List<OrderPerformanceDetailbean> detailbeanList) {
-
-    }
-
-    @Override
-    protected OrderPerformancePresenter onCtreatPresenter() {
-        return null;
-    }
 
     @Override
     protected int initLayout() {
@@ -47,6 +33,26 @@ public class SellerPerformaceFragment extends MvpFragment<OrderPerformancePresen
 
     @Override
     protected void onInitData(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected SellerPerformancePresenter onCtreatPresenter() {
+        return new SellerPerformancePresenter(this);
+    }
+
+    @Override
+    public void onOrderPerformanceListResult(List<SalePerformancebean> dishesbeans) {
+
+    }
+
+    @Override
+    public void onOrderCount(String number, String money) {
+
+    }
+
+    @Override
+    public void onOrderPerformanceDetail(List<SalePerformanceDetailbean> detailbeanList) {
 
     }
 }

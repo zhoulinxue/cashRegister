@@ -301,4 +301,28 @@ public class WebData<T> {
         data.setTableData(more);
         return JSONManager.getInstance().toJson(data);
     }
+
+    public String getOrderSetMealList(List<OrderPerformancebean> orderList, int width, int hight) {
+        List<OrderPerformancebean> more = new ArrayList<>();
+        more.addAll(orderList);
+        WebData<OrderPerformancebean> data = new WebData();
+        data.setPage("vipManage");
+        data.setWidth(width + "px");
+        data.setHight(hight + "");
+        List<Column> columnList = new ArrayList<>();
+        List<Operate> operateList = new ArrayList<>();
+        columnList.add(new Column("商品编号", "dish_number"));
+        columnList.add(new Column("商品名称", "dish_name"));
+        columnList.add(new Column("点单数量", "sum_dish_qty"));
+        columnList.add(new Column("点单金额", "sum_finally_price"));
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        Operate operate = new Operate();
+        operate.setName("查看详情");
+        operateList.add(operate);
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        data.setTableHead(columnList);
+        data.setOperate(operateList);
+        data.setTableData(more);
+        return JSONManager.getInstance().toJson(data);
+    }
 }

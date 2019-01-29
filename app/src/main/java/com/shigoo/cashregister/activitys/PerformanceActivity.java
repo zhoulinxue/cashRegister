@@ -3,48 +3,28 @@ package com.shigoo.cashregister.activitys;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aspsine.fragmentnavigator.FragmentNavigator;
 import com.aspsine.fragmentnavigator.FragmentNavigatorAdapter;
-import com.bigkoo.pickerview.builder.TimePickerBuilder;
-import com.bigkoo.pickerview.listener.OnTimeSelectListener;
-import com.bigkoo.pickerview.view.TimePickerView;
 import com.shigoo.cashregister.R;
 import com.shigoo.cashregister.fragments.OrderPerformaceFragment;
 import com.shigoo.cashregister.fragments.SellerPerformaceFragment;
-import com.shigoo.cashregister.mvp.contacts.SalesPerformanceContact;
-import com.shigoo.cashregister.mvp.presenter.SalesPerformancePresenter;
-import com.xgsb.datafactory.JSONManager;
-import com.xgsb.datafactory.bean.Dishesbean;
-import com.xgsb.datafactory.bean.OrderPerformancebean;
-import com.xgsb.datafactory.bean.SalePerformancebean;
-import com.xgsb.datafactory.bean.WebData;
+import com.shigoo.cashregister.mvp.contacts.NUllContact;
+import com.shigoo.cashregister.mvp.presenter.NullPresenter;
 import com.xgsb.datafactory.enu.EventBusAction;
-import com.zx.api.api.utils.DateUtil;
 import com.zx.mvplibrary.MvpActivity;
-import com.zx.mvplibrary.web.InitWebView;
-import com.zx.mvplibrary.web.onOperateLisenter;
-import com.zx.mvplibrary.wedgit.WebChartView;
-import com.zx.network.Param;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
-import butterknife.BindColor;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.starteos.dappsdk.Request;
 
-public class PerformanceActivity extends MvpActivity<SalesPerformancePresenter> implements SalesPerformanceContact.view {
+public class PerformanceActivity extends MvpActivity<NullPresenter> implements NUllContact.view {
     @BindView(R.id.ordersheet_logo_title_tv)
     TextView mTitleTv;
     @BindView(R.id.ordersheet_logo_name_tv)
@@ -55,10 +35,6 @@ public class PerformanceActivity extends MvpActivity<SalesPerformancePresenter> 
     FragmentNavigator mFragmentNavigator;
     private List<Fragment> fragments = new ArrayList<>();
 
-    @Override
-    protected SalesPerformancePresenter onCtreatPresenter() {
-        return new SalesPerformancePresenter(this);
-    }
 
     @Override
     protected int initLayout() {
@@ -126,15 +102,8 @@ public class PerformanceActivity extends MvpActivity<SalesPerformancePresenter> 
         }
     }
 
-
     @Override
-    public void onSalePerformanceListResult(List<SalePerformancebean> dishesbeans) {
-
+    protected NullPresenter onCtreatPresenter() {
+        return new NullPresenter(this);
     }
-
-    @Override
-    public void onOrderPerformanceListResult(List<OrderPerformancebean> dishesbeans) {
-
-    }
-
 }

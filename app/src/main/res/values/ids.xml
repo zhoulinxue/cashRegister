@@ -441,4 +441,6 @@
     <item name="int_card_number_edite" type="id" />
     <item name="total_number" type="id" />
     <item name="total_money" type="id" />
+    <item name="dishes_btn" type="id" />
+    <item name="setMeal_btn" type="id" />
 </resources>
