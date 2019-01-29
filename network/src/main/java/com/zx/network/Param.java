@@ -85,6 +85,7 @@ public class Param {
         public static String MEMBER_DATA = "member_data";
         public static String NAME = "name";
         public static String RE_DISCOUNT = "re_discount";
+        public static String specification_id="specification_id";
     }
 
     public static class ACTION {

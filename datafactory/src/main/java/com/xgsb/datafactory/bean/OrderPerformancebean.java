@@ -16,6 +16,20 @@ public class OrderPerformancebean implements Parcelable {
     private String combo_id;
     private String dish_tag;
 
+    public OrderPerformancebean(String dishes_category_name, String dish_number, String dish_name, String specification_id, String specification_name, String sale_price, String sum_dish_qty, String sum_finally_price, String dishes_id, String combo_id, String dish_tag) {
+        this.dishes_category_name = dishes_category_name;
+        this.dish_number = dish_number;
+        this.dish_name = dish_name;
+        this.specification_id = specification_id;
+        this.specification_name = specification_name;
+        this.sale_price = sale_price;
+        this.sum_dish_qty = sum_dish_qty;
+        this.sum_finally_price = sum_finally_price;
+        this.dishes_id = dishes_id;
+        this.combo_id = combo_id;
+        this.dish_tag = dish_tag;
+    }
+
     public String getDishes_category_name() {
         return dishes_category_name;
     }

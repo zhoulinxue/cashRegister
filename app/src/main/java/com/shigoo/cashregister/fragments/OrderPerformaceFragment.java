@@ -19,15 +19,22 @@ import com.shigoo.cashregister.R;
 import com.shigoo.cashregister.activitys.RouterActivity;
 import com.shigoo.cashregister.mvp.contacts.OrderPerformaceContact;
 import com.shigoo.cashregister.mvp.presenter.OrderPerformancePresenter;
+import com.xgsb.datafactory.JSONManager;
+import com.xgsb.datafactory.bean.EventRouter;
+import com.xgsb.datafactory.bean.Member;
+import com.xgsb.datafactory.bean.OrderPerformanceDetailbean;
 import com.xgsb.datafactory.bean.OrderPerformancebean;
 import com.xgsb.datafactory.bean.SalePerformancebean;
 import com.xgsb.datafactory.bean.WebData;
 import com.xgsb.datafactory.enu.EventBusAction;
+import com.zx.api.api.utils.AppLog;
 import com.zx.api.api.utils.DateUtil;
 import com.zx.mvplibrary.MvpFragment;
 import com.zx.mvplibrary.web.onOperateLisenter;
 import com.zx.mvplibrary.wedgit.WebChartView;
 import com.zx.network.Param;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -56,10 +63,13 @@ public class OrderPerformaceFragment extends MvpFragment<OrderPerformancePresent
     int mTimeNomalc;
     @BindColor(R.color.ordersheet_colorAccent)
     int mTimePressColor;
+    @BindView(R.id.back_to_list)
+    TextView mBackTv;
     private String mAction;
     private Request mRequest;
 
     private List<OrderPerformancebean> mOrderList = new ArrayList<>();
+    private List<OrderPerformanceDetailbean> mDetailbeans = new ArrayList<>();
     String DEFAULT_END_TIME = DateUtil.format(DateUtil.getnowEndTime(), DateUtil.YEAR_MONTH_DAY_PATTERN);
     String DEFAULT_START_TIME = DateUtil.format(DateUtil.getStartTime(), DateUtil.YEAR_MONTH_DAY_PATTERN);
     private String mStartTime = DEFAULT_START_TIME;
@@ -70,6 +80,7 @@ public class OrderPerformaceFragment extends MvpFragment<OrderPerformancePresent
     private int page = 1;
     private String mTimeType = "1";
     private String mDishesTag = "2";
+    OrderPerformancebean mBeanInfo;
 
     public static OrderPerformaceFragment newInstance() {
         OrderPerformaceFragment fragment = new OrderPerformaceFragment();
@@ -80,7 +91,14 @@ public class OrderPerformaceFragment extends MvpFragment<OrderPerformancePresent
 
     @Override
     public void onOrderPerformanceListResult(List<OrderPerformancebean> dishesbeans) {
+        mOrderList = dishesbeans;
+        mWebCahrtView.refresh("refresh");
+    }
 
+    @Override
+    public void onOrderPerformanceDetail(List<OrderPerformanceDetailbean> detailbeanList) {
+        mDetailbeans = detailbeanList;
+        mWebCahrtView.refresh("refresh");
     }
 
     @Override
@@ -108,6 +126,13 @@ public class OrderPerformaceFragment extends MvpFragment<OrderPerformancePresent
             }
         });
         initTime();
+        singleClickOnMinutes(mBackTv, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mBackTv.setVisibility(View.GONE);
+                mWebCahrtView.refresh("refresh");
+            }
+        });
     }
 
     @Override
@@ -138,6 +163,7 @@ public class OrderPerformaceFragment extends MvpFragment<OrderPerformancePresent
                     mTodayTv.setTextColor(mTimeNomalc);
                     mYesTerdayTv.setTextColor(mTimeNomalc);
                     mLast7DaysTv.setTextColor(mTimeNomalc);
+                    getNewData();
                 }
             }
         }).setType(new boolean[]{true, true, true, false, false, false}).isDialog(true).build();
@@ -167,7 +193,10 @@ public class OrderPerformaceFragment extends MvpFragment<OrderPerformancePresent
     @Override
     public void getTableInfo(Request request) {
         mRequest = request;
+//        OrderPerformancebean orderPerformancebean = new OrderPerformancebean("威士忌", "000004", "翰格蓝爵", "25", "瓶", "1180", "2", "3600", "54", null, "2");
+//        mOrderList.add(orderPerformancebean);
         if (mOrderList != null) {
+            AppLog.print(mOrderList.size() + "!#");
             String json = WebData.newInstance().getOrderList(mOrderList, mWebCahrtView.getWidth(), mWebCahrtView.getHight());
             mWebCahrtView.callback(mRequest, json);
         }
@@ -175,12 +204,40 @@ public class OrderPerformaceFragment extends MvpFragment<OrderPerformancePresent
 
     @Override
     public void operateHandle(Request request) {
-
+        String operate = request.getParams().optString("method");
+        switch (operate) {
+            case "查看详情":
+                mBackTv.setVisibility(View.VISIBLE);
+                mBeanInfo = (OrderPerformancebean) JSONManager.getInstance().parseObject(request.getParams().opt("row_data") + "", OrderPerformancebean.class);
+                if (mBeanInfo != null) {
+                    if ("2".equals(mBeanInfo.getDish_tag())) {
+                        mPresenter.getOrderPerformanceDetail(Param.Keys.TOKEN, getToken(),
+                                Param.Keys.WAITER_ID, getUser().getId() + "",
+                                Param.Keys.DISH_TAG, mDishesTag, Param.Keys.DISHE_ID, mBeanInfo.getDishes_id(), Param.Keys.specification_id, mBeanInfo.getSpecification_id());
+                    } else {
+                        mPresenter.getOrderPerformanceDetail(Param.Keys.TOKEN, getToken(),
+                                Param.Keys.WAITER_ID, getUser().getId() + "",
+                                Param.Keys.DISH_TAG, mDishesTag, Param.Keys.DISHE_ID, mBeanInfo.getCombo_id());
+                    }
+                }
+                break;
+        }
     }
 
     @Override
     public void searchOperate(Request request) {
-
+        mRequest = request;
+        if (mBackTv.getVisibility() != View.VISIBLE) {
+            if (mOrderList != null) {
+                String json = WebData.newInstance().getOrderList(mOrderList, mWebCahrtView.getWidth(), mWebCahrtView.getHight());
+                mWebCahrtView.callback(mRequest, json);
+            }
+        } else {
+            if (mDetailbeans != null) {
+                String json = WebData.newInstance().getOrderDetailList(mDetailbeans, mWebCahrtView.getWidth(), mWebCahrtView.getHight());
+                mWebCahrtView.callback(mRequest, json);
+            }
+        }
     }
 
     @Override
@@ -241,7 +298,7 @@ public class OrderPerformaceFragment extends MvpFragment<OrderPerformancePresent
                 mYesTerdayTv.setTextColor(mTimePressColor);
                 mLast7DaysTv.setTextColor(mTimeNomalc);
                 mTimeType = "2";
-                updateTime();
+                getNewData();
                 break;
             case R.id.ordersheet_today_tv:
                 mStartTime = DEFAULT_START_TIME;
@@ -249,8 +306,8 @@ public class OrderPerformaceFragment extends MvpFragment<OrderPerformancePresent
                 mTodayTv.setTextColor(mTimePressColor);
                 mYesTerdayTv.setTextColor(mTimeNomalc);
                 mLast7DaysTv.setTextColor(mTimeNomalc);
-                updateTime();
                 mTimeType = "1";
+                getNewData();
                 break;
             case R.id.ordersheet_last_seven_days:
                 mStartTime = DateUtil.format(DateUtil.getTime(7), DateUtil.YEAR_MONTH_DAY_PATTERN);
@@ -259,8 +316,20 @@ public class OrderPerformaceFragment extends MvpFragment<OrderPerformancePresent
                 mYesTerdayTv.setTextColor(mTimeNomalc);
                 mLast7DaysTv.setTextColor(mTimePressColor);
                 mTimeType = "3";
-                updateTime();
+                getNewData();
                 break;
         }
+    }
+
+    private void getNewData() {
+        updateTime();
+        mPresenter.getOrderPerformanceList(Param.Keys.TOKEN, getToken(),
+                Param.Keys.WAITER_ID, getUser().getId() + "",
+                Param.Keys.PAGE_NUM, 30 + "",
+                Param.Keys.PAGE, page + "",
+                Param.Keys.DISH_TAG, mDishesTag,
+                Param.Keys.START_DATE, mStartTime,
+                Param.Keys.TIME_TYPE, mTimeType,
+                Param.Keys.END_DATE, mEndTime);
     }
 }

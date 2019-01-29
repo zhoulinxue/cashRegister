@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.shigoo.cashregister.mvp.contacts.OrderPerformaceContact;
 import com.shigoo.cashregister.mvp.presenter.OrderPerformancePresenter;
+import com.xgsb.datafactory.bean.OrderPerformanceDetailbean;
 import com.xgsb.datafactory.bean.OrderPerformancebean;
 import com.zx.mvplibrary.MvpFragment;
 
@@ -21,6 +22,11 @@ public class SellerPerformaceFragment extends MvpFragment<OrderPerformancePresen
 
     @Override
     public void onOrderPerformanceListResult(List<OrderPerformancebean> dishesbeans) {
+
+    }
+
+    @Override
+    public void onOrderPerformanceDetail(List<OrderPerformanceDetailbean> detailbeanList) {
 
     }
 
