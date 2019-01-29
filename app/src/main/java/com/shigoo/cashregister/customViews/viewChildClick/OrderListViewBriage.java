@@ -46,7 +46,7 @@ public class OrderListViewBriage {
 
         public void onDiscount(Dishesbean dishesbean);
 
-        public void onChedan(String billCode);
+        public void onChedan(Billbean billCode);
 
         public void onFormatClick(Dishesbean dishesbean);
 

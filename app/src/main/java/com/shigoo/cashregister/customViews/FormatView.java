@@ -143,7 +143,7 @@ public class FormatView extends BaseCustomView {
             case R.id.ordersheet_dishes_che_dan_btn:
                 //撤单
                 if (mBillbean != null) {
-                    mFormatClick.onChedan(mBillbean.getBill_code());
+                    mFormatClick.onChedan(mBillbean);
                 } else {
                     Toast.makeText(getContext(), "账单信息错误", Toast.LENGTH_SHORT).show();
                 }

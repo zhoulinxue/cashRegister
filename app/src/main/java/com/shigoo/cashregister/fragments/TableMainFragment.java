@@ -437,7 +437,7 @@ public class TableMainFragment extends BaseFragment implements OrderListViewBria
     }
 
     @Override
-    public void onChedan(String billCode) {
+    public void onChedan(Billbean billCode) {
         mDialogView.onEvent(new EventRouter(EventBusAction.CHE_DAN, billCode));
     }
 
