@@ -65,6 +65,10 @@ public class OrderPerformaceFragment extends MvpFragment<OrderPerformancePresent
     int mTimePressColor;
     @BindView(R.id.back_to_list)
     TextView mBackTv;
+    @BindView(R.id.total_number)
+    TextView mTotalNumber;
+    @BindView(R.id.total_money)
+    TextView mTotalMoney;
     private String mAction;
     private Request mRequest;
 
@@ -93,6 +97,12 @@ public class OrderPerformaceFragment extends MvpFragment<OrderPerformancePresent
     public void onOrderPerformanceListResult(List<OrderPerformancebean> dishesbeans) {
         mOrderList = dishesbeans;
         mWebCahrtView.refresh("refresh");
+    }
+
+    @Override
+    public void onOrderCount(String number, String money) {
+        mTotalNumber.setText("合计：点单数量：" + number + "项");
+        mTotalMoney.setText("点单金额：" + money + "元");
     }
 
     @Override

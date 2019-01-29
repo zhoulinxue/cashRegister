@@ -26,6 +26,24 @@ public class ListData<T> implements Serializable {
     private int count_money;
     private int paid_moeny;
     protected List<T> data;
+    private int count_dish_qty;
+    private int count_finally_price;
+
+    public int getCount_dish_qty() {
+        return count_dish_qty;
+    }
+
+    public void setCount_dish_qty(int count_dish_qty) {
+        this.count_dish_qty = count_dish_qty;
+    }
+
+    public int getCount_finally_price() {
+        return count_finally_price;
+    }
+
+    public void setCount_finally_price(int count_finally_price) {
+        this.count_finally_price = count_finally_price;
+    }
 
     public int getDishe_num() {
         return dishe_num;

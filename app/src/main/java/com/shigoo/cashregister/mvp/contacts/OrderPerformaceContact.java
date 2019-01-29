@@ -18,6 +18,8 @@ public class OrderPerformaceContact {
     public interface view extends BaseView {
         void onOrderPerformanceListResult(List<OrderPerformancebean> dishesbeans);
 
+        void onOrderCount(String number, String money);
+
         void onOrderPerformanceDetail(List<OrderPerformanceDetailbean> detailbeanList);
     }
 }

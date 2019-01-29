@@ -121,12 +121,14 @@
             android:padding="@dimen/ordersheet_5dp">
 
             <TextView
+                android:id="@id/total_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="合计:"
                 android:textColor="@color/ordersheet_table_des_color" />
 
             <TextView
+                android:id="@id/total_money"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/ordersheet_20dp"
@@ -149,6 +151,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/ordersheet_table_des_color"
+                android:visibility="gone"
                 tools:text="xx元" />
 
             <TextView
@@ -156,7 +159,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/ordersheet_20dp"
                 android:text="其他:"
-                android:textColor="@color/ordersheet_table_des_color" />
+                android:textColor="@color/ordersheet_table_des_color"
+                android:visibility="gone" />
 
             <TextView
                 android:layout_width="wrap_content"

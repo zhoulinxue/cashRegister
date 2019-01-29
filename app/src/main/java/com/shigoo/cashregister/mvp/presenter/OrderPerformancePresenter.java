@@ -19,6 +19,7 @@ public class OrderPerformancePresenter extends BasePresenterImpl<OrderPerformace
         public void onSuccess(ListData<OrderPerformancebean> sellerbeans) {
             mView.dismissLoadingDiaog();
             mView.onOrderPerformanceListResult(sellerbeans.getData());
+            mView.onOrderCount(sellerbeans.getCount_dish_qty() + "", sellerbeans.getCount_finally_price() + "");
         }
 
         @Override

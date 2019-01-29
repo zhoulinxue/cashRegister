@@ -439,4 +439,6 @@
     <item name="goods_num_tv" type="id" />
     <item name="bottom_layout" type="id" />
     <item name="int_card_number_edite" type="id" />
+    <item name="total_number" type="id" />
+    <item name="total_money" type="id" />
 </resources>
