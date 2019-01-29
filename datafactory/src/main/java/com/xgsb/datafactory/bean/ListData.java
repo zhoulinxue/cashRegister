@@ -28,6 +28,24 @@ public class ListData<T> implements Serializable {
     protected List<T> data;
     private int count_dish_qty;
     private int count_finally_price;
+    private int list_count;
+    private  int sum_money;
+
+    public int getList_count() {
+        return list_count;
+    }
+
+    public void setList_count(int list_count) {
+        this.list_count = list_count;
+    }
+
+    public int getSum_money() {
+        return sum_money;
+    }
+
+    public void setSum_money(int sum_money) {
+        this.sum_money = sum_money;
+    }
 
     public int getCount_dish_qty() {
         return count_dish_qty;

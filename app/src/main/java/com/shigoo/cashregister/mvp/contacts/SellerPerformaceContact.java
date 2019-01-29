@@ -11,16 +11,16 @@ import java.util.List;
 public class SellerPerformaceContact {
     public interface presenter {
 
-        void getOrderPerformanceList(String... params);
+        void getSellerPerformanceList(String... params);
 
-        void getOrderPerformanceDetail(String... params);
+        void getSellerPerformanceDetail(String... params);
     }
 
     public interface view extends BaseView {
-        void onOrderPerformanceListResult(List<SalePerformancebean> dishesbeans);
+        void onSellerPerformanceListResult(List<SalePerformancebean> dishesbeans);
 
-        void onOrderCount(String number, String money);
+        void onSellerCount(String number, String money);
 
-        void onOrderPerformanceDetail(List<SalePerformanceDetailbean> detailbeanList);
+        void onSellerPerformanceDetail(SalePerformanceDetailbean detailbeanList);
     }
 }

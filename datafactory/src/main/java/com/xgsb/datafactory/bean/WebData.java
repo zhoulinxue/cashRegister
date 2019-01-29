@@ -325,4 +325,29 @@ public class WebData<T> {
         data.setTableData(more);
         return JSONManager.getInstance().toJson(data);
     }
+
+    public String getSellerDetailList(List<SalePerformancebean> saleList, int width, int hight) {
+        List<SalePerformancebean> more = new ArrayList<>();
+        more.addAll(saleList);
+        WebData<SalePerformancebean> data = new WebData();
+        data.setPage("vipManage");
+        data.setWidth(width + "px");
+        data.setHight(hight + "");
+        List<Column> columnList = new ArrayList<>();
+        List<Operate> operateList = new ArrayList<>();
+        columnList.add(new Column("营业日期", "bill_date"));
+        columnList.add(new Column("订单编号", "bill_code"));
+        columnList.add(new Column("客户姓名", "guest_name"));
+        columnList.add(new Column("桌台号", "table_number"));
+        columnList.add(new Column("消费金额", "sum_pay_amount"));
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        Operate operate = new Operate();
+        operate.setName("查看详情");
+        operateList.add(operate);
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        data.setTableHead(columnList);
+        data.setOperate(operateList);
+        data.setTableData(more);
+        return JSONManager.getInstance().toJson(data);
+    }
 }

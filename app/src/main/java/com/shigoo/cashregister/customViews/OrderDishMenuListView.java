@@ -524,8 +524,13 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
             mCurrent = null;
             mCurrentPosition = -1;
             if (mDishList.size() == 0) {
-                isEmpty = true;
-                clearnLeft();
+                if ("2".equals(settalType)) {
+                    //加菜时  返回 列表
+                    setTable(mTable, false);
+                } else {
+                    isEmpty = true;
+                    clearnLeft();
+                }
             }
             mClickLister.deleteItem(mMenuListAdapter.getTotalNum(current));
         } else {
@@ -625,7 +630,9 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
         }
         mMenuListAdapter.setCurrentPositon(0);
         mDishList = mMenuListAdapter.getData();
-        showLeftLayout();
+        if (!"2".equals(settalType)) {
+            showLeftLayout();
+        }
         showBottomUi();
         return mMenuListAdapter.getTotalNum(data);
     }

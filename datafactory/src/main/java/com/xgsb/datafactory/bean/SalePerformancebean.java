@@ -4,97 +4,50 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class SalePerformancebean implements Parcelable {
-    private int id;
-    private String time;
-    private String orderNum;
-    private String name;
-    private String tableNum;
-    private String money;
-    private String money_xj;
-    private String money_card;
-    private String money_others;
+    private String bill_date;
+    private String bill_code;
+    private String guest_name;
+    private String table_number;
+    private String sum_pay_amount;
 
-    public SalePerformancebean(String time, String orderNum, String name, String tableNum, String money, String money_xj, String money_card, String money_others) {
-        this.time = time;
-        this.orderNum = orderNum;
-        this.name = name;
-        this.tableNum = tableNum;
-        this.money = money;
-        this.money_xj = money_xj;
-        this.money_card = money_card;
-        this.money_others = money_others;
+    public String getBill_date() {
+        return bill_date;
     }
 
-    public int getId() {
-        return id;
+    public void setBill_date(String bill_date) {
+        this.bill_date = bill_date;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getBill_code() {
+        return bill_code;
     }
 
-    public String getTime() {
-        return time;
+    public void setBill_code(String bill_code) {
+        this.bill_code = bill_code;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public String getGuest_name() {
+        return guest_name;
     }
 
-    public String getOrderNum() {
-        return orderNum;
+    public void setGuest_name(String guest_name) {
+        this.guest_name = guest_name;
     }
 
-    public void setOrderNum(String orderNum) {
-        this.orderNum = orderNum;
+    public String getTable_number() {
+        return table_number;
     }
 
-    public String getName() {
-        return name;
+    public void setTable_number(String table_number) {
+        this.table_number = table_number;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getSum_pay_amount() {
+        return sum_pay_amount;
     }
 
-    public String getTableNum() {
-        return tableNum;
-    }
-
-    public void setTableNum(String tableNum) {
-        this.tableNum = tableNum;
-    }
-
-    public String getMoney() {
-        return money;
-    }
-
-    public void setMoney(String money) {
-        this.money = money;
-    }
-
-    public String getMoney_xj() {
-        return money_xj;
-    }
-
-    public void setMoney_xj(String money_xj) {
-        this.money_xj = money_xj;
-    }
-
-    public String getMoney_card() {
-        return money_card;
-    }
-
-    public void setMoney_card(String money_card) {
-        this.money_card = money_card;
-    }
-
-    public String getMoney_others() {
-        return money_others;
-    }
-
-    public void setMoney_others(String money_others) {
-        this.money_others = money_others;
+    public void setSum_pay_amount(String sum_pay_amount) {
+        this.sum_pay_amount = sum_pay_amount;
     }
 
     @Override
@@ -104,33 +57,25 @@ public class SalePerformancebean implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.id);
-        dest.writeString(this.time);
-        dest.writeString(this.orderNum);
-        dest.writeString(this.name);
-        dest.writeString(this.tableNum);
-        dest.writeString(this.money);
-        dest.writeString(this.money_xj);
-        dest.writeString(this.money_card);
-        dest.writeString(this.money_others);
+        dest.writeString(this.bill_date);
+        dest.writeString(this.bill_code);
+        dest.writeString(this.guest_name);
+        dest.writeString(this.table_number);
+        dest.writeString(this.sum_pay_amount);
     }
 
     public SalePerformancebean() {
     }
 
     protected SalePerformancebean(Parcel in) {
-        this.id = in.readInt();
-        this.time = in.readString();
-        this.orderNum = in.readString();
-        this.name = in.readString();
-        this.tableNum = in.readString();
-        this.money = in.readString();
-        this.money_xj = in.readString();
-        this.money_card = in.readString();
-        this.money_others = in.readString();
+        this.bill_date = in.readString();
+        this.bill_code = in.readString();
+        this.guest_name = in.readString();
+        this.table_number = in.readString();
+        this.sum_pay_amount = in.readString();
     }
 
-    public static final Parcelable.Creator<SalePerformancebean> CREATOR = new Parcelable.Creator<SalePerformancebean>() {
+    public static final Creator<SalePerformancebean> CREATOR = new Creator<SalePerformancebean>() {
         @Override
         public SalePerformancebean createFromParcel(Parcel source) {
             return new SalePerformancebean(source);

@@ -134,60 +134,13 @@
                 android:layout_marginLeft="@dimen/ordersheet_20dp"
                 android:text="现结:"
                 android:textColor="@color/ordersheet_table_des_color" />
-
         </LinearLayout>
 
-        <LinearLayout
+        <FrameLayout
+            android:id="@id/ordersheet_chart_webView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/ordersheet_10dp"
-                android:padding="@dimen/ordersheet_10dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="#D7DDE4"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@id/dishes_btn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@color/ordersheet_white"
-                        android:paddingLeft="@dimen/dp_10"
-                        android:paddingTop="@dimen/ordersheet_5dp"
-                        android:paddingRight="@dimen/ordersheet_10dp"
-                        android:paddingBottom="@dimen/ordersheet_5dp"
-                        android:text="单品"
-                        android:textColor="@color/ordersheet_table_des_color" />
-
-                    <TextView
-                        android:id="@id/setMeal_btn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="1dp"
-                        android:background="@color/ordersheet_white"
-                        android:paddingLeft="@dimen/dp_10"
-                        android:paddingTop="@dimen/ordersheet_5dp"
-                        android:paddingRight="@dimen/ordersheet_10dp"
-                        android:paddingBottom="@dimen/ordersheet_5dp"
-                        android:text="套餐"
-                        android:textColor="@color/ordersheet_table_des_color" />
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <FrameLayout
-                android:id="@id/ordersheet_chart_webView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
     </LinearLayout>
 
     <TextView

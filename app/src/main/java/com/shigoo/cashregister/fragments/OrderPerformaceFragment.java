@@ -73,7 +73,6 @@ public class OrderPerformaceFragment extends MvpFragment<OrderPerformancePresent
     TextView mDishesTv;
     @BindView(R.id.setMeal_btn)
     TextView mSetMealTv;
-    private String mAction;
     private Request mRequest;
 
     private List<OrderPerformancebean> mOrderList = new ArrayList<>();

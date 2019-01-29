@@ -28,6 +28,8 @@ import com.xgsb.datafactory.bean.Printbean;
 import com.xgsb.datafactory.bean.ReChargeListData;
 import com.xgsb.datafactory.bean.Remarkbean;
 import com.xgsb.datafactory.bean.SaleOutbean;
+import com.xgsb.datafactory.bean.SalePerformanceDetailbean;
+import com.xgsb.datafactory.bean.SalePerformancebean;
 import com.xgsb.datafactory.bean.Sellerbean;
 import com.xgsb.datafactory.bean.SetMealGroupbean;
 import com.xgsb.datafactory.bean.SettalOrderResultbean;
@@ -375,4 +377,12 @@ public interface ApiServer {
     @FormUrlEncoded
     @POST("/reserve/reserve/orderClerkAchievementInfo")
     Observable<NetBean<ListData<OrderPerformanceDetailbean>>> getOrderPerformanceDetail(@FieldMap Map<String, String> stringStringMap);
+
+    @FormUrlEncoded
+    @POST("/reserve/reserve/saleAchievement")
+    Observable<NetBean<ListData<SalePerformancebean>>> getSellerPerformance(@FieldMap Map<String, String> stringStringMap);
+
+    @FormUrlEncoded
+    @POST("/reserve/reserve/saleAchievementInfo")
+    Observable<NetBean<SalePerformanceDetailbean>> getSellerPerformanceDetail(@FieldMap Map<String, String> stringStringMap);
 }

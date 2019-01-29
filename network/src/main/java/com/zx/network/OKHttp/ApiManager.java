@@ -34,6 +34,8 @@ import com.xgsb.datafactory.bean.Printbean;
 import com.xgsb.datafactory.bean.ReChargeListData;
 import com.xgsb.datafactory.bean.Remarkbean;
 import com.xgsb.datafactory.bean.SaleOutbean;
+import com.xgsb.datafactory.bean.SalePerformanceDetailbean;
+import com.xgsb.datafactory.bean.SalePerformancebean;
 import com.xgsb.datafactory.bean.Sellerbean;
 import com.xgsb.datafactory.bean.SetMealGroupbean;
 import com.xgsb.datafactory.bean.SettalOrderResultbean;
@@ -691,6 +693,7 @@ public class ApiManager {
 
     /**
      * 获取销售 业绩
+     *
      * @param params
      * @param orderPerformaceCallback
      * @return
@@ -701,7 +704,6 @@ public class ApiManager {
     }
 
     /**
-     *
      * @param params
      * @param printCallback
      * @return
@@ -712,6 +714,7 @@ public class ApiManager {
     }
 
     /**
+     * 点单元业绩列表
      *
      * @param params
      * @param orderPayResultCallBack
@@ -722,8 +725,32 @@ public class ApiManager {
         return new OkHttpRequest<OrderPayDetailbean>(observable, orderPayResultCallBack);
     }
 
+    /**
+     * 点单员业绩 详情
+     *
+     * @param params
+     * @param orderPerformaceDetailCallback
+     * @return
+     */
     public NetRequest getOrderPerformaceDetail(String[] params, NetRequestCallBack<ListData<OrderPerformanceDetailbean>> orderPerformaceDetailCallback) {
         Observable<NetBean<ListData<OrderPerformanceDetailbean>>> observable = mApiService.getOrderPerformanceDetail(genrateMap(params));
         return new OkHttpRequest<ListData<OrderPerformanceDetailbean>>(observable, orderPerformaceDetailCallback);
+    }
+
+    /**
+     * 销售业绩列表
+     *
+     * @param params
+     * @param sellerPerformaceCallback
+     * @return
+     */
+    public NetRequest getSellerPerformace(String[] params, NetRequestCallBack<ListData<SalePerformancebean>> sellerPerformaceCallback) {
+        Observable<NetBean<ListData<SalePerformancebean>>> observable = mApiService.getSellerPerformance(genrateMap(params));
+        return new OkHttpRequest<ListData<SalePerformancebean>>(observable, sellerPerformaceCallback);
+    }
+
+    public NetRequest getSellerPerformaceDetail(String[] params, NetRequestCallBack<SalePerformanceDetailbean> sellerDetailCallback) {
+        Observable<NetBean<SalePerformanceDetailbean>> observable = mApiService.getSellerPerformanceDetail(genrateMap(params));
+        return new OkHttpRequest<SalePerformanceDetailbean>(observable, sellerDetailCallback);
     }
 }
