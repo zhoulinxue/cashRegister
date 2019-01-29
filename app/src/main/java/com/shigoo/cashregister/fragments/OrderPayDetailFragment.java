@@ -131,9 +131,10 @@ public class OrderPayDetailFragment extends MvpFragment<OrderPayDetailPresenter>
 
     @Override
     public void getPayNumOrderDetailsData(Request request) {
+        dismissLoadingDiaog();
         if (mOrderPayDetailbean != null) {
             String json = JSONManager.getInstance().toJson(mOrderPayDetailbean);
-            AppLog.print("!!"+json);
+            AppLog.print("!!" + json);
             webChartView.callback(request, json);
         }
     }
@@ -141,12 +142,13 @@ public class OrderPayDetailFragment extends MvpFragment<OrderPayDetailPresenter>
     @Override
     public void onPayDetailResualt(OrderPayDetailbean orderPayDetailbean) {
         this.mOrderPayDetailbean = orderPayDetailbean;
-        webChartView.getDataFormWeb("tablePayNumberOrderDetails", "rePage");
+       webChartView.reload();
     }
 
     public void setPaybean(Table table, Paybean paybean) {
         this.mTable = table;
         this.mPaybean = paybean;
+        showLoadingDialog();
         mPresenter.getOrderPayDetal(Param.Keys.TOKEN, getToken(), Param.Keys.BILL_CODE, mPaybean.getBillCode(), Param.Keys.PAY_NUM, mPaybean.getPay_num() + "", Param.Keys.PAY_TAG, mPaybean.getPay_tag() + "");
     }
 }

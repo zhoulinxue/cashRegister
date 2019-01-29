@@ -14,4 +14,14 @@
         app:tabIndicatorHeight="0dp"
         app:tabMode="fixed" />
 
+    <FrameLayout
+        android:id="@id/web_chart_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tabLayout"
+        android:layout_marginLeft="@dimen/margin_20dp"
+        android:layout_marginTop="@dimen/margin_20dp"
+        android:layout_marginRight="@dimen/margin_20dp"
+        android:layout_marginBottom="@dimen/margin_20dp" />
+
 </RelativeLayout>

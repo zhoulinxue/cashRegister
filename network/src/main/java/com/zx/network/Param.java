@@ -50,6 +50,7 @@ public class Param {
         public static final String ACTION = "action";
         public static final String PAY_TAG = "pay_tag";
         public static final String PAY_INFO = "payinfo";
+        public static final String DISH_TAG = "dish_tag";
         public static String YUAN = "  元";
         public static final String id = "id";
         public static final String value = "value";

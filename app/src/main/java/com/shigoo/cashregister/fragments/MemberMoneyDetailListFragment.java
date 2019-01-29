@@ -50,6 +50,7 @@ public class MemberMoneyDetailListFragment extends MvpFragment<ConsumePresenter>
 
     @Override
     public void onMemberMoneyList(List<MemberMoney> list) {
+        mWebChartView.refresh("refresh");
         mList = list;
         if (request != null) {
             String json = WebData.newInstance().getMemberMoney(list, mWebChartView.getWidth(), mWebChartView.getHight());
@@ -90,6 +91,7 @@ public class MemberMoneyDetailListFragment extends MvpFragment<ConsumePresenter>
 
     public void setMemberId(String id) {
         mId = id;
+        showLoadingDialog();
         mPresenter.getMemberMoneyDiatailList(Param.Keys.TOKEN, getToken(), Param.Keys.id, mId);
     }
 
@@ -114,6 +116,7 @@ public class MemberMoneyDetailListFragment extends MvpFragment<ConsumePresenter>
 
     @Override
     public void searchOperate(Request request) {
+//        dismissLoadingDiaog();
         this.request = request;
         if (mList != null) {
             String json = WebData.newInstance().getMemberMoney(mList, mWebChartView.getWidth(), mWebChartView.getHight());

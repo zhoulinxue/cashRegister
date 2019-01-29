@@ -16,6 +16,54 @@ public class Paybean implements Parcelable {
     private String order_sale;
     private String billCode;
 
+    public String getBill_amount() {
+        return bill_amount;
+    }
+
+    public void setBill_amount(String bill_amount) {
+        this.bill_amount = bill_amount;
+    }
+
+    public String getShould_receive_amount() {
+        return should_receive_amount;
+    }
+
+    public void setShould_receive_amount(String should_receive_amount) {
+        this.should_receive_amount = should_receive_amount;
+    }
+
+    public String getHad_receive_amount() {
+        return had_receive_amount;
+    }
+
+    public void setHad_receive_amount(String had_receive_amount) {
+        this.had_receive_amount = had_receive_amount;
+    }
+
+    public String getVip_sale() {
+        return vip_sale;
+    }
+
+    public void setVip_sale(String vip_sale) {
+        this.vip_sale = vip_sale;
+    }
+
+    public String getDish_sale() {
+        return dish_sale;
+    }
+
+    public void setDish_sale(String dish_sale) {
+        this.dish_sale = dish_sale;
+    }
+
+    public String getOrder_sale() {
+        return order_sale;
+    }
+
+    public void setOrder_sale(String order_sale) {
+        this.order_sale = order_sale;
+    }
+
     public String getBillCode() {
         return billCode;
     }

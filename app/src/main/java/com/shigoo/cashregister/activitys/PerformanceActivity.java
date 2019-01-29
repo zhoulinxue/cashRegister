@@ -17,6 +17,7 @@ import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.shigoo.cashregister.R;
 import com.shigoo.cashregister.fragments.OrderPerformaceFragment;
+import com.shigoo.cashregister.fragments.SellerPerformaceFragment;
 import com.shigoo.cashregister.mvp.contacts.SalesPerformanceContact;
 import com.shigoo.cashregister.mvp.presenter.SalesPerformancePresenter;
 import com.xgsb.datafactory.JSONManager;
@@ -72,6 +73,7 @@ public class PerformanceActivity extends MvpActivity<SalesPerformancePresenter> 
 
     private void initFragment() {
         fragments.add(OrderPerformaceFragment.newInstance());
+        fragments.add(SellerPerformaceFragment.newInstance());
         mFragmentNavigator = new FragmentNavigator(getSupportFragmentManager(), new FragmentNavigatorAdapter() {
             @Override
             public Fragment onCreateFragment(int i) {
@@ -99,7 +101,7 @@ public class PerformanceActivity extends MvpActivity<SalesPerformancePresenter> 
 //        mAction = EventBusAction.SALE.getAction();
         mAction = EventBusAction.ORDER.getAction();
         if (EventBusAction.SALE.getAction().equals(mAction)) {
-
+            mFragmentNavigator.showFragment(1);
         } else if (EventBusAction.ORDER.getAction().equals(mAction)) {
             mFragmentNavigator.showFragment(0);
         }
