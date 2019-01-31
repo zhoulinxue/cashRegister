@@ -7,6 +7,7 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
+import com.shigoo.cashregister.activitys.RouterActivity;
 import com.shigoo.cashregister.mvp.contacts.PrintContacts;
 import com.shigoo.cashregister.mvp.presenter.PrintPresenter;
 import com.xgsb.datafactory.JSONManager;
@@ -14,30 +15,29 @@ import com.xgsb.datafactory.bean.Printbean;
 import com.xgsb.datafactory.bean.User;
 import com.zx.api.api.app.MvpDialog;
 import com.zx.api.api.utils.SPUtil;
+import com.zx.mvplibrary.BaseMvpService;
 import com.zx.network.Param;
 
 import java.util.List;
 
-public class PrintServices extends Service implements PrintContacts.view {
-    private PrintPresenter mPresenter;
+public class PrintServices extends BaseMvpService<PrintPresenter> implements PrintContacts.view {
     protected final String DEFAULT_TOKEN = "default_token";
-
-    @Nullable
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
-    }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        mPresenter = new PrintPresenter(this);
         mPresenter.getPrintList(Param.Keys.TOKEN, getToken());
     }
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        return START_STICKY;
+    public void quitUser() {
+        SPUtil.getInstance().clear();
+        startActivity(new Intent(this, RouterActivity.class));
+    }
+
+    @Override
+    protected PrintPresenter onCtreatPresenter() {
+        return new PrintPresenter(this);
     }
 
     @Override

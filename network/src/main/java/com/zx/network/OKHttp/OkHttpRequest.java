@@ -37,12 +37,10 @@ import rx.schedulers.Schedulers;
  * Date: 2018-11-14 11:28
  */
 public class OkHttpRequest<T> implements NetRequest {
-    private final String TAG = OkHttpRequest.class.getSimpleName();
     private boolean isDestoryed = false;
     private Subscription mSubscription;
     private Observable mObservable;
     private NetRequestCallBack<T> mCallback;
-    private Type mTypeOfT;
 
     public OkHttpRequest(Observable mObservable, NetRequestCallBack<T> mCallback) {
         this.mObservable = mObservable;
