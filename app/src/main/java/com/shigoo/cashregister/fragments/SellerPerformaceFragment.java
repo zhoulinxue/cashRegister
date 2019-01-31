@@ -24,7 +24,9 @@ import com.shigoo.cashregister.mvp.contacts.SellerPerformaceContact;
 import com.shigoo.cashregister.mvp.presenter.SellerPerformancePresenter;
 import com.shigoo.cashregister.utils.ChartUtil;
 import com.xgsb.datafactory.JSONManager;
+import com.xgsb.datafactory.bean.Billbean;
 import com.xgsb.datafactory.bean.OrderPerformancebean;
+import com.xgsb.datafactory.bean.Paymentbean;
 import com.xgsb.datafactory.bean.SalePerformanceDetailbean;
 import com.xgsb.datafactory.bean.SalePerformancebean;
 import com.xgsb.datafactory.bean.Salejlbean;
@@ -85,8 +87,20 @@ public class SellerPerformaceFragment extends MvpFragment<SellerPerformancePrese
     LinearLayout mSaleListLayout;
     @BindView(R.id.sale_detail_layout)
     LinearLayout mSaleDetailLayout;
+    @BindView(R.id.bill_code_tv)
+    TextView mBillCodeTv;
+    @BindView(R.id.leave_time)
+    TextView mLeTimeTv;
+    @BindView(R.id.table_time)
+    TextView mTableimeTv;
+    @BindView(R.id.guest_phone_number)
+    TextView mPhoneTv;
+    @BindView(R.id.guest_name)
+    TextView mGuestNameTv;
+    @BindView(R.id.guest_number)
+    TextView mGuestNumTv;
     private Request mRequest;
-    LockTableView mLockTableView;
+    LockTableView mLockTableView, mPayLockTableView;
 
     private List<SalePerformancebean> mSaleList = new ArrayList<>();
     SalePerformanceDetailbean mDetailbean;
@@ -126,10 +140,9 @@ public class SellerPerformaceFragment extends MvpFragment<SellerPerformancePrese
                 mWebCahrtView.refresh("refresh");
             }
         });
-
     }
 
-    private ArrayList<ArrayList<String>> getTable(List<Salejlbean> saleList) {
+    private ArrayList<ArrayList<String>> getJlTable(List<Salejlbean> saleList) {
         //构造假数据
         ArrayList<ArrayList<String>> mTableDatas = new ArrayList<ArrayList<String>>();
         final String[] title = getResources().getStringArray(R.array.salePerformance_title);
@@ -285,7 +298,7 @@ public class SellerPerformaceFragment extends MvpFragment<SellerPerformancePrese
 
     @Override
     protected void onInitData(Bundle savedInstanceState) {
-        mPresenter.getSellerPerformanceList(Param.Keys.TOKEN, getToken(), Param.Keys.SALE_ID, "57", Param.Keys.TIME_TYPE, mTimeType, Param.Keys.START_DATE, mStartTime, Param.Keys.END_DATE, mEndTime);
+        mPresenter.getSellerPerformanceList(Param.Keys.TOKEN, getToken(), Param.Keys.SALE_ID, getUser().getId()+"", Param.Keys.TIME_TYPE, mTimeType, Param.Keys.START_DATE, mStartTime, Param.Keys.END_DATE, mEndTime);
     }
 
     @Override
@@ -297,7 +310,7 @@ public class SellerPerformaceFragment extends MvpFragment<SellerPerformancePrese
     @Override
     public void onSellerPerformanceListResult(List<SalePerformancebean> dishesbeans) {
         mSaleList = dishesbeans;
-        mSaleList.add(new SalePerformancebean("2019-01-21", "0608190122467505", "杨陈", "01", "110.00"));
+//        mSaleList.add(new SalePerformancebean("2019-01-21", "0608190122467505", "杨陈", "01", "110.00"));
         mWebCahrtView.refresh("refresh");
     }
 
@@ -309,13 +322,62 @@ public class SellerPerformaceFragment extends MvpFragment<SellerPerformancePrese
 
     @Override
     public void onSellerPerformanceDetail(SalePerformanceDetailbean detailbean) {
+        setBaseInfo(detailbean);
         mDetailbean = detailbean;
+        ArrayList<ArrayList<String>> mList = getJlTable(detailbean.getList());
         if (mLockTableView == null) {
-            mLockTableView = new LockTableView(getContext(), mDetailLayout, getTable(detailbean.getList()));
+            mLockTableView = new LockTableView(getContext(), mDetailLayout, mList);
             ChartUtil.setLockTableView(mLockTableView);
         } else {
-            mLockTableView.setTableDatas(getTable(detailbean.getList()));
+            mLockTableView.setTableDatas(mList);
         }
+        ArrayList<ArrayList<String>> mPayList = getPayTable(detailbean.getPayment());
+        if (mPayLockTableView == null) {
+            mPayLockTableView = new LockTableView(getContext(), mPayLayout, mPayList);
+            ChartUtil.setLockTableView(mPayLockTableView);
+        } else {
+            mPayLockTableView.setTableDatas(mPayList);
+        }
+    }
+
+    private void setBaseInfo(SalePerformanceDetailbean detailbean) {
+        mBillCodeTv.setText("订单号："+detailbean.getBill_code());
+        mPhoneTv.setText("客户手机号："+detailbean.getGuest_tel());
+        mGuestNameTv.setText("客户姓名："+detailbean.getGuest_name());
+        mGuestNumTv.setText("客户人数："+detailbean.getGuest_qty()+"人");
+        mTableimeTv.setText("开台时间："+detailbean.getOrder_date());
+        mLeTimeTv.setText("离店时间："+detailbean.getEnd_date());
+
+    }
+
+    @Override
+    public void onBillInfo(Billbean billbean) {
+
+    }
+
+    private ArrayList<ArrayList<String>> getPayTable(List<Paymentbean> payment) {
+        ArrayList<ArrayList<String>> mTableDatas = new ArrayList<ArrayList<String>>();
+        ArrayList<String> mfristData = new ArrayList<String>();
+        mfristData.add("合计");
+        ArrayList<String> mRowDatas = new ArrayList<String>();
+        mRowDatas.add(getTotal(payment));
+        for (int i = 0; i < payment.size(); i++) {
+            mfristData.add(payment.get(i).getPay_name());
+        }
+        mTableDatas.add(mfristData);
+        for (int i = 0; i < payment.size(); i++) {
+            mRowDatas.add(payment.get(i).getPay_amount());
+        }
+        mTableDatas.add(mRowDatas);
+        return mTableDatas;
+    }
+
+    private String getTotal(List<Paymentbean> payment) {
+        float money = 0;
+        for (int j = 0; j < payment.size(); j++) {
+            money += Float.valueOf(payment.get(j).getPay_amount());
+        }
+        return money + "";
     }
 
     @Override
@@ -352,7 +414,7 @@ public class SellerPerformaceFragment extends MvpFragment<SellerPerformancePrese
                 mSaleDetailLayout.setVisibility(View.VISIBLE);
                 mSaleListLayout.setVisibility(View.GONE);
                 SalePerformancebean salePerformancebean = (SalePerformancebean) JSONManager.getInstance().parseObject(request.getParams().opt("row_data") + "", SalePerformancebean.class);
-                mPresenter.getSellerPerformanceDetail(Param.Keys.TOKEN, getToken(), Param.Keys.SALE_ID, "56", Param.Keys.BILL_CODE, salePerformancebean.getBill_code());
+                mPresenter.getSellerPerformanceDetail(Param.Keys.TOKEN, getToken(), Param.Keys.SALE_ID,getUser().getId()+"", Param.Keys.BILL_CODE, salePerformancebean.getBill_code());
                 break;
         }
     }

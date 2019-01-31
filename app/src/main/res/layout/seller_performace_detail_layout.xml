@@ -24,7 +24,7 @@
             android:textSize="@dimen/ordersheet_14sp" />
 
         <TextView
-            android:id="@id/bill_code_tv"
+            android:id="@id/guest_phone_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/ordersheet_10dp"
@@ -34,7 +34,7 @@
             android:textSize="@dimen/ordersheet_14sp" />
 
         <TextView
-            android:id="@id/bill_code_tv"
+            android:id="@id/guest_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/ordersheet_10dp"
@@ -44,7 +44,7 @@
             android:textSize="@dimen/ordersheet_14sp" />
 
         <TextView
-            android:id="@id/bill_code_tv"
+            android:id="@id/guest_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/ordersheet_10dp"
@@ -54,7 +54,7 @@
             android:textSize="@dimen/ordersheet_14sp" />
 
         <TextView
-            android:id="@id/bill_code_tv"
+            android:id="@id/table_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/ordersheet_10dp"
@@ -64,7 +64,7 @@
             android:textSize="@dimen/ordersheet_14sp" />
 
         <TextView
-            android:id="@id/bill_code_tv"
+            android:id="@id/leave_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/ordersheet_10dp"
@@ -83,34 +83,31 @@
         android:textSize="@dimen/ordersheet_18sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/ordersheet_10dp"
-        android:text="总计"
-        android:textColor="@color/menber_main_tab_title_color"
-        android:textSize="@dimen/ordersheet_14sp"
-        android:textStyle="bold" />
-
     <FrameLayout
         android:id="@id/jl_web"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="left"
         android:background="@drawable/web_chart_bg"
-        android:padding="@dimen/ordersheet_1dp" />
+        android:padding="@dimen/ordersheet_1dp"
+        android:layout_marginTop="@dimen/ordersheet_10dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="支付方式"
+        android:layout_marginTop="@dimen/ordersheet_10dp"
         android:textColor="@color/menber_main_tab_title_color"
         android:textSize="@dimen/ordersheet_18sp"
         android:textStyle="bold" />
 
     <FrameLayout
         android:id="@id/pay_web"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_marginTop="@dimen/ordersheet_10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:background="@drawable/web_chart_bg"
+        android:padding="@dimen/ordersheet_1dp" />
 
 </LinearLayout>

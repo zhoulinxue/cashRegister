@@ -181,6 +181,7 @@ public abstract class BaseActivity extends InternationalizationActivity implemen
             showToast("网络连接已断开");
             return;
         }
+        showToast(msg);
     }
 
     protected boolean isNetWorkconnected() {

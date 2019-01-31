@@ -51,11 +51,4 @@ public abstract class MvpActivity<P extends BasePresenter> extends BaseActivity 
 
     }
 
-    @Override
-    public void onError(String msg) {
-        super.onError(msg);
-        showToast(msg);
-    }
-
-
 }

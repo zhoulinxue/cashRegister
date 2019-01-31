@@ -7,10 +7,13 @@ import android.util.DisplayMetrics;
 import com.luojilab.component.componentlib.router.Router;
 import com.luojilab.component.componentlib.router.ui.UIRouter;
 import com.rmondjone.locktableview.DisplayUtil;
+import com.shigoo.cashregister.activitys.RouterActivity;
 import com.shigoo.cashregister.print.PrintManager;
 import com.shigoo.cashregister.services.PrintServices;
 import com.zx.api.api.utils.AppLog;
+import com.zx.api.api.utils.SPUtil;
 import com.zx.mvplibrary.MvpApplication;
+import com.zx.network.Param;
 
 /**
  * Name: App
@@ -37,6 +40,12 @@ public class App extends MvpApplication {
         AppLog.print("BASE_URL  " + BuildConfig.API_HOST);
         return BuildConfig.API_HOST;
     }
+
+    public void quitUser() {
+        SPUtil.getInstance().putString(Param.Keys.USER, "");
+        startActivity(new Intent(this, RouterActivity.class));
+    }
+
     private void initDisplayOpinion() {
         DisplayMetrics dm = getResources().getDisplayMetrics();
         DisplayUtil.density = dm.density;

@@ -24,7 +24,7 @@
             android:name=".activitys.CashRigisterMainActivity"
             android:windowSoftInputMode="adjustResize|stateHidden"></activity>
         <activity
-            android:name=".activitys.PerformanceActivity"
+            android:name=".activitys.RouterActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,7 +47,7 @@
         <activity
             android:name=".activitys.AssembleTablesActivity"
             android:theme="@style/ordersheet_translucent" />
-        <!--<activity android:name=".activitys.PerformanceActivity" />-->
+        <activity android:name=".activitys.PerformanceActivity" />
         <activity
             android:name=".activitys.NumberInputActivity"
             android:theme="@style/ordersheet_translucent" />

@@ -448,4 +448,9 @@
     <item name="pay_web" type="id" />
     <item name="sale_list_layout" type="id" />
     <item name="sale_detail_layout" type="id" />
+    <item name="guest_phone_number" type="id" />
+    <item name="guest_name" type="id" />
+    <item name="guest_number" type="id" />
+    <item name="table_time" type="id" />
+    <item name="leave_time" type="id" />
 </resources>

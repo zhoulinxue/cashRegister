@@ -1,5 +1,6 @@
 package com.shigoo.cashregister.mvp.contacts;
 
+import com.xgsb.datafactory.bean.Billbean;
 import com.xgsb.datafactory.bean.OrderPerformanceDetailbean;
 import com.xgsb.datafactory.bean.OrderPerformancebean;
 import com.xgsb.datafactory.bean.SalePerformanceDetailbean;
@@ -22,5 +23,7 @@ public class SellerPerformaceContact {
         void onSellerCount(String number, String money);
 
         void onSellerPerformanceDetail(SalePerformanceDetailbean detailbeanList);
+
+        void onBillInfo(Billbean billbean);
     }
 }

@@ -33,7 +33,6 @@ public class SellerPerformancePresenter extends BasePresenterImpl<SellerPerforma
         public void onSuccess(SalePerformanceDetailbean sellerbeans) {
             mView.dismissLoadingDiaog();
             mView.onSellerPerformanceDetail(sellerbeans);
-
         }
 
         @Override
