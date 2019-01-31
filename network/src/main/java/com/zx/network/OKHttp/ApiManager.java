@@ -11,6 +11,8 @@ import com.xgsb.datafactory.bean.Cardbean;
 import com.xgsb.datafactory.bean.Chedanbean;
 import com.xgsb.datafactory.bean.ConsumeListData;
 import com.xgsb.datafactory.bean.Countbean;
+import com.xgsb.datafactory.bean.Departmentbean;
+import com.xgsb.datafactory.bean.DishesKind;
 import com.xgsb.datafactory.bean.DishesTypebean;
 import com.xgsb.datafactory.bean.Dishesbean;
 import com.xgsb.datafactory.bean.FanJZbean;
@@ -42,6 +44,7 @@ import com.xgsb.datafactory.bean.SettalOrderResultbean;
 import com.xgsb.datafactory.bean.SettalOrderbean;
 import com.xgsb.datafactory.bean.Table;
 import com.xgsb.datafactory.bean.TableArea;
+import com.xgsb.datafactory.bean.TimeData;
 import com.xgsb.datafactory.bean.User;
 import com.zx.api.api.netWork.NetRequest;
 import com.zx.api.api.netWork.NetRequestCallBack;
@@ -752,5 +755,38 @@ public class ApiManager {
     public NetRequest getSellerPerformaceDetail(String[] params, NetRequestCallBack<SalePerformanceDetailbean> sellerDetailCallback) {
         Observable<NetBean<SalePerformanceDetailbean>> observable = mApiService.getSellerPerformanceDetail(genrateMap(params));
         return new OkHttpRequest<SalePerformanceDetailbean>(observable, sellerDetailCallback);
+    }
+
+    /**
+     * 获取餐段
+     * @param params
+     * @param timeDataCallBack
+     * @return
+     */
+    public NetRequest getTimeDataList(String[] params, NetRequestCallBack<ListData<TimeData>> timeDataCallBack) {
+        Observable<NetBean<ListData<TimeData>>> observable = mApiService.getTimeDatalist(genrateMap(params));
+        return new OkHttpRequest<ListData<TimeData>>(observable, timeDataCallBack);
+    }
+
+    /**
+     *
+     * @param params
+     * @param departmentCallBack
+     * @return
+     */
+    public NetRequest getDepartment(String[] params, NetRequestCallBack<List<Departmentbean>> departmentCallBack) {
+        Observable<NetBean<List<Departmentbean>>> observable = mApiService.getDepartmentList(genrateMap(params));
+        return new OkHttpRequest<List<Departmentbean>>(observable, departmentCallBack);
+    }
+
+    /**
+     *
+     * @param params
+     * @param dishesKindCallBack
+     * @return
+     */
+    public NetRequest getDishesKindList(String[] params, NetRequestCallBack<ListData<DishesKind>> dishesKindCallBack) {
+        Observable<NetBean<ListData<DishesKind>>> observable = mApiService.getDishesKindList(genrateMap(params));
+        return new OkHttpRequest<ListData<DishesKind>>(observable, dishesKindCallBack);
     }
 }

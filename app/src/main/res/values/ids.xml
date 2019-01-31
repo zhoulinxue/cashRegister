@@ -455,4 +455,7 @@
     <item name="leave_time" type="id" />
     <item name="print_kind_recyclerview" type="id" />
     <item name="saixuan_layout" type="id" />
+    <item name="ordersheet_print_container" type="id" />
+    <item name="ordersheet_time_data_text" type="id" />
+    <item name="name_tv" type="id" />
 </resources>

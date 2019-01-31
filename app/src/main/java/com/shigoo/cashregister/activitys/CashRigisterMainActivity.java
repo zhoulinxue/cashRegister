@@ -18,13 +18,12 @@ import com.shigoo.cashregister.fragments.BooksOffFragment;
 import com.shigoo.cashregister.fragments.MemberDetailFragment;
 import com.shigoo.cashregister.fragments.MemberMainFragment;
 import com.shigoo.cashregister.fragments.OrdersFragment;
-import com.shigoo.cashregister.fragments.PrintFragment;
+import com.shigoo.cashregister.fragments.PrintMainFragment;
 import com.shigoo.cashregister.fragments.TableMainFragment;
 import com.xgsb.datafactory.JSONManager;
 import com.xgsb.datafactory.bean.EventRouter;
 import com.xgsb.datafactory.bean.Member;
 import com.xgsb.datafactory.bean.Table;
-import com.zx.api.api.utils.AppLog;
 import com.zx.api.api.utils.SPUtil;
 import com.zx.mvplibrary.BaseActivity;
 import com.zx.mvplibrary.BaseFragment;
@@ -197,7 +196,7 @@ public class CashRigisterMainActivity extends BaseActivity {
                 fragment = BooksOffFragment.newInstance();
                 break;
             case 4:
-                fragment = PrintFragment.newInstance();
+                fragment = PrintMainFragment.newInstance();
                 break;
 
         }

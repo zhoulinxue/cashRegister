@@ -5,6 +5,8 @@ import com.xgsb.datafactory.bean.Cardbean;
 import com.xgsb.datafactory.bean.Chedanbean;
 import com.xgsb.datafactory.bean.ConsumeListData;
 import com.xgsb.datafactory.bean.Countbean;
+import com.xgsb.datafactory.bean.Departmentbean;
+import com.xgsb.datafactory.bean.DishesKind;
 import com.xgsb.datafactory.bean.DishesTypebean;
 import com.xgsb.datafactory.bean.Dishesbean;
 import com.xgsb.datafactory.bean.FanJZbean;
@@ -36,6 +38,7 @@ import com.xgsb.datafactory.bean.SettalOrderResultbean;
 import com.xgsb.datafactory.bean.SettalOrderbean;
 import com.xgsb.datafactory.bean.Table;
 import com.xgsb.datafactory.bean.TableArea;
+import com.xgsb.datafactory.bean.TimeData;
 import com.xgsb.datafactory.bean.User;
 import com.zx.network.NetBean;
 
@@ -385,4 +388,16 @@ public interface ApiServer {
     @FormUrlEncoded
     @POST("/reserve/reserve/saleAchievementInfo")
     Observable<NetBean<SalePerformanceDetailbean>> getSellerPerformanceDetail(@FieldMap Map<String, String> stringStringMap);
+
+    @FormUrlEncoded
+    @POST("/system/single/mealPeriodList")
+    Observable<NetBean<ListData<TimeData>>> getTimeDatalist(@FieldMap Map<String, String> stringStringMap);
+
+    @FormUrlEncoded
+    @POST("/system/single/drawerDepartment")
+    Observable<NetBean<List<Departmentbean>>> getDepartmentList(@FieldMap Map<String, String> stringStringMap);
+
+    @FormUrlEncoded
+    @POST("/system/single/categoryList")
+    Observable<NetBean<ListData<DishesKind>>> getDishesKindList(@FieldMap Map<String, String> stringStringMap);
 }

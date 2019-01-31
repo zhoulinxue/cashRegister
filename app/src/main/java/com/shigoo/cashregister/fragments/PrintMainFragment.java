@@ -1,27 +1,22 @@
 package com.shigoo.cashregister.fragments;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
-import android.support.v7.widget.RecyclerView;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.aspsine.fragmentnavigator.FragmentNavigator;
+import com.aspsine.fragmentnavigator.FragmentNavigatorAdapter;
 import com.rmondjone.locktableview.LockTableView;
 import com.shigoo.cashregister.R;
-import com.shigoo.cashregister.mvp.contacts.PrintContacts;
-import com.shigoo.cashregister.mvp.contacts.PrintFragmentContact;
-import com.shigoo.cashregister.mvp.presenter.PrintFragmentPresenter;
+import com.shigoo.cashregister.mvp.contacts.NUllContact;
+import com.shigoo.cashregister.mvp.presenter.NullPresenter;
 import com.shigoo.cashregister.utils.ChartUtil;
-import com.xgsb.datafactory.bean.KindRecivebean;
-import com.xgsb.datafactory.bean.Printbean;
-import com.xgsb.datafactory.bean.SaleCountbean;
-import com.xgsb.datafactory.bean.TableCosumbean;
-import com.zx.mvplibrary.BaseFragment;
 import com.zx.mvplibrary.MvpFragment;
-import com.zx.mvplibrary.web.onOperateLisenter;
-import com.zx.network.Param;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,9 +25,6 @@ import java.util.List;
 import butterknife.BindColor;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.starteos.dappsdk.Request;
-
-import static com.shigoo.cashregister.activitys.CashRigisterMainActivity.TEST;
 
 
 /**
@@ -42,33 +34,32 @@ import static com.shigoo.cashregister.activitys.CashRigisterMainActivity.TEST;
  * Comment: //TODO
  * Date: 2018-12-01 14:27
  */
-public class PrintFragment extends MvpFragment<PrintFragmentPresenter> implements PrintFragmentContact.view, onOperateLisenter {
+public class PrintMainFragment extends MvpFragment<NullPresenter> implements NUllContact.view {
     private static final int DEFAULT_POSITION = 0;
     @BindView(R.id.tabLayout)
     TabLayout mTableLayout;
-    @BindView(R.id.web_chart_layout)
-    FrameLayout mContainer;
     private List<String> titleList;
     private List<TextView> titleView = new ArrayList<>();
     private List<TextView> lineView = new ArrayList<>();
+    private List<Fragment> fragments = new ArrayList<>();
     @BindColor(R.color.menber_main_tab_title_color)
     int nomalTvColor;
     @BindColor(R.color.menber_main_tab_title_color_pre)
     int selectedColor;
     private int position;
-    LockTableView mLockTableView;
     ArrayList<ArrayList<String>> mList = new ArrayList<>();
+    private FragmentNavigator mFragmentNavigator;
 
-    public static PrintFragment newInstance() {
-        PrintFragment fragment = new PrintFragment();
+    public static PrintMainFragment newInstance() {
+        PrintMainFragment fragment = new PrintMainFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
     }
 
     @Override
-    protected PrintFragmentPresenter onCtreatPresenter() {
-        return new PrintFragmentPresenter(this);
+    protected NullPresenter onCtreatPresenter() {
+        return new NullPresenter(this);
     }
 
     @Override
@@ -80,8 +71,27 @@ public class PrintFragment extends MvpFragment<PrintFragmentPresenter> implement
     protected void onCreateView(View view, Bundle argment) {
         ButterKnife.bind(this, view);
         iniTalLayout();
-        mLockTableView = new LockTableView(getContext(), mContainer, mList);
-        ChartUtil.setLockTableView(mLockTableView);
+        initFragment();
+    }
+
+    private void initFragment() {
+        fragments.add(PrintSaleListFragment.newInstance());
+        mFragmentNavigator = new FragmentNavigator(getChildFragmentManager(), new FragmentNavigatorAdapter() {
+            @Override
+            public Fragment onCreateFragment(int i) {
+                return fragments.get(i);
+            }
+
+            @Override
+            public String getTag(int i) {
+                return fragments.get(i).getClass().getSimpleName();
+            }
+
+            @Override
+            public int getCount() {
+                return fragments.size();
+            }
+        }, R.id.ordersheet_print_container);
     }
 
     private void iniTalLayout() {
@@ -130,75 +140,15 @@ public class PrintFragment extends MvpFragment<PrintFragmentPresenter> implement
     }
 
     @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mFragmentNavigator.onSaveInstanceState(outState);
+    }
+
+    @Override
     protected void onInitData(Bundle savedInstanceState) {
-        mPresenter.getSaleList(Param.Keys.TOKEN, getToken());
-        mPresenter.getKindRecive(Param.Keys.TOKEN, getToken());
-        mPresenter.getSaleCountList(Param.Keys.TOKEN, getToken());
-        mPresenter.getTableCosumList(Param.Keys.TOKEN, getToken());
-    }
-
-    @Override
-    public void onSaleResult(List<Printbean> msg) {
-
-    }
-
-    @Override
-    public void onKindResult(List<KindRecivebean> list) {
-
-    }
-
-    @Override
-    public void onSaleCountList(List<SaleCountbean> list) {
-
-    }
-
-    @Override
-    public void onTableConsumList(List<TableCosumbean> list) {
-
-    }
-
-    @Override
-    public void initWebview(Request request) {
-
-    }
-
-    @Override
-    public void getTableInfo(Request request) {
-
-    }
-
-    @Override
-    public void operateHandle(Request request) {
-
-    }
-
-    @Override
-    public void searchOperate(Request request) {
-
-    }
-
-    @Override
-    public void currentPage(Request request) {
-
-    }
-
-    @Override
-    public void orderDetailsData(Request request) {
-
-    }
-
-    @Override
-    public void handoverPrint(Request request) {
-
-    }
-
-    @Override
-    public void handDutyHistroyListPrint(Request request) {
-
-    }
-
-    @Override
-    public void getPayNumOrderDetailsData(Request request) {
-
+        mFragmentNavigator.onCreate(savedInstanceState);
+        mFragmentNavigator.setDefaultPosition(0);
+        mFragmentNavigator.showFragment(0);
     }
 }

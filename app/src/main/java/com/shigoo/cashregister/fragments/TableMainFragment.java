@@ -50,6 +50,7 @@ public class TableMainFragment extends BaseFragment implements OrderListViewBria
     FrameLayout mRightLayout;
     OrderDishMenuListView mDishesView;
     private FragmentNavigator mFragmentNavigator;
+    private List<Fragment> fragments = new ArrayList<>();
     @BindView(R.id.dialog_root_layout)
     FrameLayout mDialogRootLayout;
     TableDialogView mDialogView;
@@ -61,7 +62,6 @@ public class TableMainFragment extends BaseFragment implements OrderListViewBria
         return fragment;
     }
 
-    private List<Fragment> fragments = new ArrayList<>();
 
     @Override
     protected void preOnCreatView() {

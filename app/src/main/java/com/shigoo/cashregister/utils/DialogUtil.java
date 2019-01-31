@@ -47,4 +47,8 @@ public class DialogUtil {
         dialog.show();
         return dialog;
     }
+
+    public static void commonPop(){
+
+    }
 }
