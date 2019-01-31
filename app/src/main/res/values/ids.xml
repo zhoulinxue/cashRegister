@@ -443,4 +443,9 @@
     <item name="total_money" type="id" />
     <item name="dishes_btn" type="id" />
     <item name="setMeal_btn" type="id" />
+    <item name="bill_code_tv" type="id" />
+    <item name="jl_web" type="id" />
+    <item name="pay_web" type="id" />
+    <item name="sale_list_layout" type="id" />
+    <item name="sale_detail_layout" type="id" />
 </resources>

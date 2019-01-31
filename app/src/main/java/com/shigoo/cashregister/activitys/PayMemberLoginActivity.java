@@ -7,14 +7,12 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.shigoo.cashregister.App;
 import com.shigoo.cashregister.R;
 import com.shigoo.cashregister.adapters.CouponAdapter;
 import com.shigoo.cashregister.adapters.MenuDishesListAdapter;
@@ -23,25 +21,16 @@ import com.shigoo.cashregister.mvp.contacts.AddCardContact;
 import com.shigoo.cashregister.mvp.contacts.MemberDetailContact;
 import com.shigoo.cashregister.mvp.presenter.AddCardPresenter;
 import com.shigoo.cashregister.mvp.presenter.MemberDetailPresenter;
-import com.shigoo.cashregister.utils.DishesUtils;
+import com.shigoo.cashregister.utils.DishesUtil;
 import com.xgsb.datafactory.JSONManager;
 import com.xgsb.datafactory.bean.Cardbean;
 import com.xgsb.datafactory.bean.Couponbean;
-import com.xgsb.datafactory.bean.Dishesbean;
-import com.xgsb.datafactory.bean.EventRouter;
 import com.xgsb.datafactory.bean.Member;
-import com.xgsb.datafactory.bean.Numberbean;
-import com.xgsb.datafactory.bean.Paymentbean;
 import com.xgsb.datafactory.bean.SettalOrderbean;
-import com.xgsb.datafactory.enu.EventBusAction;
-import com.zx.api.api.utils.AppLog;
 import com.zx.api.api.utils.AppUtil;
 import com.zx.api.api.utils.SPUtil;
-import com.zx.mvplibrary.BaseActivity;
 import com.zx.mvplibrary.MvpActivity;
 import com.zx.network.Param;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -164,10 +153,10 @@ public class PayMemberLoginActivity extends MvpActivity<MemberDetailPresenter> i
             switch (mMember.getGrade_discount()) {
                 case "1":
                 case "2":
-                    finalMoney += DishesUtils.getDiscountMoney(mMember, mOrderbean.getDishes());
+                    finalMoney += DishesUtil.getDiscountMoney(mMember, mOrderbean.getDishes());
                     break;
                 case "3":
-                    finalMoney += DishesUtils.getVipPrice(mOrderbean.getSalePrice(), mOrderbean.getDishes());
+                    finalMoney += DishesUtil.getVipPrice(mOrderbean.getSalePrice(), mOrderbean.getDishes());
                     break;
             }
         }
@@ -236,11 +225,11 @@ public class PayMemberLoginActivity extends MvpActivity<MemberDetailPresenter> i
 //                break;
             case "2":
                 mDiscountLayout.setVisibility(View.VISIBLE);
-                mMemberDisCountTv.setText(String.format("使用会员折扣 %s 折，优惠￥%s", member.getGrade_discount_than(), DishesUtils.getDiscountMoney(member, mOrderbean.getDishes())));
+                mMemberDisCountTv.setText(String.format("使用会员折扣 %s 折，优惠￥%s", member.getGrade_discount_than(), DishesUtil.getDiscountMoney(member, mOrderbean.getDishes())));
                 break;
             case "3":
                 mDiscountLayout.setVisibility(View.VISIBLE);
-                mMemberDisCountTv.setText(String.format("菜品会员价，优惠￥%s", DishesUtils.getVipPrice(mOrderbean.getSalePrice(), mOrderbean.getDishes())));
+                mMemberDisCountTv.setText(String.format("菜品会员价，优惠￥%s", DishesUtil.getVipPrice(mOrderbean.getSalePrice(), mOrderbean.getDishes())));
                 break;
         }
 

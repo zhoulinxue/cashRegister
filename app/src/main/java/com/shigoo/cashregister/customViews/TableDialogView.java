@@ -185,6 +185,11 @@ public class TableDialogView extends MvpCustomView<TableDialogPresenter> impleme
     }
 
     @Override
+    public void onError(String msg) {
+        showToast(msg);
+    }
+
+    @Override
     public void onReasonResult(List<Remarkbean> reasonList) {
         switch (mReasonType) {
             case 3:

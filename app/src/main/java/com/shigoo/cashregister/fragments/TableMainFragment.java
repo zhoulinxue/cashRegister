@@ -299,6 +299,7 @@ public class TableMainFragment extends BaseFragment implements OrderListViewBria
 
     @Override
     public void gotoTable() {
+        mDialogRootLayout.setVisibility(View.GONE);
         //切换到tablFragment
         mFragmentNavigator.showFragment(0);
     }

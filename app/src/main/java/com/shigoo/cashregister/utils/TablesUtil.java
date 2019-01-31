@@ -6,7 +6,7 @@ import com.xgsb.datafactory.bean.Table;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TablesUtils {
+public class TablesUtil {
     public static List<Table> fillList(List<Table> tables) {
         List<Table> tableList = new ArrayList<>();
         for (Table table : tables) {

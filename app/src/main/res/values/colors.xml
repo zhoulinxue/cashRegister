@@ -16,6 +16,7 @@
     <color name="radio_btn_text_color">#657180</color>
     <color name="black_08">#33000000</color>
     <color name="tj_bg">#F19149</color>
+    <color name="web_title">#D7DDE4</color>
 
     <color name="ordersheet_cash_login_edit_end_color">#2E3237</color>
     <color name="ordersheet_cash_login_edit_start_color">#3D4249</color>

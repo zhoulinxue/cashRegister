@@ -7,25 +7,19 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.shigoo.cashregister.App;
 import com.shigoo.cashregister.R;
 import com.shigoo.cashregister.adapters.LeftSetMealChildAdapter;
-import com.shigoo.cashregister.utils.DishesUtils;
-import com.xgsb.datafactory.JSONManager;
 import com.xgsb.datafactory.bean.AddFavorablebean;
 import com.xgsb.datafactory.bean.ComboData;
 import com.xgsb.datafactory.bean.Dishesbean;
 import com.xgsb.datafactory.bean.Member;
 import com.xgsb.datafactory.bean.Remarkbean;
 import com.xgsb.datafactory.bean.SetMealGroupbean;
-import com.xgsb.datafactory.bean.Specifications;
 import com.xgsb.datafactory.enu.DiscountType;
-import com.zx.api.api.utils.AppLog;
 import com.zx.api.api.utils.AppUtil;
 import com.zx.network.Param;
 
@@ -35,7 +29,6 @@ import java.util.List;
 import butterknife.BindColor;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit.http.Body;
 
 public class MenuListHoldView extends BaseViewHolder {
     @BindView(R.id.ordersheet_dishes_old_tv)

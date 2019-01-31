@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class DishesUtils {
+public class DishesUtil {
     /**
      * 根据折扣率 兑算 折扣金额
      *

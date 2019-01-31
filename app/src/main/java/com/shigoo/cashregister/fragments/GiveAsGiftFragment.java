@@ -11,28 +11,21 @@ import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.shigoo.cashregister.R;
-import com.shigoo.cashregister.activitys.AssembleTablesActivity;
 import com.shigoo.cashregister.activitys.GiveReasonActivity;
 import com.shigoo.cashregister.adapters.GiveDishesListAdapter;
 import com.shigoo.cashregister.adapters.GiveDishesTypeListAdapter;
 import com.shigoo.cashregister.adapters.GiveTableListAdapter;
 import com.shigoo.cashregister.adapters.SetMealListAdapter;
 import com.shigoo.cashregister.adapters.TableAreaListAdapter;
-import com.shigoo.cashregister.adapters.TableListAdapter;
 import com.shigoo.cashregister.mvp.contacts.GiveAsGiftContact;
 import com.shigoo.cashregister.mvp.presenter.GiveAsGiftPresenter;
-import com.shigoo.cashregister.utils.TablesUtils;
-import com.xgsb.datafactory.JSONManager;
-import com.xgsb.datafactory.bean.Billbean;
-import com.xgsb.datafactory.bean.EventRouter;
+import com.shigoo.cashregister.utils.TablesUtil;
 import com.xgsb.datafactory.bean.GiveDishesTypebean;
 import com.xgsb.datafactory.bean.GiveDishesbean;
 import com.xgsb.datafactory.bean.ListData;
 import com.xgsb.datafactory.bean.Table;
 import com.xgsb.datafactory.bean.TableArea;
-import com.xgsb.datafactory.bean.TableStatus;
 import com.xgsb.datafactory.enu.EventBusAction;
-import com.zx.api.api.utils.AppLog;
 import com.zx.api.api.utils.AppUtil;
 import com.zx.mvplibrary.MvpFragment;
 import com.zx.network.Param;
@@ -84,7 +77,7 @@ public class GiveAsGiftFragment extends MvpFragment<GiveAsGiftPresenter> impleme
 
     @Override
     public void onTableResult(List<Table> tables) {
-       mList=TablesUtils.fillList(tables);
+       mList=TablesUtil.fillList(tables);
         mAdapter.setNewData(mList);
     }
 

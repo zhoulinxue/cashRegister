@@ -48,4 +48,14 @@
         <item>销售明细表</item>
         <item>当日餐桌消费表</item>
     </string-array>
+    <string-array name="salePerformance_title">
+        <item>台号</item>
+        <item>商品编号</item>
+        <item>商品名称</item>
+        <item>原价(元)</item>
+        <item>结算价(元)</item>
+        <item>数量</item>
+        <item>小计(元)</item>
+        <item>点单时间</item>
+    </string-array>
 </resources>

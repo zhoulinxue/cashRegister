@@ -10,6 +10,14 @@ public class SalePerformancebean implements Parcelable {
     private String table_number;
     private String sum_pay_amount;
 
+    public SalePerformancebean(String bill_date, String bill_code, String guest_name, String table_number, String sum_pay_amount) {
+        this.bill_date = bill_date;
+        this.bill_code = bill_code;
+        this.guest_name = guest_name;
+        this.table_number = table_number;
+        this.sum_pay_amount = sum_pay_amount;
+    }
+
     public String getBill_date() {
         return bill_date;
     }

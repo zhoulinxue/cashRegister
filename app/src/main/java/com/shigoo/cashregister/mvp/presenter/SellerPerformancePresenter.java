@@ -2,7 +2,6 @@ package com.shigoo.cashregister.mvp.presenter;
 
 import com.shigoo.cashregister.mvp.contacts.SellerPerformaceContact;
 import com.xgsb.datafactory.bean.ListData;
-import com.xgsb.datafactory.bean.OrderPerformancebean;
 import com.xgsb.datafactory.bean.SalePerformanceDetailbean;
 import com.xgsb.datafactory.bean.SalePerformancebean;
 import com.zx.api.api.netWork.NetRequest;

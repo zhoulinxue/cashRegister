@@ -48,8 +48,8 @@ public class PerformanceActivity extends MvpActivity<NullPresenter> implements N
     }
 
     private void initFragment() {
-        fragments.add(OrderPerformaceFragment.newInstance());
         fragments.add(SellerPerformaceFragment.newInstance());
+        fragments.add(OrderPerformaceFragment.newInstance());
         mFragmentNavigator = new FragmentNavigator(getSupportFragmentManager(), new FragmentNavigatorAdapter() {
             @Override
             public Fragment onCreateFragment(int i) {

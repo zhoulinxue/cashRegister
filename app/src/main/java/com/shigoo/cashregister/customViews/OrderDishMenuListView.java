@@ -23,11 +23,10 @@ import com.shigoo.cashregister.customViews.viewChildClick.OrderListViewBriage;
 import com.shigoo.cashregister.mvp.contacts.MenuDishesListContact;
 import com.shigoo.cashregister.mvp.presenter.OrderDishesPresenter;
 import com.shigoo.cashregister.print.PrintManager;
-import com.shigoo.cashregister.print.attr.Colum;
 import com.shigoo.cashregister.print.attr.FormatFactory;
 import com.shigoo.cashregister.print.content.Content;
 import com.shigoo.cashregister.print.inter.PrintProviderInterface;
-import com.shigoo.cashregister.utils.DishesUtils;
+import com.shigoo.cashregister.utils.DishesUtil;
 import com.xgsb.datafactory.bean.Billbean;
 import com.xgsb.datafactory.bean.ComboData;
 import com.xgsb.datafactory.bean.Dishesbean;
@@ -41,7 +40,6 @@ import com.xgsb.datafactory.bean.SettalOrderResultbean;
 import com.xgsb.datafactory.bean.SettalOrderbean;
 import com.xgsb.datafactory.bean.Table;
 import com.xgsb.datafactory.enu.DiscountType;
-import com.zx.api.api.utils.AppLog;
 import com.zx.api.api.utils.AppUtil;
 import com.zx.mvplibrary.wedgit.MvpCustomView;
 import com.zx.network.Param;
@@ -579,7 +577,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
 
     @Override
     public void onNotifyItem() {
-        List<Float> prices = DishesUtils.calculaPrice(mMenuListAdapter.getData());
+        List<Float> prices = DishesUtil.calculaPrice(mMenuListAdapter.getData());
         finalyPrice = prices.get(1);
         salePrice = prices.get(0);
         mAlreadOrderPriceTv.setText("已收：" + Param.Keys.RMB + prices.get(3));
@@ -623,7 +621,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
         isUpdate = false;
         try {
             Dishesbean dishesbean = (Dishesbean) data.clone();
-            DishesUtils.fullFavorableList(dishesbean, mDiscountType, mBillbean.getBill_code());
+            DishesUtil.fullFavorableList(dishesbean, mDiscountType, mBillbean.getBill_code());
             mMenuListAdapter.addData(0, dishesbean);
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
@@ -639,7 +637,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
 
     public void updateFormat(Dishesbean data) {
         mCurrent.setCurrentSp(data.getCurrentSp());
-        DishesUtils.fullFavorableList(mCurrent, mDiscountType, mBillbean.getBill_code());
+        DishesUtil.fullFavorableList(mCurrent, mDiscountType, mBillbean.getBill_code());
         mMenuListAdapter.notifyDataSetChanged();
     }
 
@@ -733,7 +731,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
     public void setDiscountType(DiscountType data) {
         mDiscountType = data;
         for (Dishesbean dishesbean : mMenuListAdapter.getData()) {
-            DishesUtils.fullFavorableList(dishesbean, mDiscountType, mBillbean.getBill_code());
+            DishesUtil.fullFavorableList(dishesbean, mDiscountType, mBillbean.getBill_code());
         }
         mMenuListAdapter.notifyDataSetChanged();
         mClickLister.onPayDataChanage(getPayOrder());

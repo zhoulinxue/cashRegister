@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.shigoo.cashregister.R;
@@ -23,7 +22,7 @@ import com.shigoo.cashregister.adapters.PayMoneyTypeListAdapter;
 import com.shigoo.cashregister.adapters.PaymentTypeListAdapter;
 import com.shigoo.cashregister.mvp.contacts.SettalContact;
 import com.shigoo.cashregister.mvp.presenter.SettalPresenter;
-import com.shigoo.cashregister.utils.DishesUtils;
+import com.shigoo.cashregister.utils.DishesUtil;
 import com.xgsb.datafactory.JSONManager;
 import com.xgsb.datafactory.bean.AddFavorablebean;
 import com.xgsb.datafactory.bean.AddPayment;
@@ -37,7 +36,6 @@ import com.xgsb.datafactory.bean.Paymentbean;
 import com.xgsb.datafactory.bean.SettalOrderbean;
 import com.xgsb.datafactory.enu.DiscountType;
 import com.xgsb.datafactory.enu.EventBusAction;
-import com.zx.api.api.utils.AppLog;
 import com.zx.api.api.utils.AppUtil;
 import com.zx.api.api.utils.SPUtil;
 import com.zx.mvplibrary.MvpFragment;
@@ -333,7 +331,7 @@ public class SettalFragment extends MvpFragment<SettalPresenter> implements Sett
     }
 
     private void newPayPrice(List<Dishesbean> dishesbeans) {
-        floats = DishesUtils.calculaPrice(dishesbeans);
+        floats = DishesUtil.calculaPrice(dishesbeans);
         mOrderbean.setSalePrice(floats.get(0));
         mOrderbean.setFinalyPrice(floats.get(1));
         mOrderbean.setRestPrice(floats.get(2));
