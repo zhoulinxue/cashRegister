@@ -51,6 +51,16 @@ public abstract class MvpFragment<P extends BasePresenter> extends BaseFragment 
         showToast(msg);
     }
 
+    @Override
+    public void onError(int code, String msg) {
+        onError(msg);
+        if (code == 300) {
+            if ("登录已过期".equals(msg)) {
+                MvpApplication.getInstance().quitUser();
+            }
+        }
+    }
+
     protected boolean isNetWorkconnected() {
         return !TextUtils.isEmpty(AppUtil.getNetworkState(getActivity()));
     }

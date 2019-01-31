@@ -26,6 +26,8 @@ public interface BaseView {
 
     public void onError(String msg);
 
+    public void onError(int code,String msg);
+
     public Context getContext();
 
     public String getToken();

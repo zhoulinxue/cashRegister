@@ -27,7 +27,7 @@ public class SaleOutMainListPresenter extends BasePresenterImpl<SaleOutMainListC
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
     NetRequestCallBack<List<DishesTypebean>> mTypeListCallBack = new NetRequestCallBack<List<DishesTypebean>>() {
@@ -38,7 +38,7 @@ public class SaleOutMainListPresenter extends BasePresenterImpl<SaleOutMainListC
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 
@@ -56,7 +56,7 @@ public class SaleOutMainListPresenter extends BasePresenterImpl<SaleOutMainListC
         @Override
         public void onError(int responseCode, String msg) {
             mView.dismissLoadingDiaog();
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 

@@ -37,10 +37,10 @@ import com.zx.network.Param;
  */
 public abstract class BaseActivity extends InternationalizationActivity implements BaseView {
     protected Handler mHandler;
-    private MvpDialog mDialog;
     protected final int DEFAULT_MINUTES = 1000;
     private InputMethodManager mInputMethodManager;
     protected final String DEFAULT_TOKEN = "default_token";
+    private BaseView mBaseView;
 
 
     @Override
@@ -50,7 +50,7 @@ public abstract class BaseActivity extends InternationalizationActivity implemen
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         mHandler = new Handler();
-        mDialog = onCreatCustomDialog();
+        mBaseView = new BaseViewImpl(this, mHandler);
         AutowiredService.Factory.getSingletonImpl().autowire(this);
         //设置布局文件
         setContentView(initLayout());
@@ -112,30 +112,28 @@ public abstract class BaseActivity extends InternationalizationActivity implemen
 
     @Override
     public void showLoadingDialog() {
-        if (mDialog != null)
-            mDialog.show();
+        mBaseView.showLoadingDialog();
     }
 
     @Override
     public void showToast(String msg) {
-        mHandler.post(new ToastRunable(this, msg));
+        mBaseView.showToast(msg);
     }
 
     @Override
     public void showToast(int res) {
-        if (res != 0)
-            showToast(getResources().getString(res));
+        mBaseView.showToast(res);
     }
 
     @Override
     public void dismissLoadingDiaog() {
-        mDialog.dissmiss();
+        mBaseView.dismissLoadingDiaog();
     }
 
 
     @Override
     public MvpDialog onCreatCustomDialog() {
-        return new ImmersionBarDialog(this, R.string.loading_text);
+        return mBaseView.onCreatCustomDialog();
     }
 
     /**
@@ -154,7 +152,7 @@ public abstract class BaseActivity extends InternationalizationActivity implemen
 
     @Override
     public String getToken() {
-        return getUser().getToken();
+        return mBaseView.getToken();
     }
 
     @Override
@@ -177,15 +175,7 @@ public abstract class BaseActivity extends InternationalizationActivity implemen
 
     @Override
     public void onError(String msg) {
-        if (!isNetWorkconnected()) {
-            showToast("网络连接已断开");
-            return;
-        }
-        showToast(msg);
-    }
-
-    protected boolean isNetWorkconnected() {
-        return !TextUtils.isEmpty(AppUtil.getNetworkState(this));
+        mBaseView.onError(msg);
     }
 
     protected void hideInputMethod() {
@@ -196,7 +186,12 @@ public abstract class BaseActivity extends InternationalizationActivity implemen
 
     @Override
     public void onSuccess(Object object) {
+        mBaseView.onSuccess(object);
+    }
 
+    @Override
+    public void onError(int code, String msg) {
+        mBaseView.onError(code,msg);
     }
 
     public User getUser() {
@@ -205,7 +200,7 @@ public abstract class BaseActivity extends InternationalizationActivity implemen
             user.setToken(DEFAULT_TOKEN);
             return user;
         }
-        String userjson=SPUtil.getInstance().getString(Param.Keys.USER);
+        String userjson = SPUtil.getInstance().getString(Param.Keys.USER);
         return (User) JSONManager.getInstance().parseObject(userjson, User.class);
     }
     public void quitUser() {

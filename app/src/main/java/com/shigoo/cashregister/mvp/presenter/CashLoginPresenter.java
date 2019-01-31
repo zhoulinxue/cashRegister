@@ -30,7 +30,7 @@ public class CashLoginPresenter extends BasePresenterImpl<CashLoginContact.view>
         @Override
         public void onError(int responseCode, String msg) {
             mView.dismissLoadingDiaog();
-            mView.showToast(msg);
+            mView.onError(responseCode,msg);
         }
     };
 

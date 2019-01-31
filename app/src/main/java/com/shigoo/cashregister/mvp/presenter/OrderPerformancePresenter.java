@@ -25,7 +25,7 @@ public class OrderPerformancePresenter extends BasePresenterImpl<OrderPerformace
         @Override
         public void onError(int responseCode, String msg) {
             mView.dismissLoadingDiaog();
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
     NetRequestCallBack<ListData<OrderPerformanceDetailbean>> mOrderPerformaceDetailCallback = new NetRequestCallBack<ListData<OrderPerformanceDetailbean>>() {
@@ -38,7 +38,7 @@ public class OrderPerformancePresenter extends BasePresenterImpl<OrderPerformace
         @Override
         public void onError(int responseCode, String msg) {
             mView.dismissLoadingDiaog();
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 

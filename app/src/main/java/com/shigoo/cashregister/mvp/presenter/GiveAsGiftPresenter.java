@@ -22,7 +22,7 @@ public class GiveAsGiftPresenter extends BasePresenterImpl<GiveAsGiftContact.vie
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
     NetRequestCallBack<List<TableArea>> mAreaListCallback = new NetRequestCallBack<List<TableArea>>() {
@@ -34,7 +34,7 @@ public class GiveAsGiftPresenter extends BasePresenterImpl<GiveAsGiftContact.vie
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 
@@ -46,7 +46,7 @@ public class GiveAsGiftPresenter extends BasePresenterImpl<GiveAsGiftContact.vie
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 
@@ -58,7 +58,7 @@ public class GiveAsGiftPresenter extends BasePresenterImpl<GiveAsGiftContact.vie
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 

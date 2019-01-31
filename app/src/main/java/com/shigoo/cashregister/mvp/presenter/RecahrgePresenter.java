@@ -28,7 +28,7 @@ public class RecahrgePresenter extends BasePresenterImpl<MemberRechargeContact.v
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
     NetRequestCallBack<String> mCancelCallback = new NetRequestCallBack<String>() {
@@ -41,7 +41,7 @@ public class RecahrgePresenter extends BasePresenterImpl<MemberRechargeContact.v
         @Override
         public void onError(int responseCode, String msg) {
             mView.dismissLoadingDiaog();
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 

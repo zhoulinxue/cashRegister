@@ -35,7 +35,7 @@ public class GiveReasonPresenter extends BasePresenterImpl<GiveReasonContact.vie
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 
@@ -47,7 +47,7 @@ public class GiveReasonPresenter extends BasePresenterImpl<GiveReasonContact.vie
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 }

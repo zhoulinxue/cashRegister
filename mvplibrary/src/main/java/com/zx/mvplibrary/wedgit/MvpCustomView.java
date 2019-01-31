@@ -12,6 +12,7 @@ import com.zx.api.api.utils.AppLog;
 import com.zx.api.api.utils.AppUtil;
 import com.zx.mvplibrary.BaseActivity;
 import com.zx.mvplibrary.BaseCustomView;
+import com.zx.mvplibrary.MvpApplication;
 import com.zx.mvplibrary.presenter.BasePresenter;
 
 
@@ -103,7 +104,8 @@ public abstract class MvpCustomView<P extends BasePresenter> extends BaseCustomV
         }
         return null;
     }
-    public User getUser(){
+
+    public User getUser() {
         if (getContext() instanceof BaseActivity) {
             return ((BaseActivity) getContext()).getUser();
         }
@@ -116,5 +118,12 @@ public abstract class MvpCustomView<P extends BasePresenter> extends BaseCustomV
             return ((BaseActivity) getContext()).getToken();
         }
         return "";
+    }
+
+    @Override
+    public void onError(int code, String msg) {
+        if (getContext() instanceof BaseActivity) {
+            ((BaseActivity) getContext()).onError(code, msg);
+        }
     }
 }

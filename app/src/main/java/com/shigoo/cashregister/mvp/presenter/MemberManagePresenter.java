@@ -30,7 +30,7 @@ public class MemberManagePresenter extends BasePresenterImpl<MemberManageContact
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
     NetRequestCallBack<String> mAddmemberCallback = new NetRequestCallBack<String>() {
@@ -43,7 +43,7 @@ public class MemberManagePresenter extends BasePresenterImpl<MemberManageContact
         @Override
         public void onError(int responseCode, String msg) {
             mView.dismissLoadingDiaog();
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 
@@ -55,7 +55,7 @@ public class MemberManagePresenter extends BasePresenterImpl<MemberManageContact
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
     NetRequestCallBack<ListData<MemberLevel>> mLevelsCallback = new NetRequestCallBack<ListData<MemberLevel>>() {
@@ -66,7 +66,7 @@ public class MemberManagePresenter extends BasePresenterImpl<MemberManageContact
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
     NetRequestCallBack<Member> mMemberCallback = new NetRequestCallBack<Member>() {
@@ -79,7 +79,7 @@ public class MemberManagePresenter extends BasePresenterImpl<MemberManageContact
         @Override
         public void onError(int responseCode, String msg) {
             mView.dismissLoadingDiaog();
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 

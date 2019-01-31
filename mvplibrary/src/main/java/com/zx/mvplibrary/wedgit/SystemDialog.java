@@ -21,17 +21,17 @@ import com.zx.mvplibrary.R;
  * Description: 自定义 加载框  实现一个 系统自带Dialog
  */
 public class SystemDialog implements MvpDialog {
-    protected Activity mContext;
+    protected Context mContext;
     private String mLoadingMsg;
     private Dialog mDialog;
     private static int mStringSrc;
 
-    public SystemDialog(Activity mContext, int mStringSrc) {
+    public SystemDialog(Context mContext, int mStringSrc) {
         this.mContext = mContext;
         this.mStringSrc = mStringSrc;
     }
 
-    public SystemDialog(Activity mContext, String mLoadingMsg) {
+    public SystemDialog(Context mContext, String mLoadingMsg) {
         this.mContext = mContext;
         this.mLoadingMsg = mLoadingMsg;
     }

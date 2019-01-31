@@ -22,7 +22,7 @@ public class SetMealPresenter extends BasePresenterImpl<SetMealContact.view> imp
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
     NetRequestCallBack<List<Dishesbean>> mSetMealDishesCallback = new NetRequestCallBack<List<Dishesbean>>() {
@@ -33,7 +33,7 @@ public class SetMealPresenter extends BasePresenterImpl<SetMealContact.view> imp
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 

@@ -24,7 +24,7 @@ public class SaleOutLeftPresenter extends BasePresenterImpl<SaleOutContact.view>
         @Override
         public void onError(int responseCode, String msg) {
             mView.dismissLoadingDiaog();
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
     NetRequestCallBack<String> mUpdateSaleOutCallBack = new NetRequestCallBack<String>() {
@@ -37,7 +37,7 @@ public class SaleOutLeftPresenter extends BasePresenterImpl<SaleOutContact.view>
         @Override
         public void onError(int responseCode, String msg) {
             mView.dismissLoadingDiaog();
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
     NetRequestCallBack<String> mDeleteCallBack = new NetRequestCallBack<String>() {
@@ -50,7 +50,7 @@ public class SaleOutLeftPresenter extends BasePresenterImpl<SaleOutContact.view>
         @Override
         public void onError(int responseCode, String msg) {
             mView.dismissLoadingDiaog();
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 
@@ -64,7 +64,7 @@ public class SaleOutLeftPresenter extends BasePresenterImpl<SaleOutContact.view>
         @Override
         public void onError(int responseCode, String msg) {
             mView.dismissLoadingDiaog();
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 

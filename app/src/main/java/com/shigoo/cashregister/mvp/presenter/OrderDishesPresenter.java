@@ -27,7 +27,7 @@ public class OrderDishesPresenter extends BasePresenterImpl<MenuDishesListContac
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
     NetRequestCallBack<String> mAddDishesCallback = new NetRequestCallBack<String>() {
@@ -38,7 +38,7 @@ public class OrderDishesPresenter extends BasePresenterImpl<MenuDishesListContac
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
     NetRequestCallBack<String> mDeleteDishesCallback = new NetRequestCallBack<String>() {
@@ -51,7 +51,7 @@ public class OrderDishesPresenter extends BasePresenterImpl<MenuDishesListContac
         @Override
         public void onError(int responseCode, String msg) {
             mView.dismissLoadingDiaog();
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
     NetRequestCallBack<String> mSettleOrderDishesCallback = new NetRequestCallBack<String>() {
@@ -64,7 +64,7 @@ public class OrderDishesPresenter extends BasePresenterImpl<MenuDishesListContac
         @Override
         public void onError(int responseCode, String msg) {
             mView.dismissLoadingDiaog();
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
     NetRequestCallBack<String> mUpdateNumberCallback = new NetRequestCallBack<String>() {
@@ -77,7 +77,7 @@ public class OrderDishesPresenter extends BasePresenterImpl<MenuDishesListContac
         @Override
         public void onError(int responseCode, String msg) {
             mView.dismissLoadingDiaog();
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 
@@ -90,7 +90,7 @@ public class OrderDishesPresenter extends BasePresenterImpl<MenuDishesListContac
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 

@@ -24,7 +24,7 @@ public class OrderPayDetailPresenter extends BasePresenterImpl<OrderPayDetailCon
         @Override
         public void onError(int responseCode, String msg) {
             mView.dismissLoadingDiaog();
-            mView.showToast(msg);
+            mView.onError(responseCode,msg);
         }
     };
 

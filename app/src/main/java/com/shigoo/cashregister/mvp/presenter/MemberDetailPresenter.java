@@ -37,7 +37,7 @@ public class MemberDetailPresenter extends BasePresenterImpl<MemberDetailContact
         @Override
         public void onError(int responseCode, String msg) {
             mView.dismissLoadingDiaog();
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
     NetRequestCallBack<String> meChanageCardCallback = new NetRequestCallBack<String>() {
@@ -50,7 +50,7 @@ public class MemberDetailPresenter extends BasePresenterImpl<MemberDetailContact
         @Override
         public void onError(int responseCode, String msg) {
             mView.dismissLoadingDiaog();
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
     NetRequestCallBack<String> mRefundCardCallback = new NetRequestCallBack<String>() {
@@ -63,7 +63,7 @@ public class MemberDetailPresenter extends BasePresenterImpl<MemberDetailContact
         @Override
         public void onError(int responseCode, String msg) {
             mView.dismissLoadingDiaog();
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
     NetRequestCallBack<String> mDeleteCardCallback = new NetRequestCallBack<String>() {
@@ -76,7 +76,7 @@ public class MemberDetailPresenter extends BasePresenterImpl<MemberDetailContact
         @Override
         public void onError(int responseCode, String msg) {
             mView.dismissLoadingDiaog();
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 
@@ -138,7 +138,7 @@ public class MemberDetailPresenter extends BasePresenterImpl<MemberDetailContact
         @Override
         public void onError(int responseCode, String msg) {
             mView.dismissLoadingDiaog();
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 

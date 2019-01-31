@@ -36,7 +36,7 @@ public class TableDialogPresenter extends BasePresenterImpl<TableDialogContact.v
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 
@@ -71,7 +71,7 @@ public class TableDialogPresenter extends BasePresenterImpl<TableDialogContact.v
         @Override
         public void onError(int responseCode, String msg) {
             mView.dismissLoadingDiaog();
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 
@@ -85,7 +85,7 @@ public class TableDialogPresenter extends BasePresenterImpl<TableDialogContact.v
         @Override
         public void onError(int responseCode, String msg) {
             mView.dismissLoadingDiaog();
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 
@@ -99,7 +99,7 @@ public class TableDialogPresenter extends BasePresenterImpl<TableDialogContact.v
         @Override
         public void onError(int responseCode, String msg) {
             mView.dismissLoadingDiaog();
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 
@@ -113,7 +113,7 @@ public class TableDialogPresenter extends BasePresenterImpl<TableDialogContact.v
         @Override
         public void onError(int responseCode, String msg) {
             mView.dismissLoadingDiaog();
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 

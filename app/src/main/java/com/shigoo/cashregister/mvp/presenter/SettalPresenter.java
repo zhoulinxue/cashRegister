@@ -27,7 +27,7 @@ public class SettalPresenter extends BasePresenterImpl<SettalContact.view> imple
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
     NetRequestCallBack<List<PayTypebean>> mPaymentTypeListCallback = new NetRequestCallBack<List<PayTypebean>>() {
@@ -39,7 +39,7 @@ public class SettalPresenter extends BasePresenterImpl<SettalContact.view> imple
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
     NetRequestCallBack<String> mPayOrderCallback = new NetRequestCallBack<String>() {
@@ -53,7 +53,7 @@ public class SettalPresenter extends BasePresenterImpl<SettalContact.view> imple
         @Override
         public void onError(int responseCode, String msg) {
             mView.dismissLoadingDiaog();
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 

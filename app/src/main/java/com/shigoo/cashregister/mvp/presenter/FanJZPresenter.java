@@ -34,7 +34,7 @@ public class FanJZPresenter extends BasePresenterImpl<FanJZContact.view> impleme
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
     NetRequestCallBack<List<Remarkbean>> mFanjzResonCallback = new NetRequestCallBack<List<Remarkbean>>() {
@@ -45,7 +45,7 @@ public class FanJZPresenter extends BasePresenterImpl<FanJZContact.view> impleme
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
     NetRequestCallBack<String> mFanjzCallback = new NetRequestCallBack<String>() {
@@ -58,7 +58,7 @@ public class FanJZPresenter extends BasePresenterImpl<FanJZContact.view> impleme
         @Override
         public void onError(int responseCode, String msg) {
             mView.dismissLoadingDiaog();
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 
@@ -82,7 +82,7 @@ public class FanJZPresenter extends BasePresenterImpl<FanJZContact.view> impleme
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 }

@@ -21,7 +21,7 @@ public class PrintPresenter extends BasePresenterImpl<PrintContacts.view> implem
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
     @Override

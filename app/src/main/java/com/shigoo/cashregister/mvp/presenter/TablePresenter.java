@@ -31,7 +31,7 @@ public class TablePresenter extends BasePresenterImpl<TableContact.view> impleme
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 
@@ -44,7 +44,7 @@ public class TablePresenter extends BasePresenterImpl<TableContact.view> impleme
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 
@@ -78,7 +78,7 @@ public class TablePresenter extends BasePresenterImpl<TableContact.view> impleme
         @Override
         public void onError(int responseCode, String msg) {
             mView.dismissLoadingDiaog();
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 }

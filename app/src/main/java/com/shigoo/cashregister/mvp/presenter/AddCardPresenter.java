@@ -30,7 +30,7 @@ public class AddCardPresenter extends BasePresenterImpl<AddCardContact.view> imp
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 
@@ -42,7 +42,7 @@ public class AddCardPresenter extends BasePresenterImpl<AddCardContact.view> imp
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
     NetRequestCallBack<String> mAddCallback = new NetRequestCallBack<String>() {
@@ -64,7 +64,7 @@ public class AddCardPresenter extends BasePresenterImpl<AddCardContact.view> imp
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 

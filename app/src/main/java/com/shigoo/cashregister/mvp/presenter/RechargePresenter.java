@@ -28,7 +28,7 @@ public class RechargePresenter extends BasePresenterImpl<RechargeContact.view> i
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 
@@ -42,7 +42,7 @@ public class RechargePresenter extends BasePresenterImpl<RechargeContact.view> i
         @Override
         public void onError(int responseCode, String msg) {
             mView.dismissLoadingDiaog();
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
     NetRequestCallBack<Double> mGiveCallback = new NetRequestCallBack<Double>() {
@@ -53,7 +53,7 @@ public class RechargePresenter extends BasePresenterImpl<RechargeContact.view> i
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 

@@ -32,7 +32,7 @@ public class ConsumePresenter extends BasePresenterImpl<ConsumeContact.view> imp
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 
@@ -59,7 +59,7 @@ public class ConsumePresenter extends BasePresenterImpl<ConsumeContact.view> imp
         @Override
         public void onError(int responseCode, String msg) {
             mView.dismissLoadingDiaog();
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 

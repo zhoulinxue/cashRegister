@@ -30,7 +30,7 @@ public class MemberMsgPresenter extends BasePresenterImpl<MemberMsgContact.view>
         @Override
         public void onError(int responseCode, String msg) {
             mView.dismissLoadingDiaog();
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
     NetRequestCallBack<String> mUpdatemberCallback = new NetRequestCallBack<String>() {
@@ -43,7 +43,7 @@ public class MemberMsgPresenter extends BasePresenterImpl<MemberMsgContact.view>
         @Override
         public void onError(int responseCode, String msg) {
             mView.dismissLoadingDiaog();
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 
@@ -55,7 +55,7 @@ public class MemberMsgPresenter extends BasePresenterImpl<MemberMsgContact.view>
 
         @Override
         public void onError(int responseCode, String msg) {
-            mView.onError(msg);
+            mView.onError(responseCode,msg);
         }
     };
 

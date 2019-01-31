@@ -25,13 +25,13 @@ public class ImmersionBarDialog extends SystemDialog {
 
     @Override
     protected void preShow() {
-        ImmersionBar.with(mContext, getDialog()).statusBarDarkFont(true)
+        ImmersionBar.with((Activity) mContext, getDialog()).statusBarDarkFont(true)
                 .hideBar(BarHide.FLAG_SHOW_BAR).init();
     }
 
     @Override
     public void dissmiss() {
         super.dissmiss();
-        ImmersionBar.with(mContext, getDialog()).destroy();
+        ImmersionBar.with((Activity) mContext, getDialog()).destroy();
     }
 }
