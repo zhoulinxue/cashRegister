@@ -14,11 +14,90 @@
         app:tabIndicatorHeight="0dp"
         app:tabMode="fixed" />
 
+    <LinearLayout
+        android:id="@id/saixuan_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tabLayout"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ordersheet_10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:maxLines="1"
+                android:text="@string/ordersheet_choose_time"
+                android:textSize="@dimen/ordersheet_14sp" />
+
+            <TextView
+                android:id="@id/ordersheet_time_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/ordersheet_20dp"
+                android:background="@drawable/ordersheet_search_edit_bg"
+                android:drawableRight="@mipmap/ordersheet_icon_time"
+                android:drawablePadding="@dimen/ordersheet_20dp"
+                android:ellipsize="end"
+                android:hint="2015-10-12   ~   2015-10-10"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/ordersheet_10dp"
+                android:paddingTop="@dimen/ordersheet_10dp"
+                android:paddingRight="@dimen/ordersheet_10dp"
+                android:paddingBottom="@dimen/ordersheet_10dp"
+                android:textSize="@dimen/ordersheet_12sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ordersheet_10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:maxLines="1"
+                android:text="@string/ordersheet_choose_time"
+                android:textSize="@dimen/ordersheet_14sp" />
+
+            <TextView
+                android:id="@id/ordersheet_time_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/ordersheet_20dp"
+                android:background="@drawable/ordersheet_search_edit_bg"
+                android:drawableRight="@mipmap/ordersheet_icon_time"
+                android:drawablePadding="@dimen/ordersheet_20dp"
+                android:ellipsize="end"
+                android:hint="2015-10-12   ~   2015-10-10"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/ordersheet_10dp"
+                android:paddingTop="@dimen/ordersheet_10dp"
+                android:paddingRight="@dimen/ordersheet_10dp"
+                android:paddingBottom="@dimen/ordersheet_10dp"
+                android:textSize="@dimen/ordersheet_12sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
     <FrameLayout
         android:id="@id/web_chart_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/tabLayout"
+
         android:layout_marginLeft="@dimen/margin_20dp"
         android:layout_marginTop="@dimen/margin_20dp"
         android:layout_marginRight="@dimen/margin_20dp"

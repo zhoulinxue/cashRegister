@@ -293,7 +293,7 @@
                                     android:layout_alignParentTop="true"
                                     android:layout_gravity="center_vertical"
                                     android:background="@drawable/member_search_edit_bg"
-                                    android:drawableRight="@mipmap/icon_time"
+                                    android:drawableRight="@mipmap/icon_dat_time"
                                     android:drawablePadding="@dimen/margin_20dp"
                                     android:ellipsize="end"
                                     android:gravity="center_horizontal"

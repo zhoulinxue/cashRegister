@@ -453,4 +453,6 @@
     <item name="guest_number" type="id" />
     <item name="table_time" type="id" />
     <item name="leave_time" type="id" />
+    <item name="print_kind_recyclerview" type="id" />
+    <item name="saixuan_layout" type="id" />
 </resources>

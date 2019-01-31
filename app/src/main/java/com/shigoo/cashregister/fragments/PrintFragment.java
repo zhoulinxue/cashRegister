@@ -2,14 +2,18 @@ package com.shigoo.cashregister.fragments;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.rmondjone.locktableview.LockTableView;
 import com.shigoo.cashregister.R;
 import com.shigoo.cashregister.mvp.contacts.PrintContacts;
 import com.shigoo.cashregister.mvp.contacts.PrintFragmentContact;
 import com.shigoo.cashregister.mvp.presenter.PrintFragmentPresenter;
+import com.shigoo.cashregister.utils.ChartUtil;
 import com.xgsb.datafactory.bean.KindRecivebean;
 import com.xgsb.datafactory.bean.Printbean;
 import com.xgsb.datafactory.bean.SaleCountbean;
@@ -42,6 +46,8 @@ public class PrintFragment extends MvpFragment<PrintFragmentPresenter> implement
     private static final int DEFAULT_POSITION = 0;
     @BindView(R.id.tabLayout)
     TabLayout mTableLayout;
+    @BindView(R.id.web_chart_layout)
+    FrameLayout mContainer;
     private List<String> titleList;
     private List<TextView> titleView = new ArrayList<>();
     private List<TextView> lineView = new ArrayList<>();
@@ -50,6 +56,8 @@ public class PrintFragment extends MvpFragment<PrintFragmentPresenter> implement
     @BindColor(R.color.menber_main_tab_title_color_pre)
     int selectedColor;
     private int position;
+    LockTableView mLockTableView;
+    ArrayList<ArrayList<String>> mList = new ArrayList<>();
 
     public static PrintFragment newInstance() {
         PrintFragment fragment = new PrintFragment();
@@ -72,6 +80,8 @@ public class PrintFragment extends MvpFragment<PrintFragmentPresenter> implement
     protected void onCreateView(View view, Bundle argment) {
         ButterKnife.bind(this, view);
         iniTalLayout();
+        mLockTableView = new LockTableView(getContext(), mContainer, mList);
+        ChartUtil.setLockTableView(mLockTableView);
     }
 
     private void iniTalLayout() {

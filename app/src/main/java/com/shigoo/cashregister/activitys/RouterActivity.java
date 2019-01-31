@@ -139,6 +139,7 @@ public class RouterActivity extends BaseActivity {
                 }
                 break;
             case MAIN:
+            default:
                 if (!AppUtil.isOrderDishes(this)) {
                     if (!needLogin()) {
                         startActivity(new Intent(this, CashRigisterMainActivity.class));
