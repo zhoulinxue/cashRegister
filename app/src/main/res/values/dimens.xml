@@ -90,4 +90,6 @@
     <dimen name="ordersheet_700dp" >700dp</dimen>
     <dimen name="ordersheet_320dp" >320dp</dimen>
     <dimen name="ordersheet_32dp">32dp</dimen>
+    <dimen name="margin_150dp">150dp</dimen>
+    <dimen name="margin_120dp" >120dp</dimen>
 </resources>
