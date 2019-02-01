@@ -37,6 +37,7 @@ import com.xgsb.datafactory.bean.PrintSaleListbean;
 import com.xgsb.datafactory.bean.Printbean;
 import com.xgsb.datafactory.bean.ReChargeListData;
 import com.xgsb.datafactory.bean.Remarkbean;
+import com.xgsb.datafactory.bean.SaleDetailbean;
 import com.xgsb.datafactory.bean.SaleOutbean;
 import com.xgsb.datafactory.bean.SalePerformanceDetailbean;
 import com.xgsb.datafactory.bean.SalePerformancebean;
@@ -761,6 +762,7 @@ public class ApiManager {
 
     /**
      * 获取餐段
+     *
      * @param params
      * @param timeDataCallBack
      * @return
@@ -771,7 +773,6 @@ public class ApiManager {
     }
 
     /**
-     *
      * @param params
      * @param departmentCallBack
      * @return
@@ -782,7 +783,6 @@ public class ApiManager {
     }
 
     /**
-     *
      * @param params
      * @param dishesKindCallBack
      * @return
@@ -799,6 +799,7 @@ public class ApiManager {
 
     /**
      * 获取分类收入表
+     *
      * @param params
      * @param saleListCallBack
      * @return
@@ -807,4 +808,16 @@ public class ApiManager {
         Observable<NetBean<ListData<KindRecivebean>>> observable = mApiService.getKindReciveList(genrateMap(params));
         return new OkHttpRequest<ListData<KindRecivebean>>(observable, saleListCallBack);
     }
+
+    /**
+     * @param params
+     * @param saleListCallBack
+     * @return
+     */
+
+    public NetRequest getSaleDetailList(String[] params, NetRequestCallBack<List<SaleDetailbean>> saleListCallBack) {
+        Observable<NetBean<List<SaleDetailbean>>> observable = mApiService.getSaleDetailList(genrateMap(params));
+        return new OkHttpRequest<List<SaleDetailbean>>(observable, saleListCallBack);
+    }
+
 }

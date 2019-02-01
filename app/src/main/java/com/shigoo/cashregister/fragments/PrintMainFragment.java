@@ -77,6 +77,7 @@ public class PrintMainFragment extends MvpFragment<NullPresenter> implements NUl
     private void initFragment() {
         fragments.add(PrintSaleListFragment.newInstance());
         fragments.add(PrintKindListFragment.newInstance());
+        fragments.add(PrintSaleDetailListFragment.newInstance());
         mFragmentNavigator = new FragmentNavigator(getChildFragmentManager(), new FragmentNavigatorAdapter() {
             @Override
             public Fragment onCreateFragment(int i) {

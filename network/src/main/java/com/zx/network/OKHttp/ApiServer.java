@@ -31,6 +31,7 @@ import com.xgsb.datafactory.bean.PrintSaleListbean;
 import com.xgsb.datafactory.bean.Printbean;
 import com.xgsb.datafactory.bean.ReChargeListData;
 import com.xgsb.datafactory.bean.Remarkbean;
+import com.xgsb.datafactory.bean.SaleDetailbean;
 import com.xgsb.datafactory.bean.SaleOutbean;
 import com.xgsb.datafactory.bean.SalePerformanceDetailbean;
 import com.xgsb.datafactory.bean.SalePerformancebean;
@@ -410,4 +411,8 @@ public interface ApiServer {
     @FormUrlEncoded
     @POST("/reserve/reserve/SalesTypeIndex")
     Observable<NetBean<ListData<KindRecivebean>>> getKindReciveList(@FieldMap Map<String, String> stringStringMap);
+
+    @FormUrlEncoded
+    @POST("/reserve/reserve/SalesDetailedIndex")
+    Observable<NetBean<List<SaleDetailbean>>> getSaleDetailList(@FieldMap Map<String, String> stringStringMap);
 }

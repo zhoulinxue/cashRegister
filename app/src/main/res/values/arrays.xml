@@ -65,10 +65,17 @@
         <item>数量</item>
         <item>金额</item>
     </string-array>
-    <string-array name="print_kind_list_title" >
+    <string-array name="print_kind_list_title">
         <item>菜品分类</item>
         <item>数量</item>
         <item>收入金额（元）</item>
         <item>百分比（%）</item>
+    </string-array>
+    <string-array name="print_sale_detail_list_title">
+        <item>编号</item>
+        <item>名称</item>
+        <item>收入金额(元)</item>
+        <item>数量</item>
+
     </string-array>
 </resources>
