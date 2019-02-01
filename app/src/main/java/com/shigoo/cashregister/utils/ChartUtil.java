@@ -11,6 +11,7 @@ import com.rmondjone.xrecyclerview.ProgressStyle;
 import com.rmondjone.xrecyclerview.XRecyclerView;
 import com.shigoo.cashregister.R;
 import com.xgsb.datafactory.bean.Salejlbean;
+import com.zx.api.api.utils.AppLog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,4 +77,14 @@ public class ChartUtil {
         mLockTableView.getTableScrollView().setRefreshProgressStyle(ProgressStyle.SquareSpin);
     }
 
+    public static void setLockTableView(LockTableView mLockTableView, int width, String[] title) {
+        setColumWidth(mLockTableView, width, title);
+        setLockTableView(mLockTableView);
+    }
+
+    private static void setColumWidth(LockTableView mLockTableView, int width, String[] title) {
+        for (int i = 0; i < title.length; i++) {
+            mLockTableView.setColumnWidth(i, width);
+        }
+    }
 }

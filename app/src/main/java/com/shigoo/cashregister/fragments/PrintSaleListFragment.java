@@ -3,11 +3,20 @@ package com.shigoo.cashregister.fragments;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.bigkoo.pickerview.builder.TimePickerBuilder;
+import com.bigkoo.pickerview.listener.OnTimeSelectListener;
+import com.bigkoo.pickerview.view.TimePickerView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.rmondjone.locktableview.DisplayUtil;
+import com.rmondjone.locktableview.LockTableView;
 import com.shigoo.cashregister.R;
 import com.shigoo.cashregister.adapters.PopDepartmentDataAdapter;
 import com.shigoo.cashregister.adapters.PopDisehesTagAdapter;
@@ -15,16 +24,24 @@ import com.shigoo.cashregister.adapters.PopKindDataAdapter;
 import com.shigoo.cashregister.adapters.TimeDataPopAdapter;
 import com.shigoo.cashregister.mvp.contacts.PrintSaleListContact;
 import com.shigoo.cashregister.mvp.presenter.PrintSaleListPresenter;
+import com.shigoo.cashregister.utils.ChartUtil;
 import com.xgsb.datafactory.bean.Departmentbean;
 import com.xgsb.datafactory.bean.DishesKind;
 import com.xgsb.datafactory.bean.Paybean;
+import com.xgsb.datafactory.bean.PrintSaleListbean;
 import com.xgsb.datafactory.bean.Printbean;
+import com.xgsb.datafactory.bean.Salejlbean;
 import com.xgsb.datafactory.bean.TimeData;
+import com.zx.api.api.utils.AppLog;
+import com.zx.api.api.utils.AppUtil;
+import com.zx.api.api.utils.DateUtil;
 import com.zx.mvplibrary.MvpFragment;
 import com.zx.mvplibrary.wedgit.CommonPopupWindow;
 import com.zx.network.Param;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -38,7 +55,6 @@ public class PrintSaleListFragment extends MvpFragment<PrintSaleListPresenter> i
     private PopKindDataAdapter mPopKindAdapter;
     private PopDisehesTagAdapter mPopDishesTagAdapter;
     private PopDepartmentDataAdapter mDepartAdapter;
-
     @BindView(R.id.ordersheet_time_data_text)
     TextView mTimeDataTv;
     @BindView(R.id.print_dishes_kind)
@@ -47,11 +63,24 @@ public class PrintSaleListFragment extends MvpFragment<PrintSaleListPresenter> i
     TextView mDishesTagTv;
     @BindView(R.id.ordersheet_department_tv)
     TextView mDepartmentTv;
+    @BindView(R.id.web_chart_layout)
+    FrameLayout mChartContainer;
     private CommonPopupWindow.LayoutGravity layoutGravity;
     private TimeData mTimeData;
     private DishesKind mKind;
     private Departmentbean mDepartment;
     private int mDishesTag = 2;
+    LockTableView mLockTableView;
+    String[] title;
+    @BindView(R.id.sale_list_refresh)
+    TextView mStartTv;
+    @BindView(R.id.print_time_tv)
+    TextView mTimeTv;
+    @BindView(R.id.total_number)
+    TextView mTotalMoney;
+    @BindView(R.id.total_money)
+    TextView mTotalTv;
+    private TimePickerView mTimePicker;
 
     public static PrintSaleListFragment newInstance() {
         PrintSaleListFragment fragment = new PrintSaleListFragment();
@@ -61,8 +90,52 @@ public class PrintSaleListFragment extends MvpFragment<PrintSaleListPresenter> i
     }
 
     @Override
-    public void onSaleResult(List<Printbean> list) {
+    public void onSaleResult(List<PrintSaleListbean> list) {
+        ArrayList<ArrayList<String>> mList = getTableData(list);
+        if (mLockTableView == null) {
+            mLockTableView = new LockTableView(getContext(), mChartContainer, mList);
+            ChartUtil.setLockTableView(mLockTableView, 180, title);
+        } else {
+            mLockTableView.setTableDatas(mList);
+        }
+    }
 
+    private ArrayList<ArrayList<String>> getTableData(List<PrintSaleListbean> list) {
+        ArrayList<ArrayList<String>> mTableDatas = new ArrayList<ArrayList<String>>();
+        ArrayList<String> mfristData = new ArrayList<String>();
+        for (int i = 0; i < title.length; i++) {
+            mfristData.add(title[i]);
+        }
+        mTableDatas.add(mfristData);
+        float money = 0;
+        for (int i = 0; i < list.size(); i++) {
+            PrintSaleListbean debean = list.get(i);
+            money += AppUtil.getFloatFromString(debean.getMoney()).floatValue();
+            ArrayList<String> mRowDatas = new ArrayList<String>();
+            for (int j = 0; j < title.length; j++) {
+                switch (j) {
+                    case 0:
+                        mRowDatas.add(debean.getDish_number());
+                        break;
+                    case 1:
+                        mRowDatas.add(debean.getDish_name());
+                        break;
+                    case 2:
+                        mRowDatas.add(debean.getSpecification());
+                        break;
+                    case 3:
+                        mRowDatas.add(debean.getNumber());
+                        break;
+                    case 4:
+                        mRowDatas.add(debean.getMoney());
+                        break;
+                }
+            }
+            mTableDatas.add(mRowDatas);
+        }
+        mTotalMoney.setText("合计:收入金额：" + money+" 元");
+        mTotalTv.setText("数量：" + list.size()+"项");
+        return mTableDatas;
     }
 
     @Override
@@ -103,14 +176,59 @@ public class PrintSaleListFragment extends MvpFragment<PrintSaleListPresenter> i
         return R.layout.print_sale_list_fragment;
     }
 
+    String DEFAULT_START_TIME = DateUtil.format(DateUtil.getStartTime(), DateUtil.YEAR_MONTH_DAY_PATTERN);
+    private String mDayTime = DEFAULT_START_TIME;
+
+    private void initTime() {
+        mTimePicker = new TimePickerBuilder(getContext(), new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                mDayTime = DateUtil.format(date, DateUtil.YEAR_MONTH_DAY_PATTERN);
+                mTimeTv.setText(mDayTime);
+            }
+        }).setType(new boolean[]{true, true, true, false, false, false}).isDialog(true).build();
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(500, 400,
+                Gravity.CENTER_VERTICAL);
+        params.leftMargin = 0;
+        params.rightMargin = 0;
+        mTimePicker.getDialogContainerLayout().setLayoutParams(params);
+        mTimeTv.setText(mDayTime);
+    }
+
     @Override
     protected void onCreateView(View view, Bundle argment) {
         ButterKnife.bind(this, view);
+        title = getResources().getStringArray(R.array.print_sale_list_title);
         initTimePop();
         initKindPop();
         initDishesTagPop();
         initDepartmentPop();
         layoutGravity = new CommonPopupWindow.LayoutGravity(CommonPopupWindow.LayoutGravity.CENTER_HORI | CommonPopupWindow.LayoutGravity.TO_BOTTOM);
+        singleClickOnMinutes(mStartTv, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String kindId = "";
+                String departId = "";
+                if (mKind != null && !TextUtils.isEmpty(mKind.getDrawer_id())) {
+                    kindId = mKind.getDrawer_id() + "";
+                }
+                if (mDepartment != null && mDishesTag == 2) {
+                    departId = mDepartment.getId() + "";
+                }
+                getSaleList(mDishesTag, kindId, departId);
+            }
+        });
+        singleClickOnMinutes(mTimeTv, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar date = Calendar.getInstance();
+                date.setTime(DateUtil.parse(mDayTime, DateUtil.YEAR_MONTH_DAY_PATTERN));
+                mTimePicker.setTitleText("请选择时间");
+                mTimePicker.setDate(date);
+                mTimePicker.show();
+            }
+        });
+        initTime();
     }
 
     private void initDepartmentPop() {
@@ -219,10 +337,14 @@ public class PrintSaleListFragment extends MvpFragment<PrintSaleListPresenter> i
 
     @Override
     protected void onInitData(Bundle savedInstanceState) {
-        mPresenter.getSaleList(Param.Keys.TOKEN, getToken());
         mPresenter.getTimeList(Param.Keys.TOKEN, getToken());
         mPresenter.getDepartment(Param.Keys.TOKEN, getToken());
         mPresenter.getDishKind(Param.Keys.TOKEN, getToken());
+        getSaleList(mDishesTag, "", "");
+    }
+
+    private void getSaleList(int mDishesTag, String cId, String mId) {
+        mPresenter.getSaleList(Param.Keys.TOKEN, getToken(), Param.Keys.DISH_TAG, mDishesTag + "", Param.Keys.CATEGRAY_ID, cId, Param.Keys.DRAWER, mId);
     }
 
     @OnClick({R.id.ordersheet_time_data_text,

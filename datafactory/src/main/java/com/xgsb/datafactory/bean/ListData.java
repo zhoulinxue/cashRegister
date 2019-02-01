@@ -29,7 +29,16 @@ public class ListData<T> implements Serializable {
     private int count_dish_qty;
     private int count_finally_price;
     private int list_count;
-    private  int sum_money;
+    private int sum_money;
+    private int count_number;
+
+    public int getCount_number() {
+        return count_number;
+    }
+
+    public void setCount_number(int count_number) {
+        this.count_number = count_number;
+    }
 
     public int getList_count() {
         return list_count;

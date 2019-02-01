@@ -5,6 +5,7 @@ import com.xgsb.datafactory.bean.ConsumeListData;
 import com.xgsb.datafactory.bean.Departmentbean;
 import com.xgsb.datafactory.bean.DishesKind;
 import com.xgsb.datafactory.bean.ListData;
+import com.xgsb.datafactory.bean.PrintSaleListbean;
 import com.xgsb.datafactory.bean.TimeData;
 import com.zx.api.api.netWork.NetRequest;
 import com.zx.api.api.netWork.NetRequestCallBack;
@@ -53,9 +54,22 @@ public class PrintSaleListPresenter extends BasePresenterImpl<PrintSaleListConta
         }
     };
 
+    NetRequestCallBack<List<PrintSaleListbean>> mSaleListCallBack = new NetRequestCallBack<List<PrintSaleListbean>>() {
+        @Override
+        public void onSuccess(List<PrintSaleListbean> reChargebeanListData) {
+            mView.onSaleResult(reChargebeanListData);
+        }
+
+        @Override
+        public void onError(int responseCode, String msg) {
+            mView.onError(responseCode, msg);
+        }
+    };
+
     @Override
     public void getSaleList(String... params) {
-
+        NetRequest request = ApiManager.getInstance().getPrintSaleList(params, mSaleListCallBack);
+        addRequest(request);
     }
 
     @Override

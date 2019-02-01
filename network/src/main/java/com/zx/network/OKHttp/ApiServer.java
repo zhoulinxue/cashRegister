@@ -14,6 +14,7 @@ import com.xgsb.datafactory.bean.Favorablebean;
 import com.xgsb.datafactory.bean.GiveDetailListbean;
 import com.xgsb.datafactory.bean.GiveDishesTypebean;
 import com.xgsb.datafactory.bean.GiveDishesbean;
+import com.xgsb.datafactory.bean.KindRecivebean;
 import com.xgsb.datafactory.bean.ListData;
 import com.xgsb.datafactory.bean.Member;
 import com.xgsb.datafactory.bean.MemberLevel;
@@ -26,6 +27,7 @@ import com.xgsb.datafactory.bean.OrderPerformancebean;
 import com.xgsb.datafactory.bean.PayTypebean;
 import com.xgsb.datafactory.bean.Paybean;
 import com.xgsb.datafactory.bean.Paymentbean;
+import com.xgsb.datafactory.bean.PrintSaleListbean;
 import com.xgsb.datafactory.bean.Printbean;
 import com.xgsb.datafactory.bean.ReChargeListData;
 import com.xgsb.datafactory.bean.Remarkbean;
@@ -400,4 +402,12 @@ public interface ApiServer {
     @FormUrlEncoded
     @POST("/system/single/categoryList")
     Observable<NetBean<ListData<DishesKind>>> getDishesKindList(@FieldMap Map<String, String> stringStringMap);
+
+    @FormUrlEncoded
+    @POST("/reserve/reserve/SalesStatisticsIndex")
+    Observable<NetBean<List<PrintSaleListbean>>> getPrintSaleList(@FieldMap Map<String, String> stringStringMap);
+
+    @FormUrlEncoded
+    @POST("/reserve/reserve/SalesTypeIndex")
+    Observable<NetBean<ListData<KindRecivebean>>> getKindReciveList(@FieldMap Map<String, String> stringStringMap);
 }

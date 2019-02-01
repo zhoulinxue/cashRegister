@@ -24,6 +24,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.jakewharton.rxbinding2.view.RxView;
+import com.rmondjone.locktableview.DisplayUtil;
 
 import java.io.File;
 import java.math.BigDecimal;
@@ -64,6 +65,17 @@ public class AppUtil {
      */
     public static void init(@NonNull Context context) {
         AppUtil.context = context.getApplicationContext();
+        initDisplayOpinion();
+    }
+
+    private static void initDisplayOpinion() {
+        DisplayMetrics dm = context.getResources().getDisplayMetrics();
+        DisplayUtil.density = dm.density;
+        DisplayUtil.densityDPI = dm.densityDpi;
+        DisplayUtil.screenWidthPx = dm.widthPixels;
+        DisplayUtil.screenhightPx = dm.heightPixels;
+        DisplayUtil.screenWidthDip = DisplayUtil.px2dip(context, dm.widthPixels);
+        DisplayUtil.screenHightDip = DisplayUtil.px2dip(context, dm.heightPixels);
     }
 
     /**
@@ -176,10 +188,10 @@ public class AppUtil {
     }
 
     public static String mixPhone(String mobile) {
-        if(TextUtils.isEmpty(mobile)){
+        if (TextUtils.isEmpty(mobile)) {
             return mobile;
         }
-        return mobile.replaceAll("(\\d{3})\\d{4}(\\d{4})","$1****$2");
+        return mobile.replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2");
     }
 
     /**

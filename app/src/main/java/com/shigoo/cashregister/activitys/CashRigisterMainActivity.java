@@ -96,7 +96,7 @@ public class CashRigisterMainActivity extends BaseActivity {
     @Override
     protected void onInitData(Bundle savedInstanceState) {
         mFragmentNavigator.onCreate(savedInstanceState);
-        mFragmentNavigator.setDefaultPosition(0);
+        mFragmentNavigator.setDefaultPosition(4);
         mLeftTabLayout.setTabSelected(mFragmentNavigator.getCurrentPosition());
         mLeftTabLayout.getTabAt(mFragmentNavigator.getCurrentPosition()).getTitleView().setBackgroundResource(R.drawable.cash_main_left_tab_press_bg);
         mFragmentNavigator.showFragment(mFragmentNavigator.getCurrentPosition());

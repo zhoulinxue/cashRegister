@@ -20,6 +20,7 @@ import com.xgsb.datafactory.bean.Favorablebean;
 import com.xgsb.datafactory.bean.GiveDetailListbean;
 import com.xgsb.datafactory.bean.GiveDishesTypebean;
 import com.xgsb.datafactory.bean.GiveDishesbean;
+import com.xgsb.datafactory.bean.KindRecivebean;
 import com.xgsb.datafactory.bean.ListData;
 import com.xgsb.datafactory.bean.Member;
 import com.xgsb.datafactory.bean.MemberLevel;
@@ -32,6 +33,7 @@ import com.xgsb.datafactory.bean.OrderPerformancebean;
 import com.xgsb.datafactory.bean.PayTypebean;
 import com.xgsb.datafactory.bean.Paybean;
 import com.xgsb.datafactory.bean.Paymentbean;
+import com.xgsb.datafactory.bean.PrintSaleListbean;
 import com.xgsb.datafactory.bean.Printbean;
 import com.xgsb.datafactory.bean.ReChargeListData;
 import com.xgsb.datafactory.bean.Remarkbean;
@@ -788,5 +790,21 @@ public class ApiManager {
     public NetRequest getDishesKindList(String[] params, NetRequestCallBack<ListData<DishesKind>> dishesKindCallBack) {
         Observable<NetBean<ListData<DishesKind>>> observable = mApiService.getDishesKindList(genrateMap(params));
         return new OkHttpRequest<ListData<DishesKind>>(observable, dishesKindCallBack);
+    }
+
+    public NetRequest getPrintSaleList(String[] params, NetRequestCallBack<List<PrintSaleListbean>> saleListCallBack) {
+        Observable<NetBean<List<PrintSaleListbean>>> observable = mApiService.getPrintSaleList(genrateMap(params));
+        return new OkHttpRequest<List<PrintSaleListbean>>(observable, saleListCallBack);
+    }
+
+    /**
+     * 获取分类收入表
+     * @param params
+     * @param saleListCallBack
+     * @return
+     */
+    public NetRequest getKindReciveList(String[] params, NetRequestCallBack<ListData<KindRecivebean>> saleListCallBack) {
+        Observable<NetBean<ListData<KindRecivebean>>> observable = mApiService.getKindReciveList(genrateMap(params));
+        return new OkHttpRequest<ListData<KindRecivebean>>(observable, saleListCallBack);
     }
 }

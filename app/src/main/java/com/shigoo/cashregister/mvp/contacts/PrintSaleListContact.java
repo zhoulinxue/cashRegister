@@ -3,6 +3,7 @@ package com.shigoo.cashregister.mvp.contacts;
 import com.xgsb.datafactory.bean.Departmentbean;
 import com.xgsb.datafactory.bean.DishesKind;
 import com.xgsb.datafactory.bean.KindRecivebean;
+import com.xgsb.datafactory.bean.PrintSaleListbean;
 import com.xgsb.datafactory.bean.Printbean;
 import com.xgsb.datafactory.bean.SaleCountbean;
 import com.xgsb.datafactory.bean.TableCosumbean;
@@ -23,7 +24,7 @@ public class PrintSaleListContact {
     }
 
     public interface view extends BaseView {
-        public void onSaleResult(List<Printbean> list);
+        public void onSaleResult(List<PrintSaleListbean> list);
 
         public void onTimeListResult(List<TimeData> list);
 

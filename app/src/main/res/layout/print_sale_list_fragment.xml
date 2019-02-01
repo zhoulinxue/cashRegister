@@ -22,10 +22,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:maxLines="1"
-                android:text="@string/ordersheet_choose_time"
+                android:text="选择日期"
                 android:textSize="@dimen/ordersheet_14sp" />
 
             <TextView
+                android:id="@id/print_time_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -35,7 +36,7 @@
                 android:drawableRight="@mipmap/ordersheet_icon_time"
                 android:drawablePadding="@dimen/ordersheet_20dp"
                 android:ellipsize="end"
-                android:hint="2015-10-12   ~   2015-10-10"
+                android:hint="2015-10-12"
                 android:maxLines="1"
                 android:padding="@dimen/ordersheet_10dp"
                 android:textSize="@dimen/ordersheet_12sp" />
@@ -58,7 +59,7 @@
 
             <TextView
                 android:id="@id/ordersheet_time_data_text"
-                android:layout_width="@dimen/margin_80dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/ordersheet_20dp"
@@ -119,7 +120,7 @@
 
             <TextView
                 android:id="@id/ordersheet_department_tv"
-                android:layout_width="@dimen/margin_120dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_gravity="center_vertical"
@@ -150,7 +151,7 @@
 
             <TextView
                 android:id="@id/print_dishes_kind"
-                android:layout_width="@dimen/margin_150dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_gravity="center_vertical"
@@ -166,6 +167,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@id/sale_list_refresh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -206,6 +208,8 @@
         android:id="@id/web_chart_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/ordersheet_10dp" />
+        android:layout_marginTop="@dimen/ordersheet_10dp"
+        android:background="@drawable/web_chart_bg"
+        android:padding="@dimen/ordersheet_1dp" />
 
 </LinearLayout>

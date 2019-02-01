@@ -76,6 +76,7 @@ public class PrintMainFragment extends MvpFragment<NullPresenter> implements NUl
 
     private void initFragment() {
         fragments.add(PrintSaleListFragment.newInstance());
+        fragments.add(PrintKindListFragment.newInstance());
         mFragmentNavigator = new FragmentNavigator(getChildFragmentManager(), new FragmentNavigatorAdapter() {
             @Override
             public Fragment onCreateFragment(int i) {
@@ -132,6 +133,8 @@ public class PrintMainFragment extends MvpFragment<NullPresenter> implements NUl
             if (defaultPosition == i) {
                 titleView.get(i).setTextColor(selectedColor);
                 lineView.get(i).setVisibility(View.VISIBLE);
+                if (i < fragments.size())
+                    mFragmentNavigator.showFragment(defaultPosition);
             } else {
                 titleView.get(i).setTextColor(nomalTvColor);
                 lineView.get(i).setVisibility(View.INVISIBLE);
