@@ -463,4 +463,5 @@
     <item name="ordersheet_department_tv" type="id" />
     <item name="sale_list_refresh" type="id" />
     <item name="print_time_tv" type="id" />
+    <item name="print_list_tv" type="id" />
 </resources>

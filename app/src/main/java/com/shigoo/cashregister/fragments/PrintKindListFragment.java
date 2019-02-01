@@ -132,7 +132,7 @@ public class PrintKindListFragment extends MvpFragment<PrintKindPrensenter> impl
         mPresenter.getKindReceveList(Param.Keys.TOKEN, getToken(), Param.Keys.BILL_DATE, mTimeTv.getText().toString());
     }
 
-    @OnClick({R.id.print_time_tv})
+    @OnClick({R.id.print_time_tv, R.id.print_list_tv})
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.print_time_tv:
@@ -141,6 +141,9 @@ public class PrintKindListFragment extends MvpFragment<PrintKindPrensenter> impl
                 mTimePicker.setTitleText("请选择时间");
                 mTimePicker.setDate(date);
                 mTimePicker.show();
+                break;
+            case R.id.print_list_tv:
+                showToast("打印报表");
                 break;
         }
     }

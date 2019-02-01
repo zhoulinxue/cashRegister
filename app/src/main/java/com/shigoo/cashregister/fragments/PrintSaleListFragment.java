@@ -133,8 +133,8 @@ public class PrintSaleListFragment extends MvpFragment<PrintSaleListPresenter> i
             }
             mTableDatas.add(mRowDatas);
         }
-        mTotalMoney.setText("合计:收入金额：" + money+" 元");
-        mTotalTv.setText("数量：" + list.size()+"项");
+        mTotalMoney.setText("合计:收入金额：" + money + " 元");
+        mTotalTv.setText("数量：" + list.size() + "项");
         return mTableDatas;
     }
 
@@ -350,7 +350,8 @@ public class PrintSaleListFragment extends MvpFragment<PrintSaleListPresenter> i
     @OnClick({R.id.ordersheet_time_data_text,
             R.id.print_dishes_kind,
             R.id.ordersheet_dishes_tag,
-            R.id.ordersheet_department_tv})
+            R.id.ordersheet_department_tv,
+            R.id.print_list_tv})
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.ordersheet_time_data_text:
@@ -364,6 +365,9 @@ public class PrintSaleListFragment extends MvpFragment<PrintSaleListPresenter> i
                 break;
             case R.id.ordersheet_department_tv:
                 mDepartmentPop.showBashOfAnchor(mDepartmentTv, layoutGravity, 0, 0);
+                break;
+            case R.id.print_list_tv:
+                showToast("打印报表");
                 break;
         }
     }
