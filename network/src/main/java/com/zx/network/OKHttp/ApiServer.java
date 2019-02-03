@@ -28,6 +28,7 @@ import com.xgsb.datafactory.bean.PayTypebean;
 import com.xgsb.datafactory.bean.Paybean;
 import com.xgsb.datafactory.bean.Paymentbean;
 import com.xgsb.datafactory.bean.PrintSaleListbean;
+import com.xgsb.datafactory.bean.PrintTableConsumebean;
 import com.xgsb.datafactory.bean.Printbean;
 import com.xgsb.datafactory.bean.ReChargeListData;
 import com.xgsb.datafactory.bean.Remarkbean;
@@ -415,4 +416,8 @@ public interface ApiServer {
     @FormUrlEncoded
     @POST("/reserve/reserve/SalesDetailedIndex")
     Observable<NetBean<List<SaleDetailbean>>> getSaleDetailList(@FieldMap Map<String, String> stringStringMap);
+
+    @FormUrlEncoded
+    @POST("/reserve/reserve/SalesConsumptionIndex")
+    Observable<NetBean<ListData<PrintTableConsumebean>>> getTableConsume(@FieldMap Map<String, String> stringStringMap);
 }

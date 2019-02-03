@@ -76,6 +76,15 @@
         <item>名称</item>
         <item>收入金额(元)</item>
         <item>数量</item>
-
+    </string-array>
+    <string-array name="print_table_consum_title">
+        <item>桌台区域</item>
+        <item>桌台号</item>
+        <item>已结账人数</item>
+        <item>已结账金额</item>
+        <item>未结账人数</item>
+        <item>未结账金额</item>
+        <item>合计人数</item>
+        <item>合计金额</item>
     </string-array>
 </resources>

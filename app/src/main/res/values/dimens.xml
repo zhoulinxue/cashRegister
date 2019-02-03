@@ -92,4 +92,5 @@
     <dimen name="ordersheet_32dp">32dp</dimen>
     <dimen name="margin_150dp">150dp</dimen>
     <dimen name="margin_120dp" >120dp</dimen>
+    <dimen name="margin_110dp" >110dp</dimen>
 </resources>

@@ -1,5 +1,7 @@
 package com.shigoo.cashregister.print.attr;
 
+import android.text.TextUtils;
+
 import com.shigoo.cashregister.print.content.Content;
 import com.xgsb.datafactory.bean.Dishesbean;
 import com.zx.api.api.utils.AppLog;
@@ -62,7 +64,7 @@ public class FormatFactory {
         Content content = new Content();
         content.setContent(devider);
         PrintFormat format = new PrintFormat();
-        format.setParameter(PrintFormat.ALIGN, PrintFormat.ALIGN_CENTER);
+        format.setParameter(PrintFormat.ALIGN, PrintFormat.ALIGN_RIGHT);
         format.setParameter(PrintFormat.BOLD, PrintFormat.BOLD_DISABLE);
         format.setParameter(PrintFormat.WIDTH_HEIGHT, PrintFormat.NORMAL_WIDTH_HEIGHT);
         format.setParameter(PrintFormat.FONT, PrintFormat.FONT_SIZE_MEDIUM);
@@ -96,7 +98,7 @@ public class FormatFactory {
         Content content = new Content();
         content.setContent(price);
         PrintFormat format = new PrintFormat();
-        format.setParameter(PrintFormat.ALIGN, PrintFormat.ALIGN_LEFT);
+        format.setParameter(PrintFormat.ALIGN, PrintFormat.ALIGN_RIGHT);
         format.setParameter(PrintFormat.BOLD, PrintFormat.BOLD_DISABLE);
         format.setParameter(PrintFormat.WIDTH_HEIGHT, PrintFormat.NORMAL_WIDTH_HEIGHT);
         content.setFormat(format);
@@ -115,9 +117,66 @@ public class FormatFactory {
         //打印价格
         Content priceContent = getDishesPriceContent(dishes.getShowPrice());
         colums.add(new Colum(nameContent, 5));
-//        colums.add(new Colum(numContent, 2));
-//        colums.add(new Colum(priceContent, 3));
+        colums.add(new Colum(numContent, 2));
+        colums.add(new Colum(priceContent, 3));
         line.setColum(colums);
         return line;
+    }
+
+    private static String getLengthBuffer(String notNullName, int length) {
+        StringBuffer buffer = new StringBuffer(notNullName + "                             ");
+        return getSubedStrings(buffer.toString(), length)[0];
+    }
+
+
+    public static String subStr(String str, int subSLength) throws UnsupportedEncodingException {
+        if (str == null)
+            return "";
+        else {
+            int tempSubLength = subSLength;//截取字节数
+            String subStr = str.substring(0, str.length() < subSLength ? str.length() : subSLength);//截取的子串
+            int subStrByetsL = subStr.getBytes("GBK").length;//截取子串的字节长度
+            //int subStrByetsL = subStr.getBytes().length;//截取子串的字节长度
+            // 说明截取的字符串中包含有汉字
+            while (subStrByetsL > tempSubLength) {
+                int subSLengthTemp = --subSLength;
+                subStr = str.substring(0, subSLengthTemp > str.length() ? str.length() : subSLengthTemp);
+                subStrByetsL = subStr.getBytes("GBK").length;
+                //subStrByetsL = subStr.getBytes().length;
+            }
+            return subStr;
+        }
+    }
+
+    public static String[] getSubedStrings(String string, int unitLength) {
+        if (TextUtils.isEmpty(string)) {
+            return null;
+        }
+
+        String str = new String(string);
+
+        int arraySize = 0;
+        try {
+            arraySize = str.getBytes("GBK").length / unitLength;
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        if (str.getBytes().length % unitLength > 0) {
+            arraySize++;
+        }
+
+        String[] result = new String[arraySize];
+
+        for (int i = 0; i < arraySize; i++) {
+            try {
+                result[i] = subStr(str, unitLength);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            str = str.replace(result[i], "");
+        }
+
+        return result;
     }
 }

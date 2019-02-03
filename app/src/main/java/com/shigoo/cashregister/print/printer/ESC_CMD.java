@@ -93,7 +93,11 @@ class ESC_CMD {
             byte[] bytes = new byte[singleLength];
             byte[] contentbyte = buffer.toString().getBytes(encoding);
             for (int i = 0; i < bytes.length; i++) {
-                bytes[i] = contentbyte[i];
+                if(i<contentbyte.length) {
+                    bytes[i] = contentbyte[i];
+                }else {
+                    bytes[i]=0;
+                }
             }
             AppLog.print(buffer.toString().length()+buffer.toString()+"!");
             byteList.add(bytes);

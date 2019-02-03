@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import com.shigoo.cashregister.print.attr.Colum;
 import com.shigoo.cashregister.print.attr.PrintFormat;
 
+import java.util.List;
+
 public interface PrintProviderInterface {
     void InitPrint();//初始化打印
 
@@ -35,5 +37,7 @@ public interface PrintProviderInterface {
     void printEnter();// 打印换行
 
     boolean startPrint(boolean cutpaper);//开始打印
+
+    public void setData(List<byte[]> bytes);
 
 }

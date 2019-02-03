@@ -34,6 +34,7 @@ import com.xgsb.datafactory.bean.PayTypebean;
 import com.xgsb.datafactory.bean.Paybean;
 import com.xgsb.datafactory.bean.Paymentbean;
 import com.xgsb.datafactory.bean.PrintSaleListbean;
+import com.xgsb.datafactory.bean.PrintTableConsumebean;
 import com.xgsb.datafactory.bean.Printbean;
 import com.xgsb.datafactory.bean.ReChargeListData;
 import com.xgsb.datafactory.bean.Remarkbean;
@@ -820,4 +821,14 @@ public class ApiManager {
         return new OkHttpRequest<List<SaleDetailbean>>(observable, saleListCallBack);
     }
 
+    /**
+     *
+     * @param params
+     * @param tableConsumeListCallback
+     * @return
+     */
+    public NetRequest getTableConsumeList(String[] params, NetRequestCallBack<ListData<PrintTableConsumebean>> tableConsumeListCallback) {
+        Observable<NetBean<ListData<PrintTableConsumebean>>> observable = mApiService.getTableConsume(genrateMap(params));
+        return new OkHttpRequest<ListData<PrintTableConsumebean>>(observable, tableConsumeListCallback);
+    }
 }

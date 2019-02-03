@@ -22,10 +22,9 @@ import com.shigoo.cashregister.adapters.OrderPayListAdapter;
 import com.shigoo.cashregister.customViews.viewChildClick.OrderListViewBriage;
 import com.shigoo.cashregister.mvp.contacts.MenuDishesListContact;
 import com.shigoo.cashregister.mvp.presenter.OrderDishesPresenter;
-import com.shigoo.cashregister.print.PrintManager;
-import com.shigoo.cashregister.print.attr.FormatFactory;
-import com.shigoo.cashregister.print.content.Content;
 import com.shigoo.cashregister.print.inter.PrintProviderInterface;
+import com.shigoo.cashregister.print.printer.PrintQueue;
+import com.shigoo.cashregister.print.writer.PrintOrderDataMaker;
 import com.shigoo.cashregister.utils.DishesUtil;
 import com.xgsb.datafactory.bean.Billbean;
 import com.xgsb.datafactory.bean.ComboData;
@@ -33,6 +32,7 @@ import com.xgsb.datafactory.bean.Dishesbean;
 import com.xgsb.datafactory.bean.Numberbean;
 import com.xgsb.datafactory.bean.OrderPayStatusbean;
 import com.xgsb.datafactory.bean.Paybean;
+import com.xgsb.datafactory.bean.PrintOrderbean;
 import com.xgsb.datafactory.bean.Remarkbean;
 import com.xgsb.datafactory.bean.SetMealGroupbean;
 import com.xgsb.datafactory.bean.SettalItem;
@@ -539,25 +539,8 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
 
     @Override
     public void printPaper(PrintProviderInterface providerInterface) {
-        List<Dishesbean> dishesbeans = mMenuListAdapter.getData();
-        Content content = FormatFactory.getDefaultTitleContent("预结单");
-        providerInterface.printText(content.getContent(), content.getFormat());
-        providerInterface.printEnter();
-        Content fromContent = FormatFactory.getDefaultStorContent("SPACE__XXX店");
-        providerInterface.printText(fromContent.getContent(), fromContent.getFormat());
-        Content dividerContent = FormatFactory.getDefaultDividerContent("-------------------------------------------------------");
-        providerInterface.printEnter();
-        providerInterface.printText(dividerContent.getContent(), dividerContent.getFormat());
-        providerInterface.printEnter();
-        providerInterface.printText(dividerContent.getContent(), dividerContent.getFormat());
-        providerInterface.printEnter();
-        for (Dishesbean dishes : dishesbeans) {
-            PrintManager.getInstance().printLineText(providerInterface, FormatFactory.getDishesLine(dishes));
-        }
-        providerInterface.printText(dividerContent.getContent(), dividerContent.getFormat());
-        providerInterface.printEnter();
-        providerInterface.printEnter();
-        PrintManager.getInstance().startPrint(providerInterface, true);
+        PrintOrderDataMaker printOrderDataMaker = new PrintOrderDataMaker(getContext(), new PrintOrderbean());
+        PrintQueue.getQueue(getContext()).add(printOrderDataMaker.getPrintData(), providerInterface);
     }
 
     private void clearnLeft() {
