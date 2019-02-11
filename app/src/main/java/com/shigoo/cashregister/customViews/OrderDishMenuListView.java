@@ -120,6 +120,7 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
     private DiscountType mDiscountType = DiscountType.NULL;
     float finalyPrice = 0f;
     float salePrice = 0f;
+    float alreadyMoney=0f;
     private boolean isFjz = false;
     private OrderListViewBriage.onOrderViewClick mClickLister;
 
@@ -539,7 +540,18 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
 
     @Override
     public void printPaper(PrintProviderInterface providerInterface) {
-        PrintOrderDataMaker printOrderDataMaker = new PrintOrderDataMaker(getContext(), new PrintOrderbean());
+        PrintOrderbean printOrderbean = new PrintOrderbean();
+        printOrderbean.setTitle("预结单");
+        printOrderbean.setBillCode(mBillbean.getBill_code());
+        printOrderbean.setDate(mBillbean.getBill_date());
+        printOrderbean.setDishes(mMenuListAdapter.getData());
+        printOrderbean.setTableNumber(mTable.getRegion_name() + mTable.getTable_number());
+        printOrderbean.setFinalyPrice(finalyPrice+"");
+        printOrderbean.setSalePrice(salePrice+"");
+        printOrderbean.setAlreadyMoney(alreadyMoney+"");
+        printOrderbean.setSellerName("销售小张");
+        printOrderbean.setOrderName("收银小李");
+        PrintOrderDataMaker printOrderDataMaker = new PrintOrderDataMaker(getContext(), printOrderbean);
         PrintQueue.getQueue(getContext()).add(printOrderDataMaker.getPrintData(), providerInterface);
     }
 
@@ -563,7 +575,8 @@ public class OrderDishMenuListView extends MvpCustomView<OrderDishesPresenter> i
         List<Float> prices = DishesUtil.calculaPrice(mMenuListAdapter.getData());
         finalyPrice = prices.get(1);
         salePrice = prices.get(0);
-        mAlreadOrderPriceTv.setText("已收：" + Param.Keys.RMB + prices.get(3));
+        alreadyMoney=prices.get(3);
+        mAlreadOrderPriceTv.setText("已收：" + Param.Keys.RMB + alreadyMoney);
         mOrderOldPriceTv.setText("原价：" + Param.Keys.RMB + salePrice);
         OrderPriceTv.setText("应收：" + Param.Keys.RMB + finalyPrice);
         if (finalyPrice == salePrice) {

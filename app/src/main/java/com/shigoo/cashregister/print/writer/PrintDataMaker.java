@@ -10,9 +10,9 @@ import java.util.List;
 public interface PrintDataMaker {
     List<byte[]> getPrintData();
 
-    List<byte[]> getHeaderPrintData();
+    void writeHeaderPrintData();
 
-    List<byte[]> getContentPrintData();
+    void writeContentPrintData();
 
-    List<byte[]> getFooterPrintData();
+    void writeFooterPrintData();
 }

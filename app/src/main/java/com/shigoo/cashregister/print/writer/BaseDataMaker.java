@@ -5,17 +5,19 @@ import android.content.Context;
 import com.xgsb.datafactory.bean.BasePrintbean;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BaseDataMaker<P extends BasePrintbean> implements PrintDataMaker {
-    private P mData;
-    private PrinterWriter mWriter;
+    ArrayList<byte[]> data = new ArrayList<>();
+    protected P mData;
+    protected PrinterWriter mWriter;
     protected Context mContext;
     protected int width;
     protected int height;
 
     public BaseDataMaker(P mData, Context mContext) {
-        this(mData,mContext, PrinterWriter80mm.TYPE_80, PrinterWriter.HEIGHT_PARTING_DEFAULT);
+        this(mData, mContext, PrinterWriter58mm.TYPE_58, PrinterWriter.HEIGHT_PARTING_DEFAULT);
     }
 
     public BaseDataMaker(P mData, Context mContext, int width, int height) {
@@ -23,6 +25,7 @@ public abstract class BaseDataMaker<P extends BasePrintbean> implements PrintDat
         this.mContext = mContext;
         this.width = width;
         this.height = height;
+        initWriter(PrinterWriter58mm.TYPE_58);
     }
 
     public void initWriter(int type) {
@@ -36,13 +39,16 @@ public abstract class BaseDataMaker<P extends BasePrintbean> implements PrintDat
     @Override
     public List<byte[]> getPrintData() {
         //打印默认头部信息
-        List<byte[]> data = getHeaderPrintData();
+        writeHeaderPrintData();
         //打印默认列表信息
-        List<byte[]> list = getContentPrintData();
+        writeContentPrintData();
         //打印底部信息
-        List<byte[]> footerlist = getFooterPrintData();
-        data.addAll(list);
-        data.addAll(footerlist);
+        writeFooterPrintData();
+        try {
+            data.add(mWriter.getDataAndClose());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return data;
     }
 }
